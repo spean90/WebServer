@@ -14,6 +14,14 @@ public class TestUserDao {
 	public void testSave(){
 		UserDao userDao = (UserDao) context.getBean("userDao");
 		User user = userDao.getAccountByUsername("hsp");
-		System.out.println(user.getUserName()+"  "+user.getTel());
+		User user2 = userDao.getAccountByUsername("hsp");
+		System.out.println(user.getUserName()+"  "+user.getTel()+"  "+user2.getTel());
 	}
+	
+//	@Test
+//	public void testInsert() {
+//		IUserService userService = (IUserService) context.getBean("userServiceImpl");
+//		userService.insertUser(null);
+//		
+//	}
 }

@@ -22,8 +22,8 @@ public class UserController {
 	@RequestMapping("getAccount.do")
 	@ResponseBody
 	public User getAccountByUsername(String name) {
-		System.out.println("111");
-		logger.info("in..getAccountByUsername."+name);
+		System.out.println("中文");
+		//logger.info("in..getAccountByUsername."+name);
 		User user = userService.getAccountByUsername(name);
 		logger.info(user.getTel());
 		return user;

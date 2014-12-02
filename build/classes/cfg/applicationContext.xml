@@ -61,20 +61,25 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	
-	
-	<!-- <tx:advice id="txAdvice" transaction-manager="txManager">
+	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
-			<tx:method name=""/>
+			<tx:method name="*" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	
 	<aop:config>
 		<aop:pointcut id="serviceOperation" expression="execution(* com.webserver.service.impl.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
-	</aop:config> -->
+	</aop:config>
 	
+	<bean id="beforeAdvice" class="com.webserver.common.MyMethodBeforeAdvice"></bean>
+	
+	
+	<aop:config>
+		<aop:pointcut id="controllerLogger" expression="execution(* com.webserver.controller.*.*(..))"/>
+		<aop:advisor advice-ref="beforeAdvice" pointcut-ref="controllerLogger"/>
+	</aop:config>
 	
 	
 	<context:component-scan base-package="com.webserver"/>
