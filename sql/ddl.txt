@@ -1,0 +1,45 @@
+﻿CREATE TABLE `user_info` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `acount` varchar(32) DEFAULT NULL COMMENT '帐号',
+  `password` varchar(32) DEFAULT NULL COMMENT '密码',
+  `real_name` varchar(32) DEFAULT NULL COMMENT '真实姓名',
+  `add_time` date DEFAULT NULL COMMENT '创建时间',
+  `is_lock` int(11) DEFAULT NULL COMMENT '是否锁定',
+  `role_id` int(11) DEFAULT NULL COMMENT '所属用户组',
+  `add_man` varchar(32) DEFAULT NULL COMMENT '添加人',
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+
+CREATE TABLE `role_info` (
+  `role_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `role_name` varchar(32) NOT NULL COMMENT '角色名称',
+  `add_time` varchar(20) DEFAULT NULL COMMENT '添加时间',
+  `own_menus` text COMMENT '自有权限,',
+  `add_man` varchar(32) DEFAULT NULL COMMENT '创建者',
+  PRIMARY KEY (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='角色表';
+
+CREATE TABLE `oper_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `oper_man` varchar(32) NOT NULL COMMENT '操作人',
+  `oper_time` varchar(20) NOT NULL COMMENT '操作时间',
+  `oper_ctrl` varchar(32) DEFAULT NULL COMMENT '操作类型',
+  `url` varchar(128) DEFAULT NULL COMMENT '请求URL',
+  `params` text COMMENT '请求参数',
+  `status` smallint(6) DEFAULT NULL COMMENT '操作状态',
+  `oper_action` varchar(32) DEFAULT NULL COMMENT '操作',
+  `ip` varchar(32) DEFAULT NULL COMMENT '操作IP',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2470 DEFAULT CHARSET=utf8 COMMENT='操作日志表';
+
+CREATE TABLE `menu_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `menu_id` varchar(16) NOT NULL COMMENT '菜单ID',
+  `menu_name` varchar(32) NOT NULL COMMENT '菜单名称',
+  `parent_id` varchar(16) NOT NULL COMMENT '父级菜单ID',
+  `menu_url` varchar(64) DEFAULT NULL COMMENT '菜单地址',
+  `available` bigint(20) DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=624 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+
