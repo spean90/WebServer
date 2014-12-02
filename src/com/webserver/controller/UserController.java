@@ -19,13 +19,12 @@ public class UserController {
 	private IUserService userService;
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
 	
-	@RequestMapping("getAccount.do")
+	@RequestMapping("getUserByAccount.do")
 	@ResponseBody
-	public User getAccountByUsername(String name) {
+	public User getUserByAccount(String account) {
 		System.out.println("中文");
 		//logger.info("in..getAccountByUsername."+name);
-		User user = userService.getAccountByUsername(name);
-		logger.info(user.getTel());
+		User user = userService.getUserByAccount(account);
 		return user;
 	}
 	

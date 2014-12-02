@@ -14,23 +14,13 @@ public class UserServiceImpl implements IUserService {
 	private UserDao userDao;
 	
 	@Override
-	public User getAccountByUsername(String name) {
+	public User getUserByAccount(String account) {
 		
-		return userDao.getAccountByUsername(name);
+		return userDao.getUserByAccount(account);
 	}
 
 	@Override
 	public int insertUser(User user) {
-		User user1 = new User();
-		user1.setPassword("1");
-		user1.setUserName("hello");
-		user1.setTel("1235");
-		userDao.insertUser(user1);
-		User user2 = new User();
-		user2.setPassword("2");
-		user2.setUserName("hello2");
-		user2.setTel("1234");
-		userDao.insertUser(user2);
 		return 1;
 	}
 	

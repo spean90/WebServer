@@ -8,7 +8,7 @@ import com.webserver.modal.User;
 
 public interface UserDao {
 
-	public User getAccountByUsername(@Param("username")String username);
+	public User getUserByAccount(@Param("acount")String acount);
 	
 	public int insertUser(@Param("user")User user);
 }

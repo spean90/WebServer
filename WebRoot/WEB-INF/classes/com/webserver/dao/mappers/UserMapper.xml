@@ -5,18 +5,18 @@
 <mapper namespace="com.webserver.dao.UserDao">
 	<cache /> <!-- 开启缓存 -->
 	
-	 <select id="getAccountByUsername" parameterType="string" resultType="com.webserver.modal.User">
-	   SELECT user_id userId,user_name userName,password,tel
-	   from user
+	 <select id="getUserByAccount" parameterType="string" resultType="User">
+	   SELECT uid uid,acount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan
+	   from user_info
 	   <where>
-	   		<if test="username != null">
-	   			user_name = #{username}
+	   		<if test="acount != null">
+	   			acount = #{acount}
 	   		</if>
 	   </where>
 	 </select>
 	 
 	 <insert id="insertUser" parameterType="User">
-	 	insert into user (user_name,password,tel)
-	 	values (#{user.userName},#{user.password},#{user.tel})
+	 	insert into user_info (acount,password,password,add_time,is_lock,role_id,add_man)
+	 	values (#{user.acount},#{user.password},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
 	 </insert>
 </mapper>
