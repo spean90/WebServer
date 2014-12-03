@@ -13,8 +13,8 @@ public class TestUserDao {
 	@Test
 	public void testSave(){
 		UserDao userDao = (UserDao) context.getBean("userDao");
-		User user = userDao.getUserByAccount("hsp");
-		System.out.println(user.getAcount()+"  "+user.getPassword());
+		User user = userDao.getUserByAccount("admin");
+		System.out.println(user.getAcount()+"  "+user.getAddTime());
 	}
 	
 //	@Test

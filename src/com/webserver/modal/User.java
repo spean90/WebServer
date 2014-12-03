@@ -1,7 +1,6 @@
 package com.webserver.modal;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class User implements Serializable {
 
@@ -10,7 +9,7 @@ public class User implements Serializable {
 	private String acount;
 	private String password;
 	private String realName;
-	private Date addTime; 
+	private String addTime; 
 	private Integer isLock;
 	private Integer roleId;
 	private String addMan;
@@ -39,10 +38,10 @@ public class User implements Serializable {
 	public void setRealName(String realName) {
 		this.realName = realName;
 	}
-	public Date getAddTime() {
+	public String getAddTime() {
 		return addTime;
 	}
-	public void setAddTime(Date addTime) {
+	public void setAddTime(String addTime) {
 		this.addTime = addTime;
 	}
 	public Integer getIsLock() {
