@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webserver.dao.MenuInfoDao">
+	<!--<cache />  开启缓存 -->
+	
+	 <select id="getMenuListByIds" parameterType="string" resultType="User">
+	   SELECT id id,menu_id menuId,menu_name menuName,parent_id parentId,menu_url menuUrl,available
+	   from menu_info
+	   <where>
+	   		<if test="menuIds != null">
+	   			menu_id in (${menuIds})
+	   		</if>
+	   </where>
+	 </select>
+	 
+	 <!-- <insert id="insertUser" parameterType="User">
+	 	insert into user_info (acount,password,password,add_time,is_lock,role_id,add_man)
+	 	values (#{user.acount},#{user.password},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
+	 </insert> -->
+</mapper>

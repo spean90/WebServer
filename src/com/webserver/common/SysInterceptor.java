@@ -1,18 +1,30 @@
 package com.webserver.common;
 
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class SysInterceptor extends HandlerInterceptorAdapter {
 
-	
+	private Logger logger = LoggerFactory.getLogger(SysInterceptor.class);
+	Map<String, String[]>param = null;
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		System.out.println("in......intercept...");
+		logger.info("receive：   "+request.getRequestURI());
+		param = request.getParameterMap();
+		String paramStr = "param: ";
+		for(String key: param.keySet()){
+			paramStr += key+"=" +param.get(key)[0]+" , ";
+		}
+		logger.info(paramStr);
 		String url = request.getServletPath();
 		// 服务端用户登录
 		if (url.startsWith("/sys/") || url.startsWith("/test/") || url.startsWith("/api/")) {
@@ -20,7 +32,9 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 		}
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
-			response.sendRedirect("/index.html");
+//			response.sendRedirect("/login.html");
+//			return false;
+			response.setStatus(401);
 			return false;
 		}
 		
@@ -32,7 +46,7 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		System.out.println("after");
+		//System.out.println("after");
 	}
 
 	

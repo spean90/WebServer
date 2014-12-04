@@ -3,20 +3,26 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.webserver.dao.UserDao">
-	<cache /> <!-- 开启缓存 -->
+	<!--<cache />  开启缓存 -->
 	
 	 <select id="getUserByAccount" parameterType="string" resultType="User">
-	   SELECT uid uid,acount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan
+	   SELECT uid uid,account,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan
 	   from user_info
 	   <where>
-	   		<if test="acount != null">
-	   			acount = #{acount}
+	   		<if test="account != null">
+	   			account = #{account}
 	   		</if>
 	   </where>
 	 </select>
 	 
+	  <select id="login" parameterType="string" resultType="User">
+	   SELECT uid uid,account,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan
+	   from user_info
+	   where account = #{account} and password = #{password}
+	 </select>
+	 
 	 <insert id="insertUser" parameterType="User">
-	 	insert into user_info (acount,password,password,add_time,is_lock,role_id,add_man)
-	 	values (#{user.acount},#{user.password},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
+	 	insert into user_info (account,password,password,add_time,is_lock,role_id,add_man)
+	 	values (#{user.account},#{user.password},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
 	 </insert>
 </mapper>

@@ -1,10 +1,121 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>首页</title>
-	</head>
-	<body>
-		你好web!项目
-	</body>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>系统管理</title>
+	
+	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap.css" />
+	
+	<link rel="stylesheet" type="text/css" href="common/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="common/css/head.css" />
+	
+	<script type="text/javascript" src="common/jquery/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="common/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/common/js/json.js" ></script>
+    <script type="text/javascript" src="/common/js/modal.js" ></script>
+    <script type="text/javascript" src="/js/index.js" ></script>
+	
+</head>
+<body style="background-position: right bottom;"  
+>
+	<div class="cl" id="top">
+		<div class="l mt10"><a id="logo" title="首页" href="javascript:void(0);"></a></div>
+    	<div class="l mt30" id="user-nav" style="width: 1120px">
+	        <div style="text-align: right">
+	        	<span class="locale_welcome_you">欢迎您&nbsp;</span>
+				<span id="acount"></span>&nbsp;
+				[<a href="javascript:void(0);" onclick="layout();"><span class="locale_layout">退出</span></a>]
+	        </div>
+    	</div>
+    </div>
+	<div class="cl" id="nav">
+		<div id="nav-menu">
+		<ul id="pro-ul" class="l">
+			<li><a class="selected" href="#">系统管理</a></li>
+<!-- 			<li><a href="#">游戏分析</a></li>
+			<li><a href="#">平台分析</a></li>
+			<li><a href="#">GM工具</a></li>
+			<li><a href="#">对账系统</a></li>
+			<li><a href="#">客服系统</a></li>
+ -->		</ul>
+		</div>
+	</div>
+	
+	<div id="content">
+		<div id="viewport-left">
+			<div class="vl-box-1" id="analyse-basic">
+				<div class="box-1-title"><a href="#">全部展开</a></div>
+				<div id="menu-div">
+				<div class="vl-box-2 no-line">
+					<div class="box-2-title"><em class="menu-general-situation l"></em><span class="l">概况</span></div>
+					<ul>
+						<li><a title="" class="selected" href="/reports?productId=1081000000&amp;reportId=1003&amp;conds=">应用总览 <em class="menu-icon-point"></em></a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=100502&amp;conds=">同时在线 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1043&amp;conds=">VIP开通系数 </a></li>
+					</ul>
+				</div>
+				<div class="vl-box-2">
+					<div class="box-2-title"><em class="menu-new-user l"></em><span class="l">新用户</span></div>
+					<ul >
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1047&amp;conds=">新安装来源分析 <em class="menu-icon-new"></em></a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1006&amp;conds=">新安装留存分析 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1040&amp;conds=">  社交渠道效果 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1032&amp;conds=">新安装付费分析 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1039&amp;conds=">广告效果跟踪分析 <em class="menu-icon-new"></em></a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1037&amp;conds=">交叉推广跟踪分析 </a></li>
+					</ul>
+				</div>
+				<div class="vl-box-2">
+					<div class="box-2-title"><em class="menu-user-behavior l"></em><span class="l">用户行为</span></div>
+					<ul style="display:none">
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1021&amp;conds=">登录来源分析 </a></li>
+					</ul>
+				</div>
+				<div class="vl-box-2">
+					<div class="box-2-title"><em class="menu-user-partake l"></em><span class="l">用户参与度</span></div>
+					<ul style="display:none">
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1038&amp;conds=">在线时长 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1029&amp;conds=">用户活跃天 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1026&amp;conds=">用户连续活跃天 </a></li>
+					</ul>
+				</div>
+				<div class="vl-box-2">
+					<div class="box-2-title"><em class="menu-user-attribute l"></em><span class="l">用户属性</span></div>
+					<ul style="display:none">
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1046&amp;conds=">用户属性 <em class="menu-icon-new"></em></a></li>
+					</ul>
+				</div>
+				<div class="vl-box-2">
+					<div class="box-2-title"><em class="menu-income l"></em><span class="l">收入</span></div>
+					<ul style="display:none">
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1008&amp;conds=">收入总览 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1023&amp;conds=">用户付费天 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1034&amp;conds=">新增付费用户分析 </a></li>
+						<li><a title="" href="/reports?productId=1081000000&amp;reportId=1080&amp;conds=">日活跃结算 </a></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="viewport-center">
+			<div class="vc-box-1">
+				<div class="box-1-title pb5">
+					<h3 id="address">系统首页</h3>
+				</div>
+				
+				<div id="mainDiv" style="padding: 0 10px; height: 600px">
+					<iframe id="centerIFrame" frameborder="0" scrolling="no" src="common/html/main.html" width="100%" height="100%"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="h30"></div>
+
+	<div id="footer">
+		<p>Copyright &copy; 2014 - 2016 spean90. All Rights Reserved.</p>
+    	<p>spean 版权所有</p>
+    </div>
+</body>
 </html>

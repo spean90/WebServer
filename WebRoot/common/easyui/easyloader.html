@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>easyloader功能介绍</title>
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="easyloader.js"></script>
+    <script>
+
+        easyloader.locale = "zh"; // 本地化设置
+        easyloader.theme = "gray"; // 设置主题
+        // 每个组件加载完成后触发
+        easyloader.onProgress = function (name) {
+            $("#loadMsg").append("<br />onProgress --> ");
+            $("#loadMsg").append(name);
+        };
+
+        // 在onProgress事件后触发，当组件以及关联组件全部加载完成后触发
+        easyloader.onLoad = function (name) {
+            $("#loadMsg").append("<br />onLoad --> ");
+            if (typeof name == "string") {
+                $("#loadMsg").append(name);
+            } else {
+                for (var i = 0; i < name.length; i++) {
+                    $("#loadMsg").append(name[i] + ",");
+                }
+            }
+        };
+
+        function load1() {
+            // using 等同于 easyloader.load
+            using('calendar', function () {
+                $('#cc').calendar({
+                    width: 180,
+                    height: 180
+                });
+            });
+        }
+        function load2() {
+            // 可以一次性加载多个模块
+            using(['dialog', 'messager'], function () {
+                $('#dd').dialog({
+                    title: '对话框',
+                    width: 300,
+                    height: 200
+                });
+                $.messager.show({
+                    title: '提示信息',
+                    msg: '对话框已创建！'
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>
+        EasyLoader</h1>
+    <div id="loadMsg" style="background-color: #000; color: #fff; width: 100%; margin: 10px 5px;
+        padding: 0px 10px 20px 10px;">
+    </div>
+    <!-- 只要class设置了easyui-linkbutton，easyloader就会自动动态加载模块linkbutton -->
+    <a href="#" class="easyui-linkbutton" onclick="load1()">加载日历</a> <a href="#" class="easyui-linkbutton"
+        onclick="load2()">加载对话框</a>
+    <div id="cc">
+    </div>
+    <div id="dd">
+    </div>
+	
+	<div>
+	<table id="menu-grid" class="easyui-datagrid" style="height: 200px">
+		<thead>
+			<tr>
+				<th field="text" width="100">菜单名称</th>
+				<th field="mid" width="50">ID</th>
+				<th field="id" width="50">菜单ID</th>
+				<th field="menuUrl" width="200">菜单地址</th>
+				<th field="valid" width="50" align="center">是否有效</th>
+				<th field="action" width="60" align="center">操作</th> 
+			</tr>
+		</thead>
+	</table>
+	</div>
+</html>

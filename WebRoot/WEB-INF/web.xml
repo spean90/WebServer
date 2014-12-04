@@ -11,11 +11,15 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	 <welcome-file-list>
-	   <welcome-file>index.html</welcome-file>
+	   <welcome-file>login.html</welcome-file>
 	 </welcome-file-list>
 	 <error-page>
 	   <error-code>404</error-code>
 	   <location>/common/html/404.html</location>
+	 </error-page>
+	  <error-page>
+	   <error-code>401</error-code>
+	   <location>/common/html/401.html</location>
 	 </error-page>
 	 <session-config>
 	   <session-timeout>60</session-timeout>
@@ -39,5 +43,36 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
   
-  
+  	
+  	
+  	
+  	<servlet>
+        <servlet-name>ssi</servlet-name>
+        <servlet-class>
+          org.apache.catalina.ssi.SSIServlet
+        </servlet-class>
+        <init-param>
+          <param-name>buffered</param-name>
+          <param-value>1</param-value>
+        </init-param>
+        <init-param>
+          <param-name>debug</param-name>
+          <param-value>0</param-value>
+        </init-param>
+        <init-param>
+          <param-name>expires</param-name>
+          <param-value>666</param-value>
+        </init-param>
+        <init-param>
+          <param-name>isVirtualWebappRelative</param-name>
+          <param-value>0</param-value>
+        </init-param>
+        <load-on-startup>4</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+	<servlet-name>ssi</servlet-name>
+		<url-pattern>*.shtml</url-pattern>
+		<url-pattern>*.html</url-pattern>
+		<url-pattern>*.inc</url-pattern>
+    </servlet-mapping>
 </web-app>

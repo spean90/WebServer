@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+(function(){
+	    window.onload = function() {
+	        var hash = self.location.hash,
+	            index = hash.indexOf('#'),
+	            h,
+	            piframe,maindiv;
+	        if( index != -1) {
+	            h = hash.split("#")[1];
+	            //h = h < 600 ? 600 : h;
+	           // h = h * 1 + 10;
+// 	            try {
+					maindiv = parent.parent.document.getElementById('mainDiv');
+					maindiv.style.height = h + 'px';
+	            	piframe = parent.parent.document.getElementById('centerIFrame');
+		            piframe.style.height = h + 'px';
+// 	            }
+// 	            catch(e) {}
+	        }
+	        
+	    }
+	})();
+</script>
+</head>
+<body>
+
+</body>
+</html>

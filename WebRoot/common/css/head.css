@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+/*CSS Reset*/
+/*base css*/
+.clearfix:after { clear: both; content: ""; display: block; height: 0; visibility: hidden;}
+.clearfix { zoom:1;}
+.clear{ clear:both;}
+.fl{ float:left;}
+
+/*-----------header------------*/
+.header{ background:#f1f1f1;}
+.inner_header{ width:1286px; margin:0 auto; position:relative; color:#000;  background:#f1f1f1; height:90px;}
+.logo{ padding:20px 40px 0 10px;}
+.mav{ border:1px solid #d4d3d3; border-radius:3px; background:url(../images/nav_sprite.png) repeat-x 0 0; overflow:hidden; height:30px; margin-top:45px; border-right:none;}
+.mav li{ float:left;}
+.mav a,.mav a.on{ color:#696969; display:block; width:140px; text-align:center; line-height:30px; text-decoration:none; border-right:1px solid #d4d3d3; font-size:14px;}
+.mav a.on,.mav a:hover{ background:#e5e5e5;}
+.header_extend{ position:absolute; right:10px; top:10px;}
+.language{ position:relative; cursor:pointer;}
+.header_extend a{ color:#000;}
+.sub_menu{ position:absolute; background:#fff; border:1px solid #d4d4d4; width:77px; padding:3px 0; left:-10px; top:20px;}
+.sub_menu a{ height:25px; display:block; text-align:center; line-height:25px; text-decoration:none;}
+.sub_menu a.default{ background:#f5f5f5;}
+.sub_menu a:hover{ background:#e4e4e4;}
+.header_extend s{ position:absolute; background:url(../images/nav_sprite.png) no-repeat 0 -30px; width:15px; height:7px; left:16px; top:14px;}
+.deco{border-color: #787878 transparent transparent transparent; border-style: solid dotted dotted dotted; border-width: 4px; height: 0; position:relative; top:3px; overflow: hidden;  display:inline-block; width: 0;}
+#sub_menu{ display:none;}

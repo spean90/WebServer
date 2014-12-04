@@ -6,7 +6,7 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer uid;
-	private String acount;
+	private String account;
 	private String password;
 	private String realName;
 	private String addTime; 
@@ -20,11 +20,11 @@ public class User implements Serializable {
 	public void setUid(Integer uid) {
 		this.uid = uid;
 	}
-	public String getAcount() {
-		return acount;
+	public String getAccount() {
+		return account;
 	}
-	public void setAcount(String acount) {
-		this.acount = acount;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 	public String getPassword() {
 		return password;
