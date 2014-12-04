@@ -1,5 +1,6 @@
 var index = {
 	init : function() {
+		alert(1)
 		$.ajax({
 			type : "get",
 			url : '/menu/initHome.do',
@@ -21,5 +22,6 @@ var index = {
 
 $(function() {
 	index.init();
+	alert(123);
 });
 
