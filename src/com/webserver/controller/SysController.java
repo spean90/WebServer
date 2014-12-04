@@ -2,20 +2,19 @@ package com.webserver.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.util.ConstantUtil;
-import com.webserver.modal.User;
 import com.webserver.service.ISysService;
 
 @Controller
@@ -46,7 +45,10 @@ public class SysController {
 		Map<String, Object> map = sysService.createAuthcode(request.getSession());
 		response.setHeader("P3P", "CP=CAO PSA OUR");
 		BufferedImage image = (BufferedImage) map.get(ConstantUtil.AUTHCODE_IMAGE);
-		ImageIO.write(image, "JPEG", response.getOutputStream());
+		OutputStream outputStream = response.getOutputStream(); 
+		ImageIO.write(image, "JPEG", outputStream);
+		outputStream.flush();  
+        outputStream.close();  
 		return;
 	}
 	

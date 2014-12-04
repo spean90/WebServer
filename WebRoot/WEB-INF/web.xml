@@ -43,7 +43,15 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
   
-  	
+  	<!-- 验证码 -->
+	<servlet>
+		<servlet-name>ValidCode</servlet-name>
+		<servlet-class>com.webserver.common.VerifyCodeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ValidCode</servlet-name>
+		<url-pattern>/valid_code</url-pattern>
+	</servlet-mapping>
   	
   	
   	<servlet>

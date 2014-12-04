@@ -80,7 +80,13 @@
 			});
 			
 		}
-		
+		function changeVerifyCode(){
+			$("#valid_code").attr("src","valid_code?r="+getRandom(9999999999));
+		}
+		function getRandom(n){return Math.floor(Math.random()*n+1);}
+		$(function(){
+			changeVerifyCode()
+		})
 	</script>
 </head>
 <body style="background-image: url(/common/images/bg2.png)">
@@ -102,8 +108,9 @@
 				<tr>
 					<td style="font-size: 12px" align="right">验证码：</td>
 					<td>
-						<input type="text" style="width: 100px" id="authCode"/> 
-						<img src="sys/createAuthcode.do" id="authCodeImage" onclick="this.src='sys/createAuthcode.do?e='+Math.random()">
+						<input type="text" style="width: 100px" id="authCode"/>
+						<!-- sys/createAuthcode.do" id="authCodeImage --> 
+						<img src="" id="valid_code" onclick="changeVerifyCode()">
 					</td>
 				</tr>
 			</table>
