@@ -4,7 +4,7 @@ var index = {
 				type : 'post',
 				url : '/menu/initHome.do',
 				success : function(data) {
-					alert('success');
+					$('#acount').html(data.user.realName)
 				}
 		}
 		Modal.ajax(config);

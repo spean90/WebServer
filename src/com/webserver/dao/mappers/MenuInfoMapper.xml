@@ -5,14 +5,14 @@
 <mapper namespace="com.webserver.dao.MenuInfoDao">
 	<!--<cache />  开启缓存 -->
 	
-	 <select id="getMenuListByIds" parameterType="string" resultType="User">
+	 <select id="getMenuListByIds" parameterType="string" resultType="MenuInfo">
 	   SELECT id id,menu_id menuId,menu_name menuName,parent_id parentId,menu_url menuUrl,available
 	   from menu_info
-	   <where>
-	   		<if test="menuIds != null">
-	   			menu_id in (${menuIds})
-	   		</if>
-	   </where>
+	   WHERE menu_id in
+	  <foreach item="item" index="index" collection="menuIds"
+	      open="(" separator="," close=")">
+	        #{item}
+	  </foreach>
 	 </select>
 	 
 	 <!-- <insert id="insertUser" parameterType="User">

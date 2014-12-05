@@ -9,5 +9,5 @@ import com.webserver.modal.MenuInfo;
 public interface MenuInfoDao {
 
 	
-	public List<MenuInfo> getMenuListByIds(@Param("menuIds")String menuIds);
+	public List<MenuInfo> getMenuListByIds(@Param("menuIds")String[] menuIds);
 }

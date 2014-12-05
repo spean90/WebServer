@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.modal.MenuInfo;
+import com.webserver.modal.User;
 import com.webserver.service.IMenuInfoService;
 
 @Controller
@@ -26,7 +27,9 @@ public class MenuController {
 	@ResponseBody
 	public Object initHome(HttpServletRequest request,HttpSession session) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		List<MenuInfo> menus = menuInfoServiceImpl.getMenuListByIds("m01,m0101,m0102,m0103,m02,m0201");
+		String m = "m01,m0101,m0102,m0103,m02,m0201";
+		String [] mm= m.split(",");
+		List<MenuInfo> menus = menuInfoServiceImpl.getMenuListByIds(mm);
 		result.put("success", true);
 		result.put("user",session.getAttribute("user"));
 		result.put("menus", menus);

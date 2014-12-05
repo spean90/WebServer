@@ -17,7 +17,7 @@ public class MenuInfoServiceImpl implements IMenuInfoService {
 	private MenuInfoDao menuInfoDao;
 	
 	@Override
-	public List<MenuInfo> getMenuListByIds(String menuIds) {
+	public List<MenuInfo> getMenuListByIds(String[] menuIds) {
 		return menuInfoDao.getMenuListByIds(menuIds);
 	}
 
