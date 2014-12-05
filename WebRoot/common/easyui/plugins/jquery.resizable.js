@@ -1,100 +1,97 @@
-﻿/**
- * jQuery EasyUI 1.3.3
+/**
+ * jQuery EasyUI 1.4.1
  * 
- * Copyright (c) 2009-2013 www.jeasyui.com. All rights reserved.
+ * Copyright (c) 2009-2014 www.jeasyui.com. All rights reserved.
  *
- * Licensed under the GPL or commercial licenses
- * To use it on other terms please contact us: info@jeasyui.com
- * http://www.gnu.org/licenses/gpl.txt
- * http://www.jeasyui.com/license_commercial.php
+ * Licensed under the GPL license: http://www.gnu.org/licenses/gpl.txt
+ * To use it on other terms please contact us at info@jeasyui.com
  *
  */
 (function($){
-var _1=false;
-$.fn.resizable=function(_2,_3){
-if(typeof _2=="string"){
-return $.fn.resizable.methods[_2](this,_3);
+$.fn.resizable=function(_1,_2){
+if(typeof _1=="string"){
+return $.fn.resizable.methods[_1](this,_2);
 }
-function _4(e){
-var _5=e.data;
-var _6=$.data(_5.target,"resizable").options;
-if(_5.dir.indexOf("e")!=-1){
-var _7=_5.startWidth+e.pageX-_5.startX;
-_7=Math.min(Math.max(_7,_6.minWidth),_6.maxWidth);
-_5.width=_7;
+function _3(e){
+var _4=e.data;
+var _5=$.data(_4.target,"resizable").options;
+if(_4.dir.indexOf("e")!=-1){
+var _6=_4.startWidth+e.pageX-_4.startX;
+_6=Math.min(Math.max(_6,_5.minWidth),_5.maxWidth);
+_4.width=_6;
 }
-if(_5.dir.indexOf("s")!=-1){
-var _8=_5.startHeight+e.pageY-_5.startY;
-_8=Math.min(Math.max(_8,_6.minHeight),_6.maxHeight);
-_5.height=_8;
+if(_4.dir.indexOf("s")!=-1){
+var _7=_4.startHeight+e.pageY-_4.startY;
+_7=Math.min(Math.max(_7,_5.minHeight),_5.maxHeight);
+_4.height=_7;
 }
-if(_5.dir.indexOf("w")!=-1){
-var _7=_5.startWidth-e.pageX+_5.startX;
-_7=Math.min(Math.max(_7,_6.minWidth),_6.maxWidth);
-_5.width=_7;
-_5.left=_5.startLeft+_5.startWidth-_5.width;
+if(_4.dir.indexOf("w")!=-1){
+var _6=_4.startWidth-e.pageX+_4.startX;
+_6=Math.min(Math.max(_6,_5.minWidth),_5.maxWidth);
+_4.width=_6;
+_4.left=_4.startLeft+_4.startWidth-_4.width;
 }
-if(_5.dir.indexOf("n")!=-1){
-var _8=_5.startHeight-e.pageY+_5.startY;
-_8=Math.min(Math.max(_8,_6.minHeight),_6.maxHeight);
-_5.height=_8;
-_5.top=_5.startTop+_5.startHeight-_5.height;
-}
-};
-function _9(e){
-var _a=e.data;
-var t=$(_a.target);
-t.css({left:_a.left,top:_a.top});
-if(t.outerWidth()!=_a.width){
-t._outerWidth(_a.width);
-}
-if(t.outerHeight()!=_a.height){
-t._outerHeight(_a.height);
+if(_4.dir.indexOf("n")!=-1){
+var _7=_4.startHeight-e.pageY+_4.startY;
+_7=Math.min(Math.max(_7,_5.minHeight),_5.maxHeight);
+_4.height=_7;
+_4.top=_4.startTop+_4.startHeight-_4.height;
 }
 };
-function _b(e){
-_1=true;
+function _8(e){
+var _9=e.data;
+var t=$(_9.target);
+t.css({left:_9.left,top:_9.top});
+if(t.outerWidth()!=_9.width){
+t._outerWidth(_9.width);
+}
+if(t.outerHeight()!=_9.height){
+t._outerHeight(_9.height);
+}
+};
+function _a(e){
+$.fn.resizable.isResizing=true;
 $.data(e.data.target,"resizable").options.onStartResize.call(e.data.target,e);
 return false;
 };
-function _c(e){
-_4(e);
+function _b(e){
+_3(e);
 if($.data(e.data.target,"resizable").options.onResize.call(e.data.target,e)!=false){
-_9(e);
+_8(e);
 }
 return false;
 };
-function _d(e){
-_1=false;
-_4(e,true);
-_9(e);
+function _c(e){
+$.fn.resizable.isResizing=false;
+_3(e,true);
+_8(e);
 $.data(e.data.target,"resizable").options.onStopResize.call(e.data.target,e);
 $(document).unbind(".resizable");
 $("body").css("cursor","");
 return false;
 };
 return this.each(function(){
-var _e=null;
-var _f=$.data(this,"resizable");
-if(_f){
+var _d=null;
+var _e=$.data(this,"resizable");
+if(_e){
 $(this).unbind(".resizable");
-_e=$.extend(_f.options,_2||{});
+_d=$.extend(_e.options,_1||{});
 }else{
-_e=$.extend({},$.fn.resizable.defaults,$.fn.resizable.parseOptions(this),_2||{});
-$.data(this,"resizable",{options:_e});
+_d=$.extend({},$.fn.resizable.defaults,$.fn.resizable.parseOptions(this),_1||{});
+$.data(this,"resizable",{options:_d});
 }
-if(_e.disabled==true){
+if(_d.disabled==true){
 return;
 }
 $(this).bind("mousemove.resizable",{target:this},function(e){
-if(_1){
+if($.fn.resizable.isResizing){
 return;
 }
-var dir=_10(e);
-if(dir==""){
+var _f=_10(e);
+if(_f==""){
 $(e.data.target).css("cursor","");
 }else{
-$(e.data.target).css("cursor",dir+"-resize");
+$(e.data.target).css("cursor",_f+"-resize");
 }
 }).bind("mouseleave.resizable",{target:this},function(e){
 $(e.data.target).css("cursor","");
@@ -112,9 +109,9 @@ return val;
 }
 };
 var _12={target:e.data.target,dir:dir,startLeft:_11("left"),startTop:_11("top"),left:_11("left"),top:_11("top"),startX:e.pageX,startY:e.pageY,startWidth:$(e.data.target).outerWidth(),startHeight:$(e.data.target).outerHeight(),width:$(e.data.target).outerWidth(),height:$(e.data.target).outerHeight(),deltaWidth:$(e.data.target).outerWidth()-$(e.data.target).width(),deltaHeight:$(e.data.target).outerHeight()-$(e.data.target).height()};
-$(document).bind("mousedown.resizable",_12,_b);
-$(document).bind("mousemove.resizable",_12,_c);
-$(document).bind("mouseup.resizable",_12,_d);
+$(document).bind("mousedown.resizable",_12,_a);
+$(document).bind("mousemove.resizable",_12,_b);
+$(document).bind("mouseup.resizable",_12,_c);
 $("body").css("cursor",dir+"-resize");
 });
 function _10(e){
@@ -123,7 +120,7 @@ var dir="";
 var _13=tt.offset();
 var _14=tt.outerWidth();
 var _15=tt.outerHeight();
-var _16=_e.edge;
+var _16=_d.edge;
 if(e.pageY>_13.top&&e.pageY<_13.top+_16){
 dir+="n";
 }else{
@@ -138,7 +135,7 @@ if(e.pageX<_13.left+_14&&e.pageX>_13.left+_14-_16){
 dir+="e";
 }
 }
-var _17=_e.handles.split(",");
+var _17=_d.handles.split(",");
 for(var i=0;i<_17.length;i++){
 var _18=_17[i].replace(/(^\s*)|(\s*$)/g,"");
 if(_18=="all"||_18==dir){
@@ -168,5 +165,6 @@ $.fn.resizable.defaults={disabled:false,handles:"n, e, s, w, ne, se, sw, nw, all
 },onResize:function(e){
 },onStopResize:function(e){
 }};
+$.fn.resizable.isResizing=false;
 })(jQuery);
 

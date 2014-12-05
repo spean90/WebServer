@@ -32,9 +32,8 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 		}
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
-//			response.sendRedirect("/login.html");
-//			return false;
-			response.setStatus(401);
+			logger.info("session = null  ");
+			response.setStatus(403);
 			return false;
 		}
 		

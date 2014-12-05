@@ -1,20 +1,13 @@
 var index = {
 	init : function() {
-		alert(1)
-		$.ajax({
-			type : "get",
-			url : '/menu/initHome.do',
-			success : function(data) {
-				data = JSON.StrToJSON(data);
-				var success = data.success;
-				if(success == false) {
-					Modal.showError(data.message || "操作失败", "", function() {});
-				}
-				else {
+		var config = {
+				type : 'post',
+				url : '/menu/initHome.do',
+				success : function(data) {
 					alert('success');
 				}
-			}
-		});
+		}
+		Modal.ajax(config);
 	}
 }
 
@@ -22,6 +15,5 @@ var index = {
 
 $(function() {
 	index.init();
-	alert(123);
 });
 

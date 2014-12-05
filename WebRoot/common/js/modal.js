@@ -1,4 +1,13 @@
 var Modal = {
+		
+		status : {
+			'501' : '系统没有此操作',
+			'403' : '访问权限异常,请重新登录',
+			'500' : '服务器操作异常',
+			'404' : '页面未找到异常',
+			'400' : '请求参数异常',
+			'401' : '登录超时异常'
+		},
 	/**
 	 * 封装的ajax方法，对操作失败进行了封装处理
 	 * 
@@ -23,21 +32,17 @@ var Modal = {
 			},
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				var status = XMLHttpRequest.status;
-				var responseText = JSON.StrToJSON(XMLHttpRequest.responseText);
-				var message = responseText.message;
-				$.messager.progress('close');
-
 				if(status == 401) {
-					Modal.showError(Sys.status[status], "错误提示", function() {
-						window.location.href = "login.jsp";
+					Modal.showError(Modal.status[status], "错误提示", function() {
+						window.location.href = "/login.html";
 					});
 				}
 				else if(status == 403) {
-					Modal.showError(Sys.status[status], "错误提示", function() {
-						window.location.href = "common/html/403.html";
+					Modal.showError(Modal.status[status], "错误提示", function() {
+						window.location.href = "/login.html";
 					});
 				} else {
-					Modal.showError(message || Sys.status[status]);
+					Modal.showError( Modal.status[status]||"服务器异常");
 				}
 			}
 		});
@@ -83,8 +88,7 @@ var Modal = {
 	 * @param titie 提示标题
 	 */
 	showAlert : function(msg, title) {
-		$.scojs_message(msg, 2);
-		//$.messager.alert(titie || '操作提示', msg, 'info');
+		$.messager.alert(titie || '操作提示', msg, 'info');
 	},
 
 	/**
@@ -94,11 +98,7 @@ var Modal = {
 	 * @param titie 提示标题
 	 */
 	showError : function(msg, titie, fuc) {
-		$.scojs_message(msg, 1);
-		window.setTimeout(function() {
-			fuc();
-		}, 3000);
-		//$.messager.alert(titie || '错误提示', msg, 'error', fuc);
+		$.messager.alert(titie || '错误提示', msg, 'error', fuc);
 	},
 
 	/**
@@ -108,13 +108,23 @@ var Modal = {
 	 * @param msg 提示内容
 	 * @param fuc 点击确定后执行的函数
 	 */
-	showConfirm : function(titie, msg, fuc) {
-		var confirm = $.scojs_confirm({
-			content: msg,
-			action: function() {
-				fuc();
-			}
-		});
-		confirm.show();
+	showConfirm : function(msg,titie, fuc) {
+		$.messager.alert(titie || '提示', msg, 'info', fuc);
+	},
+	
+	/**
+	 * 无父页面则跳转无权限页面，不是刷新父页面
+	 */
+	gotoPermissionPage:function(status){
+		if (window.top!=window.self) {
+			Modal.showError(Modal.status[status], "错误提示", function() {
+				window.parent.location.reload();
+			});
+		}else{ 
+			Modal.showError(Modal.status[status], "错误提示", function() {
+				window.location.href = "/login.html";
+			});
+		 } 
 	}
+	
 };
