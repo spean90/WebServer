@@ -29,8 +29,14 @@ public class MenuController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		String m = "m01,m0101,m0102,m0103,m02,m0201";
 		String [] mm= m.split(",");
-		List<MenuInfo> menus = menuInfoServiceImpl.getMenuListByIds(mm);
-		result.put("success", true);
+		List<MenuInfo> menus = null;
+		try {
+			menus = menuInfoServiceImpl.getMenuListByIds(mm);
+			result.put("success", true);
+		} catch (Exception e) {
+			result.put("success", false);
+			e.printStackTrace();
+		}
 		result.put("user",session.getAttribute("user"));
 		result.put("menus", menus);
 		return result;

@@ -1,6 +1,8 @@
 package com.webserver.modal;
 
 import java.io.Serializable;
+import java.util.List;
+
 
 public class MenuInfo implements Serializable {
 	
@@ -11,7 +13,14 @@ public class MenuInfo implements Serializable {
 	private String parentId;
 	private String menuUrl;
 	private Integer available;
+	private List<MenuInfo> children;
 	
+	public List<MenuInfo> getChildren() {
+		return children;
+	}
+	public void setChildren(List<MenuInfo> children) {
+		this.children = children;
+	}
 	public Integer getId() {
 		return id;
 	}
