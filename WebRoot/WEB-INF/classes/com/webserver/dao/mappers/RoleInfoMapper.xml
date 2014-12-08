@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webserver.dao.RoleInfoDao">
+	<!--<cache />  开启缓存 -->
+	
+	 <select id="getAllRole" parameterType="string" resultType="RoleInfo">
+	   SELECT role_id roleId,role_name roleName,add_time addTime,own_menus ownMenus,add_man addMan
+	   from role_info
+	 </select>
+	 
+	  <select id="getRoleById" parameterType="Integer" resultType="RoleInfo">
+	    SELECT role_id roleId,role_name roleName,add_time addTime,own_menus ownMenus,add_man addMan
+	   from role_info
+	   where role_id = #{roleId}
+	 </select>
+	 
+	 <insert id="insertRole" parameterType="RoleInfo">
+	 	insert into role_info (role_name,add_time,own_menus,add_man)
+	 	values (#{role.roleName},#{role.addTime},#{role.ownMenus},#{role.addMan})
+	 </insert>
+	 
+	 <delete id="deleteRoleById" parameterType="Integer">
+	 	delete from role_info 
+	 	where role_id = #{roleId}
+	 </delete>
+	 
+	 <update id="updateRole" parameterType="RoleInfo">
+	 	update role_info 
+	 	<set>
+	 		<if test="role.roleName!=null">
+	 		role_name = #{role.roleName},
+	 	</if>
+	 	<if test="role.ownMenus!=null">
+	 		own_menus = #{role.ownMenus},
+	 	</if>
+	 	</set>
+	 	where role_id = #{role.roleId}
+	 </update>
+	 
+</mapper>
