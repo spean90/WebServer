@@ -7,12 +7,26 @@
 		<script type="text/javascript" src="../js/roleManage.js"></script>
 	</head>
 	<body>
-    <span class="glyphicon glyphicon-remove"></span>
-    <span class="glyphicon-remove"></span>
+		
 		<div id="roleGrid"></div>
         <div id="tbar">
-            <button class="btn btn-success">添加角色</button>
+           <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="role.newRole()">新增</a>
         </div>
 
+        <div id="dialog" class="easyui-dialog" style="width: 640px;height: 480px;padding: 10px;"
+             closed="true" buttons="#dlg-buttons">
+            <form role="form" class="form-inline" method="post">
+                <div class="form-group">
+                    <label for="roleName">角色名称</label>
+                    <input type="text" name="roleName" id="roleName" class="form-control" required="true" placeholder="角色名称"/>
+                </div>
+            </form>
+
+        </div>
+        <div id="dlg-buttons">
+            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" style="width: 90px;"
+                    onclick="javascript:$('#dialog').dialog('close')">取消</a>
+        </div>
 	</body>
 </html>
