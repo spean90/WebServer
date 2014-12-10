@@ -22,4 +22,10 @@ $(function(){
 		]],
 		toolbar: '#tbar'
 	})
+	$('#menuTree').tree({
+		url:'/menu/getMenuTree.do',
+		formatter:function(node){
+			return node.menuName;
+		}
+	});
 })
