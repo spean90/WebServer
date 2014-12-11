@@ -88,7 +88,7 @@ var Modal = {
 	 * @param titie 提示标题
 	 */
 	showAlert : function(msg, title) {
-		$.messager.alert(titie || '操作提示', msg, 'info');
+		$.messager.alert(title || '操作提示', msg, 'info');
 	},
 
 	/**

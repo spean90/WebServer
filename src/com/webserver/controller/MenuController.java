@@ -43,12 +43,12 @@ public class MenuController {
 	}
 	@RequestMapping("getMenuTree.do")
 	@ResponseBody
-	public Object getMenuTree(HttpServletRequest request,HttpSession session) {
-		String m = "m01,m0101,m0102,m0103,m02,m0201";
-		String [] mm= m.split(",");
+	public Object getMenuTree(HttpServletRequest request,HttpSession session,int roleId) {
+		
+		
 		List<MenuInfo> menus = null;
 		try {
-			menus = menuInfoServiceImpl.getMenuListByIds(mm);
+			menus = menuInfoServiceImpl.getMenuTreeByRoleId(roleId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

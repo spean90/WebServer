@@ -7,4 +7,7 @@ import com.webserver.modal.RoleInfo;
 public interface IRoleInfoService {
 
 	public List<RoleInfo> getAllRole();
+	public int insertRole(RoleInfo roleInfo);
+	public int updateRole(RoleInfo roleInfo);
+	public int deleteRoleById(int roleId);
 }

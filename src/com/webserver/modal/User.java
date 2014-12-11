@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
 
+	
 	private static final long serialVersionUID = 1L;
 	private Integer uid;
 	private String account;
@@ -13,7 +14,14 @@ public class User implements Serializable {
 	private Integer isLock;
 	private Integer roleId;
 	private String addMan;
+	private String roleName;
 	
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 	public Integer getUid() {
 		return uid;
 	}

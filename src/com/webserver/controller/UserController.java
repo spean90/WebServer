@@ -22,10 +22,13 @@ public class UserController {
 	@RequestMapping("getUserByAccount.do")
 	@ResponseBody
 	public User getUserByAccount(String account) {
-		System.out.println("中文");
 		//logger.info("in..getAccountByUsername."+name);
 		User user = userService.getUserByAccount(account);
 		return user;
 	}
-	
+	@RequestMapping("getAllUser.do")
+	@ResponseBody
+	public Object getAllUser() {
+		return userService.getAllUser();
+	}
 }

@@ -15,4 +15,6 @@ public interface UserDao {
 	public List<User> login(@Param("account")String account,@Param("password")String password);
 	
 	public int insertUser(@Param("user")User user);
+	
+	public List<User> getUserByParams(@Param("user") User user);
 }

@@ -1,6 +1,8 @@
 package com.webserver.service.impl;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,7 +10,9 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.webserver.dao.MenuInfoDao;
+import com.webserver.dao.RoleInfoDao;
 import com.webserver.modal.MenuInfo;
+import com.webserver.modal.RoleInfo;
 import com.webserver.service.IMenuInfoService;
 
 @Service
@@ -16,6 +20,8 @@ public class MenuInfoServiceImpl implements IMenuInfoService {
 
 	@Resource
 	private MenuInfoDao menuInfoDao;
+	@Resource
+	private RoleInfoDao roleInfoDao;
 	
 	@Override
 	public List<MenuInfo> getMenuListByIds(String[] menuIds) throws Exception {
@@ -84,6 +90,21 @@ public class MenuInfoServiceImpl implements IMenuInfoService {
 				menuBean.setChildren(childList);
 			}
 		}
+	}
+
+	@Override
+	public List<MenuInfo> getMenuTreeByRoleId(int roleId) throws Exception {
+		List<MenuInfo> list = menuInfoDao.getAllMenu();
+		if(roleId != 0){
+			RoleInfo roleInfo = roleInfoDao.getRoleById(roleId);
+			List<String> ownMenus = Arrays.asList(roleInfo.getOwnMenus().split(","));
+			for(MenuInfo menu : list){
+				if(ownMenus.contains(menu.getMenuId())&&!menu.getParentId().equals("root")){
+					menu.setChecked(true);
+				}
+			}
+		}
+		return getMenuList(list);
 	}
 
 }

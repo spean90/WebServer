@@ -1,5 +1,7 @@
 package com.webserver.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public int insertUser(User user) {
 		return 1;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		return userDao.getUserByParams(new User());
 	}
 	
 	

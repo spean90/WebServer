@@ -19,5 +19,17 @@ public class RoleInfoServiceImpl implements IRoleInfoService {
 	public List<RoleInfo> getAllRole() {
 		return roleInfoDao.getAllRole();
 	}
+	@Override
+	public int insertRole(RoleInfo roleInfo) {
+		return roleInfoDao.insertRole(roleInfo);
+	}
+	@Override
+	public int updateRole(RoleInfo roleInfo) {
+		return roleInfoDao.updateRole(roleInfo);
+	}
+	@Override
+	public int deleteRoleById(int roleId) {
+		return roleInfoDao.deleteRoleById(roleId);
+	}
 
 }

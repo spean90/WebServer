@@ -14,7 +14,14 @@ public class MenuInfo implements Serializable {
 	private String menuUrl;
 	private Integer available;
 	private List<MenuInfo> children;
+	private boolean checked;
 	
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
+	}
 	public List<MenuInfo> getChildren() {
 		return children;
 	}

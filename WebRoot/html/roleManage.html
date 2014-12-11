@@ -8,18 +8,19 @@
 	</head>
 	<body>
 		
-		<div id="roleGrid"></div>
+		<div id="roleGrid" style="height: 480px;"></div>
         <div id="tbar">
            <a href="#" class="easyui-linkbutton" iconCls="icon-add" onclick="role.newRole()">新增</a>
         </div>
 
-        <div id="dialog" class="easyui-dialog" style="width: 640px;height: 480px;padding: 10px;"
+        <div id="dialog" class="easyui-dialog" style="width: 400px;height: 480px;padding: 10px;"
              closed="true" buttons="#dlg-buttons">
             <form role="form" class="form-inline" method="post">
                 <div class="form-group">
                     <label for="roleName">角色名称</label>
                     <input type="text" name="roleName" id="roleName" class="form-control" required="true" placeholder="角色名称"/>
                 </div>
+                <hr />
                 <div class="form-group">
                 	<label for="menuTree">拥有权限</label>
                 	<ul id="menuTree" class="easyui-tree" checkbox="true"></ul>
@@ -29,7 +30,8 @@
 
         </div>
         <div id="dlg-buttons">
-            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px"
+            		 onclick="role.save()">保存</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" style="width: 90px;"
                     onclick="javascript:$('#dialog').dialog('close')">取消</a>
         </div>
