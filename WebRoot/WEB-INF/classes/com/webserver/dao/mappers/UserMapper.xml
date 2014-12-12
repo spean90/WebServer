@@ -49,7 +49,35 @@
 	 </select>
 	 
 	 <insert id="insertUser" parameterType="User">
-	 	insert into user_info (account,password,password,add_time,is_lock,role_id,add_man)
-	 	values (#{user.account},#{user.password},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
+	 	insert into user_info (account,password,real_name,add_time,is_lock,role_id,add_man)
+	 	values (#{user.account},#{user.password},#{user.realName},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
 	 </insert>
+	 
+	  <update id="updateUser" parameterType="User">
+	 	update user_info 
+	 	<set>
+	 		<if test="user.account!=null">
+	 		account = #{user.account},
+		 	</if>
+		 	<if test="user.realName!=null">
+		 		real_name = #{user.realName},
+		 	</if>
+		 	<if test="user.password!=null">
+		 		password = #{user.password},
+		 	</if>
+		 	<if test="user.roleId!=null">
+		 		role_id = #{user.roleId},
+		 	</if>
+		 	<if test="user.isLock!=null">
+		 		is_lock = #{user.isLock},
+		 	</if>
+	 	</set>
+	 	where uid = #{user.uid}
+	 </update>
+	 
+	 <delete id="deleteUserById" parameterType = "java.lang.Integer" >
+	 	delete from user_info
+	 		where uid =  #{uid}
+	 </delete>
+	 
 </mapper>

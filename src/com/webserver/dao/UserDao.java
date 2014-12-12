@@ -17,4 +17,7 @@ public interface UserDao {
 	public int insertUser(@Param("user")User user);
 	
 	public List<User> getUserByParams(@Param("user") User user);
+	
+	public int updateUser(@Param("user") User user);
+	public int deleteUserById(@Param("uid")Integer uid);
 }

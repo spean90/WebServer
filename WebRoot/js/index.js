@@ -51,7 +51,10 @@ var index = {
 		
 		var iframe = document.getElementById("centerIFrame");
 		iframe.style.height = "600px";
-		iframe.src = "sys/userCenter.html";
+		iframe.src = "/html/userCenter.html";
+	},
+	logout : function() {
+		
 	}
 	
 }

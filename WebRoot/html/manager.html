@@ -9,39 +9,37 @@
 	<body>
 		<div id="userGrid" style="height: 480px;"></div>
 		<div id="tbar">
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="user.addUser()">新增</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="user.updateUser()">修改</a>
-        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="user.deleteUser()">删除</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="manager.addManager()">新增</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="manager.updateManager()">修改</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="manager.deleteManager()">删除</a>
 		</div>
 		
-		<div id="dialog" style="width: 450px;height: 600px;padding: 30px" class="easyui-dialog"
-			closed="true" buttons="#dlg-buttons">
+		<div id="dialog" style="width: 640px;height: 480px;padding: 10px" class="easyui-dialog"
+			closed="true" buttons="#dlg-buttons" align="center">
 			<h3>用户信息</h3>
 			<hr/>
 			<form id="form" method="post">
-				<div>
-					<label for="userName">用户名：</label>
-					<input type="text" class="easyui-validatebox" name="userName" data-options="required:true">
+				<div hidden="true">
+					<input type="text" name="uid" hidden="true">
 				</div>
 				<div>
-					<label for="password">密码：</label>
-					<input type="text" class="easyui-validatebox" name="password" data-options="required:true">
+					&nbsp;&nbsp;&nbsp;&nbsp;用户名：<input type="text" class="easyui-validatebox" name="account" data-options="required:true">
 				</div>
 				<div>
-					<label for="re_password">确认密码：</label>
-					<input type="text" class="easyui-validatebox" name="re_password" data-options="required:true">
+					真实姓名：<input type="text" class="easyui-validatebox" name="realName" data-options="required:true">
+				</div>
+				<div id="pwd">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="password" class="easyui-validatebox" id="password" name="password" data-options="required:true">
+				</div>
+				<div id="repwd">
+					确认密码：<input type="password" class="easyui-validatebox" name="re_password" id="re_password"  data-options="required:true">
 				</div>
 				<div>
-					<label for="realName">真实姓名：</label>
-					<input type="text" class="easyui-validatebox" name="realName" data-options="required:true">
+					所属角色：<input id="roleId" name="roleId" data-options="required:true">
 				</div>
+				<br/>
 				<div>
-					<label for="roleId">所属角色：</label>
-					<input id="roleId" name="roleId" data-options="required:true">
-				</div>
-				<div>
-					<label for="isLock">状态：</label>
-					<input id="isLock" name="isLock" class="easyui-combobox" 
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<input id="isLock" name="isLock" class="easyui-combobox" 
 					data-options="
 						valueField: 'id',
 						textField: 'text',
@@ -60,7 +58,7 @@
 		
 		 <div id="dlg-buttons">
             <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px"
-            		 onclick="user.save()">保存</a>
+            		 onclick="manager.save()">保存</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" style="width: 90px;"
                     onclick="javascript:$('#dialog').dialog('close')">取消</a>
         </div>

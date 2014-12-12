@@ -23,12 +23,22 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public int insertUser(User user) {
-		return 1;
+		return userDao.insertUser(user);
 	}
 
 	@Override
 	public List<User> getAllUser() {
 		return userDao.getUserByParams(new User());
+	}
+
+	@Override
+	public int updateUser(User user) {
+		return userDao.updateUser(user);
+	}
+
+	@Override
+	public int deleteUser(Integer uid) {
+		return userDao.deleteUserById(uid);
 	}
 	
 	

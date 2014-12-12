@@ -1,13 +1,20 @@
 package com.webserver.controller;
 
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webserver.common.util.DateUtil;
 import com.webserver.modal.User;
 import com.webserver.service.IUserService;
 
@@ -30,5 +37,39 @@ public class UserController {
 	@ResponseBody
 	public Object getAllUser() {
 		return userService.getAllUser();
+	}
+	@RequestMapping("addUser.do")
+	@ResponseBody
+	public Object addUser(User user,HttpServletRequest request) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		User oper = (User) request.getSession().getAttribute("user");
+		user.setAddMan(oper.getRealName());
+		user.setAddTime(DateUtil.getDateTimeString(new Date()));
+		
+		userService.insertUser(user);
+		result.put("success", true);
+		result.put("user", user);
+		return result;
+	}
+	@RequestMapping("updateUser.do")
+	@ResponseBody
+	public Object updateUser(User user,HttpServletRequest request) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		User oper = (User) request.getSession().getAttribute("user");
+		user.setAddMan(oper.getRealName());
+		user.setAddTime(DateUtil.getDateTimeString(new Date()));
+		
+		userService.updateUser(user);
+		result.put("success", true);
+		result.put("user", user);
+		return result;
+	}
+	@RequestMapping("deleteUser.do")
+	@ResponseBody
+	public Object deleteUser(Integer uid,HttpServletRequest request) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		userService.deleteUser(uid);
+		result.put("success", true);
+		return result;
 	}
 }

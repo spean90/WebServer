@@ -24,7 +24,7 @@ public class DateUtil {
 	}
 	
 	
-	public static String getTimeString(Date date){
+	public static String getDateString(Date date){
 		return dateFormater.format(date);
 	}
 	public static Date getDate(String dateString){
