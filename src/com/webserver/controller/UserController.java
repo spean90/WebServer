@@ -55,10 +55,6 @@ public class UserController {
 	@ResponseBody
 	public Object updateUser(User user,HttpServletRequest request) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		User oper = (User) request.getSession().getAttribute("user");
-		user.setAddMan(oper.getRealName());
-		user.setAddTime(DateUtil.getDateTimeString(new Date()));
-		
 		userService.updateUser(user);
 		result.put("success", true);
 		result.put("user", user);
