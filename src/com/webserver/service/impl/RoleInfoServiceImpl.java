@@ -31,5 +31,9 @@ public class RoleInfoServiceImpl implements IRoleInfoService {
 	public int deleteRoleById(int roleId) {
 		return roleInfoDao.deleteRoleById(roleId);
 	}
+	@Override
+	public RoleInfo getRoleById(Integer roleId) {
+		return roleInfoDao.getRoleById(roleId);
+	}
 
 }

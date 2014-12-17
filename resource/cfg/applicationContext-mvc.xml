@@ -27,7 +27,7 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	  
-	<context:component-scan base-package="com.webserver.controller" />  
+	<context:component-scan base-package="com.webserver.controller,com.webserver.apicontroller" />  
 	<!-- <mvc:annotation-driven /> -->
 	<!-- 解决低版本ie返回json变成下载问题 -->
 	<mvc:annotation-driven ignoreDefaultModelOnRedirect="true">

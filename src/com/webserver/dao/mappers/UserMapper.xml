@@ -46,6 +46,8 @@
 	  			and add_man = #{user.addMan}
 	  		</if>
 	  </where>
+	  order by uid 
+	  limit #{pageBean.start},#{pageBean.rows}
 	 </select>
 	 
 	 <insert id="insertUser" parameterType="User">

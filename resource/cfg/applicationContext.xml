@@ -46,10 +46,16 @@
 		</property>
 	</bean>
 	
+	<!-- mybatis物理分页拦截器 -->
+	<bean id="paginationInterceptor" class="com.webserver.common.PaginationInterceptor"></bean> 
+	
 	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="typeAliasesPackage" value="com.webserver.modal" />
         <property name="mapperLocations" value="classpath*:com/webserver/dao/mappers/*.xml" />
+        <property name="plugins">  
+            <ref bean="paginationInterceptor"/>  
+        </property>  
     </bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.webserver.dao" />

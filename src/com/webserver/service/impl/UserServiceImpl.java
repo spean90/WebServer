@@ -6,6 +6,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.webserver.common.PageBean;
+import com.webserver.common.PageData;
 import com.webserver.dao.UserDao;
 import com.webserver.modal.User;
 import com.webserver.service.IUserService;
@@ -27,8 +29,11 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public List<User> getAllUser() {
-		return userDao.getUserByParams(new User());
+	public PageData<User> getAllUser(PageBean pageBean) {
+		PageData<User> pageData = new PageData<User>();
+		List<User> list = userDao.getUserByParams(new User(),pageBean,pageData);
+		pageData.setRows(list);
+		return pageData;
 	}
 
 	@Override

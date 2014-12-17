@@ -51,6 +51,7 @@ var manager = {
 			Modal.showAlert('密码不一致！');
 			return;
 		}
+		$('#password').val(hex_md5(pwd).toUpperCase());
 		$('#form').form('submit',{
 			url : manager.url,
 			success : function(data) {
@@ -73,6 +74,7 @@ $(function() {
 	$('#userGrid').datagrid({
 		url : '/user/getAllUser.do',
 		pagination : true,
+		singleSelect : true,
 		fitColumns : true,
 		columns : [[
 		            {field:'account',title:'账号',width:100,align:'center'},

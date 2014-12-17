@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webserver.common.PageBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.modal.User;
 import com.webserver.service.IUserService;
@@ -35,8 +36,8 @@ public class UserController {
 	}
 	@RequestMapping("getAllUser.do")
 	@ResponseBody
-	public Object getAllUser() {
-		return userService.getAllUser();
+	public Object getAllUser(PageBean pageBean) {
+		return userService.getAllUser(pageBean);
 	}
 	@RequestMapping("addUser.do")
 	@ResponseBody

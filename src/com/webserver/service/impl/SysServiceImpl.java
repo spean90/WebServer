@@ -21,36 +21,38 @@ import com.webserver.service.ISysService;
 
 @Service
 public class SysServiceImpl implements ISysService {
-	
+
 	@Resource
 	private UserDao userDao;
 
 	@Override
-	public Map<String, Object> login(HttpServletRequest request,String account, String password,
-			String authCode) {
+	public Map<String, Object> login(HttpServletRequest request,
+			String account, String password, String authCode) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		List<User> userList = userDao.login(account, MD5.md5(password));
+
 		HttpSession session = request.getSession();
-		if(userList.size() > 0) {
-			// 验证码判断
-			String authCodeSession = (String)session.getAttribute(ConstantUtil.AUTHCODE);
-			if (authCodeSession.equalsIgnoreCase(authCode)) {
+
+		// 验证码判断
+		String authCodeSession = (String) session
+				.getAttribute(ConstantUtil.AUTHCODE);
+		if (authCodeSession.equalsIgnoreCase(authCode)) {
+			List<User> userList = userDao.login(account, MD5.md5(password));
+			if (userList.size() > 0) {
 				User userInfo = userList.get(0);
 				session.setAttribute("user", userInfo);
 				map.put(ConstantUtil.RETURN_SUCCESS, true);
 			} else {
 				map.put(ConstantUtil.RETURN_SUCCESS, false);
-				map.put(ConstantUtil.RETURN_MESSAGE, "验证码错误");
+				map.put(ConstantUtil.RETURN_MESSAGE, "帐号或密码错误");
 			}
 		} else {
 			map.put(ConstantUtil.RETURN_SUCCESS, false);
-			map.put(ConstantUtil.RETURN_MESSAGE, "帐号或密码错误");
+			map.put(ConstantUtil.RETURN_MESSAGE, "验证码错误");
 		}
-		
+
 		return map;
 	}
-	
+
 	@Override
 	public Map<String, Object> createAuthcode(HttpSession httpSession) {
 		// 生成验证码对象

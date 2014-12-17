@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.modal.MenuInfo;
+import com.webserver.modal.RoleInfo;
 import com.webserver.modal.User;
 import com.webserver.service.IMenuInfoService;
+import com.webserver.service.IRoleInfoService;
+import com.webserver.service.impl.RoleInfoServiceImpl;
 
 @Controller
 @RequestMapping("menu")
@@ -22,12 +25,16 @@ public class MenuController {
 
 	@Resource
 	private IMenuInfoService menuInfoServiceImpl;
+	@Resource
+	private IRoleInfoService roleInfoServiceImpl;
 	
 	@RequestMapping("initHome.do")
 	@ResponseBody
 	public Object initHome(HttpServletRequest request,HttpSession session) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		String m = "m01,m0101,m0102,m0103,m02,m0201";
+		User user = (User) session.getAttribute("user");
+		RoleInfo roleInfo = roleInfoServiceImpl.getRoleById(user.getRoleId());
+		String m = roleInfo.getOwnMenus();
 		String [] mm= m.split(",");
 		List<MenuInfo> menus = null;
 		try {
@@ -37,7 +44,7 @@ public class MenuController {
 			result.put("success", false);
 			e.printStackTrace();
 		}
-		result.put("user",session.getAttribute("user"));
+		result.put("user",user);
 		result.put("menus", menus);
 		return result;
 	}
