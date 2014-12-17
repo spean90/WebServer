@@ -14,5 +14,9 @@ public class MyAspect {
 		logger.info("..in.."+jp.getSignature().getName()+"  args: "+ jp.getArgs().toString());
 	}
 
+	public void after(JoinPoint jp){
+		Logger logger = LoggerFactory.getLogger(jp.getTarget().getClass());
+		logger.info("..in.after."+jp.getSignature().getName()+"  args: "+ jp.getArgs().length);
+	}
 	
 }

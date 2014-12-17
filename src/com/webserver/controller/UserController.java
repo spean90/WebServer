@@ -47,7 +47,7 @@ public class UserController {
 		user.setAddMan(oper.getRealName());
 		user.setAddTime(DateUtil.getDateTimeString(new Date()));
 		
-		userService.insertUser(user);
+		userService.insertUser(user,request);
 		result.put("success", true);
 		result.put("user", user);
 		return result;
@@ -56,7 +56,7 @@ public class UserController {
 	@ResponseBody
 	public Object updateUser(User user,HttpServletRequest request) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		userService.updateUser(user);
+		userService.updateUser(user,request);
 		result.put("success", true);
 		result.put("user", user);
 		return result;
@@ -65,7 +65,7 @@ public class UserController {
 	@ResponseBody
 	public Object deleteUser(Integer uid,HttpServletRequest request) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		userService.deleteUser(uid);
+		userService.deleteUser(uid,request);
 		result.put("success", true);
 		return result;
 	}

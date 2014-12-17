@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.OperLogDao">
+
+	<select id="getLogList" parameterType="OperLog" resultType="OperLog">
+		select id, uid uid, oper_time operTime, oper_action operAction, url, params, status, ip from oper_log
+		<where>
+		<if test="operLog.uid != null and operLog.uid != ''">
+			and uid = #{operLog.uid}
+		</if>
+		<if test="operLog.status != null ">
+			and status = #{operLog.status}
+		</if>
+		</where>
+		order by oper_time desc limit #{pageBean.start}, #{pageBean.rows}
+	</select>
+	
+	
+	<insert id="addLog" parameterType="OperLog">
+		insert into oper_log (uid, oper_time,  oper_action, url, params, status, ip) 
+		VALUES (#{operLog.uid}, #{operLog.operTime},  #{operLog.operAction}, #{operLog.url}, #{operLog.params}, #{operLog.status}, #{operLog.ip})
+	</insert>
+</mapper>

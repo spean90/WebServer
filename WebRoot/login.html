@@ -6,8 +6,12 @@
 	
 	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap-ie6.min.css" />
+	<link rel="stylesheet" type="text/css" href="/common/easyui/themes/bootstrap/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="/common/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="/common/easyui/themes/color.css" />
 	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/ie.css" />
 	<script type="text/javascript" src="common/easyui/jquery.min.js"></script>
+	<script type="text/javascript" src="/common/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="/common/bootstrap/js/bootstrap.min.js"></script>
 	
 	<script type="text/javascript">
@@ -75,7 +79,7 @@
 					}
 				},
 				error: function() {
-				
+					$.messager.alert('错误提示', '服务器异常！', 'error');
 				}
 			});
 			
