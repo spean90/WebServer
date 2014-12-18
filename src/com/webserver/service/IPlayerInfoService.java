@@ -1,5 +1,7 @@
 package com.webserver.service;
 
+import com.webserver.common.PageBean;
+import com.webserver.common.PageData;
 import com.webserver.modal.PlayerInfo;
 
 /**
@@ -13,4 +15,6 @@ public interface IPlayerInfoService {
 
 	public int insertPlayer(PlayerInfo playerInfo) throws Exception;
 	public PlayerInfo getPlayerInfoById(String playerId) throws Exception;
+	public PageData<PlayerInfo> getPlayerListByPage(PlayerInfo playerInfo,PageBean pageBean);
+	
 }

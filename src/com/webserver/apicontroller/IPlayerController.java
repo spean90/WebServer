@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.webserver.common.PageBean;
 import com.webserver.modal.PlayerInfo;
 import com.webserver.service.IPlayerInfoService;
 
 @Controller
 @RequestMapping("api")
-public class IPlayController {
+public class IPlayerController {
 	@Resource
 	private IPlayerInfoService playerInfoServiceImpl;
 
@@ -66,7 +67,7 @@ public class IPlayController {
 		return "success";
 	}
 		
-		@RequestMapping("getHeadImgById.do")
+	@RequestMapping("getHeadImgById.do")
 	@ResponseBody
 	public void getHeadImgById(HttpServletRequest request,HttpServletResponse response,String playerId) throws Exception{
 			PlayerInfo playerInfo = playerInfoServiceImpl.getPlayerInfoById(playerId);
@@ -75,4 +76,11 @@ public class IPlayController {
 			out.flush();
 			out.close();
 	}
+	@RequestMapping("getPlayerList.do")
+	@ResponseBody
+	public void getPlayerList(HttpServletRequest request,HttpServletResponse response,PageBean pageBean) throws Exception{
+		
+		
+	}
+	
 }

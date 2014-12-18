@@ -14,7 +14,7 @@
 	 </where>
 	</select>
 	 
-	 <select id="getUserByParams" parameterType="PlayerInfo" resultType="PlayerInfo">
+	 <select id="getPlayerByParams" parameterType="PlayerInfo" resultType="PlayerInfo">
 	   SELECT t.player_id playerId,t.account account,t.password password,t.add_time addTime, t.head_img headImg
 	   from player_info t
 	  <where>
@@ -27,15 +27,15 @@
 	  		<if test="playerInfo.password!=null">
 	  			and password = #{playerInfo.password}
 	  		</if>
-	  		<if test="playerInfo.addTime!=null">
-	  			and add_time = #{playerInfo.addTime}
-	  		</if>
 	  		<if test="playerInfo.headImg!=null">
 	  			and head_img = #{playerInfo.headImg}
 	  		</if>
 	  </where>
 	  order by player_id 
-	  limit #{pageBean.start},#{pageBean.rows}
+	  <if test="pageBean!=null">
+	   		limit #{pageBean.start},#{pageBean.rows}
+	  </if>
+	 
 	 </select>
 	 
 	 <insert id="insertPlayer" parameterType="PlayerInfo">
