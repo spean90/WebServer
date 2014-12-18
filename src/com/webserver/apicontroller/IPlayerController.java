@@ -50,12 +50,7 @@ public class IPlayerController {
 		String basepath = request.getServletContext().getRealPath("upload");
 		System.out.println(basepath);
 		System.out.println(img.getOriginalFilename());
-		String fileName = img.getOriginalFilename();
 		try {
-			File f = new File(basepath+"/"+fileName);
-			FileOutputStream fout = new FileOutputStream(f);
-			fout.write(img.getBytes());
-			fout.close();
 			PlayerInfo playerInfo = new PlayerInfo();
 			playerInfo.setAccount(account);
 			playerInfo.setPassword(password);
