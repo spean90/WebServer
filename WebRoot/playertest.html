@@ -1,0 +1,23 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Upload a file please</title>
+</head>
+<body>
+	<h1>PlayerTest</h1>
+	<form method="post" action="/api/signup.do">
+		<input type="text" name="account" /> 
+		<input type="text" name="password" /> 
+		<input type="submit" value="新增"/>
+	</form>
+	<hr/>
+	<form method="post" action="/api/updatePlayer.do" enctype="multipart/form-data">
+		<input type="text" name="account" /> 
+		<input type="text" name="password" /> 
+		<input type="file" name="img" /> 
+		<input type="submit" value="带头像" />
+	</form>
+	
+	<img alt="12323" src="/api/getHeadImgById.do?playerId=100002">
+</body>
+</html>
