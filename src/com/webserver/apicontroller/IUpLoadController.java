@@ -24,17 +24,17 @@ public class IUpLoadController {
 		System.out.println("....in..uploadImg;...;");
 		System.out.println("name:"+name);
 		System.out.println(file.getSize());
-		String basepath = request.getServletContext().getRealPath("upload");
+		String basepath = request.getServletContext().getRealPath("video");
 		System.out.println(basepath);
 		System.out.println(file.getOriginalFilename());
 		String fileName = file.getOriginalFilename();
-//		try {
-//			File f = new File(basepath+"/"+fileName);
-//			FileOutputStream fout = new FileOutputStream(f);
-//			fout.write(file.getBytes());
-//			fout.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			File f = new File(basepath+"/"+fileName);
+			FileOutputStream fout = new FileOutputStream(f);
+			fout.write(file.getBytes());
+			fout.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

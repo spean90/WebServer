@@ -18,8 +18,12 @@ public class WebExceptionResolver implements HandlerExceptionResolver {
 
 	@Override
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception e) {
-		logger.error(handler.getClass().getName() + ":" + e.getClass().getName());
-		logger.error(handler.getClass().getName() + ":", e);
+		if(handler!=null){
+			logger.error(handler.getClass().getName() + ":" + e.getClass().getName());
+			logger.error(handler.getClass().getName() + ":", e);
+		}else{
+			logger.error("出错了：",e);
+		}
 		int status = 500;
 		response.setStatus(status);
 		
