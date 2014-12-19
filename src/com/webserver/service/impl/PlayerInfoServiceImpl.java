@@ -34,11 +34,12 @@ public class PlayerInfoServiceImpl implements IPlayerInfoService {
 			PageBean pageBean) {
 		PageData<PlayerInfo> pageData = new PageData<PlayerInfo>();
 		List<PlayerInfo> list = playerInfoDao.getPlayerByParams(playerInfo, pageBean, pageData);
-		if (list!=null&&list.size()>0) {
-			for(PlayerInfo pInfo:list) {
-				pInfo.setHeadImgBase64Str(ImageBase64Util.getImageStrFromByte(pInfo.getHeadImg()));
-			}
-		}
+		//发现byte[]返回给浏览器。会自动转成base64String 
+//		if (list!=null&&list.size()>0) {
+//			for(PlayerInfo pInfo:list) {
+//				pInfo.setHeadImgBase64Str(ImageBase64Util.getImageStrFromByte(pInfo.getHeadImg()));
+//			}
+//		}
 		pageData.setRows(list);
 		return pageData;
 	}

@@ -14,7 +14,6 @@ public class PlayerInfo implements Serializable{
 	private String password;
 	private Date addTime;
 	private byte[] headImg;
-	private String headImgBase64Str;
 	
 
 	/**
@@ -24,15 +23,6 @@ public class PlayerInfo implements Serializable{
 	 */
 	public PlayerInfo() {
 		this.addTime = new Date();
-	}
-	
-	public String getHeadImgBase64Str() {
-		return headImgBase64Str;
-	}
-
-
-	public void setHeadImgBase64Str(String headImgBase64Str) {
-		this.headImgBase64Str = headImgBase64Str;
 	}
 
 	public Date getAddTime() {
