@@ -1,12 +1,15 @@
 package com.webserver.common.util;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 public class ZipUtil {
@@ -28,6 +31,23 @@ public class ZipUtil {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	public static File readFileFromZip(File file) throws Exception {
+		ZipFile zfile = new ZipFile(file);
+		Enumeration<ZipEntry> enumeration = (Enumeration<ZipEntry>) zfile.entries();
+		ZipEntry zipEntry = enumeration.nextElement();
+		InputStream in = zfile.getInputStream(zipEntry);
+		BufferedInputStream bin = new BufferedInputStream(in);
+		byte[] b = new byte[1024];
+		FileOutputStream fout = new FileOutputStream("E:\\b2.mp4");
+		while(bin.read(b)!=-1) {
+			fout.write(b);
+		}
+		in.close();
+		bin.close();
+		fout.close();
 		return null;
 	}
 	
@@ -53,6 +73,7 @@ public class ZipUtil {
 	public static void main(String[] args) throws Exception {
 		//ZipUtil.createGZIPFile(new File("E:\\ab.mp4"),"E:\\ab.mp4.gz");
 		//ZipUtil.getByteFromGZIPFile(new File("E:\\ab.mp4.tar.gz"));
-		ZipUtil.createZipFile(new File("E:\\ab.mp4"));
+		//ZipUtil.createZipFile(new File("E:\\ab.mp4"));
+		ZipUtil.readFileFromZip(new File("E:\\b.zip"));
 	}
 }
