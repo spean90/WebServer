@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -24,19 +25,16 @@ public class ZipUtil {
 			zout.closeEntry();
 			zout.finish();
 			zout.close();
-//			ZipInputStream zin = new ZipInputStream(new FileInputStream(file));
-//			zin.
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public static void createGZIPFile(File file) throws Exception {
+	public static void createGZIPFile(File file,String gzipFileName) throws Exception {
 		FileInputStream fin = new FileInputStream(file);
 		byte[] b = new byte[1024];
-		GZIPOutputStream gzipOutputStream = new GZIPOutputStream(new FileOutputStream("E:\\gg.tar.gz"));
+		GZIPOutputStream gzipOutputStream = new GZIPOutputStream(new FileOutputStream(gzipFileName));
 		while(fin.read(b)!=-1){
 			gzipOutputStream.write(b);
 		}
@@ -44,8 +42,17 @@ public class ZipUtil {
 		gzipOutputStream.finish();
 		gzipOutputStream.close();
 	}
+	public static byte[] getByteFromGZIPFile(File file) throws Exception {
+		GZIPInputStream gin = new GZIPInputStream(new FileInputStream(file));
+		byte[] b = new byte[gin.available()];
+		gin.read(b);
+		System.out.println(b.length);
+		return b;
+	}
 	
 	public static void main(String[] args) throws Exception {
-		ZipUtil.createGZIPFile(new File("E:\\b.log"));
+		//ZipUtil.createGZIPFile(new File("E:\\ab.mp4"),"E:\\ab.mp4.gz");
+		//ZipUtil.getByteFromGZIPFile(new File("E:\\ab.mp4.tar.gz"));
+		ZipUtil.createZipFile(new File("E:\\ab.mp4"));
 	}
 }
