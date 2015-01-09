@@ -1,35 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	
-	<property name="LOG_HOME" value="." />
-	<!-- 控制台输出 -->
-	<appender name="STDOUT"
-		class="ch.qos.logback.core.ConsoleAppender">
-		<Encoding>UTF-8</Encoding>
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>
-				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{10} - %msg%n
-			</pattern>
-		</layout>
-	</appender>
-	<!-- 操作索引按照每天生成日志文件 -->
-	<appender name="FILE"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<Encoding>UTF-8</Encoding>
-		<rollingPolicy
-			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>
-				${LOG_HOME}/logs/webserver.%d{yyyy-MM-dd}.log
-			</FileNamePattern>
-			<!-- 保留最近天数 -->
-			<MaxHistory>10</MaxHistory>
-		</rollingPolicy>
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<pattern>
-				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{10} - %msg%n
-			</pattern>
-		</layout>
-	</appender>
+	 <property name="LOG_HOME" value="." />
+	  <appender name="STDOUT"
+	            class="ch.qos.logback.core.ConsoleAppender">
+	    <encoder>
+				<pattern>
+					%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+				</pattern>
+	    </encoder>
+	  </appender>
+  
+     <appender name="RollingFile"  
+        class="ch.qos.logback.core.rolling.RollingFileAppender">  
+  
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">  
+            <level>TRACE</level>  
+        </filter>  
+  
+        <!-- 可让每天产生一个日志文件，最多 10 个，自动回滚 -->  
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
+            <!--  <fileNamePattern>E:/Log/logout-%d{yyyy-MM-dd}.log</fileNamePattern>  -->
+            <fileNamePattern>logs/logout-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>  
+        </rollingPolicy>  
+  
+        <!-- 下面这段注释的代码可以在日志文件超过 5MB 时进行归档，并且归档文件后缀只要是 .zip 或 .gz 就会自动压缩日志归档 -->  
+        <!--  
+            file>d:/log/Unmi.log</file> <rollingPolicy  
+            class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">  
+            <fileNamePattern>d:/log/Unmi.%i.log.zip</fileNamePattern>  
+            <minIndex>1</minIndex> <maxIndex>10</maxIndex> </rollingPolicy>  
+  
+            <triggeringPolicy  
+            class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">  
+            <maxFileSize>5MB</maxFileSize> </triggeringPolicy  
+        -->  
+        <encoder>  
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger -- %msg -- %n</pattern>  
+        </encoder>  
+    </appender>
 	
 	<!-- 需要记录日志的包  
     <logger name="net.sf.ehcache">  
@@ -39,14 +49,14 @@
 	<logger name="org.hibernate" level="WARN"/> 
 	<logger name="org.springframework" level="WARN"/> 
 	<logger name="com.mchang" level="WARN"/> 
-	
+	<logger name="org.mybatis.spring.SqlSessionUtils" level="WARN"/>
 	<!--     显示sql -->
 	
     
 	
-	<root level="INFO">
+	<root level="DEBUG">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="FILE" />
+		<appender-ref ref="RollingFile" />
 	</root>
 	
 	<!--日志异步到数据库     
