@@ -15,20 +15,17 @@ import com.webserver.modal.User;
 public class TestDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("cfg/applicationContext.xml");
 	
-//	@Test
-//	public void testSave(){
-//		UserDao userDao = (UserDao) context.getBean("userDao");
-//		User user = userDao.getUserByAccount("admin");
-//		System.out.println(user.getAcount()+"  "+user.getAddTime());
-//	}
-	
-//	@Test
-//	public void testInsert() {
-//		IUserService userService = (IUserService) context.getBean("userServiceImpl");
-//		userService.insertUser(null);
-//		
-//	}
 	@Test
+	public void testSave(){
+		UserDao userDao = (UserDao) context.getBean("userDao");
+		User user = new User();
+		user.setAccount("abc");
+		System.out.println("pre:"+user.getUid());
+		userDao.insertUser(user);
+		System.out.println("after:"+user.getUid());
+	}
+	
+	//@Test
 	public void testMenu(){
 		MenuInfoDao menuInfoDao = (MenuInfoDao) context.getBean("menuInfoDao");
 		String m = "m01,m0101,m0102,m0103,m02,m0201";

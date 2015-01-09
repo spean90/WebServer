@@ -50,7 +50,7 @@
 	  limit #{pageBean.start},#{pageBean.rows}
 	 </select>
 	 
-	 <insert id="insertUser" parameterType="User">
+	 <insert id="insertUser" parameterType="User" useGeneratedKeys="true" keyProperty="user.uid">
 	 	insert into user_info (account,password,real_name,add_time,is_lock,role_id,add_man)
 	 	values (#{user.account},#{user.password},#{user.realName},#{user.addTime},#{user.isLock},#{user.roleId},#{user.addMan})
 	 </insert>
