@@ -58,13 +58,15 @@ var index = {
 		iframe.src = "/html/userCenter.html";
 	},
 	logout : function() {
-		parent.window.location.href = '/login.html';
+		
 		var domain = document.domain;
 		
 		//转换成顶级域名
 		domain = domain.substring(domain.indexOf(".") + 1, domain.length);
 		//登陆成功后先清除原来的cookie
-		Cookies.clear("JSESSIONID", {domain: domain, path: "/"});
+		//Cookies.clear("JSESSIONID", {domain: domain, path: "/"});
+		Cookies.removeItem("JSESSIONID", "/", "localhost");
+		parent.window.location.href = '/login.html';
 	}
 	
 }
