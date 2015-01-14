@@ -22,12 +22,19 @@ var userCenter = {
 					var result = JSON.StrToJSON(data);
 					if(result.success){
 						Modal.showConfirm('密码修改成功,请重新登录！',null,function(){
-							parent.window.location.href = '/login.html';
-							var domain = document.domain;
-							//转换成顶级域名
-							domain = domain.substring(domain.indexOf(".") + 1, domain.length);
-							//登陆成功后先清除原来的cookie
-							Cookies.clear("JSESSIONID", {domain: domain, path: "/"});
+							var config = {
+									url : '/sys/logout.do',
+									success : function(data) {
+										parent.window.location.href = '/login.html';
+										var domain = document.domain;
+										//转换成顶级域名
+										domain = domain.substring(domain.indexOf(".") + 1, domain.length);
+										//登陆成功后先清除原来的cookie
+										Cookies.clear("JSESSIONID", {domain: domain, path: "/"});
+									}
+							}
+							Modal.ajax(config);
+
 						})
 					}else{
 						Modal.showAlert('服务器出错！');
