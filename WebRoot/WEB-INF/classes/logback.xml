@@ -21,7 +21,7 @@
         <!-- 可让每天产生一个日志文件，最多 10 个，自动回滚 -->  
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
             <!--  <fileNamePattern>E:/Log/logout-%d{yyyy-MM-dd}.log</fileNamePattern>  -->
-            <fileNamePattern>WebRoot/logs/logout-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>../applogs/logout-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>10</maxHistory>  
         </rollingPolicy>  
   
