@@ -9,16 +9,14 @@
   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd  
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
    <!-- mvc返回页面的配置 -->
-    <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
-        模板路径为WEB-INF/pages/
+     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
         <property name="prefix">
-            <value>/</value>
+            <value>/html/</value>
         </property>
-        视图模板后缀为.html
         <property name="suffix">
-            <value>.html</value>
+            <value>.jsp</value>
         </property>
-    </bean> -->
+    </bean>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<!-- one of the properties available; the maximum file size in bytes -->
@@ -56,5 +54,9 @@
    
     
     </mvc:annotation-driven>
-  
+    <!-- 没有匹配到路由则使用默认servlet  也可以使用下面的resources标签 -->
+    <mvc:default-servlet-handler/> 
+    <!-- 一级目录下的请求为webroot下的静态html文件 
+  <mvc:resources location="/common/html/" mapping="/common/html/**"/> 
+  <mvc:resources location="/" mapping="/*"/> -->
 </beans>  
