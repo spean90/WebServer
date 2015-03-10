@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script type="text/javascript" src="/common/easyui/jquery.min.js"></script>
+		<#include "header_include.ftl">
+		<script type="text/javascript" src="/common/charts/fusioncharts.charts.js"></script>
+		<script type="text/javascript" src="/common/charts/fusioncharts.js"></script>
 		<script type="text/javascript" src="/js/product.js"></script>
 		<title>${pid}</title>
 	</head>
 	<body>
-		${pid}
+		<p id="pid">${pid}</p>
 		====================<br/>
-		${dt?datetime}
+		${dt?datetime}<br/>
+		
+		<div id="chartDiv"></div>
+		
 	</body>
 </html>
