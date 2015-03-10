@@ -50,6 +50,7 @@
 	<logger name="org.springframework" level="WARN"/> 
 	<logger name="com.mchang" level="WARN"/> 
 	<logger name="org.mybatis.spring.SqlSessionUtils" level="WARN"/>
+	<logger name="org.apache.ibatis.io.ResolverUtil" level="WARN"/>
 	<!--     显示sql -->
 	
     
