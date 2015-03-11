@@ -7,7 +7,6 @@ import java.util.Map;
 /**
  * 分页封装
  * 
- * @author CJianY
  * @date 2014-5-5
  * 
  * @param <T>

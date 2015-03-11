@@ -23,6 +23,7 @@ public class TestController {
 		ModelAndView modelAndView = new ModelAndView("product");
 		modelAndView.addObject("pid", pid); 
 		modelAndView.addObject("dt",new Date());
+		modelAndView.addObject("list",testCharts("11"));
 		return modelAndView;
 	}
 	

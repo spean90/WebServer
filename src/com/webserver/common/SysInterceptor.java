@@ -18,7 +18,7 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 	Map<String, String[]>param = null;
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		logger.info("receive：   "+request.getRequestURI());
+		logger.info("url：   "+request.getRequestURI());
 		param = request.getParameterMap();
 		String paramStr = "param: ";
 		for(String key: param.keySet()){
@@ -27,7 +27,8 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 		logger.info(paramStr);
 		String url = request.getServletPath();
 		// 服务端用户登录
-		if (url.startsWith("/sys/") || url.startsWith("/test/") || url.startsWith("/api/")||url.startsWith("/login.html")||true) {
+		if (url.startsWith("/sys/") || url.startsWith("/test/") || url.startsWith("/api/")||url.startsWith("/login.html")
+				||url.startsWith("/common/")||true) {
 			return true;
 		}
 		HttpSession session = request.getSession();
