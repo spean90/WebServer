@@ -72,13 +72,65 @@ var Product = {
 		    } else {  
 		        alert('您的浏览器不支持,请按 Ctrl+D 手动收藏!');  
 		    }   
-		} 
+		} ,
+		
+		
+		//加入购物车，存入localStorage
+		addToCar : function() {
+			var id = ((Math.random()*10).toFixed()).toString();
+			alert(id);
+			var p = {"id":id,"name":"brand1","price":"100.00"};
+			var car = localStorage.car;
+			if(car==null||car=="undefind") {
+				alert(car +"购物车当前为空！");
+				var newcar = {};
+				var list=[];
+				list.push(p);
+				newcar.list = list;
+				localStorage.car=JSON.stringify(newcar);
+			}else {
+				car = JSON.parse(car);
+				if(Product.isInCar(p.id)){
+					alert("已经在购物车内了");
+				}else {
+					car.list.push(p);
+					localStorage.car=JSON.stringify(car);
+				}
+			}
+			Product.showCar();
+		},
+		
+		isInCar : function(pid) {
+			var car = localStorage.car;
+			car = JSON.parse(car);
+			var list = car.list;
+			for (var int = 0; int < list.length; int++) {
+				if(pid==list[int].id) {
+					return true;
+				}
+			}
+			return false;
+		},
+		
+		showCar : function() {
+			var carList = $("li");
+			carList.remove();
+			var car = localStorage.car;
+			car = JSON.parse(car);
+			var list = car.list;
+			var li = "";
+			alert(list.length+"  size");
+			for (var int = 0; int < list.length; int++) {
+				li = "<li>"+list[int].id+","+list[int].name+list[int].price+"</li>"
+				$("#carList").append(li);
+			}
+		}
+		
+		
 }
 
 
 
 $(function(){
 	Product.init();
-	
-	
 });

@@ -31,5 +31,13 @@
 			</tbody>
 		</table>
 		
+		<button type="button" onclick="Product.addToCar()">添加入购物车</button>
+		<div>
+			<ul id="carList">
+				<li>sdjfsfd</li>
+				<li>sdjfsfd</li>
+				<li>sdjfsfd</li>
+			</ul>
+		</div>
 	</body>
 </html>
