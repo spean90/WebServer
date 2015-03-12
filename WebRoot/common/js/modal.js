@@ -20,7 +20,7 @@ var Modal = {
 			data : config.data,
 			async: config.async || false,
 			success : function(data) {
-				data = JSON.StrToJSON(data);
+				data = JSON.parse(data);
 				var success = data.success;
 				
 				if(success == false) {
@@ -61,7 +61,7 @@ var Modal = {
 				return $(this).form('validate');
 			},
 			success : function(data) {
-				data = JSON.StrToJSON(data);
+				data = JSON.parse(data);
 				if (data.success == false) {
 					Modal.showError(data.message || "操作失败", "", function() {});
 				} else {

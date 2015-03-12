@@ -19,7 +19,7 @@ var userCenter = {
 			$('#password').val(hex_md5(new_pwd).toUpperCase())
 			$('#form').form('submit',{
 				success : function(data) {
-					var result = JSON.StrToJSON(data);
+					var result = JSON.parse(data);
 					if(result.success){
 						Modal.showConfirm('密码修改成功,请重新登录！',null,function(){
 							var config = {

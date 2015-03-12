@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /> 
+<title>异步加载</title>
+<script type="text/javascript">  
+function initialize() {  
+  var map = new BMap.Map('map');  
+  map.centerAndZoom(new BMap.Point(119.28,26.08), 12);  
+  map.addControl(new BMap.NavigationControl());
+  var marker = new BMap.Marker(new BMap.Point(119.28,26.08));        // 创建标注    
+  map.addOverlay(marker);                     // 将标注添加到地图中
+}  
+   
+function loadScript() {  
+  var script = document.createElement("script");  
+  script.src = "http://api.map.baidu.com/api?v=2.0&ak=9d6b3d192ee19965a427465f0432b576&callback=initialize";//此为v1.5版本的引用方式  
+  document.body.appendChild(script);  
+}  
+   
+window.onload = loadScript;  
+</script>
+</head>
+<body>
+	<div id="map" style="width: 500px; height: 320px"></div>
+</body>
+</html>

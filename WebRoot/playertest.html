@@ -1,10 +1,21 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Upload a file please</title>
+<script type="text/javascript" src="/common/easyui/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		var objStr = '{"name" : "hsp","tel" : "110"}';
+		var obj = JSON.parse(objStr);
+		alert(obj.name);
+		
+		alert(JSON.stringify(obj));
+	});
+</script>
 </head>
 <body>
-	<h1>PlayerTestRRRRRRRRRRRRR</h1>
+	<h1>PlayerTest</h1>
 	<form method="post" action="/api/signup.do">
 		<input type="text" name="account" /> 
 		<input type="text" name="password" /> 
