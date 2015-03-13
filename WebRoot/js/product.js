@@ -140,7 +140,6 @@ var Product = {
 		//加入购物车，存入localStorage
 		addToCar : function() {
 			var id = ((Math.random()*10).toFixed()).toString();
-			alert(id);
 			var p = {"id":id,"name":"brand1","price":"100.00"};
 			var car = localStorage.car;
 			if(car==null||car=="undefind") {
@@ -153,7 +152,7 @@ var Product = {
 			}else {
 				car = JSON.parse(car);
 				if(Product.isInCar(p.id)){
-					alert("已经在购物车内了");
+					Modal.showAlert("已经在购物车内了");
 				}else {
 					car.list.push(p);
 					localStorage.car=JSON.stringify(car);
@@ -181,7 +180,6 @@ var Product = {
 			car = JSON.parse(car);
 			var list = car.list;
 			var li = "";
-			alert(list.length+"  size");
 			for (var int = 0; int < list.length; int++) {
 				li = "<li>"+list[int].id+","+list[int].name+list[int].price+"</li>"
 				$("#carList").append(li);

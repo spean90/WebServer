@@ -15,7 +15,7 @@ import com.webserver.modal.User;
 public class TestDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("cfg/applicationContext.xml");
 	
-	@Test
+	//@Test
 	public void testSave(){
 		UserDao userDao = (UserDao) context.getBean("userDao");
 		User user = new User();
@@ -25,7 +25,7 @@ public class TestDao {
 		System.out.println("after:"+user.getUid());
 	}
 	
-	//@Test
+	@Test
 	public void testMenu(){
 		MenuInfoDao menuInfoDao = (MenuInfoDao) context.getBean("menuInfoDao");
 		String m = "m01,m0101,m0102,m0103,m02,m0201";
