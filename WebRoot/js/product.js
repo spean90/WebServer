@@ -140,7 +140,7 @@ var Product = {
 		//加入购物车，存入localStorage
 		addToCar : function() {
 			var id = ((Math.random()*10).toFixed()).toString();
-			var p = {"id":id,"name":"brand1","price":"100.00"};
+			var p = {"id":id,"name":"brand1","price":"100.00","img":"/common/images/logo.png"};
 			var car = localStorage.car;
 			if(car==null||car=="undefind") {
 				alert(car +"购物车当前为空！");
@@ -181,9 +181,26 @@ var Product = {
 			var list = car.list;
 			var li = "";
 			for (var int = 0; int < list.length; int++) {
-				li = "<li>"+list[int].id+","+list[int].name+list[int].price+"</li>"
+				li = "<li>"+"<img alt='图片' src='"+list[int].img+"'></img>"+list[int].id+","+list[int].name+list[int].price+"</li>"
 				$("#carList").append(li);
 			}
+		},
+		
+		removeToCar : function() {
+			var car = localStorage.car;
+			car = JSON.parse(car);
+			var list = car.list;
+			for (var int = 0; int < list.length; int++) {
+				if(list[int].id==2){
+					alert(int);
+					list.splice(int,1);
+					break;
+				}
+			}
+			
+			alert(JSON.stringify(list));
+			 localStorage.car=JSON.stringify(car);
+			 Product.showCar();
 		}
 		
 		
