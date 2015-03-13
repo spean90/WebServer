@@ -44,6 +44,68 @@ var Product = {
 					        "dataSource": sourcedata
 						});
 						revenueChart.render();
+						
+						
+						
+						//highChart
+						$('#hightChartDiv').highcharts({
+					        chart: {
+					            type: 'area',
+					            spacingBottom: 30
+					            
+					        },
+					        title: {
+					        	align:'left',
+					            text: 'iphone4(黑/白)'
+					        },
+					        legend: {
+					            layout: 'vertical',
+					            align: 'left',
+					            verticalAlign: 'top',
+					            x: 150,
+					            y: 100,
+					            floating: true,
+					            borderWidth: 1,
+					            backgroundColor: '#FFFFFF'
+					            
+					        },
+					        xAxis: {
+					            categories: ['12月', '1月', '2月']
+					        },
+					        yAxis: {
+					            title: {
+					                text: ''
+					            },
+					            labels: {
+					                formatter: function() {
+					                    return this.value;
+					                }
+					            }
+					        },
+					        tooltip: {
+					            formatter: function() {
+					                return '<b>'+ this.x +'</b>'+': ￥'+ this.y;
+					            }
+					        },
+					        plotOptions: {
+					            area: {
+					                fillOpacity: 0.2,
+					                color:'#FF9900',
+					                showInLegend : false
+
+
+					            }
+					        },
+					        credits: {
+					            enabled: false
+					        },
+					        series: [{
+					            data: [1200, 1000,800,900]
+					        }]
+					    });
+						
+						
+						
 					}
 			}
 			Modal.ajax(options);

@@ -4,6 +4,7 @@
 		<#include "header_include.ftl">
 		<script type="text/javascript" src="/common/charts/fusioncharts.charts.js"></script>
 		<script type="text/javascript" src="/common/charts/fusioncharts.js"></script>
+		<script type="text/javascript" src="/common/charts/highcharts.js"></script>
 		<script type="text/javascript" src="/js/product.js"></script>
 		<title>${pid}</title>
 	</head>
@@ -13,8 +14,10 @@
 		====================<br/>
 		${dt?datetime}<br/>
 		
-		<div id="chartDiv"></div>
-		<table border="1" style="width: 500px;">
+		<div id="chartDiv" style="float:left; "></div>
+		<div id="hightChartDiv" style="float:left;width: 300px;height: 200px;"></div>
+		
+		<table border="1" style="width: 500px;clear:both">
 			<thead>
 			<tr>
 			<th>Heading</th>
