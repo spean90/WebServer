@@ -16,7 +16,7 @@
 		
 		<div id="chartDiv" style="float:left; "></div>
 		<div id="hightChartDiv" style="float:left;width: 300px;height: 200px;"></div>
-		
+		<div id="showcontent"></div>
 		<table border="1" style="width: 500px;clear:both">
 			<thead>
 			<tr>

@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.modal.User;
-
 public interface IUserService {
 	
 	public User getUserByAccount(String account);

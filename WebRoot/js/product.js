@@ -3,7 +3,7 @@ var Product = {
 			var pid = $("#pid").text();
 			var options = {
 					type : "post",
-					url : "/testCharts.do",
+					url : "http://localhost/testCharts.do",
 					data : {"pid":pid},
 					success : function(data) {
 						var sourcedata = {
@@ -201,8 +201,24 @@ var Product = {
 			alert(JSON.stringify(list));
 			 localStorage.car=JSON.stringify(car);
 			 Product.showCar();
-		}
+		},
 		
+		//jsonp
+		testJSONP:function() {
+			 $.ajax({  
+			        type : "get",  
+			        async:false,  
+			        url : "http://127.0.0.1/testCharts.do",  
+			        dataType : "jsonp",//数据类型为jsonp 
+			        contentType: "application/jsonp; charset=utf-8",
+			        success : function(data){ 
+			            $("#showcontent").text("Result:"+JSON.stringify(data))  
+			        },  
+			        error:function(){  
+			            alert('fail');  
+			        }  
+			    });   
+		}
 		
 }
 
@@ -210,4 +226,9 @@ var Product = {
 
 $(function(){
 	Product.init();
+	Product.testJSONP();
+	
+	
+	
+	
 });
