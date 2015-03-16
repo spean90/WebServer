@@ -31,36 +31,38 @@ import org.slf4j.LoggerFactory;
 public class HttpUtil {
 	
 	private Logger logger = LoggerFactory.getLogger(HttpUtil.class);
-	
+	private static HttpClient httpClient;
+	public static HttpClient getHttpClient() {
+		if (httpClient==null) {
+			Builder builder = RequestConfig.custom()
+				    .setSocketTimeout(1000)
+				    .setConnectTimeout(3000);
+			RequestConfig config = builder.build();
+			//指点该httpget的cofig;也可以通过下面指点client的config来实现；
+			//httpGet.setConfig(config);
+			//根据builder创建制定的client;
+			HttpClientBuilder builder2 = HttpClients.custom().setDefaultRequestConfig(config);
+			httpClient = builder2.build();
+			return httpClient;
+		}else{
+			return httpClient;
+		}
+		
+	}
 	
 	public Object doGet(String url) {
 		//String url =  "http://webservice.webxml.com.cn/WebServices/WeatherWS.asmx/getRegionProvince?";
 		HttpGet httpGet = new HttpGet(url);
-		Builder builder = RequestConfig.custom()
-			    .setSocketTimeout(1000)
-			    .setConnectTimeout(3000);
-		RequestConfig config = builder.build();
-		//指点该httpget的cofig;也可以通过下面指点client的config来实现；
-		//httpGet.setConfig(config);
-		
-		//根据builder创建制定的client;
-		HttpClientBuilder builder2 = HttpClients.custom().setDefaultRequestConfig(config);
-		HttpClient httpClient = builder2.build();
 		//创建默认的httpclient;
 		//HttpClient httpClient = HttpClients.createDefault();
 		try {
-			HttpResponse httpResponse = httpClient.execute(httpGet);
+			HttpResponse httpResponse = getHttpClient().execute(httpGet);
 			printResponse(httpResponse);
 			httpResponse = null;
 		} catch (Exception e) {
 			logger.error("httpGet err :", e);
 		}
 		httpGet = null;
-		builder = null;
-		config = null;
-		builder2 = null;
-		httpClient = null;
-		
 		return null;
 	}
 	/**
