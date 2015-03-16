@@ -208,15 +208,16 @@ var Product = {
 			 $.ajax({  
 			        type : "get",  
 			        async:false,  
-			        url : "http://127.0.0.1/testCharts.do",  
+			        url : Sys.serviceDomain+"/testCharts.do",  
 			        dataType : "jsonp",//数据类型为jsonp 
 			        contentType: "application/jsonp; charset=utf-8",
 			        success : function(data){ 
+			        	alert(data);
 			            $("#showcontent").text("Result:"+JSON.stringify(data))  
 			        },  
-			        error:function(){  
-			            alert('fail');  
-			        }  
+			        error : function() {
+						alert("fail");
+					}
 			    });   
 		}
 		
