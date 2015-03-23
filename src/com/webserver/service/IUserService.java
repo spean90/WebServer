@@ -12,4 +12,12 @@ public interface IUserService {
 	public PageData<User> getAllUser(PageBean pageBean);
 	public int updateUser( User user,HttpServletRequest request);
 	public int deleteUser(Integer uid,HttpServletRequest request);
+	
+	/**
+	 * 根据查询条件返回用户列表分页信息
+	 * @param user
+	 * @param pageBean
+	 * @return
+	 */
+	public PageData<User> getUserByParams(User user,PageBean pageBean);
 }
