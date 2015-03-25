@@ -71,6 +71,7 @@ public class TestController {
 			list.add(map);
 		}
 		String jsonpCallback = request.getParameter("callback");//客户端请求参数  
+		System.out.println("jsonpCallback: "+jsonpCallback);
 		if(jsonpCallback!=null) {
 			Gson gson = new Gson();
 			 response.setCharacterEncoding("utf-8");
