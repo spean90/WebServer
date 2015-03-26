@@ -27,15 +27,15 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 		logger.info(paramStr);
 		String url = request.getServletPath();
 		// 服务端用户登录
-		if (url.startsWith("/sys/") || url.startsWith("/test/") || url.startsWith("/api/")||url.startsWith("/login.html")
-				||url.startsWith("/common/")||true) {
+		if (url.startsWith("/sys/") || url.startsWith("/test/") || url.startsWith("/api/")||url.startsWith("/playertest.html")
+				||url.startsWith("/common/")||url.startsWith("/regular/")||true) {
 			return true;
 		}
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") == null) {
 			logger.info("session = null  ");
-			response.setStatus(403);
-			response.sendRedirect("/login.html");
+			response.sendError(403);
+			//response.sendRedirect("/login.html");
 			return false;
 		}
 		

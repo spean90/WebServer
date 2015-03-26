@@ -205,20 +205,37 @@ var Product = {
 		
 		//jsonp
 		testJSONP:function() {
-			 $.ajax({  
-			        type : "get",  
-			        async:false,  
-			        url : Sys.serviceDomain+"/testCharts.do",  
-			        dataType : "jsonp",//数据类型为jsonp 
-			        contentType: "application/jsonp; charset=utf-8",
-			        success : function(data){ 
+//			 $.ajax({  
+//			        type : "get",  
+//			        async:false,  
+//			        url : Sys.serviceDomain+"/testCharts22.do",  
+//			        dataType : "jsonp",//数据类型为jsonp 
+//			        contentType: "application/jsonp; charset=utf-8",
+//			        success : function(data){ 
+//			        	alert(data);
+//			            $("#showcontent").text("Result:"+JSON.stringify(data))  
+//			        },  
+//			        error : function() {
+//						alert("fail");
+//					}
+//			    });   
+			
+			$.jsonp({
+				url : Sys.serviceDomain+"/testCharts.do", 
+				callbackParameter: "callback",
+				success : function(data){ 
 			        	alert(data);
 			            $("#showcontent").text("Result:"+JSON.stringify(data))  
 			        },  
-			        error : function() {
-						alert("fail");
-					}
-			    });   
+				error : function(xOptions, textStatus) {
+					alert(textStatus);
+					console.log('>>>>>>>>>>>>>>>>>>>');
+					console.log(xOptions);
+					console.log('>>>>>>>>>>>>>>>>>>>');
+					console.log(textStatus);
+					window.location.href = "/playertest.html";
+				}
+			});
 		}
 		
 }
@@ -226,7 +243,7 @@ var Product = {
 
 
 $(function(){
-	Product.init();
+	//Product.init();
 	Product.testJSONP();
 	
 	

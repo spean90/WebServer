@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="/common/easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="/common/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="/common/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="/common/jquery/jquery.jsonp-2.4.0.min.js"></script>
 	<script type="text/javascript" src="/common/js/date.js" ></script>
 	<script type="text/javascript" src="/common/js/sys.js" ></script>
 	<script type="text/javascript" src="/common/js/modal.js" ></script>
