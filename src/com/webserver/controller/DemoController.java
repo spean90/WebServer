@@ -1,0 +1,54 @@
+package com.webserver.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.google.gson.Gson;
+
+@Controller
+public class DemoController {
+
+	@RequestMapping("getCity.do")
+	public void getCityList(HttpServletResponse response,HttpServletRequest request) {
+		try {  
+	        Map<String,Object> map = new HashMap<String,Object>();   
+	        ArrayList<Map<String, Object>> cityList = new ArrayList<Map<String,Object>>();
+	        for (int i = 0; i < 25; i++) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("name", "福建"+i);
+				m.put("id", i);
+				ArrayList<Map<String, Object>> city = new ArrayList<Map<String,Object>>();
+				for (int j = 0; j < 8; j++) {
+					Map<String, Object> c = new HashMap<String, Object>();
+					c.put("name", "福州"+i+"-"+j);
+					c.put("id", j);
+					city.add(c);
+				}
+				m.put("city", city);
+				cityList.add(m);
+			}
+	        
+	        map.put("result", cityList);  
+	        response.setCharacterEncoding("utf-8");
+			response.setContentType("text/javascript");
+	        PrintWriter out = response.getWriter();    
+	        Gson gson = new Gson();
+	        String result = gson.toJson(map);//根据需要拼装json  
+	        String jsonpCallback = request.getParameter("callback");//客户端请求参数  
+	        out.write(jsonpCallback+"("+result+")");//返回jsonp格式数据  
+	        out.flush();  
+	        out.close();  
+	      } catch (IOException e) {  
+	       e.printStackTrace();  
+	      }  
+	}
+}
