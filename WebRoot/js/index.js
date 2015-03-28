@@ -68,6 +68,15 @@ var index = {
 		changeCity : function(city){
 			$("#current_city").text(city);
 			$("#citySelect").hide();
+		},
+		initPhoneList : function(){
+			$('.phone-list.clearfix').empty();
+			
+			for (var i = 0; i < 15; i++) {
+				var phone = $('<li data-label="4月,5月,6月" data-data="1200,1300,800"><a><img src="pic/phone.jpg" alt="iphone4" width="145" height="220" /><span class="phone-name">iPhone 4</span></a><a class="phone-btn" data-number="37693" data-price="500"><em>37693</em>人回收</a><a class="index-spr trend-icon"></a></li>');
+				$('.phone-list.clearfix').append(phone);
+			}
+			
 		}
 		
 }
@@ -75,7 +84,7 @@ var index = {
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
 index.initCity();
-
+index.initPhoneList();
 $(function(){
 });
 
