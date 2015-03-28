@@ -1,3 +1,3 @@
 var Sys = {
-		serviceDomain : 'http://192.168.16.133'
+		serviceDomain : 'http://127.0.0.1'
 }

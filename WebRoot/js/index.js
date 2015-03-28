@@ -1,7 +1,6 @@
 /**
  * 首页  index.js
  */
-
 var index = {
 		//定义加入收藏夹函数
 		join_favorite:function(){  
@@ -29,41 +28,70 @@ var index = {
 		},
 		initCity : function(){
 			$('.city-list-2.clearfix').empty();
-			var citylist = localStorage.citylist;
+			var citylist = sessionStorage.citylist;
 			if(citylist==null||citylist=="undefind") {
-				alert("城市信息为空！向服务端发送请求....");
+				console.log("城市信息为空！向服务端发送请求....");
 				$.jsonp({
 					url : Sys.serviceDomain+"/getCity.do", 
 					callbackParameter: "callback",
 					success : function(data){ 
-						console.log(">>>>"+data)
-				        	alert(data.result);
 				          citylist = data.result;
-				          localStorage.citylist = JSON.stringify(citylist);
+				          sessionStorage.citylist = JSON.stringify(citylist);
+				          //渲染页面
+				          for (var i = 0; i < citylist.length; i++) {
+								var provinceData = citylist[i]
+								var province = $('<li><a class="p-r">'+provinceData.name+'<em></em></a></li>');
+								$('.city-list-2.clearfix').append(province)
+								var span = $('<span></span>');
+								var citys = provinceData.city;
+								for (var j = 0; j < citys.length; j++) {
+									var city = citys[j];
+									span.append('<a onclick="index.changeCity(\''+city.name+'\')">'+city.name+'</a>');
+								}
+								province.append(span)
+							}
+				          var city = new  citySelect($("#citySelect"),$,1,function(element,height){
+				        	    var  h = element.height();
+				        	    element.css("marginTop",-h/2);
+				        	    window.onscroll = function(){
+				        	        var scrollHeight = document.body.scrollTop||document.documentElement.scrollTop;
+				        	        element.css("top",scrollHeight+height/2)
+				        	    }
+				        	});
+				          
 				        },  
 					error : function(xOptions, textStatus) {
 						alert(textStatus);
-						window.location.href = "/index.html";
+						//window.location.href = "/index.html";
 					}
 				});
 			}else{
 				citylist = JSON.parse(citylist);
+				  //渲染页面
+		          for (var i = 0; i < citylist.length; i++) {
+						var provinceData = citylist[i]
+						var province = $('<li><a class="p-r">'+provinceData.name+'<em></em></a></li>');
+						$('.city-list-2.clearfix').append(province)
+						var span = $('<span></span>');
+						var citys = provinceData.city;
+						for (var j = 0; j < citys.length; j++) {
+							var city = citys[j];
+							span.append('<a onclick="index.changeCity(\''+city.name+'\')">'+city.name+'</a>');
+						}
+						province.append(span)
+					}
+		          var city = new  citySelect($("#citySelect"),$,1,function(element,height){
+		        	    var  h = element.height();
+		        	    element.css("marginTop",-h/2);
+		        	    window.onscroll = function(){
+		        	        var scrollHeight = document.body.scrollTop||document.documentElement.scrollTop;
+		        	        element.css("top",scrollHeight+height/2)
+		        	    }
+		        	});
 			}
 			
 			
 			
-			for (var i = 0; i < citylist.length; i++) {
-				var provinceData = citylist[i]
-				var province = $('<li><a class="p-r">'+provinceData.name+'<em></em></a></li>');
-				$('.city-list-2.clearfix').append(province)
-				var span = $('<span></span>');
-				var citys = provinceData.city;
-				for (var j = 0; j < citys.length; j++) {
-					var city = citys[j];
-					span.append('<a onclick="index.changeCity(\''+city.name+'\')">'+city.name+'</a>');
-				}
-				province.append(span)
-			}
 		},
 		changeCity : function(city){
 			$("#current_city").text(city);
@@ -80,6 +108,10 @@ var index = {
 		}
 		
 }
+
+
+
+
 /**
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
