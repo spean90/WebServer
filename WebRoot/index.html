@@ -564,7 +564,14 @@ window.citySelect.prototype = {
     }
 
 }
-
+var city = new  citySelect($("#citySelect"),$,6,function(element,height){
+    var  h = element.height();
+    element.css("marginTop",-h/2);
+    window.onscroll = function(){
+        var scrollHeight = document.body.scrollTop||document.documentElement.scrollTop;
+        element.css("top",scrollHeight+height/2)
+    }
+});
 
 $(document).ready(function() {
 	 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });

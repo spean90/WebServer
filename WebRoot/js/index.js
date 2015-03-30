@@ -50,6 +50,7 @@ var index = {
 								}
 								province.append(span)
 							}
+				          //请求数据为异步操作，返回数据后需要重新渲染页面上城市信息；
 				          var city = new  citySelect($("#citySelect"),$,1,function(element,height){
 				        	    var  h = element.height();
 				        	    element.css("marginTop",-h/2);
@@ -80,14 +81,7 @@ var index = {
 						}
 						province.append(span)
 					}
-		          var city = new  citySelect($("#citySelect"),$,1,function(element,height){
-		        	    var  h = element.height();
-		        	    element.css("marginTop",-h/2);
-		        	    window.onscroll = function(){
-		        	        var scrollHeight = document.body.scrollTop||document.documentElement.scrollTop;
-		        	        element.css("top",scrollHeight+height/2)
-		        	    }
-		        	});
+		         
 			}
 			
 			
@@ -99,7 +93,6 @@ var index = {
 		},
 		initPhoneList : function(){
 			$('.phone-list.clearfix').empty();
-			
 			for (var i = 0; i < 15; i++) {
 				var phone = $('<li data-label="4月,5月,6月" data-data="1200,1300,800"><a><img src="pic/phone.jpg" alt="iphone4" width="145" height="220" /><span class="phone-name">iPhone 4</span></a><a class="phone-btn" data-number="37693" data-price="500"><em>37693</em>人回收</a><a class="index-spr trend-icon"></a></li>');
 				$('.phone-list.clearfix').append(phone);
