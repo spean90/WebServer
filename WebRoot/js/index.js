@@ -93,7 +93,7 @@ var index = {
 		},
 		changeCity : function(city){
 			$("#current_city").text(city);
-			$("#citySelect").css('display:none');
+			$("#citySelect")
 			localStorage.current_city = city;
 		},
 		initPhoneList : function(){
