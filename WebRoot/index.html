@@ -230,7 +230,7 @@
         <li><a href="#" class="images"><img src="images/apple.png"></a></li>
         <li><a href="#" class="images"><img src="images/apple.png"></a></li>
         <li><a href="#" class="images"><img src="images/apple.png"></a></li>
-        <li class="list-9n"><a href="#" class="images"><img src="images/apple.png"></a></li>
+        <li class="list-9n"><a><i class="brand-icon brand-icon-18"></i></a></li>
        
        
  
@@ -569,9 +569,9 @@ $(document).ready(function () {
             if (window.CP.shouldStopExecution(1)) {
                 break;
             }
-            if (strArray[j].match(str) && $return.length < 5) {
-                var $h = strArray[j].replace(str, '<strong>' + str + '</strong>');
-                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">1200人回收</span></li>');
+            if (strArray[j].phoneName.match(str) && $return.length < 5) {
+                var $h = strArray[j].phoneName.replace(str, '<strong>' + str + '</strong>');
+                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">'+strArray[j].num+'人回收</span></li>');
             }
         }
         window.CP.exitedLoop(1);
@@ -604,21 +604,29 @@ $(document).ready(function () {
             setTimeout(function () {
                 var $search = $('#search-bar').val();
                 $return = [];
-                strInArray($search, $terms);
-                if ($search == '' || !$('input').val) {
-                    $('.output').html('').slideUp();
-                } else {
-                    $('.output').html($return).slideDown();
-                }
-                $('.prediction-item').on('click', function () {
-                    $text = $(this).find('span').text();
-                    $('.output').slideUp(function () {
-                        $(this).html('');
-                    });
-                    $('#search-bar').val($text);
+                $.jsonp({
+					url : Sys.serviceDomain+"/searchPhone.do?keyWord="+$search, 
+					callbackParameter: "callback",
+					success : function(data){ 
+						console.log(data);
+						$terms = data.result;
+						strInArray($search, $terms);
+		                if ($search == '' || !$('input').val) {
+		                    $('.output').html('').slideUp();
+		                } else {
+		                    $('.output').html($return).slideDown();
+		                }
+		                $('.prediction-item').on('click', function () {
+		                    $text = $(this).find('span.prediction-text').text();
+		                    $('.output').slideUp(function () {
+		                        $(this).html('');
+		                    });
+		                    $('#search-bar').val($text);
+		                });
+		                $('.prediction-item:first-child').addClass('focus');
+					}
                 });
-                $('.prediction-item:first-child').addClass('focus');
-            }, 50);
+                }, 50);
         });
     });
     $('#search-bar').focus(function () {
@@ -627,7 +635,7 @@ $(document).ready(function () {
         }
         $('#searchform').submit(function (e) {
             e.preventDefault();
-            $text = $('.focus').find('span').text();
+            $text = $('.focus').find('span.prediction-text').text();
             $('.output').slideUp();
             $('#search-bar').val($text);
             $('input').blur();

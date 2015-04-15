@@ -93,8 +93,27 @@ var index = {
 		},
 		changeCity : function(city){
 			$("#current_city").text(city);
-			$("#citySelect")
+			$("#citySelect").fadeIn();
 			localStorage.current_city = city;
+		},
+		initHotBrand : function() {
+			var config = {
+					url : Sys.serviceDomain+"/getHotPhone.do", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						$('.brand-list.clearfix').empty();
+						for (var i = 0; i < 17; i++) {
+							var str = '<li><a href="#" class="images"><img src="images/apple.png"></a></li>';
+							if (i==8) {
+								str = '<li class="list-9n"><a href="#" class="images"><img src="images/apple.png"></a></li>';
+							}
+							var brand = $(str);
+							$('.brand-list.clearfix').append(brand);
+						}
+						$('.brand-list.clearfix').append('<li class="list-9n"><a><i class="brand-icon brand-icon-18"></i></a></li>')
+					}
+			}
+			Modal.jsonp(config);
 		},
 		initPhoneList : function(){
 			var config = {
@@ -121,6 +140,61 @@ var index = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		initComments : function() {
+			var config = {
+					url : Sys.serviceDomain+"/getHotPhone.do", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						$('.aps-list.clearfix').empty();
+						for (var i = 0; i < 4; i++) {
+							var str = '<li><span class="aps-name"><em>緔弦玥玥玥玥玥玥玥</em>12月2日 11:30</span>'+
+							'<span class="aps-pic"><img src="pic/2.jpg" alt="name" width="60" height="60"/></span>'
+							+'<span class="aps-txt">自己的旧手机在壹回收网上面成功交易，总体来说交易很迅速，回收前的客服解答很耐心，期待你们未来做的更好自己的旧手机在壹回收网上面成功交易，总体来说交易很迅速，回收前的客服解答很耐心，期待你们未来做的更好</span>'
+							+'</li>';
+							var comments = $(str);
+							$('.aps-list.clearfix').append(comments);
+						}
+					}
+			}
+			Modal.jsonp(config);
+		},
+		initNewsList : function() {
+			var config = {
+					url : Sys.serviceDomain+"/getHotPhone.do", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						$('.index-news-list.clearfix').empty();
+						for (var i = 0; i < 2; i++) {
+							var str = '<li><a><img src="pic/3.jpg" alt="name" width="280" height="180" /></a>'
+					            +'<h4><a>299元+21天长待机 诺基亚215发布 诺基亚215发布</a></h4>'
+					            +'<span>2015/3/12</span>'
+					            +'<p>日前,诺基亚正式发布了1050的继任者215,号称是“最具性价比的入门级互联网手机”。 该机配备了一块2.4英寸320×240分辨率显示屏以及一颗VGA摄像头,...</p>'
+					            +'</li>';
+							var news = $(str);
+							$('.index-news-list.clearfix').append(news);
+						}
+					}
+			}
+			Modal.jsonp(config);
+		},
+		initRetrieveList : function() {
+			var config = {
+					url : Sys.serviceDomain+"/getHotPhone.do", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						$('.retrieve-list.clearfix').empty();
+						for (var i = 0; i < 18; i++) {
+							var str = '<li><span class="col-1">138****1234</span>'
+							+'<span class="col-2"><em>100</em>元</span>'
+							+'<span class="col-3">回收了三星<em> GALAXY S4（I9500）</em></span>'
+							+'</li>';
+							var retrieve = $(str);
+							$('.retrieve-list.clearfix').append(retrieve);
+						}
+					}
+			}
+			Modal.jsonp(config);
 		}
 		
 }
@@ -131,8 +205,12 @@ var index = {
 /**
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
-index.initCity();
-index.initPhoneList();
+index.initCity(); //初始化城市信息
+index.initHotBrand(); //初始化热门品牌
+index.initPhoneList(); //初始化热门手机
+index.initComments(); //初始化客户评价
+index.initNewsList(); //初始化最新咨询
+index.initRetrieveList();  //初始化最新回收单
 $(function(){
 });
 
