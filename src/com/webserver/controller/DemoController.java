@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 
@@ -51,4 +53,52 @@ public class DemoController {
 	       e.printStackTrace();  
 	      }  
 	}
+	@RequestMapping("searchPhone")
+	@ResponseBody
+	public void searchPhone(String keyWord,HttpServletResponse response,HttpServletRequest request) throws Exception{
+		 Map<String,Object> map = new HashMap<String,Object>(); 
+		 Map<String,Object> phone = new HashMap<String,Object>(); 
+		 List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		 for (int i = 0; i < 5; i++) {
+			 phone = new HashMap<String,Object>(); 
+			 phone.put("phoneName", "abc"+i);
+			 phone.put("num", 1111);
+			 list.add(phone);
+		}
+		 map.put("result", list); 
+		 response.setCharacterEncoding("utf-8");
+			response.setContentType("text/javascript");
+	        PrintWriter out = response.getWriter();    
+	        Gson gson = new Gson();
+	        String result = gson.toJson(map);//根据需要拼装json  
+	        String jsonpCallback = request.getParameter("callback");//客户端请求参数  
+	        out.write(jsonpCallback+"("+result+")");//返回jsonp格式数据  
+	        out.flush();  
+	        out.close();  
+	}
+	
+	@RequestMapping("getHotPhone")
+	@ResponseBody
+	public void getHotPhone(HttpServletResponse response,HttpServletRequest request) throws Exception{
+		 Map<String,Object> map = new HashMap<String,Object>(); 
+		 Map<String,Object> phone = new HashMap<String,Object>(); 
+		 List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		 for (int i = 0; i < 5; i++) {
+			 phone = new HashMap<String,Object>(); 
+			 phone.put("phoneName", "abc"+i);
+			 phone.put("num", 1111);
+			 list.add(phone);
+		}
+		 map.put("result", list); 
+		 response.setCharacterEncoding("utf-8");
+			response.setContentType("text/javascript");
+	        PrintWriter out = response.getWriter();    
+	        Gson gson = new Gson();
+	        String result = gson.toJson(map);//根据需要拼装json  
+	        String jsonpCallback = request.getParameter("callback");//客户端请求参数  
+	        out.write(jsonpCallback+"("+result+")");//返回jsonp格式数据  
+	        out.flush();  
+	        out.close();  
+	}
+	
 }

@@ -27,6 +27,10 @@ var index = {
 		    }  
 		},
 		initCity : function(){
+			var current_city = localStorage.current_city;
+			if(current_city!=null&&current_city!="undefind") {
+				$("#current_city").text(current_city);
+			}
 			$('.city-list-2.clearfix').empty();
 			var citylist = sessionStorage.citylist;
 			if(citylist==null||citylist=="undefind") {
@@ -90,14 +94,33 @@ var index = {
 		changeCity : function(city){
 			$("#current_city").text(city);
 			$("#citySelect").hide();
+			localStorage.current_city = city;
 		},
 		initPhoneList : function(){
-			$('.phone-list.clearfix').empty();
-			for (var i = 0; i < 15; i++) {
-				var phone = $('<li data-label="4月,5月,6月" data-data="1200,1300,800"><a><img src="pic/phone.jpg" alt="iphone4" width="145" height="220" /><span class="phone-name">iPhone 4</span></a><a class="phone-btn" data-number="37693" data-price="500"><em>37693</em>人回收</a><a class="index-spr trend-icon"></a></li>');
-				$('.phone-list.clearfix').append(phone);
+			var config = {
+					url : Sys.serviceDomain+"/getHotPhone.do", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						$('.phone-list.clearfix').empty();
+						for (var i = 0; i < 10; i++) {
+							var str = '<li data-label="4月,5月,6月" data-data="1'+i+'00,1300,800">'
+							           +'<a><img src="pic/phone.jpg" alt="iphone4" width="80" height="160" /></a>'
+							           +'<div class="product-info">'
+							           +' <div class="fl">'
+							           +'   <span class="phone-name">iPhone '+i+'</span>'
+							           +'   <span class="recovery">回收价：<em class="red">￥550</em></span>'
+							           +'   <span class="badge">37693人回收</span>'
+							           +' </div>'
+							           +' </div>'
+							           +' <a class="index-spr trend-icon"></a> '
+							           +'</li>';
+							var phone = $(str);
+							$('.phone-list.clearfix').append(phone);
+						}
+						phoneList();
+					}
 			}
-			
+			Modal.jsonp(config);
 		}
 		
 }

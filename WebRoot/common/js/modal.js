@@ -24,7 +24,7 @@ var Modal = {
 				var success = data.success;
 				
 				if(success == false) {
-					Modal.showError(data.message || "操作失败", "", function() {});
+					alert("操作失败");
 				}
 				else {
 					config.success(data);
@@ -33,21 +33,37 @@ var Modal = {
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				var status = XMLHttpRequest.status;
 				if(status == 401) {
-					Modal.showError(Modal.status[status], "错误提示", function() {
-						window.location.href = "/login.html";
-					});
+					alert("操作失败");
 				}
 				else if(status == 403) {
-					Modal.showError(Modal.status[status], "错误提示", function() {
-						window.location.href = "/login.html";
-					});
+					window.location.href = "/login.html";
 				} else {
-					Modal.showError( Modal.status[status]||"服务器异常");
+					alert("操作失败");
 				}
 			}
 		});
 	},
 
+	jsonp : function(config){
+		$.jsonp({
+			url : config.url,
+			data : config.data,
+			callbackParameter: "callback",
+			success : function(data){ 
+				config.success(data);
+			},
+			complete: function() {
+	          // 数据获取完成后，需要做的事，此为隐藏读取数据的滚动条。
+	        },
+	        error : function(xOptions, textStatus) {
+				alert(textStatus);
+				window.location.href = "/index.html";
+			}
+		});
+	},
+	
+	
+	
 	/**
 	 * 封装的表单submit方法，对操作失败进行了封装处理
 	 * 
@@ -63,7 +79,7 @@ var Modal = {
 			success : function(data) {
 				data = JSON.parse(data);
 				if (data.success == false) {
-					Modal.showError(data.message || "操作失败", "", function() {});
+					alert("操作失败");
 				} else {
 					config.success(data);
 				}
@@ -79,52 +95,5 @@ var Modal = {
 				}
 			});
 		}*/
-	},
-
-	/**
-	 * 弹出普通提示层
-	 * 
-	 * @param msg 提示内容
-	 * @param titie 提示标题
-	 */
-	showAlert : function(msg, title) {
-		$.messager.alert(title || '操作提示', msg, 'info');
-	},
-
-	/**
-	 * 弹出错误提示层
-	 * 
-	 * @param msg 提示内容
-	 * @param titie 提示标题
-	 */
-	showError : function(msg, titie, fuc) {
-		$.messager.alert(titie || '错误提示', msg, 'error', fuc);
-	},
-
-	/**
-	 * 弹出确认提示层
-	 * 
-	 * @param titie 提示标题
-	 * @param msg 提示内容
-	 * @param fuc 点击确定后执行的函数
-	 */
-	showConfirm : function(msg,titie, fuc) {
-		$.messager.alert(titie || '提示', msg, 'info', fuc);
-	},
-	
-	/**
-	 * 无父页面则跳转无权限页面，不是刷新父页面
-	 */
-	gotoPermissionPage:function(status){
-		if (window.top!=window.self) {
-			Modal.showError(Modal.status[status], "错误提示", function() {
-				window.parent.location.reload();
-			});
-		}else{ 
-			Modal.showError(Modal.status[status], "错误提示", function() {
-				window.location.href = "/login.html";
-			});
-		 } 
 	}
-	
 };
