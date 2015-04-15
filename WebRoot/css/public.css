@@ -30,10 +30,10 @@ body{ font:12px/1.8 '微软雅黑',tahoma,'\5b8b\4f53',sans-serif; color:#666; b
 /* link css */
 a{color: #666; text-decoration: none; outline: none; cursor:pointer; }
 a:hover{ color:#40a7f6; text-decoration:none;}
-::-webkit-input-placeholder { color:#ccc;font-family:'微软雅黑';line-height: 18px}
-:-moz-placeholder {color:#ccc;font-family:'微软雅黑';line-height: 18px}
-::-moz-placeholder {color:#909;font-family:'微软雅黑';line-height: 18px}
-:-ms-input-placeholder {color:#ccc;font-family:'微软雅黑';line-height: 18px}
+::-webkit-input-placeholder { color:#ccc;font-family:'微软雅黑';height:42px;line-height: 20px}
+:-moz-placeholder {color:#ccc;font-family:'微软雅黑';height:42px;}
+::-moz-placeholder {color:#909;font-family:'微软雅黑';height:42px;line-height: 20px}
+:-ms-input-placeholder {color:#ccc;font-family:'微软雅黑';height:42px;line-height: 20px}
 
 
 
@@ -56,8 +56,8 @@ a:hover{ color:#40a7f6; text-decoration:none;}
 .r-srw{background:url(../images/spr.png) no-repeat; margin-left: 5px;background-position: -100px -1821px;}
 .header-con{ height:120px;}
 .search-box{ width:530px; height:76px; left:314px; top:35px;}
-.search-form{ width:100%; height:42px; background-color:#2168cc}
-.search-button{ width: 100px;height:42px; border:none; background:none; color:#fff; font-size:14px; font-weight:bold; position:absolute; right:0; top:0; cursor:pointer}
+.search-form{ width:100%; height:42px;}
+.search-button{ width: 100px;height:40px; border:none; background:none; color:#fff; background-color: #2168cc;font-size:14px; font-weight:bold; position:absolute; right:0; top:0; cursor:pointer}
 .search-label{ width:100%; height:34px; line-height:34px; overflow:hidden}
 .search-label a{ padding-right:8px;}
 .header-rt-box{ width:260px; top:25px; right:60px}
@@ -81,6 +81,10 @@ a:hover{ color:#40a7f6; text-decoration:none;}
 .tb-1{ width:230px;}
 .tb-2{ width:68px;}
 .tb-3{width:249px; left:-176px;}
+.tb-4{width: 450px}
+.more-city:hover .outline{width: 76px}
+.more-city:hover .blank{width: 76px}
+.more-city a span{margin-left: 10px;}
 .top-bar .hover .tb,.top-bar .hover .outline,.header-btn-2-hover .outline{position: absolute;border: 1px solid #ddd;	background: #fff;-moz-box-shadow: 0 0 10px rgba(0,0,0,.12);-webkit-box-shadow: 0 0 10px rgba(0,0,0,.12);box-shadow: 0 0 10px rgba(0,0,0,.12)}
 .tb-dbox{ width: 210px;	padding: 10px 0 20px 20px;}
 .tb-dbox img{ display:block; width:78px; height:78px; position:absolute; left:20px; top:25px;}
@@ -106,10 +110,12 @@ background: #fff;}
 .hs-box{ width:330px; background-color:#fff; position:absolute; left:-200px; border:1px solid #ddd; padding:15px 0; display:none}
 .hs-box-none{ height:44px; line-height:44px; background-position:20px 0; padding-left: 100px;color: #666}
 /*search-input*/
-.search-input{ width:420px; height:34px; border:1px solid #fff; position:absolute; top:3px; left:3px; text-indent:35px;}
-.output { position:absolute;top: 42px;
+.search-input{ width:420px; height:34px; font-size: 16px;border: 3px solid #2168cc; position:absolute; top:0px; left:5px; text-indent:35px;}
+.output {
+  top: 40px;
+  left:5px;
   list-style: none;
-  width: 425px;
+  width: 402px;
   min-height: 0px;
   color: #767676;
   font-size: .75em;
@@ -150,7 +156,7 @@ color: #ccc;
 }
 
 /*选择城市*/
-.city-box{ width:353px; /*border:10px solid #b2b2b2;*/ border-color: rgba(0,0,0,0.3); border-width:10px; border-style:solid; position: absolute; left: 50%; top: 50%; margin-left: -177px; z-index: 10000; background-color: #FFFFFF;   }
+.city-box{ width: 450px; /*border:10px solid #b2b2b2;*/ border-color: rgba(0,0,0,0.3); border-width:0px; border-style:solid; left: 0px; top: 0px; z-index: 10000; background-color: #FFFFFF;   }
 .city-box-tit{ height:35px; background-color:#e6e6e6;}
 .city-box-tit h3{ line-height:35px; font-size:14px; text-indent:5px;}
 .city-con{ padding:10px 0;}

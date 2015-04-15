@@ -34,7 +34,9 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .brand-box{ width:1198px; border:1px solid #ddd; border-width:1px 1px 0;}
 .brand-list li{ float:left; width:132px; border:1px solid #ddd; border-width:0 1px 1px 0; height:60px; }
 .brand-list li.list-9n{ width:134px; border-right-width:0;}
-.brand-list li a{ display:block; width:100%; height:30px; padding:15px 0; text-align:center}
+.brand-list a:hover img{opacity: 0.6}
+.brand-list li a{ display:block; width:100%;padding:6px 0; text-align:center}
+
 .brand-icon{ display:inline-block; height:30px; background-image:url(../images/min.png); background-repeat:no-repeat}
 .brand-icon-1{ width:22px; background-position:-19px -17px;}
 .brand-list li a:hover .brand-icon-1{ background-position:-49px -17px;}
@@ -73,6 +75,16 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .brand-icon-18{ width:30px; background-position:-87px -17px;}
 .brand-list li a:hover .brand-icon-18{ background-position:-127px -17px;}
 .phone-list li{ width: 198px;float: left;padding: 20px 0;margin: 30px 20px 10px;position: relative;border: 1px solid #ccc;}
+.phone-list li:hover{
+
+transition: all 0.3s linear 0s;
+transform: translateY(-10px);
+-webkit-transition: all 0.3s linear 0s;
+-webkit-transform: translateY(-10px);
+-moz-transition: all 0.3s linear 0s;
+-moz-transform: translateY(-10px);
+	box-shadow: 5px 0 7px #d5d5d5;
+}
 .product-info{padding: 0px 35px;position: relative;}
 .product-info span{display: block;}
 .product-info .recovery{height: 30px;line-height: 30px;}
@@ -95,7 +107,9 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .headline h3, .head h3{font-size: 16px;display: inline-block;font-weight: bold;color: #000;}
 .phone-list li.on{ box-shadow:5px 0 7px #d5d5d5}
 .phone-list li.on a.phone-btn{ background-color:#0085d0}
-.phone-list li img{ display:block; width:80px; height:160px; margin:0 auto;padding: 35px 0px;}
+.phone-list li img{ 
+	display:block; width:80px; height:160px; margin:0 auto;padding: 35px 0px;
+}
 .phone-name{ display:block; height:30px; line-height:30px;overflow:hidden; font-size:16px;}
 a.phone-btn{ display:block; width:145px; height:45px; margin:13px auto 0; text-align:center; line-height:45px; background-color:#40a7f6; color:#fff;font-family:"Microsoft YaHei";border-radius:10px; }
 a.phone-btn em{ font-size:16px; padding-right:5px; }
@@ -179,15 +193,8 @@ top: 15px;
 .icon-r_help{ background-position: 0 -957px; width: 50px; height: 50px; } 
 .icon-r_qq{ background-position: 0 -1057px; width: 50px; height: 50px; } 
 .icon-r_top{ background-position: 0 -1157px; width: 50px; height: 50px; } 
-.icon-so{ background-position: 6px -1250px;width: 38px;height: 42px;position: absolute;z-index: 10;} 
+.icon-so{ background-position: 12px -1251px;width: 40px;height: 42px;position: absolute;z-index: 2;} 
 .icon-start{ background-position: 0 -1335px;width: 20px;height: 15px;vertical-align: middle; } 
 .icon-tel{ background-position: 0 -1397px;width: 16px;height: 22px;vertical-align: middle; }
 .icon-trend1{ background-position: 0 -1613px; width: 205px; height: 150px; } 
 .icon-user{ background-position: 0 -1810px;width: 25px;height: 22px;vertical-align: text-bottom;} 
-#container li {
-    background: url(../images/download.png) no-repeat top left;
-}
-.icon-ha{ background-position: 0 0; width: 128px; height: 29px; } 
-.icon-hp{ background-position: 0 -79px; width: 129px; height: 29px; } 
-.icon-la{ background-position: 0 -158px; width: 128px; height: 30px; } 
-.icon-lp{ background-position: 0 -238px; width: 128px; height: 29px; } 
