@@ -93,7 +93,7 @@ var index = {
 		},
 		changeCity : function(city){
 			$("#current_city").text(city);
-			$("#citySelect").fadeIn();
+			$(".drop-down.drop-down-s.more-city").removeClass('hover');
 			localStorage.current_city = city;
 		},
 		initHotBrand : function() {
