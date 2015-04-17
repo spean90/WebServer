@@ -122,8 +122,8 @@ var index = {
 					success : function(data){ 
 						$('.phone-list.clearfix').empty();
 						for (var i = 0; i < 10; i++) {
-							var str = '<li data-label="4月,5月,6月" data-data="1'+i+'00,1300,800">'
-							           +'<a><img src="pic/phone.jpg" alt="iphone4" width="80" height="160" /></a>'
+							var str = '<li data-label="4月,5月,6月" data-data="1'+i+'00,1300,800" onclick=index.doDetail('+i+')>'
+							           +'<a ><img src="pic/phone.jpg" alt="iphone4" width="80" height="160" /></a>'
 							           +'<div class="product-info">'
 							           +' <div class="fl">'
 							           +'   <span class="phone-name">iPhone '+i+'</span>'
@@ -195,6 +195,9 @@ var index = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		doDetail : function(id) {
+			window.open('detail-'+id+'.html', "_blank");
 		}
 		
 }

@@ -5,11 +5,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-</head>
-<body>
+<script src="/scripts/jquery-1.9.1.min.js"></script>
+<script src="/common/jquery/jquery.jsonp-2.4.0.min.js"></script>
+<script src="/common/js/sys.js"></script>
+<script src="/common/js/modal.js"></script>
+<script type="text/javascript">
+function initDetail() {
+	var pid = $('#pid').text();
+	var config = {
+			url : Sys.serviceDomain+"/getHotPhone.do", 
+			callbackParameter: "callback",
+			success : function(data){ 
+				console.log(data);
+			}
+	}
+	Modal.jsonp(config);
+}
 
+</script>
+</head>
+<body onload="initDetail()">
+<p hidden id="pid">${pid }</p>
 
 hehhehhhhh
-${pid }
+
 </body>
 </html>
