@@ -76,7 +76,6 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .brand-list li a:hover .brand-icon-18{ background-position:-127px -17px;}
 .phone-list li{ width: 198px;float: left;padding: 20px 0;margin: 30px 20px 10px;position: relative;border: 1px solid #ccc;}
 .phone-list li:hover{
-
 transition: all 0.3s linear 0s;
 transform: translateY(-10px);
 -webkit-transition: all 0.3s linear 0s;
@@ -84,6 +83,7 @@ transform: translateY(-10px);
 -moz-transition: all 0.3s linear 0s;
 -moz-transform: translateY(-10px);
 	box-shadow: 5px 0 7px #d5d5d5;
+	z-index: 10;
 }
 .product-info{padding: 0px 35px;position: relative;}
 .product-info span{display: block;}
@@ -157,7 +157,7 @@ a.phone-btn em{ font-size:16px; padding-right:5px; }
 .izl-rmenu .btn-qq{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#bbb;}
 .izl-rmenu a.btn-qq,.izl-rmenu a.btn-qq:visited{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#bbb;text-decoration:none;display:block;}
 .izl-rmenu .btn-edit{background:url(../images/r_edit.png) 0px 0px no-repeat;background-color:#bbb;}
-.izl-rmenu .btn-edit .edit{background-color:#2693ff;position:absolute;width:160px;left:-160px;top:0px;line-height:50px;color:#FFF;font-size:18px;text-align:center;display:none;}
+.izl-rmenu .btn .edit,.izl-rmenu .btn .kefu,.izl-rmenu .btn .gotop{background-color:#2693ff;position:absolute;width:160px;left:-160px;top:0px;line-height:50px;color:#FFF;font-size:18px;text-align:center;display:none;}
 .izl-rmenu .btn-edit .arrow-right{
 	width: 0px;
 height: 0px;
@@ -182,11 +182,12 @@ top: 15px;
 .icon-4{ background-position: 0 -300px; width: 80px; height: 50px; margin-left: 13px;}  
 .icon-addr{ background-position: 0 -495px;width: 18px;height: 30px;vertical-align: middle; } 
 
-
+.header-btn-2-hover .icon-car{background-position: -28px -568px;}
 .icon-car{ background-position: 0 -568px; width: 22px;height: 22px;vertical-align: middle; } 
 
 
 .icon-code{ background-position: 0 -637px; width: 18px;height: 18px;vertical-align: middle; } 
+.hover .icon-code{background-position: -29px -637px;}
 .icon-m-brand{ background-position: 0 -701px; width: 28px; height: 28px; vertical-align: top;} 
 .icon-m-type{ background-position: 0 -779px; width: 29px; height: 28px; vertical-align: top;} 
 .icon-r_edit{ background-position: 0 -857px; width: 50px; height: 50px; } 
@@ -194,7 +195,10 @@ top: 15px;
 .icon-r_qq{ background-position: 0 -1057px; width: 50px; height: 50px; } 
 .icon-r_top{ background-position: 0 -1157px; width: 50px; height: 50px; } 
 .icon-so{ background-position: 12px -1251px;width: 40px;height: 42px;position: absolute;z-index: 2;} 
-.icon-start{ background-position: 0 -1335px;width: 20px;height: 15px;vertical-align: middle; } 
+.icon-start{ background-position: -30px -1335px;width: 20px;height: 15px;vertical-align: middle; } 
+.collect:hover .icon-start{background-position: 0 -1335px;}
 .icon-tel{ background-position: 0 -1397px;width: 16px;height: 22px;vertical-align: middle; }
+.hover .icon-tel{background-position: -29px -1397px}
 .icon-trend1{ background-position: 0 -1613px; width: 205px; height: 150px; } 
 .icon-user{ background-position: 0 -1810px;width: 25px;height: 22px;vertical-align: text-bottom;} 
+.hover .icon-user{ background-position: -40px -1810px;}

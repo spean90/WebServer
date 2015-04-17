@@ -92,20 +92,29 @@ var index = {
 			
 		},
 		changeCity : function(city){
-			$("#current_city").text(city);
-			$(".drop-down.drop-down-s.more-city").removeClass('hover');
 			localStorage.current_city = city;
 		},
 		initHotBrand : function() {
 			var config = {
-					url : Sys.serviceDomain+"/getHotPhone.do", 
+					url : Sys.serviceDomain+"/listHotBrands", 
+					data : {
+								currentPage : 1,
+								recordPerPage : 17,
+								isHot : 1
+					},
 					callbackParameter: "callback",
 					success : function(data){ 
+						if (data.msg.code!="0000") {
+							console.log(data);
+							return;
+						}
+						var content = data.content;
+						var list = content.list;
 						$('.brand-list.clearfix').empty();
-						for (var i = 0; i < 17; i++) {
-							var str = '<li><a href="#" class="images"><img src="images/apple.png"></a></li>';
+						for (var i = 0; i < list.length; i++) {
+							var str = '<li><a href="#" class="images"><img src="'+list[i].brandImage+'"></a></li>';
 							if (i==8) {
-								str = '<li class="list-9n"><a href="#" class="images"><img src="images/apple.png"></a></li>';
+								str = '<li class="list-9n"><a href="#" class="images"><img src="'+list[i].brandImage+'"></a></li>';
 							}
 							var brand = $(str);
 							$('.brand-list.clearfix').append(brand);
@@ -208,12 +217,12 @@ var index = {
 /**
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
-index.initCity(); //初始化城市信息
+//index.initCity(); //初始化城市信息
 index.initHotBrand(); //初始化热门品牌
-index.initPhoneList(); //初始化热门手机
-index.initComments(); //初始化客户评价
-index.initNewsList(); //初始化最新咨询
-index.initRetrieveList();  //初始化最新回收单
+//index.initPhoneList(); //初始化热门手机
+//index.initComments(); //初始化客户评价
+//index.initNewsList(); //初始化最新咨询
+//index.initRetrieveList();  //初始化最新回收单
 $(function(){
 });
 

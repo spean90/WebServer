@@ -22,37 +22,205 @@
     <div class="wrapper clearfix">
       <ul class="top-bar-rt fr">
         <li class="top-bar-rt-1"><em>Hi,欢迎来壹回收!</em><a><span class="red">请登录</span></a></li>
-         <li><a><i class="icon icon-user"></i><span>我的壹回收</span></a></li>
+         <!-- 2015-04-15 修改开始 -->
+         <li class="drop-down">
+            <a class="myaccount">
+              <i class="icon icon-user"></i>
+              <span>我的壹回收</span>
+              <i class="r-srw"></i>
+              <div class="tb tb-5">
+                <div class="tb-dbox">
+                  <div class="userinfo">
+                    <div class="clearfix">
+                      <div class="u-pic">
+                      <a href="#"> <img src="images/avatar.png" width="60" height="60"></a>
+                      </div>
+                      <div class="u-name u-login">
+                        <a href="" class="link-login">你好，请登录</a>
+                        <a href="">壹回收欢迎你！</a>
+                      </div>
+                    </div>
+                             
+                    <div class="u-extra">           
+                        <ul class="clearfix">
+                         <li><a href="">我的订单</a></li>
+                         <li><a href="">我的钱包</a></li>
+                         <li><a href="">待处理订单</a></li>
+                         <li><a href="">推荐壹回收</a></li>
+                         <li><a href="">下线代理商</a></li>
+                         <li><a href="">关于壹回收</a></li>
+                        </ul>       
+                     </div>   
+                   </div>
+                        <div class="viewlast">
+                       <div class="tit clearfix">
+                         <span class="fl">最近浏览</span>
+                         <a class="fr">更多</a>
+                       </div>
+                       <div class="content clearfix">
+                         <ul>
+                           <li><a href=""><img src="images/xs-phone.png" alt="" /></a></li>
+                           <li><a href=""><img src="images/xs-phone.png" alt="" /></a></li>
+                           <li><a href=""><img src="images/xs-phone.png" alt="" /></a></li>
+                           <li><a href=""><img src="images/xs-phone.png" alt="" /></a></li>
+                         </ul>
+                       </div>
+                     </div> 
+                </div>
+              </div>
+            </a>
+         </li>
+         
+          <!-- 新增样式部分 -->
+          <style>
+          .tb-5{margin-top:8px;}
+          .tb-5 .tb-dbox{padding:10px 5px 10px 5px;width: 200px;}
+          .tb-5 .tb-dbox:before{width: 210px;height: 20px;top:-9px;left:32px;position: absolute;display: inline-block;content: '';background: url(images/arrow-up.png) no-repeat;}
+          .tb-5 .userinfo{ border-bottom: 1px solid #ddd; padding: 10px 0px 10px 0px;font-size: 12px;}
+          .tb-5 .u-pic img {
+          border-radius: 50%;
+          -moz-border-radius: 50%;
+          -webkit-border-radius: 50%;
+          position: relative;
+          left:5px;
+          top:0px;
+          width: 50px;
+          height: 50px;
+          border: 1px solid #ddd;
+          }
+          .tb-5 .u-pic{float: left; margin-right: 10px;}
+          .tb-5 .link-login{color: #f60}
+          .tb-5 .u-name{float:left;margin-left: 15px;}
+          .tb-5 .u-name a{display: block;line-height: 25px;}
+         .tb-5 .u-extra {border-top: 1px solid #ccc;margin-top: 15px;text-align: left;padding: 0px 10px;}
+         .tb-5 .u-extra ul{padding: 10px 0px 0px 0px;}
+         .tb-5 .u-extra li{background: none;width: 43%;padding: 0px 5px; }
+          .viewlast .tit{padding:5px}
+          .viewlast .content{padding: 15px 0px;}
+          .viewlast .content li{height: 60px;background: none;}
+          .viewlast .content li img{width: 30px;height: 60px;position: relative;top:0px;left:0px;}
+
+          .hs-box-js ul li{height: 100%;background: none;line-height: 21px;padding: 0px;width: 100%;color:#666;}
+          .hs-box-js .item {margin: 15px;border-bottom: 1px solid #ddd;padding-bottom: 15px;margin-bottom: 0px;}
+
+
+         .hs-box-js .item img{
+            float:left;
+            width: 30px
+          }
+          .hs-box-js .item>span{float:left;width: 160px;padding-left: 20px;}
+          .hs-box-js .item>span li a{float:right;}
+          .hs-box-js .item>span li a:hover{color: #f60}
+          .hs-box-js .item>span li span{color: #f60}
+          
+          .hs-box-js .total{padding: 10px 15px 0px 15px;}
+          .hs-box-js .total span{color:#666;}
+          .hs-box-js .total em{color: #f60}
+          .hs-box-js a.entercar{height: 32px;line-height: 32px;width: 70px;display: inline-block;background: #f60;text-align: center;color: #fff;float: right;}
+
+
+
+
+
+          </style>
+          <!-- 新增样式部分 end-->
           <li>
-            <a id="sBtn">
+            <div id="sBtn">
               <i class="icon icon-car"></i>
               <span>去回收车结算</span>
               <i class="r-srw"></i>
-              <span class="outline"></span> 
-              <span class="blank"></span>
               <div class="hs-box">
-                  <div class="hs-box-none"> 回收车中还没有商品，赶紧回收吧！ </div>
+                  <!-- <div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div> -->
+                   <div class="hs-box-js">
+                    <ul class="clearfix">
+                      <li>
+                        <div class="item clearfix">
+                          <img src="images/xs-phone.png" alt="" />
+                          <span>
+                            <ul>
+                              <li>iphone4</li>
+                             <li>回收价：<span>￥550</span><a>删除</a></li>
+                              <li>12306人回收</li>
+                            </ul>
+                          </span>
+                      
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item clearfix">
+                          <img src="images/xs-phone.png" alt="" />
+                          <span>
+                            <ul>
+                              <li>iphone4</li>
+                             <li>回收价：<span>￥550</span><a>删除</a></li>
+                              <li>12306人回收</li>
+                            </ul>
+                          </span>
+                      
+                        </div>
+                      </li>
+                       <li>
+                        <div class="item clearfix">
+                          <img src="images/xs-phone.png" alt="" />
+                          <span>
+                            <ul>
+                              <li>iphone4</li>
+                              <li><span>回收价：￥550</span><a>删除</a></li>
+                              <li>12306人回收</li>
+                            </ul>
+                          </span>
+                          
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="total">
+                      <span>共3件商品</span>
+                      <span>
+                        合计:
+                        <em>
+                          ￥1850
+                        </em>
+                      </span>
+                      <a href="" class="entercar">
+                        去回收车
+                      </a>
+                    </div>
+                   </div>
               </div>
-            </a>
+            </div>
           </li>
-        <li class="drop-down drop-down-b"><a><i class="icon icon-tel"></i><span>手机壹回收</span><i class="r-srw"></i></a> <span class="outline"></span> <span class="blank"></span>
+           <!-- 2015-04-15 修改结束 -->
+        <li class="drop-down drop-down-b"><a><i class="icon icon-tel"></i><span>手机壹回收</span><i class="r-srw"></i></a> 
+
+        <!-- <span class="outline"></span> <span class="blank"></span> -->
           <div class="tb tb-1">
             <div class="tb-dbox"> <img src="images/code-1.jpg" alt="" />
               <div class="tb-dbox-txt">
                 <h4>壹回收客户端</h4>
-                <a class="tspr t-dbtn-1"></a> <a class="tspr t-dbtn-2"></a> </div>
+                  <a href=""><i class="tspr t-dbtn-1"></i> <span>iphone</span></a>
+                    
+                  <a href=""> <i class="tspr t-dbtn-2"></i> <span>android</span></a>
+              
+                   
+             
+                
             </div>
           </div>
         </li>
-        <li class="drop-down drop-down-s"><a><span>客户中心</span><i class="r-srw"></i></a><span class="outline"></span> <span class="blank"></span>
+
+        <!-- 修改 -->
+        <li class="drop-down drop-down-s"><a><span>客户中心</span><i class="r-srw"></i></a>
           <div class="tb tb-2">
-            <div class="h-list"> <a>帮助中心</a> <a>帮助中心</a> <a>帮助中心</a> <a>帮助中心</a> <a>帮助中心</a> </div>
+            <div class="h-list"> <a>帮助中心</a> <a>咨询与建议</a> <a>在线客服</a> <a class="last">常见问题</a> </div>
           </div>
         </li>
-        <li><a ><i class="icon icon-start"></i>藏壹回收</a></li>
+      <!-- 修改 end-->
+
+        <li class="collect"><a ><i class="icon icon-start"></i>藏壹回收</a></li>
         <li id="fristHover"><a><i class="icon icon-code"></i>关注壹回收<i class="header-code p-a"></i></a></li>
-        <li class="drop-down drop-down-s"><a><span>网站导航</span><i class="r-srw"></i></a><span class="outline"></span> <span class="blank"></span>
-          <div class="tb tb-3">
+        <li class="drop-down drop-down-s"><a><span>网站导航</span><i class="r-srw"></i></a>
+        <span class="outline"></span> <span class="blank"></span>
+        <div class="tb tb-3">
             <div class="l-lixt-box clearfix">
               <h4>网站导航</h4>
               <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> </div>
@@ -64,7 +232,7 @@
       </ul>
       <ul class="top-bar-lf fl">
        
-        <li><em><i class="icon icon-addr"></i><span id="current_city">上海</span></em></li>
+        <li><i class="icon icon-addr"></i><em id="address">上海</em></li>
          <li class="drop-down drop-down-s more-city"><a class=""><span>[更多城市]</span><i class="r-srw"></i></a><span class="outline"></span> <span class="blank"></span>
           <div class="tb tb-4">
             <div id="citySelect">
@@ -133,23 +301,20 @@
 （D820mu/双4G）S（白色）</a><a>小米 2S</a> </div>
       </div>
       <div class="header-rt-box p-a"> 
-        <!-- <a class="header-btn header-btn-1">
-          <span class="header-btn-srw">我的壹回收</span>
-        </a> 
-        <a id="sBtn" class="header-btn  header-btn-2">
-          <span class="header-btn-srw">去回收车结算</span>
-          <span class="b-blank"></span>
-          <div class="hs-box">
-              <div class="hs-box-none"> 回收车中还没有商品，赶紧回收吧！ </div>
-          </div>
-        </a> -->
         <div class="h-code-box clearfix">
-          <img src="images/code-1.jpg" alt="" width="55" height="55" />
+         <a href="#" class="btn">
+           <span>
+             签到+1
+           </span>
+           
+           <i class="icon icon-jifen"></i>
+         </a>
+        <!--   <img src="images/code-1.jpg" alt="" width="55" height="55" />
           <div class="fr">
             <span>扫一扫</span>
             <span>客户端下载地址</span>
             <span><a href="">www.ehuishou.com</a></span>
-          </div>
+          </div -->
         </div>
       </div>
     </div>
@@ -230,7 +395,7 @@
         <li><a href="#" class="images"><img src="images/apple.png"></a></li>
         <li><a href="#" class="images"><img src="images/apple.png"></a></li>
         <li><a href="#" class="images"><img src="images/apple.png"></a></li>
-        <li class="list-9n"><a><i class="brand-icon brand-icon-18"></i></a></li>
+       <li class="list-9n"><a><i class="brand-icon brand-icon-18"></i></a></li>
        
        
  
@@ -569,9 +734,9 @@ $(document).ready(function () {
             if (window.CP.shouldStopExecution(1)) {
                 break;
             }
-            if (strArray[j].phoneName.match(str) && $return.length < 5) {
-                var $h = strArray[j].phoneName.replace(str, '<strong>' + str + '</strong>');
-                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">'+strArray[j].num+'人回收</span></li>');
+            if (strArray[j].match(str) && $return.length < 5) {
+                var $h = strArray[j].replace(str, '<strong>' + str + '</strong>');
+                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">1200人回收</span></li>');
             }
         }
         window.CP.exitedLoop(1);
@@ -604,47 +769,49 @@ $(document).ready(function () {
             setTimeout(function () {
                 var $search = $('#search-bar').val();
                 $return = [];
-                $.jsonp({
-					url : Sys.serviceDomain+"/searchPhone.do?keyWord="+$search, 
-					callbackParameter: "callback",
-					success : function(data){ 
-						console.log(data);
-						$terms = data.result;
-						strInArray($search, $terms);
-		                if ($search == '' || !$('input').val) {
-		                    $('.output').html('').slideUp();
-		                } else {
-		                    $('.output').html($return).slideDown();
-		                }
-		                $('.prediction-item').on('click', function () {
-		                    $text = $(this).find('span.prediction-text').text();
-		                    $('.output').slideUp(function () {
-		                        $(this).html('');
-		                    });
-		                    $('#search-bar').val($text);
-		                });
-		                $('.prediction-item:first-child').addClass('focus');
-					}
+                strInArray($search, $terms);
+                if ($search == '' || !$('input').val) {
+                    $('.output').html('').slideUp();
+                     $('.icon-so').show();
+                    $('.search-input').css('text-indent',35);
+                } else {
+                    $('.output').html($return).slideDown();
+                    $('.icon-so').hide();
+                    $('.search-input').css('text-indent',18);
+                }
+                $('.prediction-item').on('click', function () {
+                    $text = $(this).find('span').text();
+                    $('.output').slideUp(function () {
+                        $(this).html('');
+                    });
+                    $('#search-bar').val($text);
                 });
-                }, 50);
+                $('.prediction-item:first-child').addClass('focus');
+            }, 50);
         });
     });
     $('#search-bar').focus(function () {
         if ($('.prediction-item').length > 0) {
             $('.output').slideDown();
+
         }
         $('#searchform').submit(function (e) {
             e.preventDefault();
-            $text = $('.focus').find('span.prediction-text').text();
+            $text = $('.focus').find('span').text();
             $('.output').slideUp();
+            
             $('#search-bar').val($text);
             $('input').blur();
         });
+
     });
+  
     $('#search-bar').blur(function () {
         if ($('.prediction-item').length > 0) {
             $('.output').slideUp();
         }
+        $('.icon-so').show();
+        $('.search-input').css('text-indent',35);
     });
 });
 </script>
@@ -713,12 +880,23 @@ window.citySelect.prototype = {
         this.dataCon = $(".insertCon",this.container);
         this.items.eq(this.index).find("a").eq(0).addClass("on");
         this.dataCon.eq(Math.floor(this.index/this.colunm)).html(this.items.eq(this.index).find("span").html()).css("display","block");
+        $('.city-list-1 li').find('a').click(function(){
+          $('#address').text($(this).text());
+           var $dd = $("#TopBar").find(".drop-down");
+           $dd.removeClass("hover");
+        });
+        this.dataCon.find('a').click(function(){
+          $('#address').text($(this).text());
+           var $dd = $("#TopBar").find(".drop-down");
+           $dd.removeClass("hover");
+        })
         this.items.each(function(a){
             var dataNum = Math.floor(a/_this.colunm);
             _this.items.eq(a).click(function(){
                 _this.items.find("a").removeClass("on");
                 _this.dataCon.hide();
                 _this.doData($(this),dataNum,_this.dataCon);
+
             })
         })
         this.cloes.click(function(){
@@ -727,6 +905,7 @@ window.citySelect.prototype = {
         this.bgDiv.click(function(){
             _this.container.fadeOut();
         });
+       
         this.btn.click(function(){
             _this.container.fadeIn();
             _this.callback(_this.child,_this.clientHeight)
@@ -739,13 +918,20 @@ window.citySelect.prototype = {
         if(this.nums%this.colunm){
             this.items.eq(this.nums-1).after(this.clone);
         }
+        
     },
     doData:function(element,index,dataCon){
         if(!element||!dataCon) return null;
         var datahtml = element.find("span");
         dataCon.eq(index).html(datahtml.html()).css("display","block");
         element.find("a").eq(0).addClass("on");
+        dataCon.find('a').click(function(){
+          $('#address').text($(this).text());
+           var $dd = $("#TopBar").find(".drop-down");
+           $dd.removeClass("hover");
+        })
     }
+
 
 }
 
@@ -756,6 +942,7 @@ var city = new  citySelect($("#citySelect"),$,6,function(element,height){
         var scrollHeight = document.body.scrollTop||document.documentElement.scrollTop;
         element.css("top",scrollHeight)
     }
+  
 });
 
 function phoneList(){
@@ -777,7 +964,8 @@ function phoneList(){
 	
 		// $btn.html(priceTxt);
 
-		$icon.click(function(){
+  //修改click事件为mouseover
+		$icon.mouseover(function(){
 				$trendBox.show();
 				var idTxt= $(this).parent().find("canvas").attr("id"),
 				 ctx = document.getElementById(idTxt).getContext("2d"),
@@ -807,7 +995,6 @@ function phoneList(){
 		// $btn.html(numberTxt);
 		})
 	}
-
 $(document).ready(function() {
 	 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
 	cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
@@ -815,9 +1002,10 @@ $(document).ready(function() {
 	
 	
 	
-	
+	 
+
     function scrollTop(){
-      var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a href=\"tencent://Message/?Uin=123456789&websiteName=sc.chinaz.com=&Menu=yes\" class=\"btn btn-qq\"></a><div class=\"btn btn-edit\"><div class=\"edit\">意见反馈<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-help\"></div><div class=\"btn btn-top\"></div></div>";
+      var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a href=\"tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes\" class=\"btn btn-qq\"><div class=\"kefu\">在线客服<i class=\"arrow-right\"></i></div></a><div class=\"btn btn-edit\"><div class=\"edit\">意见反馈<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-help\"></div><div class=\"btn btn-top\"><div class=\"gotop\">返回顶部<i class=\"arrow-right\"></i></div></div></div>";
         $("#top").html(tophtml);
         $("#izl_rmenu").each(function(){
           // $(this).find(".btn-edit").mouseenter(function(){
@@ -826,11 +1014,13 @@ $(document).ready(function() {
           // $(this).find(".btn-edit").mouseleave(function(){
           //   $(this).find(".pic").fadeOut("fast");
           // });
-          $(this).find(".btn-edit").mouseenter(function(){
-            $(this).find(".edit").fadeIn("fast");
+
+          $(this).find(".btn").mouseenter(function(){
+            $(this).children('div').fadeIn("fast");
+            // $(this).find(".edit")
           });
-          $(this).find(".btn-edit").mouseleave(function(){
-            $(this).find(".edit").fadeOut("fast");
+          $(this).find(".btn").mouseleave(function(){
+            $(this).children('div').fadeOut("fast");
           });
           $(this).find(".btn-top").click(function(){
             $("html, body").animate({
