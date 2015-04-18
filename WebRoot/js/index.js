@@ -34,7 +34,6 @@ var index = {
 			$('.city-list-2.clearfix').empty();
 			var citylist = sessionStorage.citylist;
 			if(citylist==null||citylist=="undefind") {
-				console.log("城市信息为空！向服务端发送请求....");
 				$.jsonp({
 					url : Sys.serviceDomain+"/getCity.do", 
 					callbackParameter: "callback",
@@ -96,16 +95,16 @@ var index = {
 		},
 		initHotBrand : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listHotBrands", 
+					url : Sys.serviceDomain+"/test", 
 					data : {
-								currentPage : 1,
-								recordPerPage : 17,
-								isHot : 1
+							userId : "15155445597",
+							passwd : "wsg",
+							platform : "post平台",
+							model : "shouji"
 					},
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							console.log(data);
 							return;
 						}
 						var content = data.content;
@@ -205,8 +204,54 @@ var index = {
 			}
 			Modal.jsonp(config);
 		},
+		initRetrieveCar : function() {
+			var config = {
+					url : Sys.serviceDomain+"/getHotPhone.do", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						if (data.content.list==null||data.content.list.length==0) {
+							$('.hs-box-js').remove();
+							var boxNone = $('<div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div>');
+							$('.hs-box').append(boxNone);
+						}else {
+							$('.hs-box-none').remove();
+							$('.hs-box-js>ul').empty();
+							var list = data.content.list;
+							for (var i = 0; i < list.length; i++) {
+								var str = '<div class="item clearfix">'
+			                          +'<img src="images/xs-phone.png" alt="" />'
+			                          +'<span>'
+			                          +' <ul>'
+			                          +' <li>iphone4</li>'
+			                          +' <li>回收价：<span>￥5600</span><a onclick=index.removeFromCar(1)>删除</a></li>'
+			                          +'   <li>12306人回收</li>'
+			                          +' </ul>'
+			                          +' </span>'
+			                          +' </div>';
+								var retrieve = $(str);
+								$('.hs-box-js>ul').append(retrieve);
+							}
+						}
+					}
+			}
+			Modal.jsonp(config);
+		},
 		doDetail : function(id) {
 			window.open('detail-'+id+'.html', "_blank");
+		},
+		removeFromCar : function(id) {
+			var config = {
+					url : Sys.serviceDomain+"/removeFromcar.do", 
+					callbackParameter: "callback",
+					success : function(data){
+						//重新获取购物车内容
+						index.initRetrieveCar();
+					}
+			}
+			Modal.jsonp(config);
 		}
 		
 }
@@ -218,11 +263,12 @@ var index = {
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
 //index.initCity(); //初始化城市信息
-index.initHotBrand(); //初始化热门品牌
+//index.initHotBrand(); //初始化热门品牌
 //index.initPhoneList(); //初始化热门手机
 //index.initComments(); //初始化客户评价
 //index.initNewsList(); //初始化最新咨询
 //index.initRetrieveList();  //初始化最新回收单
+index.initRetrieveCar();//初始化回收车
 $(function(){
 });
 

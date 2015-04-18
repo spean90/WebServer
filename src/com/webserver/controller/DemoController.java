@@ -83,15 +83,48 @@ public class DemoController {
 	@ResponseBody
 	public void getHotPhone(HttpServletResponse response,HttpServletRequest request) throws Exception{
 		 Map<String,Object> map = new HashMap<String,Object>(); 
+		 Map<String,Object> msg = new HashMap<String,Object>(); 
+		 Map<String,Object> content = new HashMap<String,Object>();
+		 msg.put("code", "0000");
 		 Map<String,Object> phone = new HashMap<String,Object>(); 
 		 List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
-		 for (int i = 0; i < 5; i++) {
+		 for (int i = 0; i < Math.random()*5; i++) {
 			 phone = new HashMap<String,Object>(); 
 			 phone.put("phoneName", "abc"+i);
 			 phone.put("num", 1111);
 			 list.add(phone);
 		}
-		 map.put("result", list); 
+		 content.put("list", list);
+		 map.put("content", content); 
+		 map.put("msg", msg);
+		 response.setCharacterEncoding("utf-8");
+			response.setContentType("text/javascript");
+	        PrintWriter out = response.getWriter();    
+	        Gson gson = new Gson();
+	        String result = gson.toJson(map);//根据需要拼装json  
+	        String jsonpCallback = request.getParameter("callback");//客户端请求参数  
+	        out.write(jsonpCallback+"("+result+")");//返回jsonp格式数据  
+	        out.flush();  
+	        out.close();  
+	}
+	@RequestMapping("removeFromcar")
+	@ResponseBody
+	public void removeFromcar(HttpServletResponse response,HttpServletRequest request) throws Exception{
+		Map<String,Object> map = new HashMap<String,Object>(); 
+		 Map<String,Object> msg = new HashMap<String,Object>(); 
+		 Map<String,Object> content = new HashMap<String,Object>();
+		 msg.put("code", "0000");
+		 Map<String,Object> phone = new HashMap<String,Object>(); 
+		 List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		 for (int i = 0; i < Math.random()*5; i++) {
+			 phone = new HashMap<String,Object>(); 
+			 phone.put("phoneName", "abc"+i);
+			 phone.put("num", 1111);
+			 list.add(phone);
+		}
+		 content.put("list", list);
+		 map.put("content", content); 
+		 map.put("msg", msg);
 		 response.setCharacterEncoding("utf-8");
 			response.setContentType("text/javascript");
 	        PrintWriter out = response.getWriter();    
