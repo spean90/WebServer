@@ -56,6 +56,7 @@ var Modal = {
 	          // 数据获取完成后，需要做的事，此为隐藏读取数据的滚动条。
 	        },
 	        error : function(xOptions, textStatus) {
+	        	console.log(xOptions);
 				alert(textStatus);
 				//window.location.href = "/index.html";
 			}
