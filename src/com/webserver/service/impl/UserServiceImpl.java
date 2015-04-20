@@ -40,7 +40,7 @@ public class UserServiceImpl implements IUserService {
 		} catch (Exception e) {
 			operLog.setStatus(0);
 		}
-		operLogDao.addLog(operLog);
+		//operLogDao.addLog(operLog);
 		return i;
 	}
 
@@ -64,7 +64,7 @@ public class UserServiceImpl implements IUserService {
 		} catch (Exception e) {
 			operLog.setStatus(0);
 		}
-		operLogDao.addLog(operLog);
+		//operLogDao.addLog(operLog);
 		return i;
 	}
 
@@ -80,7 +80,7 @@ public class UserServiceImpl implements IUserService {
 			operLog.setStatus(0);
 		}
 		
-		operLogDao.addLog(operLog);
+		//operLogDao.addLog(operLog);
 		return 1;
 	}
 	
