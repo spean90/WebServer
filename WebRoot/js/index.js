@@ -223,7 +223,7 @@ var index = {
 							var list = data.content.list;
 							for (var i = 0; i < list.length; i++) {
 								var str = '<div class="item clearfix">'
-			                          +'<img src="images/xs-phone.png" alt="" />'
+			                          +'<img src="pic/pic.jpg" alt="" width="30" height="60"/>'
 			                          +'<span>'
 			                          +' <ul>'
 			                          +' <li>iphone4</li>'
@@ -264,12 +264,12 @@ var index = {
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
 //index.initCity(); //初始化城市信息
-index.initHotBrand(); //初始化热门品牌
+//index.initHotBrand(); //初始化热门品牌
 //index.initPhoneList(); //初始化热门手机
 //index.initComments(); //初始化客户评价
 //index.initNewsList(); //初始化最新咨询
 //index.initRetrieveList();  //初始化最新回收单
-//index.initRetrieveCar();//初始化回收车
+index.initRetrieveCar();//初始化回收车
 $(function(){
 });
 
