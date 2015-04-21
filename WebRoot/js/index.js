@@ -95,13 +95,7 @@ var index = {
 		},
 		initHotBrand : function() {
 			var config = {
-					url : Sys.serviceDomain+"/test", 
-					data : {
-							userId : "15155445597",
-							passwd : "wsg",
-							platform : "post平台",
-							model : "shouji"
-					},
+					url : Sys.serviceDomain+"/listHostBrands?recordPerPage=17", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						console.log(data);
@@ -126,18 +120,32 @@ var index = {
 		},
 		initPhoneList : function(){
 			var config = {
-					url : Sys.serviceDomain+"/getHotPhone.do", 
+					url : Sys.serviceDomain+"/listHotModels?recordPerPage=10", 
 					callbackParameter: "callback",
 					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						var list = content.list;
 						$('.phone-list.clearfix').empty();
-						for (var i = 0; i < 10; i++) {
-							var str = '<li data-label="4月,5月,6月" data-data="1'+i+'00,1300,800" onclick=index.doDetail('+i+')>'
-							           +'<a ><img src="pic/phone.jpg" alt="iphone4" width="80" height="160" /></a>'
+						for (var i = 0; i < list.length; i++) {
+							var monthStr = '';
+							var monthPrice = '';
+							var monthPricesList = list[i].modelsMonthPricesList;
+							for (var j = 0; j < monthPricesList.length; j++) {
+								monthStr = ','+monthPricesList[j].priceMonth+'月';
+								monthPrice = ','+monthPricesList[j].recycleAvgPrice;
+							}
+							monthStr = monthStr.substring(1);
+							monthPrice = monthPrice.substring(1);
+							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" onclick=index.doDetail('+i+')>'
+							           +'<a ><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="80" height="160" /></a>'
 							           +'<div class="product-info">'
 							           +' <div class="fl">'
-							           +'   <span class="phone-name">iPhone '+i+'</span>'
-							           +'   <span class="recovery">回收价：<em class="red">￥550</em></span>'
-							           +'   <span class="badge">37693人回收</span>'
+							           +'   <span class="phone-name">'+list[i].modelsNickname+'</span>'
+							           +'   <span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
+							           +'   <span class="badge">'+list[i].recycleCount+'人回收</span>'
 							           +' </div>'
 							           +' </div>'
 							           +' <a class="index-spr trend-icon"></a> '
@@ -152,14 +160,19 @@ var index = {
 		},
 		initComments : function() {
 			var config = {
-					url : Sys.serviceDomain+"/getHotPhone.do", 
+					url : Sys.serviceDomain+"/listCustomersReviewsOrder?recordPerPage=4", 
 					callbackParameter: "callback",
 					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						var list = content.list;
 						$('.aps-list.clearfix').empty();
-						for (var i = 0; i < 4; i++) {
-							var str = '<li><span class="aps-name"><em>緔弦玥玥玥玥玥玥玥</em>12月2日 11:30</span>'+
-							'<span class="aps-pic"><img src="pic/2.jpg" alt="name" width="60" height="60"/></span>'
-							+'<span class="aps-txt">自己的旧手机在壹回收网上面成功交易，总体来说交易很迅速，回收前的客服解答很耐心，期待你们未来做的更好自己的旧手机在壹回收网上面成功交易，总体来说交易很迅速，回收前的客服解答很耐心，期待你们未来做的更好</span>'
+						for (var i = 0; i < list.length; i++) {
+							var str = '<li><span class="aps-name"><em>'+list[i].customersName+'</em>'+list[i].addedDate+'</span>'+
+							'<span class="aps-pic"><img src="'+list[i].customersImage+'" alt="'+list[i].customersName+'" width="60" height="60"/></span>'
+							+'<span class="aps-txt">'+list[i].customersReviews+'</span>'
 							+'</li>';
 							var comments = $(str);
 							$('.aps-list.clearfix').append(comments);
@@ -170,15 +183,21 @@ var index = {
 		},
 		initNewsList : function() {
 			var config = {
-					url : Sys.serviceDomain+"/getHotPhone.do", 
+					url : Sys.serviceDomain+"/listNewsOrder?recordPerPage=2", 
 					callbackParameter: "callback",
 					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						var list = content.list;
 						$('.index-news-list.clearfix').empty();
-						for (var i = 0; i < 2; i++) {
-							var str = '<li><a><img src="pic/3.jpg" alt="name" width="280" height="180" /></a>'
-					            +'<h4><a>299元+21天长待机 诺基亚215发布 诺基亚215发布</a></h4>'
-					            +'<span>2015/3/12</span>'
-					            +'<p>日前,诺基亚正式发布了1050的继任者215,号称是“最具性价比的入门级互联网手机”。 该机配备了一块2.4英寸320×240分辨率显示屏以及一颗VGA摄像头,...</p>'
+						for (var i = 0; i < list.length; i++) {
+							var item = list[i];
+							var str = '<li><a><img src="'+item.newsImage+'" alt="'+item.newsTitle+'" width="280" height="180" /></a>'
+					            +'<h4><a>'+item.newsTitle+'</a></h4>'
+					            +'<span>'+item.addedDate+'</span>'
+					            +'<p>'+item.newsTitle+'</p>'
 					            +'</li>';
 							var news = $(str);
 							$('.index-news-list.clearfix').append(news);
@@ -189,13 +208,19 @@ var index = {
 		},
 		initRetrieveList : function() {
 			var config = {
-					url : Sys.serviceDomain+"/getHotPhone.do", 
+					url : Sys.serviceDomain+"/listNewestOrders?recordPerPage=18", 
 					callbackParameter: "callback",
 					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						var list = content.list;
 						$('.retrieve-list.clearfix').empty();
-						for (var i = 0; i < 18; i++) {
-							var str = '<li><span class="col-1">138****1234</span>'
-							+'<span class="col-2"><em>100</em>元</span>'
+						for (var i = 0; i < list.length; i++) {
+							var item = list[i];
+							var str = '<li><span class="col-1">'+item.telephone+'</span>'
+							+'<span class="col-2"><em>'+item.ordersTotal+'</em>元</span>'
 							+'<span class="col-3">回收了三星<em> GALAXY S4（I9500）</em></span>'
 							+'</li>';
 							var retrieve = $(str);
@@ -206,8 +231,11 @@ var index = {
 			Modal.jsonp(config);
 		},
 		initRetrieveCar : function() {
+			if(sessionStorage.key==null&&sessionStorage.key=='undefined'){
+				console.log('未登录，不能获取回收车内容');
+			}
 			var config = {
-					url : Sys.serviceDomain+"/getHotPhone.do", 
+					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.key, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -222,12 +250,13 @@ var index = {
 							$('.hs-box-js>ul').empty();
 							var list = data.content.list;
 							for (var i = 0; i < list.length; i++) {
+								var item = list[i];
 								var str = '<div class="item clearfix">'
-			                          +'<img src="pic/pic.jpg" alt="" width="30" height="60"/>'
+			                          +'<img src="'+item.modelsImage+'" alt="" width="30" height="60"/>'
 			                          +'<span>'
 			                          +' <ul>'
-			                          +' <li>iphone4</li>'
-			                          +' <li>回收价：<span>￥5600</span><a onclick=index.removeFromCar(1)>删除</a></li>'
+			                          +' <li>'+item.modelsName+'</li>'
+			                          +' <li>回收价：<span>￥'+item.lastEvaluationPrice+'</span><a onclick=index.removeFromCar(1)>删除</a></li>'
 			                          +'   <li>12306人回收</li>'
 			                          +' </ul>'
 			                          +' </span>'
@@ -264,12 +293,12 @@ var index = {
  * 要在index.html中new citySelect执行之前执行；所以放在这里；
  */
 //index.initCity(); //初始化城市信息
-//index.initHotBrand(); //初始化热门品牌
+index.initHotBrand(); //初始化热门品牌
 //index.initPhoneList(); //初始化热门手机
 //index.initComments(); //初始化客户评价
 //index.initNewsList(); //初始化最新咨询
 //index.initRetrieveList();  //初始化最新回收单
-index.initRetrieveCar();//初始化回收车
+//index.initRetrieveCar();//初始化回收车
 $(function(){
 });
 
