@@ -42,67 +42,63 @@ $(function() {
     $(this).addClass('on');
   })
 })
-//城市
-function citySelect(){
 
-}
-
-function phoneList(){
 	
-	var $list= $(".phone-list"),$li=$list.find("li");
-	
-	for(var i=0 ; i < $li.length ; i++){
-		$li.eq(i).append("<div class=\"trend-box\"><h4>"+"Phone4（黑/白）"+"</h4><div class=\"chart-box\"><canvas id=\"chart" + i +"\" style=\"z-index: 1000\"></canvas></div></div>");
-		}
-	
-	$li.hover(function () {
-		var $this = $(this),
-			// $btn = $this.find(".phone-btn"),
-			// priceTxt = "回收价"+"<em>￥"+ $btn.attr("data-price")+"</em>",
-			$icon=$this.find(".trend-icon"),
-			$trendBox=$this.find(".trend-box"),
-			$chartBox=$this.find(".chart-box");
+	 function phoneList(){
 		
-	
-		// $btn.html(priceTxt);
+		var $list= $(".phone-list"),$li=$list.find("li");
+		
+		for(var i=0 ; i < $li.length ; i++){
+			$li.eq(i).append("<div class=\"trend-box\"><h4>"+"Phone4（黑/白）"+"</h4><div class=\"chart-box\"><canvas id=\"chart" + i +"\" style=\"z-index: 1000\"></canvas></div></div>");
+			}
+		
+		$li.hover(function () {
+			var $this = $(this),
+				// $btn = $this.find(".phone-btn"),
+				// priceTxt = "回收价"+"<em>￥"+ $btn.attr("data-price")+"</em>",
+				$icon=$this.find(".trend-icon"),
+				$trendBox=$this.find(".trend-box"),
+				$chartBox=$this.find(".chart-box");
+			
+		
+			// $btn.html(priceTxt);
 
-  //修改click事件为mouseover
-		$icon.mouseover(function(){
-				$trendBox.show();
-				var idTxt= $(this).parent().find("canvas").attr("id"),
-				 ctx = document.getElementById(idTxt).getContext("2d"),
-				 datalebel= $(this).parent().attr("data-label").split(","),
-				 datadata= $(this).parent().attr("data-data").split(",");
+      //修改click事件为mouseover
+			$icon.mouseover(function(){
+					$trendBox.show();
+					var idTxt= $(this).parent().find("canvas").attr("id"),
+					 ctx = document.getElementById(idTxt).getContext("2d"),
+					 datalebel= $(this).parent().attr("data-label").split(","),
+					 datadata= $(this).parent().attr("data-data").split(",");
 
-				var myLineChart = new Chart(ctx).Line({
-		labels : datalebel,
-		datasets : [{
-				fillColor : "rgba(253,245,211,0.9)",
-				strokeColor : "rgba(252,223,112,1)",
-				pointColor : "rgba(252,223,112,1)",
-				pointStrokeColor : "#fff",
-				data : datadata
-			}]
-		}, {responsive: true});
+					var myLineChart = new Chart(ctx).Line({
+			labels : datalebel,
+			datasets : [{
+					fillColor : "rgba(253,245,211,0.9)",
+					strokeColor : "rgba(252,223,112,1)",
+					pointColor : "rgba(252,223,112,1)",
+					pointStrokeColor : "#fff",
+					data : datadata
+				}]
+			}, {responsive: true});
+				})
+			},function(){
+			var $this = $(this),
+				// $btn = $this.find(".phone-btn"),
+				// numberTxt = "<em>"+ $btn.attr("data-number")+"</em>人回收",
+				$icon=$this.find(".trend-icon"),
+				$trendBox=$this.find(".trend-box");
+			
+		
+			$trendBox.hide();
+			// $btn.html(numberTxt);
 			})
-		},function(){
-		var $this = $(this),
-			// $btn = $this.find(".phone-btn"),
-			// numberTxt = "<em>"+ $btn.attr("data-number")+"</em>人回收",
-			$icon=$this.find(".trend-icon"),
-			$trendBox=$this.find(".trend-box");
-		
-	
-		$trendBox.hide();
-		// $btn.html(numberTxt);
-		})
-	}
+		}
+
 $(document).ready(function() {
 	 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
 	cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
 	cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
-	
-	
 	
 	
 
@@ -149,6 +145,37 @@ $(document).ready(function() {
         });
     }
 
-	 phoneList();
+      function paginaton(){
+         $("#pagination").pagination({
+        items: 100,
+        itemsOnPage: 10,
+        cssStyle: 'light-theme'
+        });
+      }
+      function filter(){
+        $('.listIndex').find('dd a').click(function(){
+          $('.listIndex').find('dd a').removeClass('selected');
+          $(this).addClass('selected');
+         var search_word = $(this).children('span').text();
+         $('.resultList .select').text(search_word+'：');
+         $('.resultList').show();
+         
+        })
+      }
+    //   function getBrandMobile(search_word) {
+    //     $.ajax({
+    //         type: 'GET',
+    //         url: "/json",
+    //         dataType: "json",
+    //         success: respgetCategoryCode,
+    //         timeout: 3000, 
+    //         data: {
+    //             code: 
+    //         }
+    //     });
+    // }
+	phoneList();
   scrollTop();
+  paginaton();
+  filter();
 })
