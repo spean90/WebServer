@@ -63,7 +63,7 @@
   
   <!-- freemarker的配置 --> 
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"> 
-	  <property name="templateLoaderPath" value="/template/" /> 
+	  <property name="templateLoaderPath" value="/" /> 
 	  <property name="defaultEncoding" value="utf-8" /> 
 	  <property name="freemarkerSettings"> 
 	  <props> 

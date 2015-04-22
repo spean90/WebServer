@@ -1,0 +1,45 @@
+.brand-box{ width:1198px; border:1px solid #ddd; border-width:1px 1px 0;}
+.brand-list li{ float:left; width:132px; border:1px solid #ddd; border-width:0 1px 1px 0;/* height:60px;*/ }
+.brand-list li.list-9n{ width:134px; border-right-width:0;}
+.brand-list li a{ display:block; width:100%;height: 30px;padding: 15px 0;}
+.brand-list li a .img-default { display: block;}
+.brand-list li a .img-hover{ display: none;}
+.brand-list li a.hover .img-default { display: none;}
+.brand-list li a.hover .img-hover{ display: block;}
+.brand-icon{ display:inline-block; height:30px; background-image:url(../images/min.png); background-repeat:no-repeat}
+.brand-icon-1{ width:22px; background-position:-19px -17px;}
+.brand-list li a:hover .brand-icon-1{ background-position:-49px -17px;}
+.brand-icon-2{ width:70px; background-position:-19px -60px;}
+.brand-list li a:hover .brand-icon-2{ background-position:-99px -60px;}
+.brand-icon-3{ width:70px; background-position:-19px -96px;}
+.brand-list li a:hover .brand-icon-3{ background-position:-99px -96px;}
+.brand-icon-4{ width:45px; background-position:-19px -129px;}
+.brand-list li a:hover .brand-icon-4{ background-position:-71px -129px;}
+.brand-icon-5{ width:26px; background-position:-19px -169px;}
+.brand-list li a:hover .brand-icon-5{ background-position:-53px -169px;}
+.brand-icon-6{ width:34px; background-position:-19px -212px;}
+.brand-list li a:hover .brand-icon-6{ background-position:-59px -212px;}
+.brand-icon-7{ width:70px; background-position:-19px -249px;}
+.brand-list li a:hover .brand-icon-7{ background-position:-97px -249px;}
+.brand-icon-8{ width:26px; background-position:-19px -287px;}
+.brand-list li a:hover .brand-icon-8{ background-position:-53px -287px;}
+.brand-icon-9{ width:70px; background-position:-19px -326px;}
+.brand-list li a:hover .brand-icon-9{ background-position:-99px -326px;}
+.brand-icon-10{ width:67px; background-position:-19px -357px;}
+.brand-list li a:hover .brand-icon-10{ background-position:-94px -357px;}
+.brand-icon-11{ width:50px; background-position:-19px -394px;}
+.brand-list li a:hover .brand-icon-11{ background-position:-76px -394px;}
+.brand-icon-12{ width:70px; background-position:-19px -430px;}
+.brand-list li a:hover .brand-icon-12{ background-position:-96px -430px;}
+.brand-icon-13{ width:32px; background-position:-19px -465px;}
+.brand-list li a:hover .brand-icon-13{ background-position:-58px -465px;}
+.brand-icon-14{ width:88px; background-position:-19px -502px;}
+.brand-list li a:hover .brand-icon-14{ background-position:-114px -502px;}
+.brand-icon-15{ width:60px; background-position:-19px -539px;}
+.brand-list li a:hover .brand-icon-15{ background-position:-89px -539px;}
+.brand-icon-16{ width:67px; background-position:-19px -576px;}
+.brand-list li a:hover .brand-icon-16{ background-position:-93px -576px;}
+.brand-icon-17{ width:52px; background-position:-19px -611px;}
+.brand-list li a:hover .brand-icon-17{ background-position:-78px -611px;}
+.brand-icon-18{ width:30px; background-position:-87px -17px;}
+.brand-list li a:hover .brand-icon-18{ background-position:-127px -17px;}

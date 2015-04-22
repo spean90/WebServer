@@ -95,10 +95,9 @@ var index = {
 		},
 		initHotBrand : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listHostBrands?recordPerPage=17", 
+					url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17", 
 					callbackParameter: "callback",
 					success : function(data){ 
-						console.log(data);
 						if (data.msg.code!="0000") {
 							return;
 						}
@@ -106,14 +105,16 @@ var index = {
 						var list = content.list;
 						$('.brand-list.clearfix').empty();
 						for (var i = 0; i < list.length; i++) {
-							var str = '<li><a href="#" class="images"><img src="'+list[i].brandImage+'"></a></li>';
+							var str = '<li><a href="#"><img class="img-default" src="'+list[i].brandImage+'">';
+										+'<img class="img-hover" src="'+list[i].brandImage+'"></a></li>';
 							if (i==8) {
-								str = '<li class="list-9n"><a href="#" class="images"><img src="'+list[i].brandImage+'"></a></li>';
+								str = '<li class="list-9n"><a href="#"><img class="img-default" src="'+list[i].brandImage+'">';
+								+'<img class="img-hover" src="'+list[i].brandImage+'"></a></li>';
 							}
 							var brand = $(str);
 							$('.brand-list.clearfix').append(brand);
 						}
-						$('.brand-list.clearfix').append('<li class="list-9n"><a><i class="brand-icon brand-icon-18"></i></a></li>')
+						$('.brand-list.clearfix').append('<li class="list-9n"><a href="#"><img class="img-default" src="images/more.png"><img class="img-hover" src="images/more-h.png"></a></li>')
 					}
 			}
 			Modal.jsonp(config);
@@ -140,7 +141,7 @@ var index = {
 							monthStr = monthStr.substring(1);
 							monthPrice = monthPrice.substring(1);
 							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" onclick=index.doDetail('+i+')>'
-							           +'<a ><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="80" height="160" /></a>'
+							           +'<a ><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
 							           +'<div class="product-info">'
 							           +' <div class="fl">'
 							           +'   <span class="phone-name">'+list[i].modelsNickname+'</span>'
@@ -220,8 +221,8 @@ var index = {
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
 							var str = '<li><span class="col-1">'+item.telephone+'</span>'
-							+'<span class="col-2"><em>'+item.ordersTotal+'</em>元</span>'
-							+'<span class="col-3">回收了三星<em> GALAXY S4（I9500）</em></span>'
+							+'<span class="col-2"><em>'+item.customersPrice+'</em>元</span>'
+							+'<span class="col-3">回收了<em> '+item.modelsName+'</em></span>'
 							+'</li>';
 							var retrieve = $(str);
 							$('.retrieve-list.clearfix').append(retrieve);
@@ -231,11 +232,16 @@ var index = {
 			Modal.jsonp(config);
 		},
 		initRetrieveCar : function() {
-			if(sessionStorage.key==null&&sessionStorage.key=='undefined'){
+			if(sessionStorage.token==null||sessionStorage.token=='undefined'){
 				console.log('未登录，不能获取回收车内容');
+				$('.hs-box-js').remove();
+				var boxNone = $('<div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div>');
+				$('.hs-box').append(boxNone);
+				return;
 			}
+			
 			var config = {
-					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.key, 
+					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -294,11 +300,11 @@ var index = {
  */
 //index.initCity(); //初始化城市信息
 index.initHotBrand(); //初始化热门品牌
-//index.initPhoneList(); //初始化热门手机
-//index.initComments(); //初始化客户评价
-//index.initNewsList(); //初始化最新咨询
-//index.initRetrieveList();  //初始化最新回收单
-//index.initRetrieveCar();//初始化回收车
+index.initPhoneList(); //初始化热门手机
+index.initComments(); //初始化客户评价
+index.initNewsList(); //初始化最新咨询
+index.initRetrieveList();  //初始化最新回收单
+index.initRetrieveCar();//初始化回收车
 $(function(){
 });
 

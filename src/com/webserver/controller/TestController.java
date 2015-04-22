@@ -25,11 +25,11 @@ import com.google.gson.Gson;
 @Controller
 public class TestController {
 
-	@RequestMapping(value="/regular/{pid}-{name}")
+	@RequestMapping(value="/regular-{pid}-{name}")
 	public ModelAndView regularMapping(@PathVariable(value="pid") String pid,
 			@PathVariable(value="name") String name) {
 		System.out.println("........name:"+name);
-		ModelAndView modelAndView = new ModelAndView("product");
+		ModelAndView modelAndView = new ModelAndView("index2");
 		modelAndView.addObject("pid", pid); 
 		modelAndView.addObject("dt",new Date());
 		modelAndView.addObject("list",getList());

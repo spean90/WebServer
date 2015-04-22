@@ -1,5 +1,5 @@
 .service-icon,i.service-icon:before{ display:block; background-image:url(../images/1.png); background-repeat:no-repeat}
-.index-spr,.tit-1-h2,.retrieve-list li,.suprty{ display:block; background-image:url(../images/index-spr.png); background-repeat:no-repeat}
+.tit-1-h2,.retrieve-list li,.suprty{ display:block; background-image:url(../images/index-spr.png); background-repeat:no-repeat}
 .logo{margin-top: 25px;}
 /*轮播*/
 .rotator{ width:832px; height:300px;}
@@ -32,11 +32,13 @@ a.service-btn{ display:block; width:160px; height:45px; text-align:center; line-
 a.tit-1-more{ width:124px; height:45px; background-position:0 -64px; text-align:center; line-height:45px; color:#fff; right:6px; top:6px; font-size:16px;}
 a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-moz-transition: none;	-ms-transition: none;-o-transition: none;	transition: none; }
 .brand-box{ width:1198px; border:1px solid #ddd; border-width:1px 1px 0;}
-.brand-list li{ float:left; width:132px; border:1px solid #ddd; border-width:0 1px 1px 0; height:60px; }
+.brand-list li{ float:left; width:132px; border:1px solid #ddd; border-width:0 1px 1px 0;/* height:60px;*/ }
 .brand-list li.list-9n{ width:134px; border-right-width:0;}
-.brand-list a:hover img{opacity: 0.6}
-.brand-list li a{ display:block; width:100%;padding:6px 0; text-align:center}
-
+.brand-list li a{ display:block; width:100%;height: 30px;padding: 15px 0;}
+.brand-list li a .img-default { display: block;}
+.brand-list li a .img-hover{ display: none;}
+.brand-list li a.hover .img-default { display: none;}
+.brand-list li a.hover .img-hover{ display: block;}
 .brand-icon{ display:inline-block; height:30px; background-image:url(../images/min.png); background-repeat:no-repeat}
 .brand-icon-1{ width:22px; background-position:-19px -17px;}
 .brand-list li a:hover .brand-icon-1{ background-position:-49px -17px;}
@@ -74,45 +76,7 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .brand-list li a:hover .brand-icon-17{ background-position:-78px -611px;}
 .brand-icon-18{ width:30px; background-position:-87px -17px;}
 .brand-list li a:hover .brand-icon-18{ background-position:-127px -17px;}
-.phone-list li{ width: 198px;float: left;padding: 20px 0;margin: 30px 20px 10px;position: relative;border: 1px solid #ccc;}
-.phone-list li:hover{
-transition: all 0.3s linear 0s;
-transform: translateY(-10px);
--webkit-transition: all 0.3s linear 0s;
--webkit-transform: translateY(-10px);
--moz-transition: all 0.3s linear 0s;
--moz-transform: translateY(-10px);
-	box-shadow: 5px 0 7px #d5d5d5;
-	z-index: 10;
-}
-.product-info{padding: 0px 35px;position: relative;}
-.product-info span{display: block;}
-.product-info .recovery{height: 30px;line-height: 30px;}
-.recovery em.red{font-style: normal;color:#ff2F2f;}
-.badge{display: inline-block;min-width: 10px;padding: 2px 6px;font-size: 12px;color: #666;text-align: center;white-space: nowrap;vertical-align: baseline;background-color: #eee;border-radius: 3px;margin: 5px 0px;
-}
-.trend-icon{ width:20px; height:23px; background:url(../images/trend-icon.png) no-repeat 0 0;display: inline-block;position: absolute;margin-top: 30px;right: 15%;}
-.trend-icon:hover{ background:url(../images/trend-icon-hover.png) no-repeat 0 0;}
-.trend-box{ width:205px; height:150px; background:url(../images/trend.png) no-repeat 0 0; position:absolute;left: 55px;bottom: 100px; display:none;z-index: 1000;}
-.trend-box h4{ height: 30px;line-height: 35px;text-indent: 12px;}
-.chart-box{ width:180px; height:110px; margin:0 auto}
-.phone-list{padding: 10px 0px 20px 0px;}
-.tip{padding: 10px 0px 40px 20px;font-size: 14px;}
-.tip em.red{font-style: normal;color:#ff2F2f;}
-.headline,.head{position: relative;margin: 10px 0px 3px 0px;padding: 8px 0px;}
-.headline{border-bottom: 2px solid #2168cc;}
-.icon{width: 28px;height: 28px;display: inline-block;}
-.icon-m-type{}
-.icon-m-brand{}
-.headline h3, .head h3{font-size: 16px;display: inline-block;font-weight: bold;color: #000;}
-.phone-list li.on{ box-shadow:5px 0 7px #d5d5d5}
-.phone-list li.on a.phone-btn{ background-color:#0085d0}
-.phone-list li img{ 
-	display:block; width:80px; height:160px; margin:0 auto;padding: 35px 0px;
-}
-.phone-name{ display:block; height:30px; line-height:30px;overflow:hidden; font-size:16px;}
-a.phone-btn{ display:block; width:145px; height:45px; margin:13px auto 0; text-align:center; line-height:45px; background-color:#40a7f6; color:#fff;font-family:"Microsoft YaHei";border-radius:10px; }
-a.phone-btn em{ font-size:16px; padding-right:5px; }
+
 /*用户评价*/
 .index-box{ width:1198px;border:1px solid #ddd;}
 .index-con{ padding:10px 20px;}
@@ -151,54 +115,10 @@ a.phone-btn em{ font-size:16px; padding-right:5px; }
 .suprty-4,.suprty-5,.suprty-6{ background-position:0 -288px; padding-left:17px; right:108px;}
 .suprty-2,.suprty-5{ top:117px;}
 .suprty-3,.suprty-6{ top:244px;}
-/*返回顶部*/
-.izl-rmenu{position:fixed;right: 10px;bottom:10px;padding-bottom:73px;background:url(../images/r_b.png) 0px bottom no-repeat;z-index:999;}
-.izl-rmenu .btn{width:50px;height:50px;margin-bottom:5px;cursor:pointer;position:relative;}
-.izl-rmenu .btn-qq{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#bbb;}
-.izl-rmenu a.btn-qq,.izl-rmenu a.btn-qq:visited{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#bbb;text-decoration:none;display:block;}
-.izl-rmenu .btn-edit{background:url(../images/r_edit.png) 0px 0px no-repeat;background-color:#bbb;}
-.izl-rmenu .btn .edit,.izl-rmenu .btn .kefu,.izl-rmenu .btn .gotop{background-color:#2693ff;position:absolute;width:160px;left:-160px;top:0px;line-height:50px;color:#FFF;font-size:18px;text-align:center;display:none;}
-.izl-rmenu .btn-edit .arrow-right{
-	width: 0px;
-height: 0px;
-border-bottom: 10px solid transparent;
-border-top: 10px solid transparent;
-border-left: 10px solid #2693ff;
-font-size: 0px;
-line-height: 0px;
-position: absolute;
-right: -10px;
-top: 15px;
-}
-.izl-rmenu .btn-eidt .pic{position:absolute;left:-160px;top:0px;display:none;width:160px;height:160px;}
-.izl-rmenu .btn-help{background:url(../images/r_help.png) 0px 0px no-repeat;background-color:#bbb;}
-.izl-rmenu .btn-top{background:url(../images/r_top.png) 0px 0px no-repeat;background-color:#bbb;display:none;}
-.izl-rmenu .btn-edit:hover,.izl-rmenu .btn-top:hover,.izl-rmenu .btn-help:hover,.izl-rmenu .btn-qq:hover{background-color:#ff5c26;}
 
-.icon{background: url(../images/spr.png) no-repeat ;}
+
 .icon-1{ background-position: 0 0; width: 80px; height: 50px; margin-left: 15px;} 
 .icon-2{ background-position: 0 -100px; width: 80px; height: 50px; margin-left: 13px;} 
 .icon-3{ background-position: 0 -200px; width: 80px; height: 50px; margin-left: 13px;} 
 .icon-4{ background-position: 0 -300px; width: 80px; height: 50px; margin-left: 13px;}  
-.icon-addr{ background-position: 0 -495px;width: 18px;height: 30px;vertical-align: middle; } 
-
-.header-btn-2-hover .icon-car{background-position: -28px -568px;}
-.icon-car{ background-position: 0 -568px; width: 22px;height: 22px;vertical-align: middle; } 
-
-
-.icon-code{ background-position: 0 -637px; width: 18px;height: 18px;vertical-align: middle; } 
-.hover .icon-code{background-position: -29px -637px;}
-.icon-m-brand{ background-position: 0 -701px; width: 28px; height: 28px; vertical-align: top;} 
-.icon-m-type{ background-position: 0 -779px; width: 29px; height: 28px; vertical-align: top;} 
-.icon-r_edit{ background-position: 0 -857px; width: 50px; height: 50px; } 
-.icon-r_help{ background-position: 0 -957px; width: 50px; height: 50px; } 
-.icon-r_qq{ background-position: 0 -1057px; width: 50px; height: 50px; } 
-.icon-r_top{ background-position: 0 -1157px; width: 50px; height: 50px; } 
-.icon-so{ background-position: 12px -1251px;width: 40px;height: 42px;position: absolute;z-index: 2;} 
-.icon-start{ background-position: -30px -1335px;width: 20px;height: 15px;vertical-align: middle; } 
-.collect:hover .icon-start{background-position: 0 -1335px;}
-.icon-tel{ background-position: 0 -1397px;width: 16px;height: 22px;vertical-align: middle; }
-.hover .icon-tel{background-position: -29px -1397px}
-.icon-trend1{ background-position: 0 -1613px; width: 205px; height: 150px; } 
-.icon-user{ background-position: 0 -1810px;width: 25px;height: 22px;vertical-align: text-bottom;} 
-.hover .icon-user{ background-position: -40px -1810px;}
+ 

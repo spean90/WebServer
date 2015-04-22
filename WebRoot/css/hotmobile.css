@@ -1,0 +1,62 @@
+
+/* select */
+.selectNumberScreen{
+background: #fff;
+}
+.screenBox dl{
+overflow: hidden;
+margin: 0 auto;}
+.resultList{background: #f8f8f8;}
+.screenBox dl.noborder{border-bottom:0px;border-left:0px;border-top:0px;border-right:0px}
+.screenBox dl.goodstype{border-bottom:#e6e6e6 1px dashed}
+.screenBox dl dt{float:left;}
+.screenBox dl dt{text-align:right;font-size: 14px;padding: 5px 20px;margin:5px 0px;background: #f8f8f8}
+.screenBox dl dd{position:relative;width:90%;padding-bottom:5px;padding-left:0px;padding-right:15px;float:left;overflow:hidden;padding-top:0px}
+
+.screenBox dl dd a{line-height: 22px;font-size: 14px;vertical-align: middle;letter-spacing: 2px;margin: 10px 10px;display:inline-block;color:#666;overflow:hidden;text-decoration:none}
+.screenBox dl dd>span{vertical-align: middle;color: #ddd;}
+
+.screenBox dl dd a:hover{background:#0085d0;color:#fff}
+.screenBox dl dd a.selected{background:#0085d0;color:#fff}
+.screenBox dl dd span.more{position:absolute;width:39px;display:block;height:14px;top:6px;cursor:pointer;right:1px}
+.screenBox dl dd span.more label{display:inline-block;cursor:pointer}
+.hasBeenSelected{width:100%;overflow:hidden;background: #f6f8fd;margin-top: 10px;}
+.hasBeenSelected .warning{
+	float:left;
+	height: 44px;
+line-height: 44px;
+font-size: 14px;
+padding-left: 25px;}
+.hasBeenSelected .warning a{color:#2168cc;;text-decoration: underline;}
+.hasBeenSelected dl{overflow:hidden;height: 43px;line-height: 43px;width: 697px;
+padding: 0 30px 0 0;
+text-align: right;
+font-size: 12px;
+color: #333;
+float: left;}
+.hasBeenSelected dl dt{float:left}
+.hasBeenSelected dl dd{float:left}
+.hasBeenSelected dl dt{text-align:right;width:108px;font-weight:600}
+.hasBeenSelected dl dd{padding-bottom:4px;padding-left:0px;padding-right:0px;padding-top:0px}
+.selectedInfor{border-bottom:#f60 1px solid;height: 30px;line-height: 30px;position:relative;border-left:#f60 1px solid;margin:5px 10px 0px 0px;padding-left:5px;padding-right:17px;display:block;white-space:nowrap;background:#fff;float:left;border-top:#f60 1px solid;border-right:#f60 1px solid;}
+.selectedInfor label{color:#f60}
+.eliminateCriteria{line-height:21px;margin-top:4px;width:80px;float:left;color:#f60;cursor:pointer;font-weight:600}
+.selectedInfor em{background:url("../images/close.gif") no-repeat;cursor:pointer;display:block;height:13px;overflow:hidden;position:absolute;right: 1px;
+top: 1px;width:13px;}
+#filter_pager {
+	float:right;
+line-height: 44px;
+height: 44px;
+}
+#filter_pager .disabled {
+color: #ccc;
+cursor: default;
+}
+#filter_pager li {
+width: 88px;
+border-left: 1px solid #eaeaea;
+text-align: center;
+color: #333;
+cursor: pointer;
+float: right
+}
