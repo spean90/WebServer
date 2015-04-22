@@ -29,7 +29,7 @@ var index = {
 		initCity : function(){
 			var current_city = localStorage.current_city;
 			if(current_city!=null&&current_city!="undefind") {
-				$("#address").text(current_city);
+				$("#current_city").text(current_city);
 			}
 			$('.city-list-2.clearfix').empty();
 			var citylist = sessionStorage.citylist;
