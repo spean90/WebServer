@@ -19,8 +19,12 @@ public class BrandsController {
 	}
 	@RequestMapping(value="/index")
 	public ModelAndView index() {
-		System.out.println(">>>>>>>>>wwww>>>>>>>>>");
 		ModelAndView modelAndView = new ModelAndView("index");
+		return modelAndView;
+	}
+	@RequestMapping(value="/register.html")
+	public ModelAndView goToregister() {
+		ModelAndView modelAndView = new ModelAndView("register");
 		return modelAndView;
 	}
 }

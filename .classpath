@@ -7,6 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
-	<classpathentry kind="lib" path="D:/Tomcat_home/apache-tomcat-7.0.59/lib/catalina.jar"/>
+	<classpathentry kind="lib" path="D:/java/ssi/catalina.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
