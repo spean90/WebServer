@@ -23,10 +23,10 @@ var category = {
 					            {"id":"12","name":"htc","english_name":"apple","count":"5"},
 					            {"id":"12","name":"htc","english_name":"apple","count":"5"},
 					            {"id":"12","name":"htc","english_name":"apple","count":"5"}];
-					$('.listIndex[attr="terminal_brand_s"]').empty();
-					$('.listIndex[attr="terminal_brand_s"]').append('<dt>热门品牌</dt>');
-					var str = '<dd>';
+					var dd = $('.listIndex[attr="terminal_brand_s"]>dd');
+					dd.empty();
 					for(var i=0; i<list.length; i++){
+						var str = '';
 						if(bId==list[i].id){
 							str = str + '<a href="javascript:void(0)"  attrval="'+list[i].english_name+'" class="selected"><span>'+list[i].name+'</span>('+list[i].count+')</a>';
 						}else{
@@ -35,9 +35,8 @@ var category = {
 						if(i<list.length-1){
 							str = str + " <span>|</span>";
 						}
+						dd.append(str);
 					}
-					str = str + '</dd>';
-					$('.listIndex[attr="terminal_brand_s"]').append(str);
 				}
 			});
 		},
@@ -115,15 +114,15 @@ var category = {
 					            {"name":"htc苹果_tag","english_name":"apple","count":"5"},
 					            {"name":"htc苹果_tag","english_name":"apple","count":"5"},
 					            {"name":"htc苹果_tag","english_name":"apple","count":"5"}];
-					$(".resultList").empty("");
-					$(".resultList").append('<dt class="select">'+content.name+'：</dt>');
-					$(".resultList").append('<dd id="tagList">');
-					$(".resultList").append('<a href="javascript:void(0)"  attrval="all">全部</a> ');
+					$(".resultList> .select").html(content.name+'：');
+					var dd = $('.resultList>dd');
+					dd.empty();
+					dd.append('<a href="javascript:void(0)"  attrval="all">全部</a>');
 					for(var i=0; i<list.length; i++){
-						var str = '<a href="javascript:void(0)"  attrval="'+list[i].name+'">'+list[i].name+'</a> ';
-						$("#tagList").append(str);
+						dd.append('<a href="javascript:void(0)"  attrval="'+list[i].name+'">'+list[i].name+'</a> ');
+						
 					}
-					$(".resultList").append("</dd>");
+					$(".resultList").append(dd);
 				}
 			});
 		},
