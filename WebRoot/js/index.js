@@ -105,16 +105,23 @@ var index = {
 						var list = content.list;
 						$('.brand-list.clearfix').empty();
 						for (var i = 0; i < list.length; i++) {
-							var str = '<li><a href="#"><img class="img-default" src="'+list[i].brandImage+'">';
-										+'<img class="img-hover" src="'+list[i].brandImage+'"></a></li>';
+							var str = '<li><a href="/brands_'+list[i].brandsId+'.html"><img class="img-default" src="'+list[i].brandImage+'">'
+										+'<img class="img-hover" src="'+list[i].brandImageHover+'"></a></li>';
 							if (i==8) {
-								str = '<li class="list-9n"><a href="#"><img class="img-default" src="'+list[i].brandImage+'">';
-								+'<img class="img-hover" src="'+list[i].brandImage+'"></a></li>';
+								str = '<li class="list-9n"><a href="/brands_'+list[i].brandsId+'.html"><img class="img-default" src="'+list[i].brandImage+'">'
+								+'<img class="img-hover" src="'+list[i].brandImageHover+'"></a></li>';
 							}
 							var brand = $(str);
 							$('.brand-list.clearfix').append(brand);
 						}
-						$('.brand-list.clearfix').append('<li class="list-9n"><a href="#"><img class="img-default" src="images/more.png"><img class="img-hover" src="images/more-h.png"></a></li>')
+						$('.brand-list.clearfix').append('<li class="list-9n"><a href="/brands_0.html"><img class="img-default" src="images/more.png"><img class="img-hover" src="images/more-h.png"></a></li>')
+						$('a').hover(function() {
+						    var $this = $(this);
+						    $this.addClass("hover")
+						  }, function() {
+						    var $this = $(this);
+						    $this.removeClass("hover")
+						  });
 					}
 			}
 			Modal.jsonp(config);
@@ -134,23 +141,57 @@ var index = {
 							var monthStr = '';
 							var monthPrice = '';
 							var monthPricesList = list[i].modelsMonthPricesList;
+							monthPricesList.sort(function (a, b) {
+								  if (a.priceMonth > b.priceMonth) {
+								    return 1;
+								  }
+								  if (a.priceMonth < b.priceMonth) {
+								    return -1;
+								  }
+								  return 0;
+								});
 							for (var j = 0; j < monthPricesList.length; j++) {
-								monthStr = ','+monthPricesList[j].priceMonth+'月';
-								monthPrice = ','+monthPricesList[j].recycleAvgPrice;
+								monthStr += ','+parseInt(monthPricesList[j].priceMonth.substring(4))+'月';
+								monthPrice += ','+monthPricesList[j].customerAvgPrice;
 							}
 							monthStr = monthStr.substring(1);
 							monthPrice = monthPrice.substring(1);
-							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" onclick=index.doDetail('+i+')>'
-							           +'<a ><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
-							           +'<div class="product-info">'
-							           +' <div class="fl">'
-							           +'   <span class="phone-name">'+list[i].modelsNickname+'</span>'
-							           +'   <span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
-							           +'   <span class="badge">'+list[i].recycleCount+'人回收</span>'
-							           +' </div>'
-							           +' </div>'
-							           +' <a class="index-spr trend-icon"></a> '
-							           +'</li>';
+							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'">'
+							            +'<a><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+							            +'<div class="product-info">'
+							            +'<div class="fl">'
+							            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
+							            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
+							            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
+							            +'</div>'
+							            +'</div>'
+							            +'<a class="index-spr trend-icon"></a> '
+							            +'</li>';
+							if ((i+1)%5==0) {
+								str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" class="last">'
+						            +'<a><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+						            +'<div class="product-info">'
+						            +'<div class="fl">'
+						            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
+						            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
+						            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
+						            +'</div>'
+						            +'</div>'
+						            +'<a class="index-spr trend-icon"></a> '
+						            +'</li>';
+							}
+							
+//							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" onclick=index.doDetail('+i+')>'
+//							           +'<a ><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+//							           +'<div class="product-info">'
+//							           +' <div class="fl">'
+//							           +'   <span class="phone-name">'+list[i].modelsNickname+'</span>'
+//							           +'   <span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
+//							           +'   <span class="badge">'+list[i].recycleCount+'人回收</span>'
+//							           +' </div>'
+//							           +' </div>'
+//							           +' <a class="index-spr trend-icon"></a> '
+//							           +'</li>';
 							var phone = $(str);
 							$('.phone-list.clearfix').append(phone);
 						}
@@ -198,7 +239,7 @@ var index = {
 							var str = '<li><a><img src="'+item.newsImage+'" alt="'+item.newsTitle+'" width="280" height="180" /></a>'
 					            +'<h4><a>'+item.newsTitle+'</a></h4>'
 					            +'<span>'+item.addedDate+'</span>'
-					            +'<p>'+item.newsTitle+'</p>'
+					            +'<p>'+item.newsDescription+'</p>'
 					            +'</li>';
 							var news = $(str);
 							$('.index-news-list.clearfix').append(news);
@@ -217,6 +258,7 @@ var index = {
 						}
 						var content = data.content;
 						var list = content.list;
+						$('.retrieve-h3 em').text(123456);
 						$('.retrieve-list.clearfix').empty();
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
@@ -231,50 +273,7 @@ var index = {
 			}
 			Modal.jsonp(config);
 		},
-		initRetrieveCar : function() {
-			if(sessionStorage.token==null||sessionStorage.token=='undefined'){
-				console.log('未登录，不能获取回收车内容');
-				$('.hs-box-js').remove();
-				var boxNone = $('<div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div>');
-				$('.hs-box').append(boxNone);
-				return;
-			}
-			
-			var config = {
-					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token, 
-					callbackParameter: "callback",
-					success : function(data){ 
-						if (data.msg.code!="0000") {
-							return;
-						}
-						if (data.content.list==null||data.content.list.length==0) {
-							$('.hs-box-js').remove();
-							var boxNone = $('<div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div>');
-							$('.hs-box').append(boxNone);
-						}else {
-							$('.hs-box-none').remove();
-							$('.hs-box-js>ul').empty();
-							var list = data.content.list;
-							for (var i = 0; i < list.length; i++) {
-								var item = list[i];
-								var str = '<div class="item clearfix">'
-			                          +'<img src="'+item.modelsImage+'" alt="" width="30" height="60"/>'
-			                          +'<span>'
-			                          +' <ul>'
-			                          +' <li>'+item.modelsName+'</li>'
-			                          +' <li>回收价：<span>￥'+item.lastEvaluationPrice+'</span><a onclick=index.removeFromCar(1)>删除</a></li>'
-			                          +'   <li>12306人回收</li>'
-			                          +' </ul>'
-			                          +' </span>'
-			                          +' </div>';
-								var retrieve = $(str);
-								$('.hs-box-js>ul').append(retrieve);
-							}
-						}
-					}
-			}
-			Modal.jsonp(config);
-		},
+		
 		doDetail : function(id) {
 			window.open('detail-'+id+'.html', "_blank");
 		},
@@ -304,7 +303,6 @@ index.initPhoneList(); //初始化热门手机
 index.initComments(); //初始化客户评价
 index.initNewsList(); //初始化最新咨询
 index.initRetrieveList();  //初始化最新回收单
-index.initRetrieveCar();//初始化回收车
 $(function(){
 });
 
