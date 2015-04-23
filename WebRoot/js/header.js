@@ -1,6 +1,5 @@
 $(function() {
 	//搜索框
-
 	//头部鼠标经过
 	var $dd = $("#TopBar").find(".drop-down");
   var $li = $('.brand-list').find("li a"),

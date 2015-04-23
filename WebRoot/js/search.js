@@ -21,9 +21,12 @@ $(document).ready(function () {
             if (window.CP.shouldStopExecution(1)) {
                 break;
             }
-            if (strArray[j].phoneName.match(str) && $return.length < 5) {
-                var $h = strArray[j].phoneName.replace(str, '<strong>' + str + '</strong>');
-                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">'+strArray[j].num+'人回收</span></li>');
+            if ((strArray[j].modelsName.match(str)||strArray[j].modelsNickname.match(str)) && $return.length < 5) {
+                var $h = strArray[j].modelsName.replace(str, '<strong>' + str + '</strong>');
+                if (strArray[j].modelsNickname.match(str)) {
+                	$h = strArray[j].modelsNickname.replace(str, '<strong>' + str + '</strong>');
+				}
+                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">'+strArray[j].recycleCount+'人回收</span></li>');
             }
         }
         window.CP.exitedLoop(1);
@@ -57,10 +60,15 @@ $(document).ready(function () {
                 var $search = $('#search-bar').val();
                 $return = [];
                 var config = {
-    					url : Sys.serviceDomain+"/searchPhone.do", 
+    					url : Sys.serviceDomain+"/searchModels?recordPerPage=5&keywords="+$search, 
     					callbackParameter: "callback",
     					success : function(data){ 
-    						$terms = data.result;
+    						if (data.msg.code!="0000") {
+    							return;
+    						}
+    						var content = data.content;
+    						var list = content.list;
+    						$terms = list;
     						strInArray($search, $terms);
     		                if ($search == '' || !$('input').val) {
     		                    $('.output').html('').slideUp();
