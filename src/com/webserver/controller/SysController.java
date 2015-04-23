@@ -37,7 +37,7 @@ public class SysController {
 	@ResponseBody
 	public Object logout(HttpServletRequest request,HttpSession session) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		session.setAttribute("user", null);
+		session.setAttribute("manager", null);
 		result.put("success", true);
 		return result;
 	}

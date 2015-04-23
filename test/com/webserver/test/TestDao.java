@@ -8,22 +8,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 import com.webserver.dao.MenuInfoDao;
-import com.webserver.dao.UserDao;
+import com.webserver.dao.ManagerDao;
 import com.webserver.modal.MenuInfo;
-import com.webserver.modal.User;
+import com.webserver.modal.Manager;
 
 public class TestDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("cfg/applicationContext.xml");
 	
-	@Test
-	public void testSave(){
-		UserDao userDao = (UserDao) context.getBean("userDao");
-		User user = new User();
-		user.setAccount("abc");
-		System.out.println("pre:"+user.getUid());
-		userDao.insertUser(user);
-		System.out.println("after:"+user.getUid());
-	}
 	
 	//@Test
 	public void testMenu(){

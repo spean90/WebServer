@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.util.DateUtil;
 import com.webserver.modal.RoleInfo;
-import com.webserver.modal.User;
+import com.webserver.modal.Manager;
 import com.webserver.service.IRoleInfoService;
 
 @Controller
@@ -30,7 +30,7 @@ public class RoleController {
 	@RequestMapping("addRole.do")
 	@ResponseBody
 	public Object addRole(String roleName,String menuIds,HttpServletRequest request) {
-		User user = (User) request.getSession().getAttribute("user");
+		Manager user = (Manager) request.getSession().getAttribute("user");
 		RoleInfo roleInfo = new RoleInfo();
 		roleInfo.setAddTime(DateUtil.getDateTimeString(new Date()));
 		roleInfo.setAddMan(user.getRealName());

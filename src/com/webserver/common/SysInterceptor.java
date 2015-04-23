@@ -31,7 +31,7 @@ public class SysInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 		HttpSession session = request.getSession();
-		if(session.getAttribute("user") == null) {
+		if(session.getAttribute("manager") == null) {
 			logger.info("session = null  ");
 			response.setStatus(403);
 			return false;

@@ -26,9 +26,9 @@ public class OperLog implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	public OperLog(HttpServletRequest request){
-		User user = (User)request.getSession().getAttribute("user");
+		Manager user = (Manager)request.getSession().getAttribute("manager");
 		this.ip = BaseUtil.getRequestIp(request);
-		this.uid = user.getUid();
+		this.uid = user.getmId();
 		this.operTime = new Date();
 		this.url = request.getRequestURI();
 	}

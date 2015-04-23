@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.modal.MenuInfo;
 import com.webserver.modal.RoleInfo;
-import com.webserver.modal.User;
+import com.webserver.modal.Manager;
 import com.webserver.service.IMenuInfoService;
 import com.webserver.service.IRoleInfoService;
 import com.webserver.service.impl.RoleInfoServiceImpl;
@@ -32,8 +32,8 @@ public class MenuController {
 	@ResponseBody
 	public Object initHome(HttpServletRequest request,HttpSession session) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		User user = (User) session.getAttribute("user");
-		RoleInfo roleInfo = roleInfoServiceImpl.getRoleById(user.getRoleId());
+		Manager manager = (Manager) session.getAttribute("manager");
+		RoleInfo roleInfo = roleInfoServiceImpl.getRoleById(manager.getRoleId());
 		String m = roleInfo.getOwnMenus();
 		String [] mm= m.split(",");
 		List<MenuInfo> menus = null;
@@ -44,7 +44,7 @@ public class MenuController {
 			result.put("success", false);
 			e.printStackTrace();
 		}
-		result.put("user",user);
+		result.put("user",manager);
 		result.put("menus", menus);
 		return result;
 	}

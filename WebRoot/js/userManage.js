@@ -5,7 +5,7 @@ var manager = {
 		$('#repwd').show();
 		$('#form').form('clear');
 		$('#isLock').combobox('select','0');
-		manager.url = '/user/addUser.do'
+		manager.url = '/manager/addManager.do'
 		$('#dialog').dialog('setTitle','新增管理员').dialog('open');
 	},
 	updateManager : function(){
@@ -16,7 +16,7 @@ var manager = {
 			$('#re_password').val(row.password);
 			$('#dialog').dialog('setTitle','修改管理员信息').dialog('open');
 			$('#form').form('load',row);
-			manager.url = '/user/updateUser.do'
+			manager.url = '/manager/updateManager.do'
 		}else{
 			Modal.showAlert('请选择要修改的管理员!');
 		}
@@ -28,7 +28,7 @@ var manager = {
 			Modal.showConfirm('确定要删除管理员"'+row.realName+'"吗？',null,function(){
 				var config = {
 						type:"post",
-						url:'/user/deleteUser.do?uid='+row.uid,
+						url:'/manager/deleteManager.do?uid='+row.uid,
 						success:function(data){
 							$('#dialog').dialog('close');
 							$('#userGrid').datagrid('reload');
@@ -72,12 +72,12 @@ var manager = {
 
 $(function() {
 	$('#userGrid').datagrid({
-		url : '/user/getAllUser.do',
+		url : '/manager/getAllManager.do',
 		pagination : true,
 		singleSelect : true,
 		fitColumns : true,
 		columns : [[
-		            {field:'account',title:'账号',width:100,align:'center'},
+		            {field:'managerAccount',title:'账号',width:100,align:'center'},
 		            {field:'realName',title:'真实姓名',width:100,align:'center'},
 		            {field:'roleName',title:'所属角色',width:100,align:'center'},
 		            {field:'addMan',title:'创建人',width:100,align:'center'},

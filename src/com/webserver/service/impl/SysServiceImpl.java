@@ -15,15 +15,15 @@ import org.springframework.stereotype.Service;
 import com.webserver.common.util.AuthCodeUtil;
 import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.MD5;
-import com.webserver.dao.UserDao;
-import com.webserver.modal.User;
+import com.webserver.dao.ManagerDao;
+import com.webserver.modal.Manager;
 import com.webserver.service.ISysService;
 
 @Service
 public class SysServiceImpl implements ISysService {
 
 	@Resource
-	private UserDao userDao;
+	private ManagerDao managerDao;
 
 	@Override
 	public Map<String, Object> login(HttpServletRequest request,
@@ -36,10 +36,10 @@ public class SysServiceImpl implements ISysService {
 		String authCodeSession = (String) session
 				.getAttribute(ConstantUtil.AUTHCODE);
 		if (authCodeSession.equalsIgnoreCase(authCode)) {
-			List<User> userList = userDao.login(account, MD5.md5(password));
-			if (userList.size() > 0) {
-				User userInfo = userList.get(0);
-				session.setAttribute("user", userInfo);
+			List<Manager> managerList = managerDao.login(account, MD5.md5(password));
+			if (managerList.size() > 0) {
+				Manager manager = managerList.get(0);
+				session.setAttribute("manager", manager);
 				map.put(ConstantUtil.RETURN_SUCCESS, true);
 			} else {
 				map.put(ConstantUtil.RETURN_SUCCESS, false);

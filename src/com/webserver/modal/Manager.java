@@ -2,12 +2,12 @@ package com.webserver.modal;
 
 import java.io.Serializable;
 
-public class User implements Serializable {
+public class Manager implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	private Integer uid;
-	private String account;
+	private Integer mId;
+	private String managerAccount;
 	private String password;
 	private String realName;
 	private String addTime; 
@@ -15,24 +15,17 @@ public class User implements Serializable {
 	private Integer roleId;
 	private String addMan;
 	private String roleName;
-	
-	public String getRoleName() {
-		return roleName;
+	public Integer getmId() {
+		return mId;
 	}
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
+	public void setmId(Integer mId) {
+		this.mId = mId;
 	}
-	public Integer getUid() {
-		return uid;
+	public String getManagerAccount() {
+		return managerAccount;
 	}
-	public void setUid(Integer uid) {
-		this.uid = uid;
-	}
-	public String getAccount() {
-		return account;
-	}
-	public void setAccount(String account) {
-		this.account = account;
+	public void setManagerAccount(String managerAccount) {
+		this.managerAccount = managerAccount;
 	}
 	public String getPassword() {
 		return password;
@@ -70,5 +63,12 @@ public class User implements Serializable {
 	public void setAddMan(String addMan) {
 		this.addMan = addMan;
 	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+	
 	
 }

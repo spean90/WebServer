@@ -5,8 +5,8 @@ var index = {
 				url : '/menu/initHome.do',
 				success : function(data) {
 					$('#acount').html('<a href="#" onclick="index.openUserCenter()">'+data.user.realName+'</a>')
-					sessionStorage.account = data.user.account;
-					sessionStorage.uid = data.user.uid;
+					sessionStorage.account = data.user.managerAccount;
+					sessionStorage.uid = data.user.mId;
 					sessionStorage.password = data.user.password;
 					sessionStorage.realName = data.user.realName;
 					var menuData = data.menus;
