@@ -22,5 +22,6 @@ public interface ManagerDao {
 			@Param("pageData")PageData pageData);
 	
 	public int updateManager(@Param("manager") Manager manager);
-	public int deleteManagerById(@Param("uId")Integer uId);
+	
+	public int deleteManagerById(@Param("mId")Integer mId);
 }

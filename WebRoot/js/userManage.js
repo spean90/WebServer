@@ -28,7 +28,7 @@ var manager = {
 			Modal.showConfirm('确定要删除管理员"'+row.realName+'"吗？',null,function(){
 				var config = {
 						type:"post",
-						url:'/manager/deleteManager.do?uid='+row.uid,
+						url:'/manager/deleteManager.do?uid='+row.mId,
 						success:function(data){
 							$('#dialog').dialog('close');
 							$('#userGrid').datagrid('reload');

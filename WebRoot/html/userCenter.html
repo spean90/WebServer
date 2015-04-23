@@ -14,14 +14,14 @@
 		
 		<div id="myTabContent" class="tab-content">
 			<div id="alterPassword"  class="tab-pane fade in active">
-				<form action="/user/updateUser.do" method="post" role="form" class="form-horizontal" id="form">
+				<form action="/manager/updateManager.do" method="post" role="form" class="form-horizontal" id="form">
 					<div hidden="true">
-						<input type="text" name="uid" id="uid">
+						<input type="text" name="mId" id="mId">
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-1">账号：</label>
 						<div class="col-sm-11">
-							<input readonly="readonly" id="account" name="account" type="text" class="form-control">
+							<input readonly="readonly" id="managerAccount" name="managerAccount" type="text" class="form-control">
 						</div>
 					</div>
 					<br/>

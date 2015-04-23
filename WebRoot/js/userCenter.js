@@ -49,8 +49,8 @@ var userCenter = {
 
 
 $(function(){
-	var account = sessionStorage.account;
-	$('#account').val(account);
-	$('#uid').val(sessionStorage.uid);
+	var account = sessionStorage.managerAccount;
+	$('#managerAccount').val(account);
+	$('#mId').val(sessionStorage.mId);
 	$('#realName').val(sessionStorage.realName);
 })

@@ -65,6 +65,7 @@ public class ManagerServiceImpl implements IManagerService {
 			i = managerDao.updateManager(manager);
 			operLog.setStatus(1);
 		} catch (Exception e) {
+			logger.error("修改管理员err:", e);
 			operLog.setStatus(0);
 		}
 		//operLogDao.addLog(operLog);
@@ -80,6 +81,7 @@ public class ManagerServiceImpl implements IManagerService {
 			managerDao.deleteManagerById(mid);
 			operLog.setStatus(1);
 		} catch (Exception e) {
+			logger.error("删除管理员err:", e);
 			operLog.setStatus(0);
 		}
 		
