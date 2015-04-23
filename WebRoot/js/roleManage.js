@@ -56,6 +56,10 @@ var role = {
 					success : function(data) {
 						$('#roleGrid').datagrid('reload');
 						$('#dialog').dialog('close');
+						if (data.code=='0001') {
+							console.log(data.msg);
+							Modal.showError("服务器异常","错误");
+						}
 					}
 			}
 			Modal.ajax(config);
