@@ -307,7 +307,7 @@ a.and-dbtn:hover{background-position:12px -331px;}
 } 
 
 /*返回顶部*/
-.izl-rmenu{position:fixed;right: 10px;bottom:10px;padding-bottom:73px;background:url(../images/r_b.png) 0px bottom no-repeat;z-index:999;}
+.izl-rmenu{position:fixed;right: 10px;bottom:10px;padding-bottom:73px;background:url(../images/r_top.png) 0px bottom no-repeat;z-index:999;}
 .izl-rmenu .btn{width:50px;height:50px;margin-bottom:5px;cursor:pointer;position:relative;}
 .izl-rmenu .btn-qq{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#bbb;}
 .izl-rmenu a.btn-qq,.izl-rmenu a.btn-qq:visited{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#bbb;text-decoration:none;display:block;}

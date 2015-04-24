@@ -258,7 +258,7 @@ var index = {
 						}
 						var content = data.content;
 						var list = content.list;
-						$('.retrieve-h3 em').text(123456);
+						$('.retrieve-h3 em').text(content.orderCount);
 						$('.retrieve-list.clearfix').empty();
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
@@ -276,17 +276,6 @@ var index = {
 		
 		doDetail : function(id) {
 			window.open('detail-'+id+'.html', "_blank");
-		},
-		removeFromCar : function(id) {
-			var config = {
-					url : Sys.serviceDomain+"/removeFromcar.do", 
-					callbackParameter: "callback",
-					success : function(data){
-						//重新获取购物车内容
-						index.initRetrieveCar();
-					}
-			}
-			Modal.jsonp(config);
 		}
 		
 }

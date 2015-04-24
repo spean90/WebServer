@@ -70,23 +70,23 @@ $(document).ready(function () {
     						var list = content.list;
     						$terms = list;
     						strInArray($search, $terms);
-    		                if ($search == '' || !$('input').val) {
-    		                    $('.output').html('').slideUp();
-    		                     $('.icon-so').show();
-    		                    $('.search-input').css('text-indent',35);
-    		                } else {
-    		                    $('.output').html($return).slideDown();
-    		                    $('.icon-so').hide();
-    		                    $('.search-input').css('text-indent',18);
-    		                }
-    		                $('.prediction-item').on('click', function () {
-    		                    $text = $(this).find('span.prediction-text').text();
-    		                    $('.output').slideUp(function () {
-    		                        $(this).html('');
-    		                    });
-    		                    $('#search-bar').val($text);
-    		                });
-    		                $('.prediction-item:first-child').addClass('focus');
+    						 if ($search == '' || !$('input').val) {
+    			                    $('.output').html('').slideUp();
+    			                     $('.icon-so').show();
+    			                    $('.search-input').css('paddingLeft',40);
+    			                } else {
+    			                    $('.output').html($return).slideDown();
+    			                    $('.icon-so').hide();
+    			                    $('.search-input').css('paddingLeft',10);
+    			                }
+    			                $('.prediction-item').on('click', function () {
+    			                	$text = $(this).find('span.prediction-text').text();
+    			                    $('.output').slideUp(function () {
+    			                        $(this).html('');
+    			                    });
+    			                    $('#search-bar').val($text);
+    			                });
+    			                $('.prediction-item:first-child').addClass('focus');
     					}
     			}
     			Modal.jsonp(config);

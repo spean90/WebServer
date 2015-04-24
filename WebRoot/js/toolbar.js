@@ -51,6 +51,17 @@ var toolBar = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		removeFromCar : function(id) {
+			var config = {
+					url : Sys.serviceDomain+"/removeFromcar.do", 
+					callbackParameter: "callback",
+					success : function(data){
+						//重新获取购物车内容
+						index.initRetrieveCar();
+					}
+			}
+			Modal.jsonp(config);
 		}
 		
 }

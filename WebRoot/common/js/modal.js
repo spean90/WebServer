@@ -57,7 +57,7 @@ var Modal = {
 	        },
 	        error : function(xOptions, textStatus) {
 	        	console.log(xOptions);
-				alert(textStatus);
+				//alert(textStatus);
 				//window.location.href = "/index.html";
 			}
 		});
