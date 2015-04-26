@@ -117,8 +117,50 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .suprty-3,.suprty-6{ top:244px;}
 
 
-.icon-1{ background-position: 0 0; width: 80px; height: 50px; margin-left: 15px;} 
-.icon-2{ background-position: 0 -100px; width: 80px; height: 50px; margin-left: 13px;} 
-.icon-3{ background-position: 0 -200px; width: 80px; height: 50px; margin-left: 13px;} 
-.icon-4{ background-position: 0 -300px; width: 80px; height: 50px; margin-left: 13px;}  
- 
+.icon-1{ background-position: 0 0; width: 80px; height: 50px; margin-left: 15px;}
+.icon-2{ background-position: 0 -100px; width: 80px; height: 50px; margin-left: 13px;}
+.icon-3{ background-position: 0 -200px; width: 80px; height: 50px; margin-left: 13px;}
+.icon-4{ background-position: 0 -300px; width: 80px; height: 50px; margin-left: 13px;}
+
+/*周边网点*/
+.flow{ position: absolute; right: -20px; top: 50px; }
+.flow-box{ display: inline-block; width: 208px; height: 34px; line-height: 34px; margin-left: -60px; background: url(../images/flow_normal.png) no-repeat center; padding-left: 50px; }
+.flow-box.first{ background: url(../images/flow_first.png) no-repeat center; }
+.flow-box.active{ background: url(../images/flow_active.png) no-repeat center; color: #fff; }
+.round-digit{ display: inline-block; border-radius: 9999px; width: 20px; height: 20px; line-height: 20px; text-align: center; background: #aaa; color: #fff; vertical-align: middle; margin: 0 10px; margin-top: -3px; font-weight: bold; }
+.flow-box.active .round-digit{ background: #fff; color: #ffb973; }
+i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; background-position: center; }
+.icon-item1{ background-image: url(../images/item1.png); width: 59px; height: 52px; }
+.icon-item2{ background-image: url(../images/item2.png); width: 63px; height: 48px; }
+.icon-item3{ background-image: url(../images/item3.png); width: 66px; height: 62px; }
+.icon-item4{ background-image: url(../images/item4.png); width: 33px; height: 60px; }
+.icon-item5{ background-image: url(../images/item5.png); width: 42px; height: 56px; }
+.icon-close{ background-image: url(../images/close.gif); width: 13px; height: 13px; }
+.branch-recycle{ padding: 0 30px 30px; }
+.branch-recycle h1{ font-size: 28px; color: #aaa; }
+.branch-recycle .branch-title{ font-size: 20px; color: #000; height: 60px; line-height: 60px; border-bottom: 1px solid #ddd; }
+.branch-content{ padding-top: 10px; }
+.branch-recycle .branch-content > p{ font-size: 16px; text-indent: 2em; line-height: 30px; color: #666; }
+.branch-recycle .branch-content .tips{ font-size: 14px; color: #000; text-indent: 0; }
+.flip{ margin: 30px 0 0 20px; }
+.flip li{ float: left; width: 140px; height: 140px; margin-right: 80px; text-align: center; overflow: hidden; }
+.flip .front{ display: block; width: 140px; opacity: 1; height: 140px; font-size: 20px; }
+.flip li:hover .front{ height: 0; opacity: 0; transition: all 0.1s ease-in; }
+.flip li .back{ height: 0; background: #2168CC; color: #fff; }
+.flip li:hover .back{ display: block; width: 140px; height: 140px; transition: all 0.1s ease-in; }
+.flip .front i{ padding: 20px 0 15px; }
+.flip .back-title{ font-size: 20px; padding-top: 25px; }
+.flip li .back p{ color: #fff; font-size: 14px; }
+.map-wrapper{ height: 600px; overflow: hidden; }
+.map-wrapper > div{ float: left; }
+.store-list > ul li a{ height: 50px; line-height: 50px; padding-left: 40px; width: 210px; display: block; background: #f4f4f4; font-size: 18px; }
+.store-list > ul li a:hover, .store-list > ul li.active a{ background: #2168CC; color: #fff; }
+.store-list{ width: 250px; overflow: hidden; }
+.store-list .page{ text-align: center; height: 50px; line-height: 50px; float: none; background: #f4f4f4; }
+.store-list .page ul{ display: inline-block; }
+.store-list .page span, .store-list .page a{ width: 20px; height: 20px; line-height: 20px; }
+.store-list .page .prev, .store-list .page .next{ width: 50px !important; }
+.store-list .page .current{ background-color: #2168CC; }
+.map-wrapper .map-area{ width: 950px; }
+.map-wrapper .store-photo{ width: 250px; height: 600px; overflow: hidden; display: none; position: relative; }
+.map-wrapper .store-photo .icon-close{ position: absolute; top: 10px; right: 10px; cursor: pointer; }

@@ -49,4 +49,15 @@ public class TransferController {
 		ModelAndView modelAndView = new ModelAndView("settlement");
 		return modelAndView;
 	}
+	/**
+	 * 结算页面
+	* @author Huangsp
+	* @date 2015年4月24日 
+	* @return
+	 */
+	@RequestMapping(value="/outlets.html")
+	public ModelAndView goToOutlets() {
+		ModelAndView modelAndView = new ModelAndView("outlets");
+		return modelAndView;
+	}
 }

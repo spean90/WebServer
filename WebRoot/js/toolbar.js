@@ -37,7 +37,7 @@ var toolBar = {
 			                          +'<span>'
 			                          +' <ul>'
 			                          +' <li>'+item.modelsName+'</li>'
-			                          +' <li>回收价：<span>￥'+item.lastEvaluationPrice+'</span><a onclick=index.removeFromCar('+item.customersBasketId+')>删除</a></li>'
+			                          +' <li>回收价：<span>￥'+item.lastEvaluationPrice+'</span><a onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</a></li>'
 			                          +'   <li>12306人回收</li>'
 			                          +' </ul>'
 			                          +' </span>'
@@ -54,11 +54,14 @@ var toolBar = {
 		},
 		removeFromCar : function(id) {
 			var config = {
-					url : Sys.serviceDomain+"/removeFromcar.do", 
+					url : Sys.serviceDomain+"/deleteUserOwnBasket?customersBasketId="+id+'&key='+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){
+						if (data.msg.code!="0000") {
+							return;
+						}
 						//重新获取购物车内容
-						index.initRetrieveCar();
+						toolBar.initRetrieveCar();
 					}
 			}
 			Modal.jsonp(config);
