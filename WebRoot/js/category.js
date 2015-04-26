@@ -13,24 +13,15 @@ var category = {
 						return;
 					}
 					var content = data.content;
-					//var list = content.list;
-					var list = [{"id":"11","name":"苹果","english_name":"apple","count":"5"},
-					            {"id":"12","name":"小米","english_name":"apple","count":"5"},
-					            {"id":"13","name":"华为","english_name":"apple","count":"5"},
-					            {"id":"14","name":"中兴","english_name":"apple","count":"5"},
-					            {"id":"15","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"16","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"17","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"18","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"19","name":"htc","english_name":"apple","count":"5"}];
+					var list = content.list;
 					var dd = $('.listIndex[attr="terminal_brand_s"]>dd');
 					dd.empty();
 					for(var i=0; i<list.length; i++){
 						var str = '';
-						if(bId==list[i].id){
-							str = str + '<a href="javascript:void(0)"  onclick="category.focusOnBrand(this,'+list[i].id+');" attrval="'+list[i].english_name+'" class="selected"><span>'+list[i].name+'</span>('+list[i].count+')</a>';
+						if(bId==list[i].brandsId){
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+');" attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}else{
-							str = str + '<a href="javascript:void(0)"  onclick="category.focusOnBrand(this,'+list[i].id+');" attrval="'+list[i].english_name+'"><span>'+list[i].name+'</span>('+list[i].count+')</a>';
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+');" attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}
 						if(i<list.length-1){
 							str = str + " <span>|</span>";
@@ -43,47 +34,22 @@ var category = {
 		/*获取其他品牌*/
 		getOtherBrands : function(bId){
 			$.jsonp({
-				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
+				url : Sys.serviceDomain+"/listHotBrands?currentPage=0&isHot=0",
 				callbackParameter : "callback",
 				success : function(data){
 					if (data.msg.code!="0000") {
 						return;
 					}
 					var content = data.content;
-					//var list = content.list;
-					var list = [{"id":"2","name":"苹果","english_name":"apple","count":"5"},
-					            {"id":"22","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"23","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"24","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"25","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"26","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"27","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"28","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"29","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"30","name":"htc","english_name":"apple","count":"5"},
-					            {"id":"31","name":"小米","english_name":"apple","count":"5"},
-					            {"id":"32","name":"华为","english_name":"apple","count":"5"},
-					            {"id":"33","name":"中兴","english_name":"apple","count":"5"},
-					            {"id":"34","name":"酷派","english_name":"apple","count":"5"},
-					            {"id":"35","name":"诺基亚","english_name":"apple","count":"5"},
-					            {"id":"36","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"37","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"38","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"39","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"40","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"41","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"42","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"43","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"44","name":"品牌","english_name":"apple","count":"5"},
-					            {"id":"45","name":"品牌","english_name":"apple","count":"5"}];
+					var list = content.list;
 					var dd = $('.listIndex[attr="其他品牌"]>dd');
 					dd.empty();
 					for(var i=0; i<list.length; i++){
 						var str = '';
-						if(bId==list[i].id){
-							str = str + '<a href="javascript:void(0)" onclick="category.focusOnBrand(this,'+list[i].id+');"  attrval="'+list[i].english_name+'" class="selected"><span>'+list[i].name+'</span>('+list[i].count+')</a>';
+						if(bId==list[i].brandsId){
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'" onclick="category.focusOnBrand(this,'+list[i].brandsId+');"  attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}else{
-							str = str + '<a href="javascript:void(0)" onclick="category.focusOnBrand(this,'+list[i].id+');"  attrval="'+list[i].english_name+'"><span>'+list[i].name+'</span>('+list[i].count+')</a>';
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'" onclick="category.focusOnBrand(this,'+list[i].brandsId+');"  attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}
 						if(i<list.length-1){
 							str = str + " <span>|</span>";
@@ -95,72 +61,150 @@ var category = {
 		},
 		/*获取具体品牌下TAG*/
 		getTagList : function(bId){
+			//alert('/*获取具体品牌下TAG*/'+bId);
 			$.jsonp({
-				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
+				url : Sys.serviceDomain+"/listOneBrandsAllTags?brandsId="+bId+"&currentPage=0",
 				callbackParameter : "callback",
 				success : function(data){
 					if (data.msg.code!="0000") {
 						return;
 					}
 					var content = data.content;
-					content.name = "苹果";
-					//var list = content.list;
-					var list = [{"name":"苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"},
-					            {"name":"htc苹果_tag"+bId,"english_name":"apple","count":"5"}];
-					$(".resultList> .select").html(content.name+'：');
+					var list = content.list;
+					var brandName = $("#" + bId).attr("attrval");
+					$(".resultList> .select").text(brandName+'：');
 					var dd = $('.resultList>dd');
 					dd.empty();
-					dd.append('<a href="javascript:void(0)"  attrval="all">全部</a>');
+					dd.append('<a href="javascript:void(0)" onclick="category.focusOnTAG(this,null);"  attrval="all">全部</a>');
 					for(var i=0; i<list.length; i++){
-						dd.append('<a href="javascript:void(0)"  attrval="'+list[i].name+'">'+list[i].name+'</a> ');
-						
+						var str = '<a href="javascript:void(0)" id='+list[i].brandsTagsId+' onclick="category.focusOnTAG(this,'+list[i].brandsTagsId+');"'
+									+ 'attrval="'+list[i].tagsName+'">'+list[i].tagsName+'</a> ';
+						dd.append(str);
 					}
-					$(".resultList").append(dd);
 				}
 			});
 		},
 		/*获取手机列表*/
 		getPhoneList : function(bId,tagId){
+			
+			var url = '';
+			if(bId==0){//获取热门手机
+				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage=1";
+			}else{
+				if (tagId==null) {
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0";
+				}else{
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0&tagIds="+tagId;
+				}
+			}
 			$.jsonp({
-				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
+				url : url,
 				callbackParameter : "callback",
 				success : function(data){
 					if (data.msg.code!="0000") {
 						return;
 					}
 					var content = data.content;
-					//var list = content.list;
-					$(".phone-list").empty("");
-					for(var i=0; i<10; i++){
-						var str = '';
-						if((i+1)%5==0){
-							str = '<li data-label="4月,5月,6月" data-data="1200,1300,800" class="last">'
-						}else{
-							str = '<li data-label="4月,5月,6月" data-data="1200,1300,800">'
-						}
-						str = str + '<a><img src="pic/phone.png" alt="iphone4" width="80" height="160" /></a>'
-				            	+ '<div class="product-info">'
-				            	+ '<div class="fl">'
-				            	+ '<span class="phone-name">iPhone 4</span>'
-				            	+ '<span class="recovery">回收价：<em class="red">￥550</em></span>'
-				            	+ '<span class="badge">37693人回收</span>'
-				            	+ '</div>'
-				            	+ '</div>'
-				            	+ '<a class="index-spr trend-icon"></a> '
-				            	+ '</li>';
-						$(".phone-list").append(str);
-					}
-					phoneList();
+					var list = content.list;
+					var recordPerPage = content.recordPerPage;
+					var totalPage = content.totalPage;
+					//初始化分页条
+				    $("#pagination").pagination({
+				        items: recordPerPage*totalPage,
+				        itemsOnPage: 10,
+				        cssStyle: 'light-theme',
+				        onPageClick: function(pageNum,event){
+				        	category.onPageClick(pageNum,event);
+				        }
+				    });
+				    category.drawPhoneList(list);
+					category.setButtonClass(1);
 				}
 			});
 		},
-		//点击了品牌，使其获取焦点
+		/*获取手机列表--按分页*/
+		getPhoneListByPage : function(page){
+			var bId = $('.listIndex .selected').attr('id');
+			var tagId = null;
+			var tag = $('.resultList .selected');
+			if(tag != null){//是否选择了全部
+				tagId = $(tag).attr('id')
+			}
+			alert("bId="+bId+ ",tagId="+tagId);
+			var url = '';
+			if(bId==null){//没有选中品牌
+				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage="+page;
+			}else{
+				if(tagId==null||tagId=='undefined'){
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage="+page;
+				}else{
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage="+page+"&tagIds="+tagId;
+				}
+			}
+			$.jsonp({
+				url : url,
+				callbackParameter : "callback",
+				success : function(data){
+					if (data.msg.code!="0000") {
+						return;
+					}
+					var content = data.content;
+					var list = content.list;
+				    category.drawPhoneList(list);
+				}
+			});
+		},
+		drawPhoneList : function(list){//渲染手机列表
+			$('.phone-list').empty();
+			for (var i = 0; i < list.length; i++) {
+				var monthStr = '';
+				var monthPrice = '';
+				var monthPricesList = list[i].modelsMonthPricesList;
+				monthPricesList.sort(function (a, b) {
+					  if (a.priceMonth > b.priceMonth) {
+					    return 1;
+					  }
+					  if (a.priceMonth < b.priceMonth) {
+					    return -1;
+					  }
+					  return 0;
+					});
+				for (var j = 0; j < monthPricesList.length; j++) {
+					monthStr += ','+parseInt(monthPricesList[j].priceMonth.substring(4))+'月';
+					monthPrice += ','+monthPricesList[j].customerAvgPrice;
+				}
+				monthStr = monthStr.substring(1);
+				monthPrice = monthPrice.substring(1);
+				var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'">'
+				            +'<a><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+				            +'<div class="product-info">'
+				            +'<div class="fl">'
+				            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
+				            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
+				            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
+				            +'</div>'
+				            +'</div>'
+				            +'<a class="index-spr trend-icon"></a> '
+				            +'</li>';
+				if ((i+1)%5==0) {
+					str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" class="last">'
+			            +'<a><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+			            +'<div class="product-info">'
+			            +'<div class="fl">'
+			            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
+			            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
+			            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
+			            +'</div>'
+			            +'</div>'
+			            +'<a class="index-spr trend-icon"></a> '
+			            +'</li>';
+				}
+				var phone = $(str);
+				$('.phone-list').append(phone);
+			}
+			phoneList();
+		},
+		//点击了品牌，使其获取焦点，并获取TAG及手机信息
 		focusOnBrand : function(obj,bId){
 			var selected = $('.listIndex .selected');
 			if(selected!=null){
@@ -168,22 +212,77 @@ var category = {
 			}
 			$(obj).addClass('selected');
 			category.getTagList(bId);
+			category.getPhoneList(bId,null);
+		},
+		//点击了TAG，使其获取焦点,并获取手机信息
+		focusOnTAG : function(obj,tagId){
+			var bId = $('.listIndex .selected').attr('id');
+			var selected = $('.resultList .selected');
+			if(selected!=null){
+				selected.removeClass('selected');
+			}
+			$(obj).addClass('selected');
+			category.getPhoneList(bId,tagId);
+		},
+		//点击分页，重新获取数据
+		onPageClick:function(pageNumber, event){
+			category.getPhoneListByPage(pageNumber);
+			category.setButtonClass(pageNumber);
+		},
+		//上一页,下一页
+		onChangePage : function(){
+			var id = $(this).attr('id')
+			var reqPage = $("#pagination").pagination('getCurrentPage');
+			if(id=='filter_pager_prev'){//点击了上一页
+				reqPage = reqPage-1;
+				$("#pagination").pagination('prevPage');
+			}else{//点击了下一页
+				reqPage = reqPage+1;
+				$("#pagination").pagination('nextPage');
+			}
+			category.setButtonClass(reqPage);
+		},
+		//设置上一页，下一页按样式
+		setButtonClass:function(reqPage){
+		    var PagesCount = $("#pagination").pagination('getPagesCount');
+		    if(reqPage==1){
+		    	$("#filter_pager_prev").attr("class","disabled");
+		    }else{
+		    	$("#filter_pager_prev").attr("class","");
+		    }
+		    if(reqPage==PagesCount){
+		    	$("#filter_pager_next").attr("class","disabled");
+		    }else{
+		    	$("#filter_pager_next").attr("class","");
+		    }
 		}
-		
 }
 
 $(function(){
 	$('[href="/brands_0.html"]').parent().addClass('on');
 	var bid = $('#brandId').text();
-	bid = "11";
 	category.getHotBrands(bid);
 	category.getOtherBrands(bid);
 	if(bid!='0'){
 		category.getTagList(bid);
 	}else{
-		$(".resultList").empty();
+		$(".resultList> .select").empty();
+		$(".resultList> dd").empty();
 	}
 	category.getPhoneList(bid,null);
+	
+	
+/*	 $("#pagination").pagination({
+	        items: 100,
+	        itemsOnPage: 10,
+	        cssStyle: 'light-theme',
+	        onPageClick: function(pageNum,event){
+	        	category.onPageClick(pageNum,event);
+	        }
+	    });*/
+	//注册上一页，下一页按钮点击事件
+	$("#filter_pager_prev").click(category.onChangePage);
+	$("#filter_pager_next").click(category.onChangePage);
 });
 
 
