@@ -17,6 +17,21 @@ var outlets = {
                 var info=new BMap.InfoWindow(content);  
                 marker.openInfoWindow(info);  
 			});
+		},
+		initOutletsData : function() {
+			var config = {
+					url : Sys.serviceDomain+"/userlogin?userId="+userId+'&passwd='+passwd, 
+					callbackParameter: "callback",
+					success : function(data){
+						console.log(data);
+						if (data.msg.code!="0000") {
+							alert('登录失败！');
+							return;
+						}
+						
+					}
+			}
+			Modal.jsonp(config);
 		}
 		
 }
@@ -45,7 +60,7 @@ $(function(){
  // 门店切换  美工写的  e
     //初始化分页控件
     $('#pagination').pagination({
-        items: 30,
+        items: 10,
         itemsOnPage: 10,
         cssStyle: 'light-theme'
     });
