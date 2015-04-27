@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.UserInfoDao">
+
+	<select id="getUserListByParams" resultType="UserInfo">
+		select user_id userId, user_name userName, password, add_time addTime, id_card idCard, real_name realName, pay_password payPassword,
+		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital 
+		from user_info
+		<where>
+		<if test="user.userId != null">
+			and user_id = #{user.userId}
+		</if>
+		<if test="user.userName != null">
+			and user_name = #{user.userName}
+		</if>
+		<if test="user.password != null">
+			and password = #{user.password}
+		</if>
+		<if test="user.idCard != null">
+			and id_card = #{user.idCard}
+		</if>
+		<if test="user.realName != null">
+			and real_name = #{user.realName}
+		</if>
+		</where>
+		order by user_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addUser" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="user.userId">
+		insert into user_info (user_name, password,  add_time, id_card, real_name, pay_password, balance,frozen_capital,usefull_capital) 
+		VALUES (#{user.userName}, #{user.password},  #{user.addTime}, #{user.idCard}, #{user.realName}, #{user.payPassword}, #{user.balance}, #{user.frozenCapital}, #{user.usefullCapital})
+	</insert>
+	
+	<update id="updateUser" parameterType="UserInfo">
+		update user_info 
+		<set>
+	 		<if test="user.password!=null">
+	 			password = #{user.password},
+		 	</if>
+		 	<if test="user.idCard!=null">
+		 		id_card = #{user.idCard},
+		 	</if>
+		 	<if test="user.realName!=null">
+		 		real_name = #{user.realName},
+		 	</if>
+		 	<if test="user.payPassword!=null">
+		 		pay_password = #{user.payPassword},
+		 	</if>
+		 	<if test="user.balance!=null">
+		 		balance = #{user.balance},
+		 	</if>
+		 	<if test="user.frozenCapital!=null">
+		 		frozen_capital = #{user.frozenCapital},
+		 	</if>
+		 	<if test="user.usefullCapital!=null">
+		 		usefull_capital = #{user.usefullCapital},
+		 	</if>
+	 	</set>
+	 	where user_id = #{user.userId}
+	</update>
+	
+	 <delete id="deleteUserById" parameterType="java.lang.Long">
+	 	delete from user_info 
+	 	where user_id = #{userId}
+	 </delete>
+	
+</mapper>
