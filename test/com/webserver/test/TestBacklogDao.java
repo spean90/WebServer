@@ -13,13 +13,13 @@ public class TestBacklogDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("cfg/applicationContext.xml");
 	BacklogDao dao  = context.getBean(BacklogDao.class);
 	
-	//@Test
+	@Test
 	public void getBacklogListByParams() {
 		Backlog backlog = new Backlog();
-		List<Backlog> list = dao.getBacklogListByParams(backlog);
+		List<Backlog> list = dao.getBacklogListByParams(backlog,null,null);
 		System.out.println(list.size());
 	}
-	@Test
+	//@Test
 	public void addBacklog() {
 		Backlog backlog = new Backlog();
 		backlog.setStatus(0);
@@ -33,4 +33,11 @@ public class TestBacklogDao {
 		System.out.println(backlog.getBacklogId());
 	}
 
+	//@Test
+	public void updateBacklog() {
+		Backlog backlog = dao.getBacklogById(1000001l);
+		System.out.println(backlog.getStatus());
+		backlog.setStatus(2);
+		dao.updateBacklog(backlog);
+	}
 }

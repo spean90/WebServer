@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.RateDao">
+
+	<select id="getRecentRate" resultType="Rate">
+		select rate_id rateId,m_id mId, create_time createTime, rate
+		from rate
+		order by create_time DESC 
+		limit 1
+	</select>
+	
+	
+	<insert id="addRate" parameterType="Rate">
+		insert into rate (m_id, create_time,rate) 
+		VALUES (#{rate.mId}, #{rate.createTime},#{rate.rate})
+	</insert>
+	
+</mapper>

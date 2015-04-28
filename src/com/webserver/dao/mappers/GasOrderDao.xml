@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.GasOrderDao">
+
+	<select id="getGasOrderListByParams" resultType="GasOrder">
+		select oid oId,user_id userId, product_id productId, order_id orderId, sum sum, create_time createTime,gas_account gasAccount,amount,order_desc orderDesc 
+		from gas_order
+		<where>
+		<if test="gasOrder.userId != null">
+			and user_id = #{gasOrder.userId}
+		</if>
+		<if test="gasOrder.productId != null">
+			and product_id = #{gasOrder.productId}
+		</if>
+		<if test="gasOrder.orderId != null">
+			and order_id = #{gasOrder.orderId}
+		</if>
+		</where>
+		order by oid 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addGasOrder" parameterType="GasOrder" useGeneratedKeys="true" keyProperty="gasOrder.oId">
+		insert into gas_order (user_id, product_id, order_id, sum, create_time,gas_account,amount,order_desc) 
+		VALUES (#{gasOrder.userId}, #{gasOrder.productId}, #{gasOrder.orderId}, #{gasOrder.sum}, #{gasOrder.createTime}, #{gasOrder.gasAccount}, #{gasOrder.amount}, #{gasOrder.orderDesc})
+	</insert>
+	
+	
+</mapper>

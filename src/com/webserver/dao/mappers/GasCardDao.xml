@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.GasCardDao">
+
+	<select id="getGasCardListByParams" resultType="GasCard">
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner 
+		from gas_card
+		<where>
+		<if test="gasCard.userId != null">
+			and user_id = #{gasCard.userId}
+		</if>
+		<if test="gasCard.gasId != null">
+			and gas_id = #{gasCard.gasId}
+		</if>
+		<if test="gasCard.gasAccount != null">
+			and gas_account = #{gasCard.gasAccount}
+		</if>
+		<if test="gasCard.owner != null">
+			and owner = #{gasCard.owner}
+		</if>
+		<if test="gasCard.company != null">
+			and company = #{gasCard.company}
+		</if>
+		</where>
+		order by gas_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addGasCard" parameterType="GasCard" useGeneratedKeys="true" keyProperty="gasCard.gasId">
+		insert into gas_card (user_id, gas_account,company, owner) 
+		VALUES (#{gasCard.userId}, #{gasCard.gasAccount},  #{gasCard.company}, #{gasCard.owner})
+	</insert>
+	
+	 <delete id="deleteGasCardById" parameterType="java.lang.Long">
+	 	delete from gas_card 
+	 	where gas_id = #{gasId}
+	 </delete>
+	
+</mapper>

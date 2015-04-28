@@ -17,7 +17,7 @@ public class TestUserDao {
 	public void getUserList(){
 		UserInfo userInfo = new UserInfo();
 		userInfo.setUserName("1");
-		List<UserInfo> list = dao.getUserListByParams(userInfo,null);
+		List<UserInfo> list = dao.getUserListByParams(userInfo,null,null);
 		System.out.println(list.size());
 	}
 	//@Test

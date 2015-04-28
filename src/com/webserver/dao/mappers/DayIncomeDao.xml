@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.DayIncomeDao">
+
+	<select id="getDayIncomeListByParams" resultType="DayIncome">
+		select income_id incomeId,user_id userId, create_time createTime, sum
+		from day_income
+		<where>
+		<if test="dayIncome.userId != null">
+			and user_id = #{dayIncome.userId}
+		</if>
+		</where>
+		order by income_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addDayIncome" parameterType="DayIncome">
+		insert into day_income (user_id, create_time,sum) 
+		VALUES (#{dayIncome.userId}, #{dayIncome.createTime},#{dayIncome.sum})
+	</insert>
+	
+</mapper>

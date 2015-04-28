@@ -1,12 +1,14 @@
 package com.webserver.test;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.webserver.common.PageBean;
+import com.webserver.common.PageData;
 import com.webserver.dao.BankCardDao;
 import com.webserver.modal.BankCard;
 
@@ -14,10 +16,12 @@ public class TestBankCardDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("cfg/applicationContext.xml");
 	BankCardDao dao = context.getBean(BankCardDao.class);
 	
-	//@Test
+	@Test
 	public void getListByParams() {
 		BankCard bankCard = new BankCard();
-		List<BankCard> list = dao.getBankCardListByParams(bankCard, new PageBean());
+		PageData<Map<String, Object>> pageData = new PageData<Map<String, Object>>();
+		List<BankCard> list = dao.getBankCardListByParams(bankCard, new PageBean(),pageData);
+		System.out.println(">>>>>>"+pageData.getTotal());
 		System.out.println(list.size());
 	}
 	
