@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.NewsDao">
+
+	<select id="getNewsListByParams" resultType="News">
+		select news_id newsId,user_id userId,title,content,status, create_time createTime
+		from news
+		<where>
+		<if test="news.userId != null">
+			and user_id = #{news.userId}
+		</if>
+		<if test="news.status != null">
+			and status = #{news.status}
+		</if>
+		</where>
+		order by news_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addNews" parameterType="News">
+		insert into news (user_id,title,content,status, create_time) 
+		VALUES (#{news.userId},#{news.title},#{news.content},#{news.status}, #{news.createTime})
+	</insert>
+	
+</mapper>
