@@ -6,5 +6,5 @@ import com.webserver.modal.OperLog;
 
 public interface OperLogDao {
 
-	//public int addLog(@Param("operLog")OperLog operLog);
+	public int addLog(@Param("operLog")OperLog operLog);
 }

@@ -11,7 +11,7 @@ import com.webserver.modal.Product;
 
 public interface ProductDao {
 	
-	public List<Product> getProductListByParams(@Param("product")Product product,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData<Map<String, Object>> pageData);
+	public List<Product> getProductListByParams(@Param("product")Product product,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
 	
 	public int addProduct(@Param("product")Product product);
 	

@@ -11,7 +11,7 @@ import com.webserver.modal.UserInfo;
 
 public interface UserInfoDao {
 	
-	public List<UserInfo> getUserListByParams(@Param("user")UserInfo userInfo,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData<Map<String, Object>> pageData);
+	public List<UserInfo> getUserListByParams(@Param("user")UserInfo userInfo,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
 	public int addUser(@Param("user")UserInfo userInfo);
 	public int updateUser(@Param("user")UserInfo userInfo);
 	public int deleteUserById(@Param("userId")Long userId);

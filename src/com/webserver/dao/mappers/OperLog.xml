@@ -3,10 +3,10 @@
 <mapper namespace="com.webserver.dao.OperLogDao">
 
 	<select id="getLogList" parameterType="OperLog" resultType="OperLog">
-		select id, uid uid, oper_time operTime, oper_action operAction, url, params, status, ip from oper_log
+		select id, m_id mId, oper_time operTime, oper_action operAction, url, params, status, ip from oper_log
 		<where>
-		<if test="operLog.uid != null and operLog.uid != ''">
-			and uid = #{operLog.uid}
+		<if test="operLog.mId != null and operLog.mId != ''">
+			and m_id = #{operLog.mId}
 		</if>
 		<if test="operLog.status != null ">
 			and status = #{operLog.status}
@@ -17,7 +17,7 @@
 	
 	
 	<insert id="addLog" parameterType="OperLog">
-		insert into oper_log (uid, oper_time,  oper_action, url, params, status, ip) 
-		VALUES (#{operLog.uid}, #{operLog.operTime},  #{operLog.operAction}, #{operLog.url}, #{operLog.params}, #{operLog.status}, #{operLog.ip})
+		insert into oper_log (m_id, oper_time,  oper_action, url, params, status, ip) 
+		VALUES (#{operLog.mId}, #{operLog.operTime},  #{operLog.operAction}, #{operLog.url}, #{operLog.params}, #{operLog.status}, #{operLog.ip})
 	</insert>
 </mapper>

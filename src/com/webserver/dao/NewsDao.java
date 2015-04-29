@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface NewsDao {
 
-	public List<News> getNewsListByParams(@Param("news")News news,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData<Map<String, Object>> pageData);
+	public List<News> getNewsListByParams(@Param("news")News news,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
 	
 	public int addNews(@Param("news")News news);
 	
