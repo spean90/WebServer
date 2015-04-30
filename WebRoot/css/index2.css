@@ -1,0 +1,114 @@
+/*公用样式*/
+i{ vertical-align: middle; display: inline-block; background-repeat: no-repeat; background-position: center; }
+*:focus { outline: 0; }
+.c-black{ color: #000; }
+.c-red{ color: #FF5C26; }
+.tx-right{ text-align: right !important; }
+.tx-left{ text-align: left !important; }
+.oran-btn{ padding: 0 50px; display: inline-block; height: 32px; line-height: 32px; background: #FF5C26 !important; color: #fff; border: 0; }
+.oran-btn:hover{ color: #fff; }
+.tabs .tabs-label li{ float: left; }
+.tabs .tabs-label li a{ display: block; padding: 5px 20px; color: #333; margin-right: 20px; border-radius: 5px 5px 0 0; background: #fff; }
+.tabs .tabs-label li.active a{ background: #eee; color: #2168CC; }
+.tabs .tabs-content{ clear: both; }
+.btn-radius{ background: #eee; border: 1px solid #ddd; border-radius: 10px; display: inline-block; padding: 0 10px; height: 40px; line-height: 40px; }
+.btn-radius:hover{ color: #fff; background: #FF5C26; border: 1px solid #FF5C26; }
+
+/*弹窗-意见反馈*/
+.pop-feedback{ width: 720px; margin: 0 auto; padding: 40px; background: #fff; }
+.feedback-title{ width: 135px; }
+.icon-chat{ background-image: url(../images/icon_chat.png); width: 41px; height: 42px; }
+.feedback-title .cn-title{ font-size: 20px; line-height: 18px; }
+.feedback-title .en-title{ font-size: 18px; color: #999; }
+.pop-feedback p{ clear: both; line-height: 50px; }
+.pop-feedback select, .pop-feedback input{ background: #eee; min-width: 180px; height: 26px; line-height: 26px; text-indent: 10px; border: 1px solid #aaa; vertical-align: middle; }
+.pop-feedback select{ text-indent: 0; }
+.pop-feedback textarea{ width: 700px; height: 100px; background: #eee; text-indent: 10px; }
+.pop-feedback img{ vertical-align: middle; }
+.pop-feedback .form-submit{ width: 800px; margin-left: -40px; height: 90px; text-align: center; padding-top: 20px; border-top: 1px solid #aaa; margin-top: 30px; }
+.pop-feedback .feedback-email::-webkit-input-placeholder{ line-height: 26px; }
+
+/*下线代理商*/
+.agent-list{ margin-bottom: 30px; }
+.agent-list .agent-title{ height: 70px; line-height: 70px; font-size: 20px; color: #000; border-bottom: 1px solid #ddd; margin-bottom: 30px; }
+.agent-list li{ float: left; width: 160px; padding: 15px; border: 1px solid #ddd; margin-right: 60px; margin-bottom: 40px; }
+.agent-list img{ margin-bottom: 10px; }
+.agent-list p{ height: 30px; line-height: 30px; }
+.agent-list li:last-of-type{ margin-right: 0; }
+.search-field{ margin: 50px 0; }
+.search-field .search-txt{ height: 50px; line-height: 50px; line-height: 50px\9; border: 1px solid #ddd; text-indent: 50px; background: #eee url(../images/icon_search.png) no-repeat 15px center; border-radius: 100px 0 0 100px; width: 350px; font-size: 14px; }
+.search-field input::-webkit-input-placeholder{ line-height: 50px; }
+.search-field .search-btn{ height: 50px; line-height: 50px; border: 1px solid #ddd; text-align: center; background: #ccc; border-radius: 0 100px 100px 0; display: inline-block; padding: 0 20px; font-size: 14px; color: #000; margin-left: -2px; }
+.search-field .search-btn:hover{ color: #000; }
+
+/*我的咨询*/
+.my-consult{ padding: 30px 50px; }
+.icon-question{ background-image: url(../images/icon_question.png); width: 36px; height: 36px; }
+.icon-download{ background-image: url(../images/icon_download.png); width: 12px; height: 12px; }
+.consult-title{ font-size: 20px; color: #000; margin-left: -50px; }
+.date-time{ font-size: 12px; color: #aaa; margin-left: 20px; vertical-align: middle; }
+.my-consult p{ color: #999; font-size: 14px; line-height: 40px; }
+.my-consult > p{ line-height: 35px; color: #666; }
+.consult-attach{ margin: 20px 0; }
+.consult-attach span, .consult-attach img, .consult-attach a{ vertical-align: middle; }
+.btn-gray{ border: 1px solid #aaa; background: #eee; padding: 5px; color: #000; }
+.btn-gray:hover{ color: #000; }
+.consult-box{ background: #eee; padding: 20px; margin-bottom: 30px; }
+.consult-comment{ padding: 40px; position: relative; }
+.consult-comment span{ position: absolute; left: 10px; top: 40px; }
+.consult-comment textarea{ width: 100%; height: 100px; padding: 10px 0; text-indent: 10px; background: #f0f0f0; border: 1px solid #ddd; line-height: 30px; font-size: 14px; }
+
+/*手机验证*/
+.icon-mobile{ background-image: url(../images/icon_tel.png); width: 22px; height: 22px; }
+.icon-search{ background-image: url(../images/icon_search.png); width: 26px; height: 26px; }
+.verify-section{ text-align: center; padding: 60px 0; margin-top: 10px; border-top: 1px solid #ddd; }
+.search-common{ width: 450px; height: 60px; line-height: 60px; background: #eee url(../images/icon_search.png) no-repeat 10px center; border: 0; padding-left: 50px; font-size: 18px; }
+.search-common::-webkit-input-placeholder{ line-height: 60px; }
+.explain-section{ margin-bottom: 30px; }
+.explain-title{ border-bottom: 1px solid #ddd; height: 40px; line-height: 40px; margin-bottom: 30px; color: #000; }
+.explain-section p{ font-size: 14px; line-height: 24px; }
+.verify-result{ color: #FF5C26; font-size: 16px; margin-bottom: 10px; }
+.verify-table{ font-size: 14px; background: #eee; display: inline-block; padding: 10px 0; }
+.verify-table td{ min-width: 200px; text-align: left; padding-left: 20px; border-right: 1px dashed #ddd; }
+.verify-table td:last-child{ border-right: 0; }
+.mobile-verify .big-btn{ width: 240px; text-align: center; border: 0; display: inline-block; color: #fff; height: 60px; line-height: 60px; font-size: 20px; background: #FF7A4D; }
+
+/*我的订单*/
+.order-table table{ font-size: 14px; color: #333; border-collapse: collapse; border: 1px solid #ddd; border-top: 0; }
+.order-table th{ height: 50px; line-height: 50px; background: #eee; border-bottom: 1px solid #ddd; }
+.order-table td{ text-align: center; line-height: 50px; }
+.order-table tr.dark td{ background: #eee; height: 50px; line-height: 50px; }
+.order-table tr.item td{ padding: 20px 0; }
+.order-table tr.item .item-name{ vertical-align: middle; color: #000; font-size: 24px; }
+.order-table tr.itme img{ width: 120px; height: 120px; }
+.order-table img{ vertical-align: middle; }
+.my-order .order-table th:first-child{ padding-left: 20px; }
+.my-order .order-table td:first-child{ padding-left: 10px; text-align: left; }
+.order-id{ font-size: 12px; vertical-align: middle; margin-left: 10px; color: #999; }
+
+/*我的钱包*/
+.wallet-title{ font-size: 28px; line-height: 50px; height: 50px; margin: 20px 0 40px 20px; color: #000; }
+.wallet-title > span{ font-size: 20px; }
+.wallet-title > a{ font-size: 14px; text-decoration: underline; }
+.my-wallet{ position: relative; }
+.my-wallet .tabs{ margin-top: 70px; }
+.my-wallet .search-field{ position: absolute; top: 10px; left: 50%; margin-left: -210px; }
+
+/*我的积分*/
+.rule-caption{ text-align: center; margin: 20px 0; font-size: 28px; color: #000; font-weight: bold; }
+.rule-title{ font-size: 20px; color: #000; font-weight: bold; margin-top: 20px; }
+.rule-content{ font-size: 14px; color: #666; line-height: 30px; font-family: '微软雅黑'; margin: 0; white-space: pre-wrap; word-wrap: break-word; }
+
+/*提示弹窗*/
+.icon-close{ background-image: url(../images/icon_close.png); width: 24px; height: 24px; }
+.pop-header .icon-close{ position: absolute; right: 10px; top: 8px; cursor: pointer; }
+.pop-header .icon-close:hover{ background-image: url(../images/icon_close_on.png); }
+.btn-green{ padding: 14px 44px; background: #30C76C; color: #fff; border: 1px solid #249451; cursor: pointer; }
+.btn-green:hover{ background: #77D91E; }
+.pop{ position: relative; width: 100%; height: 100%; display: none; font-family: '微软雅黑'; }
+.pop .dark-mask{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.3); z-index: 100; }
+.pop .pop-box{ width: 450px; background: #fff; position: fixed; top: 50%; left: 50%; margin-left: -225px; z-index: 1000; -webkit-box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); -moz-box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); }
+.pop .pop-header{ height: 40px; line-height: 40px; padding: 0 15px; font-size: 14px; color: #666; background: #ededed; position: relative; }
+.pop .pop-body{ font-size: 16px; padding: 20px; text-align: center; }
+.pop .pop-footer{ text-align: center; margin-top: 30px; margin-bottom: 20px; }
+.pop .pop-footer .btn-green{ font-size: 14px; }

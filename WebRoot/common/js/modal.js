@@ -63,6 +63,12 @@ var Modal = {
 		});
 	},
 	
+	alert : function(content,title) {
+		var mytitle = title?title:'友情提示';
+		$('#modal').remove();
+		$(this).modal('modal',mytitle,content);
+	},
+	
 	
 	
 	/**

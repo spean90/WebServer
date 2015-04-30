@@ -1,9 +1,11 @@
 var login = {
+		
 		login : function() {
 			var userId = $('#username').val();
 			var passwd = $('#password').val();
 			if (userId==''||passwd=='') {
-				alert('请输入用户名和密码！');
+				//初始化弹窗功能
+				Modal.alert("请输入用户名和密码！");
 				return;
 			}
 			var config = {
@@ -12,7 +14,7 @@ var login = {
 					success : function(data){
 						console.log(data);
 						if (data.msg.code!="0000") {
-							alert('登录失败！');
+							Modal.alert("登录失败！请稍后再试","错误");
 							return;
 						}
 						sessionStorage.token = data.key;
@@ -24,4 +26,5 @@ var login = {
 		
 }
 $(function(){
+	
 })

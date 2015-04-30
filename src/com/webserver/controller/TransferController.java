@@ -28,36 +28,14 @@ public class TransferController {
 		modelAndView.addObject("bid", bid); 
 		return modelAndView;
 	}
-	@RequestMapping(value="/index")
-	public ModelAndView index() {
-		ModelAndView modelAndView = new ModelAndView("index");
-		return modelAndView;
-	}
-	@RequestMapping(value="/register.html")
-	public ModelAndView goToregister() {
-		ModelAndView modelAndView = new ModelAndView("register");
-		return modelAndView;
-	}
 	/**
-	 * 结算页面
+	 * 纯页面跳转
 	* @author Huangsp
-	* @date 2015年4月24日 
-	* @return
 	 */
-	@RequestMapping(value="/settlement.html")
-	public ModelAndView goToSettlement() {
-		ModelAndView modelAndView = new ModelAndView("settlement");
+	@RequestMapping(value="/{page}.html")
+	public ModelAndView goToPage(@PathVariable(value="page") String page) {
+		ModelAndView modelAndView = new ModelAndView(page);
 		return modelAndView;
 	}
-	/**
-	 * 结算页面
-	* @author Huangsp
-	* @date 2015年4月24日 
-	* @return
-	 */
-	@RequestMapping(value="/outlets.html")
-	public ModelAndView goToOutlets() {
-		ModelAndView modelAndView = new ModelAndView("outlets");
-		return modelAndView;
-	}
+	
 }
