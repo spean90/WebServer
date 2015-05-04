@@ -5,17 +5,19 @@ var playerManage = {
 
 $(function(){
 	$('#playergrid').datagrid({
-		url : '/player/getPlayerList.do',
+		url : '/userInfo/getUserInfoListByParams.do',
 		pagination : true,
 		title : '用户列表', 
 		fitColumns : true,
 		columns : [[
-		            {field:'playerId',title:'用户ID',width:100,align:'center'},
-		            {field:'account',title:'用户账号',width:100,align:'center'},
+		            {field:'userName',title:'用户名',width:100,align:'center'},
+		            {field:'realName',title:'用户姓名',width:100,align:'center'},
+		            {field:'idCard',title:'身份证号',width:200,align:'center'},
 		            {field:'addTime',title:'注册时间',width:100,align:'center',
 		            	formatter:function(val) {
 		            		return new Date(val).format('yyyy-MM-dd HH:mm:ss')
-		            	}}
+		            	}},
+		            
 //		            ,{field:'headImg',title:'头像',width:100,align:'center',
 //		            	formatter:function(val){
 //		            		var imgstr = "data:;base64,";
