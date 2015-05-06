@@ -1,5 +1,5 @@
 
-window.onload = function () {
+function onloadCar() {
     if (!document.getElementsByClassName) {
         document.getElementsByClassName = function (cls) {
             var ret = [];
@@ -127,7 +127,8 @@ window.onload = function () {
                 case 'delete': //点击了删除
                     var conf = confirm('确定删除此商品吗？');
                     if (conf) {
-                        this.parentNode.removeChild(this);
+                    	myRetrieveCar.removeFromCar($(this).attr('id'));//❤删除选中的商品❤
+                        //this.parentNode.removeChild(this);
                     }
                     break;
             }
@@ -155,7 +156,9 @@ window.onload = function () {
                 for (var i = 0; i < tr.length; i++) {
                     // 如果被选中，就删除相应的行
                     if (tr[i].getElementsByTagName('input')[0].checked) {
-                        tr[i].parentNode.removeChild(tr[i]); // 删除相应节点
+                    	//alert($(tr[i]).attr('id'));
+                    	myRetrieveCar.removeFromCar($(tr[i]).attr('id'));//❤删除选中的商品❤
+                        //tr[i].parentNode.removeChild(tr[i]); // 删除相应节点
                         i--; //回退下标位置
                     }
                 }
