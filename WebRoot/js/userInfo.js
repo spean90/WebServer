@@ -1,5 +1,14 @@
 var playerManage = {
-		
+		searchUserInfo : function() {
+			var userName = $('#userName').val();
+			var idCard = $('#idCard').val();
+			var realName = $('#realName').val();
+			$('#playergrid').datagrid('load',{
+				userName : userName,
+				idCard : idCard,
+				realName : realName
+			})
+		}
 		
 }
 
@@ -10,7 +19,7 @@ $(function(){
 		title : '用户列表', 
 		fitColumns : true,
 		columns : [[
-		            {field:'userName',title:'用户名',width:100,align:'center'},
+		            {field:'userName',title:'账户',width:100,align:'center'},
 		            {field:'realName',title:'用户姓名',width:100,align:'center'},
 		            {field:'idCard',title:'身份证号',width:200,align:'center'},
 		            {field:'addTime',title:'注册时间',width:100,align:'center',

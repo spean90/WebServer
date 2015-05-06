@@ -10,17 +10,17 @@
 		<if test="user.userId != null">
 			and user_id = #{user.userId}
 		</if>
-		<if test="user.userName != null">
-			and user_name = #{user.userName}
+		<if test="user.userName != null and user.userName != ''">
+			and user_name like concat('%',#{user.userName},'%') 
 		</if>
 		<if test="user.password != null">
 			and password = #{user.password}
 		</if>
-		<if test="user.idCard != null">
-			and id_card = #{user.idCard}
+		<if test="user.idCard != null and user.idCard != ''">
+			and id_card like concat('%',#{user.idCard},'%')
 		</if>
-		<if test="user.realName != null">
-			and real_name = #{user.realName}
+		<if test="user.realName != null and user.realName != ''">
+			and real_name like concat('%',#{user.realName},'%')
 		</if>
 		</where>
 		order by user_id 
