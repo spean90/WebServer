@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/js/productManage.js"></script>
+	</head>
+	<body>
+		<div id="tbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="product.addProduct()">新增</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="product.updateProduct()">修改</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="product.deleteProduct()">删除</a>
+		</div>
+		<div id="productgrid" style="height: 600px;"></div>
+	</body>
+</html>
