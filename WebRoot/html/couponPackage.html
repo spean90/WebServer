@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>优惠券礼包管理</title>
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/common/js/md5.min.0.9.5.js"></script>
+		<script type="text/javascript" src="../js/couponPackage.js"></script>
+	</head>
+	<body>
+	<div style="margin: 10px;">
+		礼包名称：<input type="text" id="couponPackageName_search">
+		<button class="btn btn-success btn-sm" onclick="couponPackage.search()">查询</button>
+	</div>
+	<div id="couponPackageGrid" style="height: 480px;"></div>
+		<div id="tbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="couponPackage.addCouponPackage()">新增</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="couponPackage.updateCouponPackage()">修改</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="couponPackage.deleteCouponPackage()">删除</a>
+		</div>
+		
+		<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form id="form">
+		        	<input type="hidden" name="couponPackageId" id="couponPackageId">
+		           <div class="input-group">
+					  <span class="input-group-addon" >名称</span>
+					  <input type="text" class="form-control" id="couponPackageName" name="couponPackageName" placeholder="礼包名称" >
+				  </div><br/>
+		          <div class="form-group">
+		            <label for="packageDesc" class="control-label">优惠说明:</label>
+		            <textarea class="form-control" id="packageDesc" name="packageDesc"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary" onclick="couponPackage.save()">提交</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+	</body>
+</html>

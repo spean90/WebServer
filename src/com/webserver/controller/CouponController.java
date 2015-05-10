@@ -29,7 +29,7 @@ public class CouponController {
 	@RequestMapping("getCouponListByParams")
 	@ResponseBody
 	public Object getCouponListByParams(Coupon coupon,PageBean pageBean) throws Exception {
-		return couponService.getgetCouponListByParams(coupon, pageBean);
+		return couponService.getCouponListByParams(coupon, pageBean);
 	}
 	@RequestMapping("addCoupon")
 	@ResponseBody

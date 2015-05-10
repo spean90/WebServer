@@ -17,6 +17,7 @@ var coupon = {
 			$('#sum').val(row.sum);
 			$('#type').combobox('select',row.type);
 			$('#isDeliver').combobox('select',row.isDeliver);
+			$('#couponDesc').val(row.couponDesc);
 			$('.modal-title').html('修改优惠券');
 			coupon.url = '/coupon/updateCoupon.do';
 			$('#couponModal').modal('show');
@@ -46,7 +47,7 @@ var coupon = {
 				Modal.ajax(config);
 			})
 		}else{
-			Modal.showAlert('请选择要删除的管理员!');
+			Modal.showAlert('请选择要删除的礼包!');
 		}
 	},
 	save : function(){
@@ -67,7 +68,7 @@ var coupon = {
 			success : function(data) {
 				var result = JSON.StrToJSON(data);
 				if(result.code == "0000"){
-					Modal.showAlert('添加成功');
+					Modal.showAlert('操作成功');
 					$('#couponModal').modal('hide');
 					$('#couponGrid').datagrid('reload');
 				}else{
@@ -177,11 +178,5 @@ $(function() {
 		            {field:'createTime',title:'创建时间',width:100,align:'center'}
 		            ]],
 		toolbar : '#tbar'
-	});
-	$('#roleId').combobox({
-		url : '/role/getAll.do',
-		textField : 'roleName',
-		valueField : 'roleId',
-		panelHeight : 100
 	});
 })

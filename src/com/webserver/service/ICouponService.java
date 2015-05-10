@@ -10,12 +10,12 @@ import com.webserver.modal.Coupon;
 
 public interface ICouponService {
 	
-	public PageData<Coupon> getgetCouponListByParams(Coupon coupon,PageBean pageBean) throws Exception;
+	public PageData<Coupon> getCouponListByParams(Coupon coupon,PageBean pageBean) throws Exception;
 	
-	public int addCoupon(@Param("coupon")Coupon coupon,HttpServletRequest request);
+	public int addCoupon(Coupon coupon,HttpServletRequest request);
 	
-	public int updateCoupon(@Param("coupon")Coupon coupon,HttpServletRequest request);
+	public int updateCoupon(Coupon coupon,HttpServletRequest request);
 	
-	public int deleteCouponById(@Param("couponId")Long couponId,HttpServletRequest request); 
+	public int deleteCouponById(Long couponId,HttpServletRequest request); 
 
 }

@@ -32,7 +32,7 @@ public class CouponServiceImpl implements ICouponService {
 	private Logger logger = LoggerFactory.getLogger(CouponServiceImpl.class);
 	
 	@Override
-	public PageData<Coupon> getgetCouponListByParams(Coupon coupon,
+	public PageData<Coupon> getCouponListByParams(Coupon coupon,
 			PageBean pageBean) throws Exception {
 		PageData<Coupon> pageData = new PageData<Coupon>();
 		List<Coupon> rows = couponDao.getCouponListByParams(coupon, pageBean, pageData);

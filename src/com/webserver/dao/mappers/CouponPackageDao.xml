@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.CouponPackageDao">
+
+	<select id="getCouponPackageListByParams" resultType="CouponPackage">
+		select coupon_package_id couponPackageId,coupon_package_name couponPackageName, create_time createTime,package_desc packageDesc
+		from coupon_package
+		<where>
+		<if test="couponPackage.couponPackageName != null">
+			and coupon_package_name  like concat('%',#{couponPackage.couponPackageName},'%') 
+		</if>
+		</where>
+		order by coupon_package_id desc
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addCouponPackage" parameterType="CouponPackage" useGeneratedKeys="true" keyProperty="couponPackage.couponPackageId">
+		insert into coupon_package (coupon_package_name,create_time,package_desc) 
+		VALUES (#{couponPackage.couponPackageName}, #{couponPackage.createTime}, #{couponPackage.packageDesc})
+	</insert>
+	
+	 <delete id="deleteCouponPackageById" parameterType="java.lang.Long">
+	 	delete from coupon_package 
+	 	where coupon_package_id = #{couponPackageId}
+	 </delete>
+	 
+	 <update id="updateCouponPackage" parameterType="CouponPackage">
+		update coupon_package 
+		<set>
+	 		<if test="couponPackage.couponPackageName!=null">
+	 			coupon_package_name = #{couponPackage.couponPackageName},
+		 	</if>
+		 	<if test="couponPackage.packageDesc!=null">
+		 		package_desc = #{couponPackage.packageDesc},
+		 	</if>
+	 	</set>
+	 	where coupon_package_id = #{couponPackage.couponPackageId}
+	</update>
+	
+</mapper>
