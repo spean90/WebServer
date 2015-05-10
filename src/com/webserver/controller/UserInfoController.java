@@ -19,7 +19,7 @@ public class UserInfoController {
 
 	@RequestMapping("getUserInfoListByParams")
 	@ResponseBody
-	public Object getUserInfoListByParams(UserInfo userInfo,PageBean pageBean) {
+	public Object getUserInfoListByParams(UserInfo userInfo,PageBean pageBean) throws Exception {
 		return userInfoService.getUserListByParams(userInfo, pageBean);
 	}
 }

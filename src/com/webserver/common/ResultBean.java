@@ -2,12 +2,22 @@ package com.webserver.common;
 
 import java.util.Date;
 
+import com.webserver.common.util.DateUtil;
+
 public class ResultBean {
 
 	private String code = "0000";
 	private String msg = "成功";
-	private Date time = new Date();
+	private String time = DateUtil.getDateTimeString(new Date());
 	private Object object;
+	private String token;
+	
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
 	public String getCode() {
 		return code;
 	}
@@ -20,10 +30,10 @@ public class ResultBean {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public Date getTime() {
+	public String getTime() {
 		return time;
 	}
-	public void setTime(Date time) {
+	public void setTime(String time) {
 		this.time = time;
 	}
 	public Object getObject() {

@@ -3,11 +3,11 @@
 <mapper namespace="com.webserver.dao.MessageDao">
 
 	<select id="getUserfullMessage" resultType="Message">
-		select message_id messageId,user_id userId, deadline, code
+		select message_id messageId,phone, deadline, code
 		from message
 		<where>
-		<if test="message.userId != null">
-			and user_id = #{message.userId}
+		<if test="message.phone != null">
+			and phone = #{message.phone}
 		</if>
 		<if test="message.deadline != null">
 			and deadline >= #{message.deadline}
@@ -19,8 +19,8 @@
 	
 	
 	<insert id="addMessage" parameterType="Message">
-		insert into message (user_id, deadline,code) 
-		VALUES (#{message.userId}, #{message.deadline},#{message.code})
+		insert into message (phone, deadline,code) 
+		VALUES (#{message.phone}, #{message.deadline},#{message.code})
 	</insert>
 	
 </mapper>

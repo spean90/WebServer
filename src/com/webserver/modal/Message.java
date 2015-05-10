@@ -16,21 +16,21 @@ public class Message implements Serializable {
 	*/
 	private static final long serialVersionUID = 1L;
 	private Long messageId;
-	private Long userId;
+	private String phone;
 	private String code;
 	private String deadline;//失效时间
 	
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public Long getMessageId() {
 		return messageId;
 	}
 	public void setMessageId(Long messageId) {
 		this.messageId = messageId;
-	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 	public String getCode() {
 		return code;

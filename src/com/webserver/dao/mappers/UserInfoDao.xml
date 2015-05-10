@@ -67,5 +67,19 @@
 	 	delete from user_info 
 	 	where user_id = #{userId}
 	 </delete>
+	 
+	 <select id="getUserInfoByUser" resultType="UserInfo">
+		select user_id userId, user_name userName, password, add_time addTime, id_card idCard, real_name realName, pay_password payPassword,
+		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital 
+		from user_info
+		<where>
+		<if test="user.userName != null">
+			and user_name = #{user.userName}
+		</if>
+		<if test="user.password!=null">
+	 		and password = #{user.password}
+	 	</if>
+	 	</where>
+	</select>
 	
 </mapper>

@@ -11,9 +11,12 @@ import com.webserver.modal.UserInfo;
 
 public interface UserInfoDao {
 	
-	public List<UserInfo> getUserListByParams(@Param("user")UserInfo userInfo,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
-	public int addUser(@Param("user")UserInfo userInfo);
-	public int updateUser(@Param("user")UserInfo userInfo);
-	public int deleteUserById(@Param("userId")Long userId);
+	public List<UserInfo> getUserListByParams(@Param("user")UserInfo userInfo,@Param("pageBean")PageBean pageBean,
+			@Param("pageData") PageData<UserInfo> pageData) throws Exception;
+	public int addUser(@Param("user")UserInfo userInfo) throws Exception;
+	public int updateUser(@Param("user")UserInfo userInfo) throws Exception;
+	public int deleteUserById(@Param("userId")Long userId) throws Exception;
+	
+	public UserInfo getUserInfoByUser(@Param("user")UserInfo userInfo) throws Exception;
 
 }

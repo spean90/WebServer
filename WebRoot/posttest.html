@@ -1,0 +1,35 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Upload a file please</title>
+<script type="text/javascript" src="common/easyui/jquery.min.js"></script>
+<script type="text/javascript">
+	submit = function(){
+		var url = $('#url').val();
+		var json = $('#json').val();
+		var obj = null;
+		if(json!=''){
+			obj = JSON.parse(json);
+		}
+		
+		$.ajax({
+			url : url,
+			type : "post",
+			data : obj?obj:null,
+			success : function(data){
+				alert(JSON.stringify(data));
+			}
+		})
+	}
+
+</script>
+</head>
+<body>
+	<h1>PlayerTest</h1>
+		url:<input type="text" style="width: 300px;" name="url" id="url" /> <br/>
+		json:<br/>
+		<textarea rows="5" cols="50" id="json"></textarea> 
+		<input type="button" onclick="submit()" value="submit"/>
+	<hr/>
+</body>
+</html>

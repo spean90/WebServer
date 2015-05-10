@@ -19,11 +19,24 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	private UserInfoDao userInfoDao;
 	@Override
 	public PageData<UserInfo> getUserListByParams(UserInfo userInfo,
-			PageBean pageBean) {
+			PageBean pageBean) throws Exception {
 		PageData<UserInfo> pageData = new PageData<UserInfo>();
 		List<UserInfo> list = userInfoDao.getUserListByParams(userInfo, pageBean, pageData);
 		pageData.setRows(list);
 		return pageData;
+	}
+	@Override
+	public int addUser(UserInfo userInfo) throws Exception {
+		return userInfoDao.addUser(userInfo);
+	}
+	@Override
+	public int updateUser(UserInfo userInfo)  throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public UserInfo getUserInfoByUser(UserInfo userInfo) throws Exception {
+		return userInfoDao.getUserInfoByUser(userInfo);
 	}
 
 	

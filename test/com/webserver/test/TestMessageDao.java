@@ -21,17 +21,17 @@ public class TestMessageDao {
 	@Test
 	public void getMessage() {
 		Message message = new Message();
-		message.setUserId(103l);
+		message.setPhone("103");
 		message.setDeadline(format.format(new Date()));
 		message = dao.getUserfullMessage(message);
 		System.out.println(message.getCode());
 	}
 	//@Test
-	public void addMessage() {
+	public void addMessage() throws Exception {
 		Message message = new Message();
 		int code  = (int) (Math.random()*10000);
 		message.setCode(code+"");
-		message.setUserId(103l);
+		message.setPhone("103");
 		Calendar c = Calendar.getInstance();
 		c.add(Calendar.MINUTE, 10);
 		message.setDeadline(format.format(c.getTime()));

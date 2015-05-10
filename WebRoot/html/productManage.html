@@ -12,5 +12,55 @@
         	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="product.deleteProduct()">删除</a>
 		</div>
 		<div id="productgrid" style="height: 600px;"></div>
+		
+		<div id="dialog" style="width: 640px;height: 480px;padding: 10px" class="easyui-dialog"
+			closed="true" buttons="#dlg-buttons" align="center">
+			<h3>用户信息</h3>
+			<hr/>
+			<form id="form" method="post">
+				<div hidden="true">
+					<input type="text" name="mId" hidden="true">
+				</div>
+				<div>
+					&nbsp;&nbsp;&nbsp;&nbsp;用户名：<input type="text" class="easyui-validatebox" name="managerAccount" data-options="required:true">
+				</div>
+				<div>
+					真实姓名：<input type="text" class="easyui-validatebox" name="realName" data-options="required:true">
+				</div>
+				<div id="pwd">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="password" class="easyui-validatebox" id="password" name="password" data-options="required:true">
+				</div>
+				<div id="repwd">
+					确认密码：<input type="password" class="easyui-validatebox" name="re_password" id="re_password"  data-options="required:true">
+				</div>
+				<div>
+					所属角色：<input id="roleId" name="roleId" data-options="required:true">
+				</div>
+				<br/>
+				<div>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<input id="isLock" name="isLock" class="easyui-combobox" 
+					data-options="
+						valueField: 'id',
+						textField: 'text',
+						panelHeight : 60,
+						data: [{
+							id: '0',
+							text: '可用',
+							selected : true
+						},{
+							id: '1',
+							text: '禁用'
+						}]">
+				</div>
+			</form>	
+		</div>
+		
+		 <div id="dlg-buttons">
+            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px"
+            		 onclick="product.save()">保存</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" style="width: 90px;"
+                    onclick="javascript:$('#dialog').dialog('close')">取消</a>
+        </div>
+		
 	</body>
 </html>
