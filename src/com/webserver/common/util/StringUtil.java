@@ -3,6 +3,8 @@ package com.webserver.common.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.google.gson.Gson;
+
 /**
  * @ClassName: StringUtil
  * @Description: 字符串工具类
@@ -111,6 +113,11 @@ public class StringUtil {
 			dest = m.replaceAll("");
 		}
 		return dest;
+	}
+	
+	public static String toJson(Object obj) {
+		Gson gson = new Gson();
+		return gson.toJson(obj);
 	}
 
 }

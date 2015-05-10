@@ -20,7 +20,7 @@ public class OperLog implements Serializable{
 	private String params;
 	private String operAction; //操作描述
 	private String ip;
-	private Integer status;
+	private Integer status = 1;
 	
 	public OperLog() {
 		// TODO Auto-generated constructor stub

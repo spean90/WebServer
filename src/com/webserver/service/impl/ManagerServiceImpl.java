@@ -43,7 +43,7 @@ public class ManagerServiceImpl implements IManagerService {
 			logger.error("添加管理员err:", e);
 			operLog.setStatus(0);
 		}
-		//operLogDao.addLog(operLog);
+		operLogDao.addLog(operLog);
 		return i;
 	}
 
@@ -68,7 +68,7 @@ public class ManagerServiceImpl implements IManagerService {
 			logger.error("修改管理员err:", e);
 			operLog.setStatus(0);
 		}
-		//operLogDao.addLog(operLog);
+		operLogDao.addLog(operLog);
 		return i;
 	}
 
@@ -85,7 +85,7 @@ public class ManagerServiceImpl implements IManagerService {
 			operLog.setStatus(0);
 		}
 		
-		//operLogDao.addLog(operLog);
+		operLogDao.addLog(operLog);
 		return 1;
 	}
 	

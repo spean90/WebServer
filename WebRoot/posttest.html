@@ -17,7 +17,8 @@
 			type : "post",
 			data : obj?obj:null,
 			success : function(data){
-				alert(JSON.stringify(data));
+				//alert(JSON.stringify(data));
+				$('#result').html(JSON.stringify(data));
 			}
 		})
 	}
@@ -30,6 +31,11 @@
 		json:<br/>
 		<textarea rows="5" cols="50" id="json"></textarea> 
 		<input type="button" onclick="submit()" value="submit"/>
+		
+		<hr>
+		结果：<br>
+		<textarea id="result" rows="8" cols="80">
+		</textarea>
 	<hr/>
 </body>
 </html>

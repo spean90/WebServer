@@ -9,6 +9,9 @@
 		<if test="message.phone != null">
 			and phone = #{message.phone}
 		</if>
+		<if test="message.code != null">
+			and code = #{message.code}
+		</if>
 		<if test="message.deadline != null">
 			and deadline >= #{message.deadline}
 		</if>

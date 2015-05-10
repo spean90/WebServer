@@ -43,6 +43,7 @@ var manager = {
 	save : function(){
 		var valid = $('#form').form('validate');
 		if(!valid){
+			alert(33);
 			return;
 		}
 		var pwd = $('#password').val();

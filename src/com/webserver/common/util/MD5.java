@@ -28,7 +28,7 @@ public class MD5 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(MD5.md5("admin"));
+		System.out.println(MD5.md5("123456"));
 	}
 	
 }

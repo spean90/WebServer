@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>优惠券管理</title>
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/common/js/md5.min.0.9.5.js"></script>
+		<script type="text/javascript" src="../js/couponManage.js"></script>
+	</head>
+	<body>
+	<div style="margin: 10px;">
+		优惠券名称：<input type="text" id="couponName_search">
+		类型：<input id="type_search">
+		是否可以转赠：<input id="isDeliver_search">
+		<button class="btn btn-success btn-sm" onclick="coupon.search()">查询</button>
+	</div>
+	<div id="couponGrid" style="height: 480px;"></div>
+		<div id="tbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="coupon.addCoupon()">新增</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="coupon.updateCoupon()">修改</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="coupon.deleteCoupon()">删除</a>
+		</div>
+		
+		<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form id="form">
+		        	<input type="hidden" name="couponId" id="couponId">
+		           <div class="input-group">
+					  <span class="input-group-addon" >名称</span>
+					  <input type="text" class="form-control" id="couponName" name="couponName" placeholder="优惠券名称" >
+				  </div><br/>
+				  <div class="input-group">
+					  <span class="input-group-addon" >金额</span>
+					  <input type="text" class="form-control" id="sum" name="sum" placeholder="优惠券金额" >
+				  </div><br/>
+				  <div class="input-group">
+					  <span class="input-group-addon" >类型</span>
+					  <input type="text" style="height: 30px;" class="form-control" name="type" id="type">
+				  </div><br/>
+				  <div class="input-group">
+					  <span class="input-group-addon" >是否可转赠</span>
+					  <input type="text" style="height: 30px;" class="form-control" name="isDeliver" id="isDeliver" >
+				  </div><br/>
+		          <div class="form-group">
+		            <label for="couponDesc" class="control-label">优惠说明:</label>
+		            <textarea class="form-control" id="couponDesc" name="couponDesc"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary" onclick="coupon.save()">提交</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+	</body>
+</html>

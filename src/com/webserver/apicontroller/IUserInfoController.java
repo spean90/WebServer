@@ -41,6 +41,7 @@ public class IUserInfoController {
 		message = messageService.getUserfullMessage(message);
 		if (message != null&&message.getCode().equals(code)) {
 			try {
+				userInfo.setPassword(MD5.md5(userInfo.getPassword()));
 				PageData<UserInfo> pageData = userInfoService.getUserListByParams(userInfo, new PageBean());
 				if (pageData.getTotal()!=0) {
 					resultBean.setCode("1001");
@@ -66,6 +67,7 @@ public class IUserInfoController {
 	public Object signIn(UserInfo userInfo) {
 		ResultBean resultBean = new ResultBean();
 		try {
+			userInfo.setPassword(MD5.md5(userInfo.getPassword()));
 			userInfo = userInfoService.getUserInfoByUser(userInfo);
 			if (userInfo == null) {
 				resultBean.setCode("1001");
@@ -85,7 +87,35 @@ public class IUserInfoController {
 		}
 		return resultBean;
 	}
-	
+	@RequestMapping("resetPassword")
+	@ResponseBody
+	public Object resetPassword(UserInfo userInfo,String newPassword,String code) {
+		ResultBean resultBean = new ResultBean();
+		Message message = new Message();
+		message.setPhone(userInfo.getUserName());
+		message.setDeadline(DateUtil.getDateTimeString(new Date()));
+		message = messageService.getUserfullMessage(message);
+		if (message == null) {
+			resultBean.setCode("1001");
+			resultBean.setMsg("验证码错误");
+		}
+		try {
+			userInfo = userInfoService.getUserInfoByUser(userInfo);
+			if (userInfo==null) {
+				resultBean.setCode("1001");
+				resultBean.setMsg("用户不存在");
+				return resultBean;
+			}
+			userInfo.setPassword(MD5.md5(newPassword));
+			userInfoService.updateUser(userInfo);
+		} catch (Exception e) {
+			logger.error("找回密码失败：", e);
+			resultBean.setCode("5001");
+			resultBean.setMsg("err："+e.getMessage());
+		}
+		
+		return resultBean;
+	}
 	
 	@RequestMapping("/sendMessage")
 	@ResponseBody

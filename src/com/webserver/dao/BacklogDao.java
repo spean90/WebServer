@@ -7,7 +7,11 @@ import org.apache.ibatis.annotations.Param;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.modal.Backlog;
-
+/**
+ * 代办事件
+ * @author hsp
+ *
+ */
 public interface BacklogDao {
 	
 	public List<Backlog> getBacklogListByParams(@Param("backlog")Backlog backlog,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
