@@ -3,7 +3,8 @@
 <mapper namespace="com.webserver.dao.CouponDao">
 
 	<select id="getCouponListByParams" resultType="Coupon">
-		select coupon_id couponId,coupon_name couponName, type, is_deliver isDeliver,sum , coupon_desc couponDesc,create_time createTime
+		select coupon_id couponId,coupon_name couponName, type, is_deliver isDeliver,sum , coupon_desc couponDesc,
+		create_time createTime,dead_time deadTime,product_ids productIds
 		from coupon
 		<where>
 		<if test="coupon.couponName != null">
@@ -24,8 +25,8 @@
 	
 	
 	<insert id="addCoupon" parameterType="coupon" useGeneratedKeys="true" keyProperty="coupon.couponId">
-		insert into coupon (coupon_name, type,is_deliver, sum,coupon_desc,create_time) 
-		VALUES (#{coupon.couponName}, #{coupon.type},  #{coupon.isDeliver}, #{coupon.sum}, #{coupon.couponDesc},#{coupon.createTime})
+		insert into coupon (coupon_name, type,is_deliver, sum,coupon_desc,create_time,dead_time,product_ids) 
+		VALUES (#{coupon.couponName}, #{coupon.type},  #{coupon.isDeliver}, #{coupon.sum}, #{coupon.couponDesc},#{coupon.createTime},#{coupon.deadTime},#{coupon.productIds})
 	</insert>
 	
 	 <delete id="deleteCouponById" parameterType="java.lang.Long">

@@ -15,6 +15,21 @@ public class Coupon implements Serializable {
 	private Integer sum;//金额
 	private String couponDesc;
 	private String createTime;
+	private String deadTime;
+	private String productIds;
+	
+	public String getDeadTime() {
+		return deadTime;
+	}
+	public void setDeadTime(String deadTime) {
+		this.deadTime = deadTime;
+	}
+	public String getProductIds() {
+		return productIds;
+	}
+	public void setProductIds(String productIds) {
+		this.productIds = productIds;
+	}
 	public String getCreateTime() {
 		return createTime;
 	}

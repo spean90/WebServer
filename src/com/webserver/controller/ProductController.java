@@ -3,6 +3,7 @@ package com.webserver.controller;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,5 +26,13 @@ public class ProductController {
 		PageData<Product> pageData = productService.getProductListByParams(product, pageBean);
 		return pageData;
 	}
-	
+	@RequestMapping("getProductListIds")
+	@ResponseBody
+	public Object getProductListIds(String productIds) {
+		String[] ids = null;
+		if (!StringUtils.isEmpty(productIds)) {
+			ids = productIds.split(",");
+		}
+		return productService.getProductListIds(ids);
+	}
 }

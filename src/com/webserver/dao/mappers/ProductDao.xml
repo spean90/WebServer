@@ -22,6 +22,18 @@
 		</if>
 	</select>
 	
+	<select id="getProductListIds" resultType="Product">
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime
+		from product
+		<if test="productIds!=null and productIds!=''">
+			where product_id in
+			<foreach item="item" index="index" collection="productIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		
+	</select>
+	
 	
 	<insert id="addProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product.productId">
 		insert into product (product_name, product_desc,  price, limit_time, product_type, create_time) 

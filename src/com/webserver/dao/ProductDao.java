@@ -1,7 +1,6 @@
 package com.webserver.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -18,5 +17,7 @@ public interface ProductDao {
 	public int deleteProductById(@Param("productId")Long productId);
 	
 	public int updateProduct(@Param("product")Product product);
+	
+	public List<Product> getProductListIds(@Param("productIds")String[] productIds);
 
 }

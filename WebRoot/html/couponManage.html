@@ -17,9 +17,27 @@
 	<div id="couponGrid" style="height: 480px;"></div>
 		<div id="tbar">
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="coupon.addCoupon()">新增</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="coupon.updateCoupon()">修改</a>
+			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="coupon.updateCoupon()">修改</a> -->
         	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="coupon.deleteCoupon()">删除</a>
 		</div>
+		
+		<div class="modal fasse" id="detailModal" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		 <h4 class="modal-title">专属套餐</h4>
+					</div>
+					<div class="modal-body">
+						<div id="productGrid" style="width: 550px;"></div>
+					</div>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
 		
 		<div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
@@ -34,23 +52,28 @@
 		           <div class="input-group">
 					  <span class="input-group-addon" >名称</span>
 					  <input type="text" class="form-control" id="couponName" name="couponName" placeholder="优惠券名称" >
-				  </div><br/>
+				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >金额</span>
 					  <input type="text" class="form-control" id="sum" name="sum" placeholder="优惠券金额" >
-				  </div><br/>
+				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >类型</span>
 					  <input type="text" style="height: 30px;" class="form-control" name="type" id="type">
-				  </div><br/>
+				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >是否可转赠</span>
 					  <input type="text" style="height: 30px;" class="form-control" name="isDeliver" id="isDeliver" >
-				  </div><br/>
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >失效时间</span>
+					  <input type="text" style="height: 30px;width: 160px;" class="form-control easyui-datetimebox" name="deadTime" id="deadTime" >
+				  </div>
 		          <div class="form-group">
 		            <label for="couponDesc" class="control-label">优惠说明:</label>
 		            <textarea class="form-control" id="couponDesc" name="couponDesc"></textarea>
 		          </div>
+		          <div id="allProductGrid" style="width: 550px;height: 180px;"></div>
 		        </form>
 		      </div>
 		      <div class="modal-footer">

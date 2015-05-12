@@ -1,6 +1,5 @@
 package com.webserver.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,7 +10,6 @@ import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.dao.ProductDao;
 import com.webserver.modal.Product;
-import com.webserver.modal.UserInfo;
 import com.webserver.service.IProductService;
 
 @Service
@@ -44,6 +42,11 @@ public class ProductServiceImpl implements IProductService {
 	public int deleteProductById(Long productId) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public List<Product> getProductListIds(String[] productIds) {
+		return productDao.getProductListIds(productIds);
 	}
 
 }
