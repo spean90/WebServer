@@ -41,9 +41,15 @@ public class CouponController {
 	}
 	@RequestMapping("deleteCouponById")
 	@ResponseBody
-	public Object deleteCouponById(Long couponId, HttpServletRequest request) {
+	public Object deleteCouponById(Long couponId,String deadTime, HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
-		couponService.deleteCouponById(couponId, request);
+		String nowTime = DateUtil.getDateTimeString(new Date());
+		if (nowTime.compareTo(deadTime)<0) {
+			resultBean.setCode("1001");
+			resultBean.setMsg("套餐未失效，不能删除");
+		}else {
+			couponService.deleteCouponById(couponId, request);
+		}
 		return resultBean;
 	}
 	@RequestMapping("updateCoupon")
