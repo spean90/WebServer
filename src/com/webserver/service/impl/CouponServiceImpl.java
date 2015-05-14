@@ -86,4 +86,9 @@ public class CouponServiceImpl implements ICouponService {
 		return 0;
 	}
 
+	@Override
+	public List<Coupon> getCouponListByIds(String[] couponIds) {
+		return couponDao.getCouponListByIds(couponIds);
+	}
+
 }

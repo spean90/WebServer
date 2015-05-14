@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -31,6 +32,16 @@ public class CouponController {
 	public Object getCouponListByParams(Coupon coupon,PageBean pageBean) throws Exception {
 		return couponService.getCouponListByParams(coupon, pageBean);
 	}
+	@RequestMapping("getCouponListByIds")
+	@ResponseBody
+	public Object getCouponListByIds(String couponIds) throws Exception {
+		String[] ids = null;
+		if (!StringUtils.isEmpty(couponIds)) {
+			ids = couponIds.split(",");
+		}
+		return couponService.getCouponListByIds(ids);
+	}
+	
 	@RequestMapping("addCoupon")
 	@ResponseBody
 	public Object addCoupon(Coupon coupon, HttpServletRequest request) throws Exception {

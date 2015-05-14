@@ -17,7 +17,21 @@ public class CouponPackage implements Serializable {
 	private String couponPackageName;
 	private String createTime;
 	private String packageDesc;
+	private Integer status;
+	private String couponIds;
 	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getCouponIds() {
+		return couponIds;
+	}
+	public void setCouponIds(String couponIds) {
+		this.couponIds = couponIds;
+	}
 	public String getPackageDesc() {
 		return packageDesc;
 	}

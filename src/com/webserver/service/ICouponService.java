@@ -1,5 +1,7 @@
 package com.webserver.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.annotations.Param;
@@ -11,6 +13,8 @@ import com.webserver.modal.Coupon;
 public interface ICouponService {
 	
 	public PageData<Coupon> getCouponListByParams(Coupon coupon,PageBean pageBean) throws Exception;
+	
+	public List<Coupon> getCouponListByIds(String[] couponIds);
 	
 	public int addCoupon(Coupon coupon,HttpServletRequest request);
 	

@@ -23,6 +23,19 @@
 		</if>
 	</select>
 	
+	<select id="getCouponListByIds" resultType="Coupon">
+		select coupon_id couponId,coupon_name couponName, type, is_deliver isDeliver,sum , coupon_desc couponDesc,
+		create_time createTime,dead_time deadTime,product_ids productIds
+		from coupon
+		<if test="couponIds!=null and couponIds!=''">
+			where coupon_id in
+			<foreach item="item" index="index" collection="couponIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by coupon_id DESC
+	</select>
+	
 	
 	<insert id="addCoupon" parameterType="coupon" useGeneratedKeys="true" keyProperty="coupon.couponId">
 		insert into coupon (coupon_name, type,is_deliver, sum,coupon_desc,create_time,dead_time,product_ids) 

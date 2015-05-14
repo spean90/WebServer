@@ -3,7 +3,8 @@
 <mapper namespace="com.webserver.dao.CouponPackageDao">
 
 	<select id="getCouponPackageListByParams" resultType="CouponPackage">
-		select coupon_package_id couponPackageId,coupon_package_name couponPackageName, create_time createTime,package_desc packageDesc
+		select coupon_package_id couponPackageId,coupon_package_name couponPackageName, create_time createTime,
+		package_desc packageDesc,status,coupon_ids couponIds
 		from coupon_package
 		<where>
 		<if test="couponPackage.couponPackageName != null">
@@ -18,8 +19,8 @@
 	
 	
 	<insert id="addCouponPackage" parameterType="CouponPackage" useGeneratedKeys="true" keyProperty="couponPackage.couponPackageId">
-		insert into coupon_package (coupon_package_name,create_time,package_desc) 
-		VALUES (#{couponPackage.couponPackageName}, #{couponPackage.createTime}, #{couponPackage.packageDesc})
+		insert into coupon_package (coupon_package_name,create_time,package_desc,status,coupon_ids) 
+		VALUES (#{couponPackage.couponPackageName}, #{couponPackage.createTime}, #{couponPackage.packageDesc}, #{couponPackage.status}, #{couponPackage.couponIds})
 	</insert>
 	
 	 <delete id="deleteCouponPackageById" parameterType="java.lang.Long">

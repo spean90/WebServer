@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.SubProductDao">
+
+	
+	<select id="getSubProductListByProductId" resultType="SubProduct">
+		select sub_product_id subProductId,product_id productId, month,discount,price,sum
+		from sub_product
+		<if test="productId!=null and productId!=''">
+			where product_id = #{productId}
+		</if>
+	</select>
+	
+	
+	
+</mapper>

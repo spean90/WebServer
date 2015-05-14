@@ -31,7 +31,7 @@
 				#{item}
 			</foreach>
 		</if>
-		
+		order by product_id DESC
 	</select>
 	
 	

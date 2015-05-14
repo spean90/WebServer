@@ -18,6 +18,8 @@ public interface CouponDao {
 	public List<Coupon> getCouponListByParams(@Param("coupon")Coupon coupon,
 			@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData) throws Exception;
 	
+	public List<Coupon> getCouponListByIds(@Param("couponIds")String[] couponIds);
+	
 	public int addCoupon(@Param("coupon")Coupon coupon)throws Exception;
 	
 	public int updateCoupon(@Param("coupon")Coupon coupon)throws Exception;
