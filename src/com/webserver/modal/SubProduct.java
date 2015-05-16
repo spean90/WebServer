@@ -14,6 +14,22 @@ public class SubProduct implements Serializable{
 	private Double discount;
 	private Double price;
 	private Double sum;
+	private Integer status;
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	private String createTime;
+	
 	public Long getSubProductId() {
 		return subProductId;
 	}

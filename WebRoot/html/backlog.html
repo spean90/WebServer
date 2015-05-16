@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/js/backlog.js"></script>
+	</head>
+	<body>
+		<!-- <div>
+			账户：<input type="text" name="userName" id="userName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			姓名：<input type="text" name="realName" id="realName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			身份证号：<input type="text" name="idCard" id="idCard" style="width: 100px;height: 25px;">
+			<button class="btn btn-success" onclick="playerManage.searchUserInfo()">查询</button>
+		</div> -->
+		<div id="backlogGrid" style="height: 600px;"></div>
+		
+		<div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title" id="exampleModalLabel">操作</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form id="form">
+		        	<input type="hidden" name="backlogId" id="backlogId">
+		           <div class="input-group">
+					  <span class="input-group-addon" >油卡归属</span>
+					  <input type="text" class="form-control" id="company" name="company" disabled="disabled" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >账号</span>
+					  <input type="text" class="form-control" id="account" name="account" disabled="disabled" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >金额</span>
+					  <input type="text" class="form-control" id="sum" name="sum" disabled="disabled">
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >持卡人</span>
+					  <input type="text" class="form-control" id="owner" name="owner" disabled="disabled" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >状态</span>
+					  <input type="text" style="height: 30px;" class="form-control" name="status" id="status" >
+				  </div>
+		          <div class="form-group">
+		            <label for="couponDesc" class="control-label">处理结果:</label>
+		            <textarea class="form-control" id="result" name="result"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" onclick="backlog.cancel()">关闭</button>
+		        <button type="button" class="btn btn-primary" onclick="backlog.save()">提交</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+		
+	</body>
+</html>

@@ -64,7 +64,7 @@ var coupon = {
 		}
 	},
 	save : function(){
-		Modal.showConfirm('确定要新增改优惠券吗？优惠券信息不可修改！','警告',function(){
+		Modal.showConfirm('确定要新增该优惠券吗？优惠券信息不可修改！','警告',function(){
 			var couponName = $('#couponName').val();
 			var sum = $('#sum').val();
 			var type = $('#type').combobox('getValue');

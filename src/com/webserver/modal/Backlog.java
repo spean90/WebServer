@@ -27,6 +27,21 @@ public class Backlog implements Serializable {
 	private Integer status;//状态：0-未生效；1-待处理；2-处理中；3-已处理；4-异常；
 	private String managerAccount;//办理员工；
 	private String orderId;//由哪个订单生成的；
+	private String updateTime;//处理时间
+	private String result;//处理结果
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
+	}
+	public String getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(String updateTime) {
+		this.updateTime = updateTime;
+	}
 	public Long getBacklogId() {
 		return backlogId;
 	}

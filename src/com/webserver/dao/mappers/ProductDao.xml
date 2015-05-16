@@ -3,7 +3,7 @@
 <mapper namespace="com.webserver.dao.ProductDao">
 
 	<select id="getProductListByParams" resultType="Product">
-		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime,status
 		from product
 		<where>
 		<if test="product.productId != null">
@@ -15,15 +15,18 @@
 		<if test="product.productType != null">
 			and product_type = #{product.productType}
 		</if>
+		<if test="product.status != null">
+			and status = #{product.status}
+		</if>
 		</where>
-		order by product_id 
+		order by product_id DESC
 		<if test="pageBean!= null">
 			limit #{pageBean.start}, #{pageBean.rows}
 		</if>
 	</select>
 	
 	<select id="getProductListIds" resultType="Product">
-		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime,status
 		from product
 		<if test="productIds!=null and productIds!=''">
 			where product_id in
@@ -36,8 +39,8 @@
 	
 	
 	<insert id="addProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product.productId">
-		insert into product (product_name, product_desc,  price, limit_time, product_type, create_time) 
-		VALUES (#{product.productName}, #{product.productDesc}, #{product.price}, #{product.limitTime}, #{product.productType}, #{product.createTime})
+		insert into product (product_name, product_desc,  price, limit_time, product_type, create_time,status) 
+		VALUES (#{product.productName}, #{product.productDesc}, #{product.price}, #{product.limitTime}, #{product.productType}, #{product.createTime}, #{product.status})
 	</insert>
 	
 	<update id="updateProduct" parameterType="Product">
@@ -58,6 +61,9 @@
 		 	<if test="product.productType!=null">
 		 		product_type = #{product.productType},
 		 	</if>
+		 	<if test="product.status != null">
+				status = #{product.status},
+			</if>
 	 	</set>
 	 	where product_id = #{product.productId}
 	</update>

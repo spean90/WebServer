@@ -61,7 +61,8 @@ var manager = {
 					$('#dialog').dialog('close');
 					$('#userGrid').datagrid('reload');
 				}else{
-					Modal.showAlert('服务器出错！');
+					var msg = result.msg?result.msg:'服务器出错！';
+					Modal.showAlert(msg);
 					$('#dialog').dialog('close');
 					$('#userGrid').datagrid('reload');
 				}

@@ -7,62 +7,18 @@
 	</head>
 	<body>
 		<div id="tbar">
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="product.addProduct()">新增</a>
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="product.updateProduct()">修改</a>
-        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="product.deleteProduct()">删除</a>
-		</div>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="productManage.addProduct()">新增</a>
+			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="productManage.updateProduct()">修改</a>
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="productManage.deleteProduct()">删除</a>
+		 --></div>
 		<div id="productgrid" style="height: 600px;"></div>
 		
-		<div id="dialog" style="width: 640px;height: 480px;padding: 10px" class="easyui-dialog"
-			closed="true" buttons="#dlg-buttons" align="center">
-			<h3>用户信息</h3>
-			<hr/>
-			<form id="form" method="post">
-				<div hidden="true">
-					<input type="text" name="mId" hidden="true">
-				</div>
-				<div>
-					&nbsp;&nbsp;&nbsp;&nbsp;用户名：<input type="text" class="easyui-validatebox" name="managerAccount" data-options="required:true">
-				</div>
-				<div>
-					真实姓名：<input type="text" class="easyui-validatebox" name="realName" data-options="required:true">
-				</div>
-				<div id="pwd">
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：<input type="password" class="easyui-validatebox" id="password" name="password" data-options="required:true">
-				</div>
-				<div id="repwd">
-					确认密码：<input type="password" class="easyui-validatebox" name="re_password" id="re_password"  data-options="required:true">
-				</div>
-				<div>
-					所属角色：<input id="roleId" name="roleId" data-options="required:true">
-				</div>
-				<br/>
-				<div>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态：<input id="isLock" name="isLock" class="easyui-combobox" 
-					data-options="
-						valueField: 'id',
-						textField: 'text',
-						panelHeight : 60,
-						data: [{
-							id: '0',
-							text: '可用',
-							selected : true
-						},{
-							id: '1',
-							text: '禁用'
-						}]">
-				</div>
-			</form>	
-		</div>
 		
-		 <div id="dlg-buttons">
-            <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px"
-            		 onclick="product.save()">保存</a>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" style="width: 90px;"
-                    onclick="javascript:$('#dialog').dialog('close')">取消</a>
-        </div>
-		
-		
+		<div id="sub_tbar">
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="productManage.addSubProduct()">新增</a>
+			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="productManage.updateSubProduct()">修改</a>
+        	 <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="productManage.deleteSubProduct()">禁用</a>
+		--></div>
 		<div class="modal fasse" id="detailModal" role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -80,6 +36,75 @@
 			</div>
 		</div>
 		
+		<div class="modal fasse" id="subFormModal" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		 <h4 class="modal-title">折扣信息</h4>
+					</div>
+					<div class="modal-body">
+						 <form id="discountform">
+				        	<input type="hidden" name="subProductId" id="subProductId">
+				        	<input type="hidden"  name="productId" id="productId_sub">
+				           <div class="input-group">
+							  <span class="input-group-addon" >月数</span>
+							  <input type="text" class="form-control" id="month" name="month" placeholder="月数" >
+						  </div>
+						  <div class="input-group">
+							  <span class="input-group-addon" >折扣</span>
+							  <input type="text" class="form-control" id="discount" name="discount" placeholder="折扣 0-1之间" >
+						  </div>
+				        </form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="productManage.saveSubProduct()">提交</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="modal fade" id="dialogModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="exampleModalLabel">新增套餐</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form id="form">
+		        	<input type="hidden" name="productId" id="productId">
+		           <div class="input-group">
+					  <span class="input-group-addon" >名称</span>
+					  <input type="text" class="form-control" id="productName" name="productName" placeholder="套餐名称" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >单价</span>
+					  <input type="text" class="form-control" id="price" name="price" placeholder="单月金额" >
+				  </div>
+				  <div class="input-group" style="display: none;">
+					  <span class="input-group-addon" >类型</span>
+					  <input type="text" style="height: 30px;" class="form-control" name="productType" id="productType" value="2">
+				  </div>
+				  <!-- <div class="input-group">
+					  <span class="input-group-addon" >失效时间</span>
+					  <input type="text" style="height: 30px;width: 160px;" class="form-control easyui-datetimebox" name="deadTime" id="deadTime" >
+				  </div> -->
+		          <div class="form-group">
+		            <label for="couponDesc" class="control-label">说明:</label>
+		            <textarea class="form-control" id="productDesc" name="productDesc"></textarea>
+		          </div>
+		        </form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		        <button type="button" class="btn btn-primary" onclick="productManage.save()">提交</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
 		
 	</body>
 </html>

@@ -15,6 +15,13 @@ public class Product implements Serializable {
 	private Integer limitTime;
 	private Integer productType;
 	private String createTime;
+	private Integer status;
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	public Long getProductId() {
 		return productId;
 	}

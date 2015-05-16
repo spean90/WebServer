@@ -43,6 +43,13 @@ public class ManagerController {
 	@ResponseBody
 	public Object addManager(Manager manager,HttpServletRequest request) {
 		Map<String, Object> result = new HashMap<String, Object>();
+		
+		if (managerService.getManagerByAccount(manager.getManagerAccount())!=null) {
+			result.put("success", false);
+			result.put("msg","用户名已存在！");
+			return result;
+		};
+		
 		Manager oper = (Manager) request.getSession().getAttribute("manager");
 		manager.setAddMan(oper.getRealName());
 		manager.setAddTime(DateUtil.getDateTimeString(new Date()));

@@ -20,7 +20,7 @@ public class TestBacklogDao {
 		System.out.println(list.size());
 	}
 	//@Test
-	public void addBacklog() {
+	public void addBacklog() throws Exception {
 		Backlog backlog = new Backlog();
 		backlog.setStatus(0);
 		backlog.setType(1);
@@ -34,7 +34,7 @@ public class TestBacklogDao {
 	}
 
 	//@Test
-	public void updateBacklog() {
+	public void updateBacklog() throws Exception {
 		Backlog backlog = dao.getBacklogById(1000001l);
 		System.out.println(backlog.getStatus());
 		backlog.setStatus(2);

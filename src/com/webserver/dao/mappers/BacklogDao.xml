@@ -4,7 +4,7 @@
 
 	<select id="getBacklogListByParams" resultType="Backlog">
 		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,order_id orderId
+		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
 		from backlog
 		<where>
 		<if test="backlog.userId != null">
@@ -44,13 +44,22 @@
 	 		<if test="backlog.status!=null">
 	 			status = #{backlog.status},
 		 	</if>
+		 	<if test="backlog.managerAccount!=null">
+	 			manager_account = #{backlog.managerAccount},
+		 	</if>
+		 	<if test="backlog.updateTime!=null">
+	 			update_time = #{backlog.updateTime},
+		 	</if>
+		 	<if test="backlog.result!=null">
+	 			result = #{backlog.result},
+		 	</if>
 	 	</set>
 	 	where backlog_id = #{backlog.backlogId}
 	</update>
 	
 	<select id="getBacklogById" resultType="Backlog">
 		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,order_id orderId
+		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
 		from backlog
 		where backlog_id = #{backlogId}
 	</select>
