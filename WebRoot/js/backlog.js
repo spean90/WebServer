@@ -138,13 +138,13 @@ $(function(){
 		            {field:'result',title:'结果',width:200,align:'center'},
 		            {field:'status',title:'状态',width:80,align:'center',formatter: function(val,row,index){
 		            	if (val==1) {
-							return '<a href="#" class="btn btn-primary btn-xs" onclick=backlog.handle('+index+')>待处理</a>';
+							return '<div class="btn btn-primary btn-xs" onclick=backlog.handle('+index+')>待处理</div>';
 						}else if (val==2) {
-							return '<a href="#" class="btn btn-default btn-xs" onclick=backlog.continueHandle('+index+')>处理中..</a>';
+							return '<div class="btn btn-default btn-xs" onclick=backlog.continueHandle('+index+')>处理中..</div>';
 						}else if (val==3) {
-							return '<a href="#" class="btn btn-success btn-xs">已处理</a>';
+							return '<div class="btn btn-success btn-xs">已处理</div>';
 						}else if (val==4) {
-							return '<a href="#" class="btn btn-danger btn-xs">异常</a>';
+							return '<div class="btn btn-danger btn-xs">异常</div>';
 						}
 		            }},
 		            ]]

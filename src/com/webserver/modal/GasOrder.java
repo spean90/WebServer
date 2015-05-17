@@ -24,6 +24,30 @@ public class GasOrder implements Serializable {
 	private String gasAccount;
 	private Integer amount;//订购套餐数量
 	private String orderDesc;//订单描述；
+	private String payOrderId;//支付第三方生成的订单id;
+	private Long couponId;//使用的优惠券id；
+	private Double paySum;//实际支付金额  （sum-优惠券金额）
+	
+	
+	
+	public Long getCouponId() {
+		return couponId;
+	}
+	public void setCouponId(Long couponId) {
+		this.couponId = couponId;
+	}
+	public Double getPaySum() {
+		return paySum;
+	}
+	public void setPaySum(Double paySum) {
+		this.paySum = paySum;
+	}
+	public String getPayOrderId() {
+		return payOrderId;
+	}
+	public void setPayOrderId(String payOrderId) {
+		this.payOrderId = payOrderId;
+	}
 	public Long getoId() {
 		return oId;
 	}

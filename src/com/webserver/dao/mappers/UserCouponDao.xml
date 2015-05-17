@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.UserCouponDao">
+
+	<select id="getUserCouponListByParams" resultType="UserCoupon">
+		select t.id,t.user_id userId,t.coupon_id couponId,t.coupon_package_id couponPackageId,
+		t.create_time createTime,a.dead_time deadTime,a.coupon_name couponName,a.type type,a.is_deliver isDeliver,
+		a.sum sum,a.coupon_desc couponDesc,a.product_ids productIds
+		from user_coupon t
+		left jion coupon a on t.coupon_id=a.coupon_id
+		<where>
+		<if test="userCoupon.userId != null and userCoupon.userId != ''">
+			and t.user_id  = #{userCoupon.userId} 
+		</if>
+		<if test="userCoupon.deadTime != null and userCoupon.deadTime != ''">
+			and a.dead_time >= #{userCoupon.deadTime}
+		</if>
+		<if test="userCoupon.type != null">
+			and a.type = #{userCoupon.type}
+		</if>
+		</where>
+		order by t.id desc
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addCoupon" parameterType="UserCoupon" >
+		insert into user_coupon (user_id, coupon_id,coupon_package_id, create_time) 
+		VALUES (#{userCoupon.userId}, #{userCoupon.couponId},  #{userCoupon.couponPackageId},#{coupon.createTime})
+	</insert>
+	
+	
+	<select id="getCouponListByIds" resultType="UserCoupon">
+		select coupon_id couponId,coupon_name couponName, type, is_deliver isDeliver,sum , coupon_desc couponDesc,
+		create_time createTime,dead_time deadTime,product_ids productIds
+		from coupon
+		<if test="couponIds!=null and couponIds!=''">
+			where coupon_id in
+			<foreach item="item" index="index" collection="couponIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by coupon_id DESC
+	</select>
+	
+	
+	 
+	 <update id="updateCoupon" parameterType="UserCoupon">
+		update coupon 
+		<set>
+	 		<if test="coupon.couponName!=null">
+	 			coupon_name = #{coupon.couponName},
+		 	</if>
+		 	<if test="coupon.couponDesc!=null">
+		 		coupon_desc = #{coupon.couponDesc},
+		 	</if>
+	 	</set>
+	 	where coupon_id = #{coupon.couponId}
+	</update>
+	
+	 <delete id="deleteCouponById" parameterType="java.lang.Long">
+	 	delete from coupon 
+	 	where coupon_id = #{couponId}
+	 </delete>
+</mapper>
