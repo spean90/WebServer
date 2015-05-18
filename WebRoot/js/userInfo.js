@@ -33,15 +33,14 @@ var playerManage = {
 				Modal.showConfirm('确定要给"'+playerManage.currentUserName+'"发送礼包"'+packageNames+'"吗？',null,function(){
 					var config = {
 							type:"post",
-							url:'/couponPackage/deleteCouponPackageById.do?couponPackageId='+row.couponPackageId,
+							url:'/userCoupon/addUserCoupon.do?couponPackageIds='+packageIds+"&userId="+playerManage.currentUserId,
 							success:function(data){
 								if(data.code == "0000"){
-									Modal.showAlert('删除成功');
-									$('#couponModal').modal('hide');
-									$('#couponPackageGrid').datagrid('reload');
+									Modal.showAlert('发送成功');
+									$('#detailModal').modal('hide');
 								}else{
 									Modal.showAlert('服务器出错！');
-									$('#couponModal').modal('hide');
+									$('#detailModal').modal('hide');
 								}
 							}
 					}
