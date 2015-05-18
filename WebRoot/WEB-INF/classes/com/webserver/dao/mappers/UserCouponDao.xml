@@ -7,7 +7,7 @@
 		t.create_time createTime,a.dead_time deadTime,a.coupon_name couponName,a.type type,a.is_deliver isDeliver,
 		a.sum sum,a.coupon_desc couponDesc,a.product_ids productIds
 		from user_coupon t
-		left jion coupon a on t.coupon_id=a.coupon_id
+		left join coupon a on t.coupon_id=a.coupon_id
 		<where>
 		<if test="userCoupon.userId != null and userCoupon.userId != ''">
 			and t.user_id  = #{userCoupon.userId} 
@@ -26,9 +26,9 @@
 	</select>
 	
 	
-	<insert id="addCoupon" parameterType="UserCoupon" >
+	<insert id="addUserCoupon" parameterType="UserCoupon" >
 		insert into user_coupon (user_id, coupon_id,coupon_package_id, create_time) 
-		VALUES (#{userCoupon.userId}, #{userCoupon.couponId},  #{userCoupon.couponPackageId},#{coupon.createTime})
+		VALUES (#{userCoupon.userId}, #{userCoupon.couponId},  #{userCoupon.couponPackageId},#{userCoupon.createTime})
 	</insert>
 	
 	

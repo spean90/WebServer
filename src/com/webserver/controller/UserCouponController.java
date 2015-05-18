@@ -3,6 +3,8 @@ package com.webserver.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import com.webserver.service.IUserCouponService;
 @RequestMapping("userCoupon")
 public class UserCouponController {
 
+	private Logger logger = LoggerFactory.getLogger(UserCouponController.class);
 	@Resource
 	private IUserCouponService userCouponService;
 	
@@ -31,6 +34,13 @@ public class UserCouponController {
 	public Object addUserCoupon(Long userId,String couponPackageIds,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (!StringUtils.isEmpty(couponPackageIds)) {
+			try {
+				userCouponService.addUserCouponByPackageId(userId, couponPackageIds, request);
+			} catch (Exception e) {
+				logger.error("err:", e);
+				resultBean.setCode("5001");
+				resultBean.setMsg(e.getLocalizedMessage());
+			}
 		}
 		return resultBean;
 	}

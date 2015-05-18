@@ -30,6 +30,8 @@ var playerManage = {
 					packageIds += ','+rows[i].couponPackageId;
 					packageNames +=','+rows[i].couponPackageName;
 				}
+				packageIds = packageIds.substring(1);
+				packageNames = packageNames.substring(1);
 				Modal.showConfirm('确定要给"'+playerManage.currentUserName+'"发送礼包"'+packageNames+'"吗？',null,function(){
 					var config = {
 							type:"post",

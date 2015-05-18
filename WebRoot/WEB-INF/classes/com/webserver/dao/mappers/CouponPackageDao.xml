@@ -41,4 +41,19 @@
 	 	where coupon_package_id = #{couponPackage.couponPackageId}
 	</update>
 	
+	<select id="getCouponPackageListByIds" resultType="CouponPackage">
+		select coupon_package_id couponPackageId,coupon_package_name couponPackageName, create_time createTime,
+		package_desc packageDesc,status,coupon_ids couponIds
+		from coupon_package
+		<if test="couponPackageIds!=null">
+			where coupon_package_id in
+			<foreach item="item" index="index" collection="couponPackageIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by coupon_package_id desc
+	</select>
+	
+	
+	
 </mapper>

@@ -24,5 +24,6 @@ public interface CouponPackageDao {
 	
 	public int deleteCouponPackageById(@Param("couponPackageId")Long couponPackageId)throws Exception;
 	
+	public List<CouponPackage> getCouponPackageListByIds(@Param("couponPackageIds")String[] couponPackageIds);
 	
 }

@@ -11,4 +11,7 @@ public interface IUserCouponService {
 	public PageData<UserCoupon>  getUserCouponListByParams(UserCoupon userCoupon,PageBean pageBean);
 	
 	public void addUserCoupon(UserCoupon userCoupon,HttpServletRequest request);
+	
+	public void addUserCouponByPackageId(Long userId,String couponPackageIds,
+			HttpServletRequest request) throws Exception;
 }
