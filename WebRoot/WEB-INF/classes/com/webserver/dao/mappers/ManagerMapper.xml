@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.webserver.dao.ManagerDao">
+	<!--<cache />  开启缓存 -->
+	
+	 <select id="getManagerByAccount" parameterType="string" resultType="Manager">
+	   SELECT m_id mId,manager_account managerAccount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan
+	   from manager
+	   <where>
+	   		<if test="managerAccount != null">
+	   			manager_account = #{managerAccount}
+	   		</if>
+	   </where>
+	 </select>
+	 
+	 <select id="login" parameterType="string" resultType="Manager">
+	   SELECT m_id mId,manager_account managerAccount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan
+	   from manager
+	   where manager_account = #{managerAccount} and password = #{password}
+	 </select>
+	 
+	 <select id="getManagerByParams" parameterType="Manager" resultType="Manager">
+	   SELECT t.m_id mId,t.manager_account managerAccount,t.password password,t.real_name realName,t.add_time addTime,
+	   t.is_lock isLock,t.role_id roleId,t.add_man addMan,a.role_name roleName
+	   from manager t
+	   left join role_info a on t.role_id=a.role_id
+	  <where>
+	  		<if test="manager.mId!=null">
+	  			m_id = #{manager.mId}
+	  		</if>
+	  		<if test="manager.managerAccount!=null">
+	  			and	manager_account = #{manager.managerAccount}
+	  		</if>
+	  		<if test="manager.realName!=null">
+	  			and real_name = #{manager.realName}
+	  		</if>
+	  		<if test="manager.isLock!=null">
+	  			and is_lock = #{manager.isLock}
+	  		</if>
+	  		<if test="manager.roleId!=null">
+	  			and role_id = #{manager.roleId}
+	  		</if>
+	  		<if test="manager.addMan!=null">
+	  			and add_man = #{manager.addMan}
+	  		</if>
+	  </where>
+	  order by m_id 
+	  limit #{pageBean.start},#{pageBean.rows}
+	 </select>
+	 
+	 <insert id="insertManager" parameterType="Manager">
+	 	insert into manager (manager_account,password,real_name,add_time,is_lock,role_id,add_man)
+	 	values (#{manager.managerAccount},#{manager.password},#{manager.realName},#{manager.addTime},#{manager.isLock},#{manager.roleId},#{manager.addMan})
+	 </insert>
+	 
+	  <update id="updateManager" parameterType="Manager">
+	 	update manager 
+	 	<set>
+	 		<if test="manager.managerAccount!=null">
+	 		manager_account = #{manager.managerAccount},
+		 	</if>
+		 	<if test="manager.realName!=null">
+		 		real_name = #{manager.realName},
+		 	</if>
+		 	<if test="manager.password!=null">
+		 		password = #{manager.password},
+		 	</if>
+		 	<if test="manager.roleId!=null">
+		 		role_id = #{manager.roleId},
+		 	</if>
+		 	<if test="manager.isLock!=null">
+		 		is_lock = #{manager.isLock},
+		 	</if>
+	 	</set>
+	 	where m_id = #{manager.mId}
+	 </update>
+	 
+	 <delete id="deleteManagerById" parameterType = "java.lang.Integer" >
+	 	delete from manager
+	 		where m_id =  #{mId}
+	 </delete>
+	 
+</mapper>

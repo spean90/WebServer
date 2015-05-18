@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.BacklogDao">
+
+	<select id="getBacklogListByParams" resultType="Backlog">
+		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
+		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
+		from backlog
+		<where>
+		<if test="backlog.userId != null">
+			and user_id = #{backlog.userId}
+		</if>
+		<if test="backlog.backlogId != null">
+			and backlog_id = #{backlog.backlogId}
+		</if>
+		<if test="backlog.type != null">
+			and type = #{backlog.type}
+		</if>
+		<if test="backlog.owner != null">
+			and owner = #{backlog.owner}
+		</if>
+		<if test="backlog.status != null">
+			and status = #{backlog.status}
+		</if>
+		<if test="backlog.managerAccount != null">
+			and manager_account = #{backlog.managerAccount}
+		</if>
+		</where>
+		order by backlog_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addBacklog" parameterType="Backlog" useGeneratedKeys="true" keyProperty="backlog.backlogId">
+		insert into backlog (user_id, recharge_time,  create_time,account,sum,type,company, owner,status,manager_account ,order_id) 
+		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime}, #{backlog.account},#{backlog.sum},#{backlog.type},#{backlog.company},#{backlog.owner}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.orderId})
+	</insert>
+	
+	<update id="updateBacklog"  parameterType="Backlog">
+		update backlog
+		<set>
+	 		<if test="backlog.status!=null">
+	 			status = #{backlog.status},
+		 	</if>
+		 	<if test="backlog.managerAccount!=null">
+	 			manager_account = #{backlog.managerAccount},
+		 	</if>
+		 	<if test="backlog.updateTime!=null">
+	 			update_time = #{backlog.updateTime},
+		 	</if>
+		 	<if test="backlog.result!=null">
+	 			result = #{backlog.result},
+		 	</if>
+	 	</set>
+	 	where backlog_id = #{backlog.backlogId}
+	</update>
+	
+	<select id="getBacklogById" resultType="Backlog">
+		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
+		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
+		from backlog
+		where backlog_id = #{backlogId}
+	</select>
+	
+</mapper>

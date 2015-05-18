@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.BankCardDao">
+
+	<select id="getBankCardListByParams" resultType="BankCard">
+		select bank_id bankId,user_id userId, account_type accountType, bank_account bankAccount, owner owner, bank 
+		from bank_card
+		<where>
+		<if test="bankCard.userId != null">
+			and user_id = #{bankCard.userId}
+		</if>
+		<if test="bankCard.bankId != null">
+			and bank_id = #{bankCard.bankId}
+		</if>
+		<if test="bankCard.accountType != null">
+			and account_type = #{bankCard.accountType}
+		</if>
+		<if test="bankCard.bankAccount != null">
+			and bank_account = #{bankCard.bankAccount}
+		</if>
+		<if test="bankCard.owner != null">
+			and owner = #{bankCard.owner}
+		</if>
+		<if test="bankCard.bank != null">
+			and bank = #{bankCard.bank}
+		</if>
+		</where>
+		order by bank_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addBankCard" parameterType="BankCard" useGeneratedKeys="true" keyProperty="bankCard.bankId">
+		insert into bank_card (user_id, account_type,  bank_account, owner, bank) 
+		VALUES (#{bankCard.userId}, #{bankCard.accountType},  #{bankCard.bankAccount}, #{bankCard.owner}, #{bankCard.bank})
+	</insert>
+	
+	 <delete id="deleteBankCard" parameterType="java.lang.Long">
+	 	delete from bank_card 
+	 	where bank_id = #{bankId}
+	 </delete>
+	
+</mapper>

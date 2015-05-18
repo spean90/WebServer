@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.MessageDao">
+
+	<select id="getUserfullMessage" resultType="Message">
+		select message_id messageId,phone, deadline, code
+		from message
+		<where>
+		<if test="message.phone != null">
+			and phone = #{message.phone}
+		</if>
+		<if test="message.code != null">
+			and code = #{message.code}
+		</if>
+		<if test="message.deadline != null">
+			and deadline >= #{message.deadline}
+		</if>
+		</where>
+		order by deadline desc
+		limit 1
+	</select>
+	
+	
+	<insert id="addMessage" parameterType="Message">
+		insert into message (phone, deadline,code) 
+		VALUES (#{message.phone}, #{message.deadline},#{message.code})
+	</insert>
+	
+</mapper>

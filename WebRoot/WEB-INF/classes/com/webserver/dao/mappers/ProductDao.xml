@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.ProductDao">
+
+	<select id="getProductListByParams" resultType="Product">
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime,status
+		from product
+		<where>
+		<if test="product.productId != null">
+			and product_id = #{product.productId}
+		</if>
+		<if test="product.productName != null">
+			and product_name = #{product.productName}
+		</if>
+		<if test="product.productType != null">
+			and product_type = #{product.productType}
+		</if>
+		<if test="product.status != null">
+			and status = #{product.status}
+		</if>
+		</where>
+		order by product_id DESC
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	<select id="getProductListIds" resultType="Product">
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime,status
+		from product
+		<if test="productIds!=null and productIds!=''">
+			where product_id in
+			<foreach item="item" index="index" collection="productIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by product_id DESC
+	</select>
+	
+	
+	<insert id="addProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product.productId">
+		insert into product (product_name, product_desc,  price, limit_time, product_type, create_time,status) 
+		VALUES (#{product.productName}, #{product.productDesc}, #{product.price}, #{product.limitTime}, #{product.productType}, #{product.createTime}, #{product.status})
+	</insert>
+	
+	<update id="updateProduct" parameterType="Product">
+		update product 
+		<set>
+	 		<if test="product.productName!=null">
+	 			product_name = #{product.productName},
+		 	</if>
+		 	<if test="product.productDesc!=null">
+		 		product_desc = #{product.productDesc},
+		 	</if>
+		 	<if test="product.price!=null">
+		 		price = #{product.price},
+		 	</if>
+		 	<if test="product.limitTime!=null">
+		 		limit_time = #{product.limitTime},
+		 	</if>
+		 	<if test="product.productType!=null">
+		 		product_type = #{product.productType},
+		 	</if>
+		 	<if test="product.status != null">
+				status = #{product.status},
+			</if>
+	 	</set>
+	 	where product_id = #{product.productId}
+	</update>
+	
+	 <delete id="deleteProductById" parameterType="java.lang.Long">
+	 	delete from product
+	 	where product_id = #{productId}
+	 </delete>
+	
+</mapper>
