@@ -17,6 +17,7 @@ import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.MD5;
+import com.webserver.common.util.message.MessageUtil;
 import com.webserver.modal.Message;
 import com.webserver.modal.UserInfo;
 import com.webserver.service.IMessageService;
@@ -119,16 +120,19 @@ public class IUserInfoController {
 	
 	@RequestMapping("/sendMessage")
 	@ResponseBody
-	public Object sendMessge(String phone) {
+	public Object sendMessge(String phone,String type) {
+		//type:3032.注册；3033，找回密码
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.MINUTE, 10);
 		ResultBean resultBean = new ResultBean();
 		Message message = new Message();
-		message.setCode((int)(Math.random()*1000000)+"");
+		String code = (int)(Math.random()*1000000)+"";
+		message.setCode(code);
 		message.setPhone(phone);
 		message.setDeadline(DateUtil.getDateTimeString(calendar.getTime()));
 		try {
 			messageService.addMessage(message);
+			MessageUtil.sendCheckCode(phone, code, type);
 		} catch (Exception e) {
 			logger.error("添加验证码失败:", e);
 			resultBean.setCode("1001");

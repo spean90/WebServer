@@ -1,4 +1,5 @@
-package com.webserver.test.message;
+package com.webserver.common.util.message;
+
 
 public class MobileMsg {
 	
@@ -23,6 +24,11 @@ public class MobileMsg {
 	}
 	public void setResult(ResultMsg result) {
 		this.result = result;
+	}
+	@Override
+	public String toString() {
+		
+		return "error_code:"+error_code+";    reason:"+reason+";     result:"+result.toString();
 	}
 	
 	

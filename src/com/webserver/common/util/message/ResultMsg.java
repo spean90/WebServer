@@ -1,4 +1,4 @@
-package com.webserver.test.message;
+package com.webserver.common.util.message;
 
 public class ResultMsg {
 	
@@ -24,5 +24,10 @@ public class ResultMsg {
 		this.sid = sid;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "count:"+count+";  fee="+fee+"; sid:"+sid;
+	}
 	
 }
