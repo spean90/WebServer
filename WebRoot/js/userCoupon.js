@@ -17,6 +17,7 @@ $(function(){
 		title : '用户优惠券列表', 
 		fitColumns : true,
 		columns : [[
+		            {field:'userId',title:'用户id',width:100,align:'center'},
 		            {field:'couponName',title:'优惠券名',width:100,align:'center'},
 		            {field:'type',title:'类型',width:100,align:'center',formatter:function(val){
 		            	if(val==1){

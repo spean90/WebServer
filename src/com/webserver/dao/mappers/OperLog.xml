@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.webserver.dao.OperLogDao">
 
-	<select id="getLogList" parameterType="OperLog" resultType="OperLog">
+	<select id="getOperLogListByParams" parameterType="OperLog" resultType="OperLog">
 		select id, m_id mId, oper_time operTime, oper_action operAction, url, params, status, ip from oper_log
 		<where>
 		<if test="operLog.mId != null and operLog.mId != ''">
@@ -10,6 +10,17 @@
 		</if>
 		<if test="operLog.status != null ">
 			and status = #{operLog.status}
+		</if>
+		<if test="operLog.operAction != null and operLog.operAction != null">
+			and oper_action like concat('%',#{operLog.operAction},'%')
+		</if>
+		<if test="operLog.beginTime != null and operLog.beginTime != '' ">
+			and oper_time > #{operLog.beginTime}
+		</if>
+		<if test="operLog.endTime != null and operLog.endTime != '' ">
+			<![CDATA[
+				and oper_time <= #{operLog.endTime}
+			]]>
 		</if>
 		</where>
 		order by oper_time desc limit #{pageBean.start}, #{pageBean.rows}
