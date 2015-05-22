@@ -6,13 +6,13 @@
 	
 	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/bootstrap-ie6.min.css" />
-	<link rel="stylesheet" type="text/css" href="/common/easyui/themes/bootstrap/easyui.css" />
-	<link rel="stylesheet" type="text/css" href="/common/easyui/themes/icon.css" />
-	<link rel="stylesheet" type="text/css" href="/common/easyui/themes/color.css" />
+	<link rel="stylesheet" type="text/css" href="common/easyui/themes/bootstrap/easyui.css" />
+	<link rel="stylesheet" type="text/css" href="common/easyui/themes/icon.css" />
+	<link rel="stylesheet" type="text/css" href="common/easyui/themes/color.css" />
 	<link rel="stylesheet" type="text/css" href="common/bootstrap/css/ie.css" />
 	<script type="text/javascript" src="common/easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="/common/easyui/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="/common/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="common/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="common/bootstrap/js/bootstrap.min.js"></script>
 	
 	<script type="text/javascript">
 		var ie = null;
@@ -70,7 +70,7 @@
 					if(data.success) {
 						//登陆成功后先清除原来的cookie
 // 						clearCookie();
-						window.location.href = "/index.html";
+						window.location.href = "index.html";
 					}
 					else {
 						$("#authCodeImage").click();
@@ -93,7 +93,7 @@
 		})
 	</script>
 </head>
-<body style="background-image: url(/common/images/bg2.png)">
+<body style="background-image: url(common/images/bg2.png)">
 	<div id="event-window" class="modal" style="width: 360px;margin-left: -180px; top: 200px">
 		<div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
