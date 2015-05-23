@@ -1,0 +1,88 @@
+var productCount = {
+		productData : [],
+		searchGasOrder : function() {
+			var userId = $('#userId').val();
+			var orderId = $('#orderId').val();
+			$('#gasOrderGrid').datagrid('load',{
+				userId : userId,
+				orderId : orderId
+			})
+		},
+		initChart : function() {
+			var config = {
+					url : "/gasOrder/countProductByParams.do",
+					success : function(data) {
+						var sum=0;
+						var paySum=0;
+						data = data.rows;
+						for(var i=0;i<data.length;i++) {
+							var row = [];
+							row.push(data[i].productName);
+							row.push(data[i].sum);
+							productCount.productData.push(row);
+							sum += parseInt(data[i].sum);
+							paySum += parseInt(data[i].paySum);
+						}
+						$('#sum').text(sum);
+						$('#paySum').text(paySum);
+						 $('#productChart').highcharts({
+						        chart: {
+						            plotBackgroundColor: null,
+						            plotBorderWidth: null,
+						            plotShadow: false
+						        },
+						        credits:{
+						            enabled:false // 禁用版权信息
+						        },
+						        title: {
+						            text: '套餐销售情况'
+						        },
+						        tooltip: {
+						    	    pointFormat: '{series.name}: <b>￥{point.y:.1f}</b>'
+						        },
+						        plotOptions: {
+						            pie: {
+						                allowPointSelect: true,
+						                cursor: 'pointer',
+						                dataLabels: {
+						                    enabled: true,
+						                    color: '#000000',
+						                    connectorColor: '#000000',
+						                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+						                }
+						            }
+						        },
+						        series: [{
+						            type: 'pie',
+						            name: '金额',
+						            data: productCount.productData
+						        }]
+						    });
+					}
+			}
+			Modal.ajax(config);
+		},
+		initGrid : function() {
+			$('#productGrid').datagrid({
+				url : '/gasOrder/countProductByParams.do',
+				title : '套餐销售情况列表', 
+				fitColumns : true,
+				pagination : true,
+				columns : [[
+				            {field:'productName',title:'套餐名',width:100,align:'center'},
+				            {field:'amount',title:'销售数量',width:100,align:'center'},
+				            {field:'sum',title:'总销售金额',width:100,align:'center'},
+				            {field:'paySum',title:'总支付金额',width:100,align:'center'}
+				            ]]
+				
+			})
+		}
+		
+}
+
+$(function(){
+	productCount.initChart();
+	productCount.initGrid();
+})
+
+

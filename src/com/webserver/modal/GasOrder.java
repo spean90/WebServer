@@ -17,6 +17,7 @@ public class GasOrder implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long oId; //数据库自增id;主键
 	private Long userId;
+	private Long subProductId;
 	private Long productId;
 	private String orderId;
 	private Double sum;
@@ -28,8 +29,37 @@ public class GasOrder implements Serializable {
 	private Long couponId;//使用的优惠券id；
 	private Double paySum;//实际支付金额  （sum-优惠券金额）
 	
+	/**
+	 * 查询用的属性
+	 */
+	private String beginTime;
+	private String endTime;
+	private String productName;
 	
-	
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+	public String getBeginTime() {
+		return beginTime;
+	}
+	public void setBeginTime(String beginTime) {
+		this.beginTime = beginTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public Long getSubProductId() {
+		return subProductId;
+	}
+	public void setSubProductId(Long subProductId) {
+		this.subProductId = subProductId;
+	}
 	public Long getCouponId() {
 		return couponId;
 	}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/js/productCount.js"></script>
+		<script type="text/javascript" src="/common/highchart/highcharts.js"></script>
+	</head>
+	<body style="height: 1200px;">
+			<div style="margin-bottom: 10px;">
+				用户id：<input type="text" name="userId" id="userId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+				订单号：<input type="text" name="orderId" id="orderId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+				<button class="btn btn-success" onclick="gasOrder.searchGasOrder()">查询</button>
+			</div>
+			<div id="productGrid" style="width: 900px;height: 150px"></div>
+			<div class="row">
+				<div class="col-md-2 col-sm-offset-2" style="margin-top: 100px;">
+					<div>
+						<strong>销售额：</strong><b id="sum"></b>元
+					</div>
+					<br/>
+					<div>
+						<strong>收入：</strong><b id="paySum"></b>元
+					</div>
+				</div>
+				<div class="col-md-8" id="productChart" "></div>
+			</div>
+		
+	</body>
+</html>

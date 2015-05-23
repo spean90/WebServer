@@ -22,4 +22,10 @@ public class GasOrderController {
 	public Object getGasOrderListByParams(GasOrder gasOrder,PageBean pageBean) {
 		return gasOrderService.getGasOrderListByParams(gasOrder, pageBean);
 	}
+	
+	@RequestMapping("countProductByParams")
+	@ResponseBody
+	public Object countProductByParams(GasOrder gasOrder,PageBean pageBean) {
+		return gasOrderService.countProductByParams(gasOrder,pageBean);
+	}
 }

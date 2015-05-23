@@ -85,8 +85,8 @@ function show(a, name, url) {
 		$(a).append('<em class="menu-icon-point"></em>');
 		$('#address').html(name);
 		var iframe = document.getElementById("centerIFrame");
-		iframe.style.height = "600px";
 		iframe.src = url;
+		iframe.style.height = "600px";
 	}
 }
 

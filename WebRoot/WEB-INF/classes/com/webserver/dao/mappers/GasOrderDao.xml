@@ -3,7 +3,7 @@
 <mapper namespace="com.webserver.dao.GasOrderDao">
 
 	<select id="getGasOrderListByParams" resultType="GasOrder">
-		select oid oId,user_id userId, product_id productId, order_id orderId, sum sum, create_time createTime,gas_account gasAccount,amount,order_desc orderDesc,
+		select oid oId,user_id userId,sub_product_id subProductId, product_id productId, order_id orderId, sum sum, create_time createTime,gas_account gasAccount,amount,order_desc orderDesc,
 		pay_order_id payOrderId ,coupon_id couponId,pay_sum paySum
 		from gas_order
 		<where>
@@ -19,8 +19,36 @@
 		<if test="gasOrder.payOrderId != null and gasOrder.payOrderId != ''">
 			and pay_order_id = #{gasOrder.payOrderId}
 		</if>
+		<if test="gasOrder.beginTime != null and gasOrder.beginTime != ''">
+			and create_time >= #{gasOrder.beginTime}
+		</if>
+		<if test="gasOrder.endTime != null and gasOrder.endTime != ''">
+			<![CDATA[
+				and create_time <= #{gasOrder.endTime}
+			]]>
+		</if>
 		</where>
 		order by oid desc 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	<select id="countProductByParams" resultType="java.util.Map">
+		select t.product_id productId,sum(amount) amount,sum(t.sum) sum, sum(t.pay_sum) paySum,a.product_name productName
+		from gas_order t
+		left join product a on t.product_id = a.product_id
+		<where>
+		<if test="gasOrder.beginTime != null and gasOrder.beginTime != ''">
+			and create_time >= #{gasOrder.beginTime}
+		</if>
+		<if test="gasOrder.endTime != null and gasOrder.endTime != ''">
+			<![CDATA[
+				and create_time <= #{gasOrder.endTime}
+			]]>
+		</if>
+		</where>
+		group by productId
 		<if test="pageBean!= null">
 			limit #{pageBean.start}, #{pageBean.rows}
 		</if>
