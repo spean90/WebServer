@@ -28,6 +28,12 @@
 		</if>
 	</select>
 	
+	<select id="getGasCardById" resultType="GasCard">
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner 
+		from gas_card
+		where gas_id = #{gasId}
+	</select>
+	
 	
 	<insert id="addGasCard" parameterType="GasCard" useGeneratedKeys="true" keyProperty="gasCard.gasId">
 		insert into gas_card (user_id, gas_account,company, owner) 

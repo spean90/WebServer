@@ -60,12 +60,13 @@ $(function(){
 		title : '用户列表', 
 		fitColumns : true,
 		columns : [[
-		            {field:'userName',title:'账户',width:100,align:'center'},
-		            {field:'realName',title:'用户姓名',width:100,align:'center'},
-		            {field:'idCard',title:'身份证号',width:200,align:'center'},
+		            {field:'userId',title:'用户ID',width:80,align:'center'},
+		            {field:'userName',title:'账户',width:80,align:'center'},
+		            {field:'realName',title:'用户姓名',width:80,align:'center'},
+		            {field:'idCard',title:'身份证号',width:150,align:'center'},
 		            {field:'addTime',title:'注册时间',width:100,align:'center'},
-		            {field:'userId',title:'操作',width:100,align:'center',formatter : function(val,row){
-		            	return '<div class="btn btn-success btn-xs" onclick=playerManage.sendCoupon('+val+',"'+row.userName+'")>发送礼包</div>'
+		            {field:'pay_password',title:'操作',width:100,align:'center',formatter : function(val,row){
+		            	return '<div class="btn btn-success btn-xs" onclick=playerManage.sendCoupon('+row.userId+',"'+row.userName+'")>发送礼包</div>'
 		            }}
 		            ]]
 		

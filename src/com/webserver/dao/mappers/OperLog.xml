@@ -11,7 +11,7 @@
 		<if test="operLog.status != null ">
 			and status = #{operLog.status}
 		</if>
-		<if test="operLog.operAction != null and operLog.operAction != null">
+		<if test="operLog.operAction != null and operLog.operAction != ''">
 			and oper_action like concat('%',#{operLog.operAction},'%')
 		</if>
 		<if test="operLog.beginTime != null and operLog.beginTime != '' ">

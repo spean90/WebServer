@@ -12,9 +12,12 @@ public class SubProduct implements Serializable{
 	private Long productId;
 	private Integer month;
 	private Double discount;
-	private Double price;
-	private Double sum;
 	private Integer status;
+	
+	/**
+	 * 查询属性
+	 */
+	private Double price;
 	
 	public Integer getStatus() {
 		return status;
@@ -59,12 +62,6 @@ public class SubProduct implements Serializable{
 	}
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-	public Double getSum() {
-		return sum;
-	}
-	public void setSum(Double sum) {
-		this.sum = sum;
 	}
 	
 }

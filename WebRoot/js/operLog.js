@@ -2,9 +2,17 @@ var operLog = {
 		searchOperLog : function() {
 			var mId = $('#mId').val();
 			var operAction = $('#operAction').val();
+			var beginTime = $('#beginTime').datebox('getValue')+" 00:00:00";
+			var endTime = $('#endTime').datebox('getValue')+" 59:59:59";
+			if (beginTime>endTime) {
+				Modal.showAlert('开始时间不能大于结束时间');
+				return;
+			}
 			$('#operLogGrid').datagrid('load',{
 				mId : mId,
-				operAction : operAction
+				operAction : operAction,
+				beginTime : beginTime,
+				endTime : endTime
 			})
 		}
 		

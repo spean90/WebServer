@@ -28,6 +28,10 @@ public class GasOrder implements Serializable {
 	private String payOrderId;//支付第三方生成的订单id;
 	private Long couponId;//使用的优惠券id；
 	private Double paySum;//实际支付金额  （sum-优惠券金额）
+	private String payAccount;//支付账户；
+	private Integer payType;//支付方式1-支付宝；2-线下支付；
+	private Integer status;//订单状态;1-未支付；2-已支付；
+	private String receiver;//收款人;
 	
 	/**
 	 * 查询用的属性
@@ -35,7 +39,40 @@ public class GasOrder implements Serializable {
 	private String beginTime;
 	private String endTime;
 	private String productName;
+	private String userName;
 	
+	
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPayAccount() {
+		return payAccount;
+	}
+	public void setPayAccount(String payAccount) {
+		this.payAccount = payAccount;
+	}
+	public Integer getPayType() {
+		return payType;
+	}
+	public void setPayType(Integer payType) {
+		this.payType = payType;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getReceiver() {
+		return receiver;
+	}
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
 	public String getProductName() {
 		return productName;
 	}

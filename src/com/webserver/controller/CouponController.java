@@ -30,6 +30,9 @@ public class CouponController {
 	@RequestMapping("getCouponListByParams")
 	@ResponseBody
 	public Object getCouponListByParams(Coupon coupon,PageBean pageBean) throws Exception {
+		if (StringUtils.isEmpty(coupon.getDeadTime())) {
+			coupon.setDeadTime(DateUtil.getDateTimeString(new Date()));
+		}
 		return couponService.getCouponListByParams(coupon, pageBean);
 	}
 	@RequestMapping("getCouponListByIds")

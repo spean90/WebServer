@@ -17,4 +17,5 @@ public interface GasOrderDao {
 	
 	public List<Map<String, Object>> countProductByParams(@Param("gasOrder")GasOrder gasOrder,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData) throws Exception;
 
+	public int updateGasOrder(@Param("gasOrder")GasOrder gasOrder)throws Exception;
 }

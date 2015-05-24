@@ -27,4 +27,9 @@ public class OperLogServiceImpl implements IOperLogService {
 		return pageData;
 	}
 
+	@Override
+	public void addOperLog(OperLog operLog) {
+		operLogDao.addLog(operLog);
+	}
+
 }

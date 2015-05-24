@@ -4,16 +4,26 @@
 
 	
 	<select id="getSubProductListByProductId" resultType="SubProduct">
-		select sub_product_id subProductId,product_id productId, month,discount,price,sum,create_time createTime,status
+		select sub_product_id subProductId,product_id productId, month,discount,create_time createTime,status
 		from sub_product
 		<if test="productId!=null and productId!=''">
 			where product_id = #{productId}
 		</if>
 	</select>
 	
+	
+	<select id="getSubProductById" resultType="SubProduct">
+		select t.sub_product_id subProductId,t.product_id productId, t.month,t.discount,t.create_time createTime,t.status
+		,a.price price
+		from sub_product t
+		left join product a on a.product_id = t.product_id
+		where t.sub_product_id = #{subProductId}
+	</select>
+	
+	
 	<insert id="addSubProduct" parameterType="SubProduct">
-		insert into sub_product (product_id, month,  price, discount, sum, create_time,status) 
-		VALUES (#{subProduct.productId}, #{subProduct.month}, #{subProduct.price}, #{subProduct.discount}, #{subProduct.sum}, #{subProduct.createTime}, #{subProduct.status})
+		insert into sub_product (product_id, month,   discount, create_time,status) 
+		VALUES (#{subProduct.productId}, #{subProduct.month},  #{subProduct.discount}, #{subProduct.createTime}, #{subProduct.status})
 	</insert>
 	
 	<update id="updateSubProduct" parameterType="SubProduct">

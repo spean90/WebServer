@@ -6,11 +6,13 @@
 		<script type="text/javascript" src="/js/operLog.js"></script>
 	</head>
 	<body>
-		<div>
+		<div style="margin-bottom: 10px;">
 			管理员id：<input type="text" name="mId" id="mId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			操作事项：<input type="text" name="operAction" id="operAction" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			操作时间：<input name="beginTime" id="beginTime" class="easyui-datebox" value="new Date();" style="width: 100px;height: 25px;">-
+			<input name="endTime" id="endTime"  class="easyui-datebox" value="new Date();"  style="width: 100px;height: 25px;">
 			<button class="btn btn-success" onclick="operLog.searchOperLog()">查询</button>
 		</div>
-		<div id="operLogGrid" style="height: 600px;"></div>
+		<div id="operLogGrid" style="height: 500px;"></div>
 	</body>
 </html>

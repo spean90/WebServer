@@ -156,6 +156,7 @@ $(function(){
 		title : '折扣列表', 
 		toolbar : '#sub_tbar',
 		columns : [[
+		            {field:'subProductId',title:'id',width:150,align:'center'},
 		            {field:'month',title:'月数',width:150,align:'center'},
 		            {field:'discount',title:'折扣',width:150,align:'center'},
 		            {field:'status',title:'操作',width:100,align:'center',formatter:function(val,row){

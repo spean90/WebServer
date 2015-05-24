@@ -79,6 +79,7 @@ $(function() {
 		singleSelect : true,
 		fitColumns : true,
 		columns : [[
+		            {field:'mId',title:'管理员id',width:100,align:'center'},
 		            {field:'managerAccount',title:'账号',width:100,align:'center'},
 		            {field:'realName',title:'真实姓名',width:100,align:'center'},
 		            {field:'roleName',title:'所属角色',width:100,align:'center'},

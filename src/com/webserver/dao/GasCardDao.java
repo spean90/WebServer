@@ -13,5 +13,5 @@ public interface GasCardDao {
 	public List<GasCard> getGasCardListByParams(@Param("gasCard")GasCard gasCard,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
 	public int addGasCard(@Param("gasCard")GasCard gasCard);
 	public int deleteGasCardById(@Param("gasId")Long gasId);
-
+	public GasCard getGasCardById(@Param("gasId")Long gasId);
 }

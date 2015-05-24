@@ -59,8 +59,12 @@ public class BacklogServiceImpl implements IBacklogService {
 	}
 
 	@Override
-	public int addBacklog(Backlog backlog) throws Exception {
-		// TODO Auto-generated method stub
+	public int addBacklog(Backlog backlog) {
+		try {
+			backlogDao.addBacklog(backlog);
+		} catch (Exception e) {
+			logger.error("添加代办事项出错：", e);
+		}
 		return 0;
 	}
 

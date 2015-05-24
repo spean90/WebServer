@@ -15,8 +15,11 @@ import org.springframework.stereotype.Service;
 import com.webserver.common.util.AuthCodeUtil;
 import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.MD5;
+import com.webserver.common.util.StringUtil;
 import com.webserver.dao.ManagerDao;
+import com.webserver.dao.OperLogDao;
 import com.webserver.modal.Manager;
+import com.webserver.modal.OperLog;
 import com.webserver.service.ISysService;
 
 @Service
@@ -24,6 +27,8 @@ public class SysServiceImpl implements ISysService {
 
 	@Resource
 	private ManagerDao managerDao;
+	@Resource
+	private OperLogDao operLogDao;
 
 	@Override
 	public Map<String, Object> login(HttpServletRequest request,
@@ -41,6 +46,10 @@ public class SysServiceImpl implements ISysService {
 				Manager manager = managerList.get(0);
 				session.setAttribute("manager", manager);
 				map.put(ConstantUtil.RETURN_SUCCESS, true);
+				OperLog operLog = new OperLog(request);
+				operLog.setOperAction("登录");
+				operLog.setParams(StringUtil.toJson(manager));
+				operLogDao.addLog(operLog);
 			} else {
 				map.put(ConstantUtil.RETURN_SUCCESS, false);
 				map.put(ConstantUtil.RETURN_MESSAGE, "帐号或密码错误");

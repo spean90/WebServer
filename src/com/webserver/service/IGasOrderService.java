@@ -3,6 +3,8 @@ package com.webserver.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.modal.GasOrder;
@@ -14,4 +16,6 @@ public interface IGasOrderService {
 	public int addGasOrder(GasOrder gasOrder);
 	
 	public PageData<Map<String, Object>> countProductByParams(GasOrder gasOrder,PageBean pageBean);
+	
+	public int receiveOrder(GasOrder gasOrder,HttpServletRequest request);
 }
