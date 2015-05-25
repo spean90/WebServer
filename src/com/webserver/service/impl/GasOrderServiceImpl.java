@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,12 +19,15 @@ import com.webserver.common.util.DateUtil;
 import com.webserver.dao.GasCardDao;
 import com.webserver.dao.GasOrderDao;
 import com.webserver.dao.SubProductDao;
+import com.webserver.dao.UserCouponDao;
 import com.webserver.modal.Backlog;
 import com.webserver.modal.GasCard;
 import com.webserver.modal.GasOrder;
 import com.webserver.modal.SubProduct;
+import com.webserver.modal.UserCoupon;
 import com.webserver.service.IBacklogService;
 import com.webserver.service.IGasOrderService;
+import com.webserver.service.IUserCouponService;
 
 @Service
 public class GasOrderServiceImpl implements IGasOrderService {
@@ -37,6 +41,8 @@ public class GasOrderServiceImpl implements IGasOrderService {
 	private GasCardDao gasCardDao;
 	@Resource
 	private IBacklogService backlogServiceImpl;
+	@Resource
+	private UserCouponDao userCouponDao;
 
 	@Override
 	public PageData<GasOrder> getGasOrderListByParams(GasOrder gasOrder,
@@ -101,7 +107,19 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				backlog.setStatus(0);
 				backlogServiceImpl.addBacklog(backlog);
 			}
-			
+			//如果有使用优惠券。则把优惠券设置为已使用
+			Long couponId = gasOrder.getCouponId();
+			if (couponId!=null && couponId!=0l) {
+				UserCoupon userCoupon = new UserCoupon();
+				userCoupon.setCouponId(couponId);
+				userCoupon.setUserId(gasOrder.getUserId());
+				List<UserCoupon> userCoupons = userCouponDao.getUserCouponListByParams(userCoupon, null, null);
+				if (userCoupons!=null &&userCoupons.size()>0) {
+					userCoupon = userCoupons.get(0);
+					userCoupon.setStatus(0);
+					userCouponDao.updateUserCoupon(userCoupon);
+				}
+			}
 			
 		} catch (Exception e) {
 			logger.error("确认收款出错", e);

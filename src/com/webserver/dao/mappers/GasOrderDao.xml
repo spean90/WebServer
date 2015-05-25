@@ -61,8 +61,8 @@
 	
 	
 	<insert id="addGasOrder" parameterType="GasOrder" useGeneratedKeys="true" keyProperty="gasOrder.oId">
-		insert into gas_order (user_id, product_id, order_id, sum, create_time,gas_account,amount,order_desc,pay_order_id,coupon_id,pay_sum,pay_account,pay_type,status) 
-		VALUES (#{gasOrder.userId}, #{gasOrder.productId}, #{gasOrder.orderId}, #{gasOrder.sum}, #{gasOrder.createTime}, #{gasOrder.gasAccount}, #{gasOrder.amount}, #{gasOrder.orderDesc}, #{gasOrder.payOrderId}, #{gasOrder.couponId}, #{gasOrder.paySum}, #{gasOrder.payAccount}, #{gasOrder.payType}, #{gasOrder.status})
+		insert into gas_order (user_id, sub_product_id, product_id, order_id, sum, create_time,gas_account,amount,order_desc,pay_order_id,coupon_id,pay_sum,pay_account,pay_type,status) 
+		VALUES (#{gasOrder.userId}, #{gasOrder.subProductId}, #{gasOrder.productId}, #{gasOrder.orderId}, #{gasOrder.sum}, #{gasOrder.createTime}, #{gasOrder.gasAccount}, #{gasOrder.amount}, #{gasOrder.orderDesc}, #{gasOrder.payOrderId}, #{gasOrder.couponId}, #{gasOrder.paySum}, #{gasOrder.payAccount}, #{gasOrder.payType}, #{gasOrder.status})
 	</insert>
 	
 	

@@ -49,6 +49,7 @@ public class IUserInfoController {
 					resultBean.setMsg("注册失败，改手机已经注册");
 					return resultBean;
 				}
+				userInfo.setAddTime(DateUtil.getDateTimeString(new Date()));
 				userInfoService.addUser(userInfo);
 			} catch (Exception e) {
 				logger.error("注册失败：", e);
@@ -123,7 +124,7 @@ public class IUserInfoController {
 	public Object sendMessge(String phone,String type) {
 		//type:3032.注册；3033，找回密码
 		Calendar calendar = Calendar.getInstance();
-		calendar.add(Calendar.MINUTE, 10);
+		calendar.add(Calendar.MINUTE, 3);
 		ResultBean resultBean = new ResultBean();
 		Message message = new Message();
 		String code = (int)(Math.random()*1000000)+"";
@@ -136,7 +137,7 @@ public class IUserInfoController {
 		} catch (Exception e) {
 			logger.error("添加验证码失败:", e);
 			resultBean.setCode("1001");
-			resultBean.setCode("发送验证码失败");
+			resultBean.setMsg("发送验证码失败");
 		}
 		return resultBean;
 	}

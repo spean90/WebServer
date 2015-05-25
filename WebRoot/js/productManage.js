@@ -179,6 +179,7 @@ $(function(){
 		fitColumns : true,
 		toolbar: '#tbar',
 		columns : [[
+		            {field:'productId',title:'套餐ID',width:100,align:'center'},
 		            {field:'productName',title:'套餐名',width:100,align:'center'},
 		            {field:'price',title:'价格（元/月）',width:100,align:'center'},
 		            {field:'productType',title:'套餐类型',width:100,align:'center',

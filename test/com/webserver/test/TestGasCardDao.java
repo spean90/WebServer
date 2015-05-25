@@ -19,17 +19,17 @@ public class TestGasCardDao {
 		dao.getGasCardListByParams(gasCard,null,null);
 	}
 
-	//@Test
+	@Test
 	public void addGasCard() {
 		GasCard gasCard = new GasCard();
-		gasCard.setUserId(103l);
+		gasCard.setUserId(101l);
 		gasCard.setCompany("中国石化");
-		gasCard.setGasAccount("123");
+		gasCard.setGasAccount("110");
 		dao.addGasCard(gasCard);
 		System.out.println(gasCard.getGasId());
 	}
 	
-	@Test
+	//@Test
 	public void deleteGasCard() {
 		dao.deleteGasCardById(1l);
 	}

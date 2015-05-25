@@ -128,3 +128,20 @@ var Modal = {
 	}
 	
 };
+
+
+//跨域iframe高度自适应  begin
+function initFrameHeight() {
+	var pdiv = window.parent.document.getElementById('mainDiv');
+	pdiv.style.height = document.body.scrollHeight+'px';
+	
+	var piframe = window.parent.document.getElementById('centerIFrame');
+	piframe.style.height = (document.body.scrollHeight-20)+'px';
+}
+
+$(function() {
+	//跨域iframe高度自适应  begin
+	window.onload = initFrameHeight;
+});
+
+
