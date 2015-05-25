@@ -13,6 +13,7 @@ public class UserCoupon implements Serializable {
 	private Long couponId;
 	private Long couponPackageId;
 	private String createTime;
+	private Integer status;//1-未使用，0-已使用
 	
 	/**
 	 * 查询有用的属性。
@@ -29,7 +30,13 @@ public class UserCoupon implements Serializable {
 	
 	
 	
-	
+
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	
 	public String getCouponName() {
 		return couponName;
