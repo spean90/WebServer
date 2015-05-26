@@ -20,6 +20,14 @@ public class GasCard implements Serializable {
 	private String gasAccount;
 	private String company;
 	private String owner;
+	private String personId;
+	
+	public String getPersonId() {
+		return personId;
+	}
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
 	public Long getGasId() {
 		return gasId;
 	}

@@ -2,24 +2,28 @@ package com.webserver.apicontroller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.MD5;
 import com.webserver.common.util.message.MessageUtil;
+import com.webserver.modal.GasCard;
 import com.webserver.modal.Message;
 import com.webserver.modal.UserInfo;
+import com.webserver.service.IGasCardService;
 import com.webserver.service.IMessageService;
 import com.webserver.service.IUserInfoService;
 
@@ -31,6 +35,8 @@ public class IUserInfoController {
 	private IMessageService messageService;
 	@Resource
 	private IUserInfoService userInfoService;
+	@Resource 
+	private IGasCardService gasCardServiceImpl;
 	
 	@RequestMapping("/signUp")
 	@ResponseBody
@@ -68,20 +74,35 @@ public class IUserInfoController {
 	@ResponseBody
 	public Object signIn(UserInfo userInfo) {
 		ResultBean resultBean = new ResultBean();
+		Map<String, Object> resultObj = new HashMap<String, Object>();
 		try {
 			userInfo.setPassword(MD5.md5(userInfo.getPassword()));
 			userInfo = userInfoService.getUserInfoByUser(userInfo);
 			if (userInfo == null) {
 				resultBean.setCode("1001");
 				resultBean.setMsg("用户名或密码错误");
+			}else{
+				GasCard gasCard = new GasCard();
+				gasCard.setUserId(userInfo.getUserId());
+				PageData<GasCard> pageData = gasCardServiceImpl.getGasCardListByParams(gasCard, null);
+				int gasCardAmount = 0;
+				if (pageData.getRows()!=null) {
+					gasCardAmount = pageData.getRows().size();
+				}
+				resultObj.put("gasCardAmount",gasCardAmount);
+				resultObj.put("userId", userInfo.getUserId());
+				if (StringUtils.isEmpty(userInfo.getIdCard())) {
+					resultObj.put("isAuth", false);
+				}else{
+					resultObj.put("isAuth", true);
+				}
+				String tokenSource = userInfo.getUserName()+DateUtil.getDateString(new Date());
+				String token = MD5.md5(tokenSource);
+				logger.info("tokenSource:"+tokenSource);
+				logger.info("token:"+token);
+				resultBean.setToken(token);
+				resultBean.setObject(resultObj);
 			}
-			
-			Gson gson = new Gson();
-			String tokenSource = gson.toJson(userInfo)+DateUtil.getDateString(new Date());
-			String token = MD5.md5(tokenSource);
-			logger.info("tokenSource:"+tokenSource);
-			logger.info("token:"+token);
-			resultBean.setToken(token);
 		} catch (Exception e) {
 			logger.error("登录出错："+e);
 			resultBean.setCode("5001");
@@ -122,10 +143,28 @@ public class IUserInfoController {
 	@RequestMapping("/sendMessage")
 	@ResponseBody
 	public Object sendMessge(String phone,String type) {
+		ResultBean resultBean = new ResultBean();
 		//type:3032.注册；3033，找回密码
+		if ("3033".equals(type)) {
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUserName(phone);
+			try {
+				userInfo = userInfoService.getUserInfoByUser(userInfo);
+				if (userInfo==null) {
+					resultBean.setCode("1001");
+					resultBean.setMsg("用户不存在");
+					return resultBean;
+				}
+			} catch (Exception e) {
+				logger.error("查询用户失败："+e);
+				resultBean.setCode("5000");
+				resultBean.setMsg("系统出错");
+				return resultBean;
+			}
+		}
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.MINUTE, 3);
-		ResultBean resultBean = new ResultBean();
+		
 		Message message = new Message();
 		String code = (int)(Math.random()*1000000)+"";
 		message.setCode(code);
@@ -141,6 +180,9 @@ public class IUserInfoController {
 		}
 		return resultBean;
 	}
+	
+	
+	
 	
 	
 }

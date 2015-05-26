@@ -17,8 +17,7 @@
 			type : "post",
 			data : obj?obj:null,
 			success : function(data){
-				//alert(JSON.stringify(data));
-				$('#result').html(JSON.stringify(data));
+				$('#result'). text(data);
 			}
 		})
 	}
