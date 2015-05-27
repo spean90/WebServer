@@ -91,11 +91,8 @@ public class IUserInfoController {
 				}
 				resultObj.put("gasCardAmount",gasCardAmount);
 				resultObj.put("userId", userInfo.getUserId());
-				if (StringUtils.isEmpty(userInfo.getIdCard())) {
-					resultObj.put("isAuth", false);
-				}else{
-					resultObj.put("isAuth", true);
-				}
+				resultObj.put("idCard", userInfo.getIdCard());
+				resultObj.put("realName", userInfo.getRealName());
 				String tokenSource = userInfo.getUserName()+DateUtil.getDateString(new Date());
 				String token = MD5.md5(tokenSource);
 				logger.info("tokenSource:"+tokenSource);
