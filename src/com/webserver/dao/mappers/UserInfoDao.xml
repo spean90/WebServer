@@ -73,10 +73,13 @@
 		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital 
 		from user_info
 		<where>
-		<if test="user.userName != null">
+		<if test="user.userId != null and user.userId != ''">
+			and user_id = #{user.userId}
+		</if>
+		<if test="user.userName != null and user.userName != ''">
 			and user_name = #{user.userName}
 		</if>
-		<if test="user.password!=null">
+		<if test="user.password!=null and user.password!=''">
 	 		and password = #{user.password}
 	 	</if>
 	 	</where>

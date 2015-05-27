@@ -19,6 +19,7 @@ import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.MD5;
+import com.webserver.common.util.SecurityUtil;
 import com.webserver.common.util.message.MessageUtil;
 import com.webserver.modal.GasCard;
 import com.webserver.modal.Message;
@@ -93,10 +94,7 @@ public class IUserInfoController {
 				resultObj.put("userId", userInfo.getUserId());
 				resultObj.put("idCard", userInfo.getIdCard());
 				resultObj.put("realName", userInfo.getRealName());
-				String tokenSource = userInfo.getUserName()+DateUtil.getDateString(new Date());
-				String token = MD5.md5(tokenSource);
-				logger.info("tokenSource:"+tokenSource);
-				logger.info("token:"+token);
+				String token = SecurityUtil.createToken(userInfo.getUserId());
 				resultBean.setToken(token);
 				resultBean.setObject(resultObj);
 			}
@@ -177,9 +175,43 @@ public class IUserInfoController {
 		}
 		return resultBean;
 	}
+	@RequestMapping("/userAuth")
+	@ResponseBody
+	public Object userAuth(UserInfo userInfo,String token) {
+		ResultBean resultBean = new ResultBean();
+		if (SecurityUtil.isValidate(token, userInfo.getUserId())) {
+			try {
+				userInfoService.updateUser(userInfo);
+			} catch (Exception e) {
+				logger.error("实名验证失败:", e);
+				resultBean.setCode("1001");
+				resultBean.setMsg("实名验证失败");
+			}
+		}else{
+			resultBean.setCode("3004");
+			resultBean.setMsg("token失效请重新登录");
+		}
+		return resultBean;
+	}
 	
-	
-	
-	
+	@RequestMapping("/checkAuth")
+	@ResponseBody
+	public Object checkAuth(UserInfo userInfo,String token) {
+		ResultBean resultBean = new ResultBean();
+		if (SecurityUtil.isValidate(token, userInfo.getUserId())) {
+			try {
+				userInfo = userInfoService.getUserInfoByUser(userInfo);
+				resultBean.setObject(userInfo);
+			} catch (Exception e) {
+				logger.error("实名验证失败:", e);
+				resultBean.setCode("1001");
+				resultBean.setMsg("实名验证失败");
+			}
+		}else{
+			resultBean.setCode("3004");
+			resultBean.setMsg("token失效请重新登录");
+		}
+		return resultBean;
+	}
 	
 }
