@@ -48,12 +48,7 @@ public class IGasCardController {
 	}
 	@RequestMapping("addGasCard")
 	@ResponseBody
-	public Object addGasCard(@RequestBody GasCard gasCard,HttpServletRequest request) {
-		Gson gson = new Gson();
-		String s = gson.toJson(gasCard);
-		s = URLDecoder.decode(s);
-		gasCard = gson.fromJson(s, GasCard.class);
-		System.out.println(gasCard.getCompany());
+	public Object addGasCard(GasCard gasCard,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		try {
 			logger.info(gasCard.getOwner());
