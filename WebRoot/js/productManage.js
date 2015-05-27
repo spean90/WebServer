@@ -62,8 +62,8 @@ var productManage = {
 					Modal.showAlert('月数必须为整数');
 					return;
 				}
-				if(isNaN(discount)) {
-					Modal.showAlert('金额必须为数字')
+				if(isNaN(discount)||discount>1||discount<=0) {
+					Modal.showAlert('折扣必须为0-1之间的数字')
 					return;
 				}
 				$('#discountform').form('submit',{
@@ -194,8 +194,8 @@ $(function(){
 		            	}},
 		            {field:'productDesc',title:'套餐说明',width:200,align:'center'},
 		            {field:'createTime',title:'创建时间',width:100,align:'center'},
-		            {field:'productId',title:'折扣信息',width:100,align:'center',formatter:function(val){
-		            	return '<a href="#" onclick=productManage.showDetail('+val+')>详情</a>';
+		            {field:'limitTime',title:'折扣信息',width:100,align:'center',formatter:function(val,row){
+		            	return '<a href="#" onclick=productManage.showDetail('+row.productId+')>详情</a>';
 		            }},
 		            {field:'status',title:'操作',width:100,align:'center',formatter:function(val,row){
 		            	if (val==1) {
