@@ -31,8 +31,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	}
 	@Override
 	public int updateUser(UserInfo userInfo)  throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return userInfoDao.updateUser(userInfo);
 	}
 	@Override
 	public UserInfo getUserInfoByUser(UserInfo userInfo) throws Exception {

@@ -45,4 +45,10 @@ public class GasCardServiceImpl implements IGasCardService {
 		return gasCardDao.getGasCardById(gasId);
 	}
 
+	@Override
+	public GasCard getGasCardByUser(GasCard gasCard) {
+		// TODO Auto-generated method stub
+		return gasCardDao.getGasCardByUser(gasCard);
+	}
+
 }

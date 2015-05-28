@@ -1,18 +1,14 @@
 package com.webserver.apicontroller;
 
-import java.net.URLDecoder;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.SecurityUtil;
@@ -24,7 +20,7 @@ import com.webserver.service.IUserInfoService;
 @Controller
 @RequestMapping("api")
 public class IGasCardController {
-	Logger logger = LoggerFactory.getLogger(IUserInfoController.class);
+	Logger logger = LoggerFactory.getLogger(IGasCardController.class);
 	@Resource
 	private IMessageService messageService;
 	@Resource
@@ -59,7 +55,13 @@ public class IGasCardController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasCard.getUserId())) {
 			try {
-				gasCardServiceImpl.addGasCard(gasCard);
+				GasCard g = gasCardServiceImpl.getGasCardByUser(gasCard);
+				if (g!=null) {
+					resultBean.setCode("1001");
+					resultBean.setMsg("该油卡已经绑定！");
+				}else{
+					gasCardServiceImpl.addGasCard(gasCard);
+				}
 			} catch (Exception e) {
 				logger.error("添加油卡失败：", e);
 				resultBean.setCode("5001");

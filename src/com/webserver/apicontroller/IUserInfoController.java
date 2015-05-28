@@ -152,7 +152,7 @@ public class IUserInfoController {
 				}
 			} catch (Exception e) {
 				logger.error("查询用户失败："+e);
-				resultBean.setCode("5000");
+				resultBean.setCode("5001");
 				resultBean.setMsg("系统出错");
 				return resultBean;
 			}

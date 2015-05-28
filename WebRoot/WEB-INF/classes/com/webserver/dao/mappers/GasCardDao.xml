@@ -37,6 +37,19 @@
 		where gas_id = #{gasId}
 	</select>
 	
+	<select id="getGasCardByUser" resultType="GasCard">
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,person_id personId 
+		from gas_card
+		<where>
+		<if test="gasCard.userId != null">
+			and user_id = #{gasCard.userId}
+		</if>
+		<if test="gasCard.gasAccount != null">
+			and gas_account = #{gasCard.gasAccount}
+		</if>
+		</where>
+	</select>
+	
 	
 	<insert id="addGasCard" parameterType="GasCard" useGeneratedKeys="true" keyProperty="gasCard.gasId">
 		insert into gas_card (user_id, gas_account,company, owner,person_id ) 

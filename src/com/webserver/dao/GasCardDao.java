@@ -14,4 +14,5 @@ public interface GasCardDao {
 	public int addGasCard(@Param("gasCard")GasCard gasCard);
 	public int deleteGasCardById(@Param("gasId")Long gasId);
 	public GasCard getGasCardById(@Param("gasId")Long gasId);
+	public GasCard getGasCardByUser(@Param("gasCard")GasCard gasCard);
 }
