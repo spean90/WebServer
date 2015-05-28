@@ -9,8 +9,10 @@ var coupon = {
 		
 		var gridOpts = $('#allProductGrid').datagrid('options');
 	    gridOpts.url = '/product/getProductListIds.do';
-	    $('#allProductGrid').datagrid('load');
-		$('#couponModal').modal('show');
+	    $('#allProductGrid').datagrid('reload');
+	    $('#couponModal').modal('show');
+	 
+		
 	},
 	updateCoupon : function(){
 		var row = $('#couponGrid').datagrid('getSelected');
@@ -129,7 +131,6 @@ $(function() {
 		            {field:'productId',title:'套餐ID',width:100,align:'center'},
 		            {field:'productName',title:'套餐名',width:100,align:'center'},
 		            {field:'price',title:'价格',width:100,align:'center'},
-		            {field:'limitTime',title:'期限（月）',width:100,align:'center'},
 		            {field:'productType',title:'套餐类型',width:100,align:'center',
 		            	formatter:function(val) {
 		            		if (val == 1) {
@@ -150,12 +151,11 @@ $(function() {
 	
 	
 	$('#productGrid').datagrid({
-		title : '套餐列表',
+		title : '限制套餐',
 		columns : [[
 		            {field:'productId',title:'套餐ID',width:100,align:'center'},
 		            {field:'productName',title:'套餐名',width:100,align:'center'},
 		            {field:'price',title:'价格',width:100,align:'center'},
-		            {field:'limitTime',title:'期限（月）',width:100,align:'center'},
 		            {field:'productType',title:'套餐类型',width:100,align:'center',
 		            	formatter:function(val) {
 		            		if (val == 1) {
