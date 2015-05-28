@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.FeedbackDao">
+
+	<select id="getFeedbackListByParams" resultType="Feedback">
+		select feedback_id feedbackId,user_id userId, user_name userName, title, content, create_time createTime 
+		from feedback
+		<where>
+		<if test="feedback.feedbackId != null">
+			and feedback_id = #{feedback.feedbackId}
+		</if>
+		<if test="feedback.userId != null">
+			and user_id = #{feedback.userId}
+		</if>
+		<if test="feedback.accountType != null">
+			and user_name = #{feedback.userName}
+		</if>
+		<if test="feedback.titlet != null">
+			and title = #{feedback.title}
+		</if>
+		<if test="feedback.content != null">
+			and content = #{feedback.content}
+		</if>
+		</where>
+		order by feedback_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<insert id="addFeedBack" parameterType="Feedback">
+		insert into feedback (user_id, user_name,  title, content, create_time) 
+		VALUES (#{feedback.userId}, #{feedback.userName},  #{feedback.title}, #{feedback.content}, #{feedback.createTime})
+	</insert>
+	
+</mapper>

@@ -11,8 +11,7 @@ var productManage = {
 		},
 		addProduct : function(){
 			$('#form').form('clear');
-//			$('#type').combobox('select',"2");
-//			$('#isDeliver').combobox('select',"0");
+			$('#productType').combobox('select',"2");
 			$('.modal-title').html('新增套餐');
 			productManage.url = '/product/addProduct.do';
 			$('#dialogModal').modal('show');
@@ -28,7 +27,6 @@ var productManage = {
 			Modal.showConfirm('确定要新增该套餐吗？套餐信息不可修改！','警告',function(){
 				var productName = $('#productName').val();
 				var price = $('#price').val();
-				$('#productType').val(2);
 				if(productName==''){
 					Modal.showAlert('请输入套餐名称');
 					return;
@@ -63,8 +61,10 @@ var productManage = {
 					return;
 				}
 				if(isNaN(discount)||discount>1||discount<=0) {
-					Modal.showAlert('折扣必须为0-1之间的数字')
-					return;
+					if(productManage.detail_productId != '10000'){
+						Modal.showAlert('套餐折扣必须为0-1之间的数字')
+						return;
+					}
 				}
 				$('#discountform').form('submit',{
 					url : productManage.sub_url,
@@ -151,6 +151,18 @@ var productManage = {
 }
 
 $(function(){
+	$('#productType').combobox({
+		data : [{
+			name : "直冲",
+			value : "1"
+		},{
+			name : "套餐",
+			value : "2"
+		}],
+		textField : 'name',
+		valueField : 'value',
+		panelHeight : 60
+	});
 	$('#subProductGrid').datagrid({
 		singleSelect : true,
 		title : '折扣列表', 
@@ -195,6 +207,9 @@ $(function(){
 		            {field:'productDesc',title:'套餐说明',width:200,align:'center'},
 		            {field:'createTime',title:'创建时间',width:100,align:'center'},
 		            {field:'limitTime',title:'折扣信息',width:100,align:'center',formatter:function(val,row){
+		            	if(row.productType==1){
+		            		return "0.99";
+		            	}
 		            	return '<a href="#" onclick=productManage.showDetail('+row.productId+')>详情</a>';
 		            }},
 		            {field:'status',title:'操作',width:100,align:'center',formatter:function(val,row){

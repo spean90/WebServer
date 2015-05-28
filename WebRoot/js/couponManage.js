@@ -1,15 +1,15 @@
 var coupon = {
 	url : '',
 	addCoupon : function(){
-		$('#form').form('clear');
-		$('#type').combobox('select',"2");
-		$('#isDeliver').combobox('select',"0");
-		$('.modal-title').html('添加优惠券');
-		coupon.url = '/coupon/addCoupon.do';
 		
 		var gridOpts = $('#allProductGrid').datagrid('options');
 	    gridOpts.url = '/product/getProductListIds.do';
 	    $('#allProductGrid').datagrid('reload');
+	    $('#form').form('clear');
+		$('#type').combobox('select',"2");
+		$('#isDeliver').combobox('select',"0");
+		$('.modal-title').html('添加优惠券');
+		coupon.url = '/coupon/addCoupon.do';
 	    $('#couponModal').modal('show');
 	 
 		
@@ -127,6 +127,7 @@ var coupon = {
 $(function() {
 	$('#allProductGrid').datagrid({
 		title : '套餐列表',
+		url : '/product/getProductListIds.do',
 		columns : [[
 		            {field:'productId',title:'套餐ID',width:100,align:'center'},
 		            {field:'productName',title:'套餐名',width:100,align:'center'},

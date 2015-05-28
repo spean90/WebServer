@@ -1,12 +1,13 @@
 var couponPackage = {
 	url : '',
 	addCouponPackage : function(){
-		$('#form').form('clear');
-		$('.modal-title').html('添加优惠礼包');
-		couponPackage.url = '/couponPackage/addCouponPackage.do';
+		
 		var gridOpts = $('#allCouponGrid').datagrid('options');
 	    gridOpts.url = '/coupon/getCouponListByIds.do';
-	    $('#allCouponGrid').datagrid('load');
+	    $('#allCouponGrid').datagrid('reload');
+	    $('#form').form('clear');
+		$('.modal-title').html('添加优惠礼包');
+		couponPackage.url = '/couponPackage/addCouponPackage.do';
 		$('#couponModal').modal('show');
 	},
 	updateCouponPackage : function(){

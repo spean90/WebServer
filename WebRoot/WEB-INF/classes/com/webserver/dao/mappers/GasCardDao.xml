@@ -6,22 +6,22 @@
 		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,person_id personId 
 		from gas_card
 		<where>
-		<if test="gasCard.userId != null">
+		<if test="gasCard.userId != null and gasCard.userId != ''">
 			and user_id = #{gasCard.userId}
 		</if>
-		<if test="gasCard.gasId != null">
+		<if test="gasCard.gasId != null and gasCard.gasId != ''">
 			and gas_id = #{gasCard.gasId}
 		</if>
-		<if test="gasCard.gasAccount != null">
+		<if test="gasCard.gasAccount != null and gasCard.gasAccount != ''">
 			and gas_account = #{gasCard.gasAccount}
 		</if>
-		<if test="gasCard.owner != null">
+		<if test="gasCard.owner != null and gasCard.owner != ''">
 			and owner = #{gasCard.owner}
 		</if>
-		<if test="gasCard.company != null">
+		<if test="gasCard.company != null and gasCard.company != ''">
 			and company = #{gasCard.company}
 		</if>
-		<if test="gasCard.personId != null">
+		<if test="gasCard.personId != null and gasCard.personId != ''">
 			and person_id = #{gasCard.personId}
 		</if>
 		</where>
@@ -41,10 +41,10 @@
 		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,person_id personId 
 		from gas_card
 		<where>
-		<if test="gasCard.userId != null">
+		<if test="gasCard.userId != null and gasCard.userId != ''">
 			and user_id = #{gasCard.userId}
 		</if>
-		<if test="gasCard.gasAccount != null">
+		<if test="gasCard.gasAccount != null and gasCard.gasAccount != ''">
 			and gas_account = #{gasCard.gasAccount}
 		</if>
 		</where>

@@ -43,7 +43,7 @@ public class SecurityUtil {
 		String s = SecurityUtil.createToken(117l);
 		//System.out.println("MTE3LTE0MzI3MzQ2NDQ3NTQ=");
 		
-		boolean r = SecurityUtil.isValidate("ODBmMTAwLTExNy0xNDMyNzM0OTU4MTkx", 117l);
-		System.out.println(r);
+		//boolean r = SecurityUtil.isValidate("ODBmMTAwLTExNy0xNDMyNzM0OTU4MTkx", 117l);
+		System.out.println(s);
 	}
 }

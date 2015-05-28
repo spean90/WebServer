@@ -12,7 +12,7 @@
 		<if test="product.productName != null">
 			and product_name = #{product.productName}
 		</if>
-		<if test="product.productType != null">
+		<if test="product.productType != null and product.productType != ''">
 			and product_type = #{product.productType}
 		</if>
 		<if test="product.status != null">
