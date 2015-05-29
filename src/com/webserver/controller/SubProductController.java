@@ -23,8 +23,8 @@ public class SubProductController {
 	
 	@RequestMapping("getSubProductListByProductId")
 	@ResponseBody
-	public Object getSubProductListByProductId(Long productId){
-		return subProductService.getSubProductListByProductId(productId);
+	public Object getSubProductListByProductId(SubProduct subProduct){
+		return subProductService.getSubProductListByParam(subProduct);
 	}
 	
 	@RequestMapping("addSubProduct")

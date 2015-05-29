@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.webserver.common.PageBean;
+import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.SecurityUtil;
@@ -44,4 +46,24 @@ public class IFeedbackController {
 		return resultBean;
 	}
 	
+	
+	@RequestMapping("getFeedbackList")
+	@ResponseBody
+	public Object getFeedbackList(Feedback feedback,String token,PageBean pageBean){
+		ResultBean resultBean = new ResultBean();
+		if (SecurityUtil.isValidate(token, feedback.getUserId())) {
+			try {
+				PageData<Feedback> pageData = feedbackService.getFeedbackListByParams(feedback, pageBean);
+				resultBean.setObject(pageData);
+			} catch (Exception e) {
+				logger.error("err:",e);
+				resultBean.setCode("5001");
+				resultBean.setMsg(e.getMessage());
+			}
+		}else{
+			resultBean.setCode("3004");
+			resultBean.setMsg("token失效请重新登录");
+		}
+		return resultBean;
+	}
 }

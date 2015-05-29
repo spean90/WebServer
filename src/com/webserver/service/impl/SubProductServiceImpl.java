@@ -23,8 +23,8 @@ public class SubProductServiceImpl implements ISubProductService {
 	@Resource
 	private OperLogDao operLogDao;
 	@Override
-	public List<SubProduct> getSubProductListByProductId(Long productId) {
-		return subProductDao.getSubProductListByProductId(productId);
+	public List<SubProduct> getSubProductListByParam(SubProduct subProduct) {
+		return subProductDao.getSubProductListByParam(subProduct);
 	}
 	@Override
 	public void addSubProduct(SubProduct subProduct, HttpServletRequest request) {

@@ -22,7 +22,7 @@ public class GasOrder implements Serializable {
 	private String orderId;
 	private Double sum;
 	private String createTime;
-	private String gasAccount;
+	private String gasId;
 	private Integer amount;//订购套餐数量
 	private String orderDesc;//订单描述；
 	private String payOrderId;//支付第三方生成的订单id;
@@ -40,9 +40,21 @@ public class GasOrder implements Serializable {
 	private String endTime;
 	private String productName;
 	private String userName;
+	private String gasAccount;
+	private String company;
 	
-	
-	
+	public String getGasId() {
+		return gasId;
+	}
+	public void setGasId(String gasId) {
+		this.gasId = gasId;
+	}
+	public String getCompany() {
+		return company;
+	}
+	public void setCompany(String company) {
+		this.company = company;
+	}
 	public String getUserName() {
 		return userName;
 	}

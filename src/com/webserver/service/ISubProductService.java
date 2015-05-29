@@ -10,7 +10,7 @@ import com.webserver.modal.SubProduct;
 
 public interface ISubProductService {
 
-	public List<SubProduct> getSubProductListByProductId(Long productId);
+	public List<SubProduct> getSubProductListByParam(SubProduct subProduct);
 	
 	public void addSubProduct(SubProduct subProduct,HttpServletRequest request);
 	

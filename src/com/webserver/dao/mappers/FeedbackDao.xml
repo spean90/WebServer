@@ -6,16 +6,16 @@
 		select feedback_id feedbackId,user_id userId, user_name userName, title, content, create_time createTime 
 		from feedback
 		<where>
-		<if test="feedback.feedbackId != null">
+		<if test="feedback.feedbackId != null and feedback.feedbackId != ''">
 			and feedback_id = #{feedback.feedbackId}
 		</if>
 		<if test="feedback.userId != null">
 			and user_id = #{feedback.userId}
 		</if>
-		<if test="feedback.accountType != null">
+		<if test="feedback.userName != null and feedback.userName != ''">
 			and user_name = #{feedback.userName}
 		</if>
-		<if test="feedback.titlet != null">
+		<if test="feedback.title != null and feedback.title != ''">
 			and title = #{feedback.title}
 		</if>
 		<if test="feedback.content != null">

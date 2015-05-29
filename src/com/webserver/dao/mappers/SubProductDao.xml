@@ -3,12 +3,18 @@
 <mapper namespace="com.webserver.dao.SubProductDao">
 
 	
-	<select id="getSubProductListByProductId" resultType="SubProduct">
+	<select id="getSubProductListByParam" resultType="SubProduct">
 		select sub_product_id subProductId,product_id productId, month,discount,create_time createTime,status
 		from sub_product
-		<if test="productId!=null and productId!=''">
-			where product_id = #{productId}
+		
+		<where>
+		<if test="subProduct.productId!=null and subProduct.productId!=''">
+			and product_id = #{subProduct.productId}
 		</if>
+		<if test="subProduct.status != null and subProduct.status != ''">
+			and status = #{subProduct.status}
+		</if>
+		</where>
 	</select>
 	
 	
