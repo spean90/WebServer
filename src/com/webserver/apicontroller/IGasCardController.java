@@ -61,6 +61,7 @@ public class IGasCardController {
 					resultBean.setMsg("该油卡已经绑定！");
 				}else{
 					gasCardServiceImpl.addGasCard(gasCard);
+					resultBean.setObject(gasCard);
 				}
 			} catch (Exception e) {
 				logger.error("添加油卡失败：", e);
