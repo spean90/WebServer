@@ -47,11 +47,11 @@
 		left join product a on t.product_id = a.product_id
 		<where>
 		<if test="gasOrder.beginTime != null and gasOrder.beginTime != ''">
-			and create_time >= #{gasOrder.beginTime}
+			and t.create_time >= #{gasOrder.beginTime}
 		</if>
 		<if test="gasOrder.endTime != null and gasOrder.endTime != ''">
 			<![CDATA[
-				and create_time <= #{gasOrder.endTime}
+				and t.create_time <= #{gasOrder.endTime}
 			]]>
 		</if>
 		</where>

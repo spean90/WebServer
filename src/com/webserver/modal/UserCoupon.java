@@ -25,12 +25,19 @@ public class UserCoupon implements Serializable {
 	private String couponDesc;
 	private String deadTime;
 	private String productIds;
+	private String userName;
 	
 	
 	
 	
 	
 
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public Integer getStatus() {
 		return status;
 	}

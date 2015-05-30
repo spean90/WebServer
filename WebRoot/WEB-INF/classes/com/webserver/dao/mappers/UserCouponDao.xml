@@ -5,9 +5,11 @@
 	<select id="getUserCouponListByParams" resultType="UserCoupon">
 		select t.id,t.user_id userId,t.coupon_id couponId,t.coupon_package_id couponPackageId,t.status status,
 		t.create_time createTime,a.dead_time deadTime,a.coupon_name couponName,a.type type,a.is_deliver isDeliver,
-		a.sum sum,a.coupon_desc couponDesc,a.product_ids productIds
+		a.sum sum,a.coupon_desc couponDesc,a.product_ids productIds,
+		b.user_name userName
 		from user_coupon t
 		left join coupon a on t.coupon_id=a.coupon_id
+		left join user_info b on t.user_id = b.user_id
 		<where>
 		<if test="userCoupon.userId != null and userCoupon.userId != ''">
 			and t.user_id  = #{userCoupon.userId} 
@@ -20,6 +22,9 @@
 		</if>
 		<if test="userCoupon.status != null and userCoupon.status != ''">
 			and t.status = #{userCoupon.status}
+		</if>
+		<if test="userCoupon.userName != null and userCoupon.userName != ''">
+			and b.user_name like concat('%',#{userCoupon.userName },'%')
 		</if>
 		</where>
 		order by t.id desc

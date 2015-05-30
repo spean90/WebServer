@@ -10,8 +10,10 @@
 	<body style="height: 600px;">
 	<div style="margin: 10px;">
 		优惠券名称：<input type="text" id="couponName_search">
-		类型：<input id="type_search">
-		是否可以转赠：<input id="isDeliver_search">
+		类型：<input id="type_search" style="width: 80px;">
+		是否可以转赠：<input id="isDeliver_search" style="width: 80px;">
+		创建时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
+			<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;">
 		<button class="btn btn-success btn-sm" onclick="coupon.search()">查询</button>
 	</div>
 	<div id="couponGrid" style="height: 480px;"></div>

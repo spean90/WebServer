@@ -1,7 +1,6 @@
 package com.webserver.modal;
 
 import java.io.Serializable;
-
 public class SubProduct implements Serializable{
 
 	/**

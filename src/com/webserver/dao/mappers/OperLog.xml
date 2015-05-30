@@ -3,24 +3,30 @@
 <mapper namespace="com.webserver.dao.OperLogDao">
 
 	<select id="getOperLogListByParams" parameterType="OperLog" resultType="OperLog">
-		select id, m_id mId, oper_time operTime, oper_action operAction, url, params, status, ip from oper_log
+		select t.id id, t.m_id mId, t.oper_time operTime, t.oper_action operAction, t.url url, t.params params, t.status status, t.ip ip 
+		,a.real_name realName,a.manager_account managerAccount
+		from oper_log t
+		left join manager a on a.m_id = t.m_id
 		<where>
 		<if test="operLog.mId != null and operLog.mId != ''">
-			and m_id = #{operLog.mId}
+			and t.m_id = #{operLog.mId}
 		</if>
 		<if test="operLog.status != null ">
-			and status = #{operLog.status}
+			and t.status = #{operLog.status}
 		</if>
 		<if test="operLog.operAction != null and operLog.operAction != ''">
-			and oper_action like concat('%',#{operLog.operAction},'%')
+			and t.oper_action like concat('%',#{operLog.operAction},'%')
 		</if>
 		<if test="operLog.beginTime != null and operLog.beginTime != '' ">
-			and oper_time > #{operLog.beginTime}
+			and t.oper_time > #{operLog.beginTime}
 		</if>
 		<if test="operLog.endTime != null and operLog.endTime != '' ">
 			<![CDATA[
-				and oper_time <= #{operLog.endTime}
+				and t.oper_time <= #{operLog.endTime}
 			]]>
+		</if>
+		<if test="operLog.realName != null and operLog.realName != ''">
+			and a.real_name like concat('%',#{operLog.realName},'%')
 		</if>
 		</where>
 		order by oper_time desc limit #{pageBean.start}, #{pageBean.rows}

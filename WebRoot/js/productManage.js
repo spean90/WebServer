@@ -146,11 +146,48 @@ var productManage = {
 				}
 				Modal.ajax(config);
 			});
-		}
+		},
+		search : function() {
+			var productName = $('#productName_search').val();
+			var type = $('#type_search').combobox('getValue');
+			var beginTime = $('#beginTime').datebox('getValue');
+			if (beginTime!=null && beginTime!='') {
+				beginTime += " 00:00:00";
+			}
+			var endTime = $('#endTime').datebox('getValue');
+			if (endTime!=null && endTime!='') {
+				endTime += " 59:59:59";
+			}
+			if (beginTime>endTime) {
+				Modal.showAlert('开始时间不能大于结束时间');
+				return;
+			}
+			$('#productgrid').datagrid('load',{
+				productName : productName,
+				productType : type,
+				endTime : endTime,
+				beginTime:beginTime
+			})
+		},
 		
 }
 
 $(function(){
+	$('#type_search').combobox({
+		data : [{
+			name : "全部",
+			value : ""
+		},{
+			name : "直冲",
+			value : "1"
+		},{
+			name : "套餐",
+			value : "2"
+		}],
+		textField : 'name',
+		valueField : 'value',
+		panelHeight : 80
+	});
 	$('#productType').combobox({
 		data : [{
 			name : "直冲",

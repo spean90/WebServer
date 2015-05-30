@@ -1,10 +1,10 @@
 var userCoupon = {
-		searchGasOrder : function() {
+		search : function() {
 			var userId = $('#userId').val();
-			var orderId = $('#orderId').val();
-			$('#gasOrderGrid').datagrid('load',{
+			var userName = $('#userName').val();
+			$('#userCouponGrid').datagrid('load',{
 				userId : userId,
-				orderId : orderId
+				userName : userName
 			})
 		}
 		
@@ -18,6 +18,7 @@ $(function(){
 		fitColumns : true,
 		columns : [[
 		            {field:'userId',title:'用户id',width:100,align:'center'},
+		            {field:'userName',title:'用户名',width:100,align:'center'},
 		            {field:'couponName',title:'优惠券名',width:100,align:'center'},
 		            {field:'type',title:'类型',width:100,align:'center',formatter:function(val){
 		            	if(val==1){

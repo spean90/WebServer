@@ -6,6 +6,13 @@
 		<script type="text/javascript" src="/js/productManage.js"></script>
 	</head>
 	<body style="height: 600px;">
+		<div style="margin: 10px;">
+			套餐名称：<input type="text" id="productName_search">
+			类型：<input id="type_search" style="width: 80px;">
+			创建时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
+			<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;">
+			<button class="btn btn-success btn-sm" onclick="productManage.search()">查询</button>
+		</div>
 		<div id="tbar">
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="productManage.addProduct()">新增</a>
 			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="productManage.updateProduct()">修改</a>

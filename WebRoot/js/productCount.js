@@ -1,20 +1,12 @@
-var productCount = {
-		productData : [],
-		searchGasOrder : function() {
-			var userId = $('#userId').val();
-			var orderId = $('#orderId').val();
-			$('#gasOrderGrid').datagrid('load',{
-				userId : userId,
-				orderId : orderId
-			})
-		},
-		initChart : function() {
-			var config = {
+var config = {
 					url : "/gasOrder/countProductByParams.do",
+					type : 'post',
+					data : {},
 					success : function(data) {
 						var sum=0;
 						var paySum=0;
 						data = data.rows;
+						productCount.productData = [];
 						for(var i=0;i<data.length;i++) {
 							var row = [];
 							row.push(data[i].productName);
@@ -60,6 +52,34 @@ var productCount = {
 						    });
 					}
 			}
+
+var productCount = {
+		productData : [],
+		searchGasOrder : function() {
+			var beginTime = $('#beginTime').datebox('getValue');
+			if (beginTime!=null && beginTime!='') {
+				beginTime += " 00:00:00";
+			}
+			var endTime = $('#endTime').datebox('getValue');
+			if (endTime!=null && endTime!='') {
+				endTime += " 59:59:59";
+			}
+			if (beginTime>endTime) {
+				Modal.showAlert('开始时间不能大于结束时间');
+				return;
+			}
+			
+			$('#productGrid').datagrid('load',{
+				beginTime : beginTime,
+				endTime : endTime
+			})
+			config.data = {
+				beginTime : beginTime,
+				endTime : endTime
+			}
+			Modal.ajax(config);
+		},
+		initChart : function() {
 			Modal.ajax(config);
 		},
 		initGrid : function() {

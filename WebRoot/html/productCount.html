@@ -8,9 +8,9 @@
 	</head>
 	<body style="height: 800px;">
 			<div style="margin-bottom: 10px;">
-				用户id：<input type="text" name="userId" id="userId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
-				订单号：<input type="text" name="orderId" id="orderId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
-				<button class="btn btn-success" onclick="gasOrder.searchGasOrder()">查询</button>
+				统计时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
+				<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;">
+				<button class="btn btn-success" onclick="productCount.searchGasOrder()">查询</button>
 			</div>
 			<div id="productGrid" style="width: 900px;height: 350px"></div>
 			<div class="row">

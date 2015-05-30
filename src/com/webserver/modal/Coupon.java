@@ -2,6 +2,9 @@ package com.webserver.modal;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class Coupon implements Serializable {
 
 	/**
@@ -18,6 +21,28 @@ public class Coupon implements Serializable {
 	private String deadTime;
 	private String productIds;
 	
+	
+	/**
+	 * 查询属性
+	 */
+	@JsonInclude(Include.NON_NULL)
+	private String beginTime;
+	@JsonInclude(Include.NON_NULL)
+	private String endTime;
+	
+	
+	public String getBeginTime() {
+		return beginTime;
+	}
+	public void setBeginTime(String beginTime) {
+		this.beginTime = beginTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
 	public String getDeadTime() {
 		return deadTime;
 	}

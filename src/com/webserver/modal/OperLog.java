@@ -23,8 +23,23 @@ public class OperLog implements Serializable{
 	private Integer status = 1;
 	private String beginTime;
 	private String endTime;
+
+	//查询
+	private String realName;
+	private String managerAccount;
 	
-	
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+	public String getManagerAccount() {
+		return managerAccount;
+	}
+	public void setManagerAccount(String managerAccount) {
+		this.managerAccount = managerAccount;
+	}
 	public String getBeginTime() {
 		return beginTime;
 	}

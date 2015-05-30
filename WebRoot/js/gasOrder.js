@@ -94,7 +94,7 @@ $(function(){
 						}else if(row.payType==2 && row.status==2){
 							return row.receiver+'已收款';
 						}else{
-							return '';
+							return '在线支付';
 						}
 		            	}
 		            }

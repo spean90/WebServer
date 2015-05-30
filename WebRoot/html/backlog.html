@@ -6,12 +6,14 @@
 		<script type="text/javascript" src="/js/backlog.js"></script>
 	</head>
 	<body style="height: 600px;">
-		<!-- <div>
-			账户：<input type="text" name="userName" id="userName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
-			姓名：<input type="text" name="realName" id="realName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
-			身份证号：<input type="text" name="idCard" id="idCard" style="width: 100px;height: 25px;">
-			<button class="btn btn-success" onclick="playerManage.searchUserInfo()">查询</button>
-		</div> -->
+		<div style="margin: 10px;">
+			优惠券名称：<input type="text" id="couponName_search">
+			类型：<input id="type_search" style="width: 80px;">
+			是否可以转赠：<input id="isDeliver_search" style="width: 80px;">
+			创建时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
+				<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;">
+			<button class="btn btn-success btn-sm" onclick="coupon.search()">查询</button>
+		</div>
 		<div id="backlogGrid" style="height: 500px;"></div>
 		
 		<div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

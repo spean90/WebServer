@@ -110,10 +110,24 @@ var coupon = {
 		var couponName = $('#couponName_search').val();
 		var type = $('#type_search').combobox('getValue');
 		var isDeliver = $('#isDeliver_search').combobox('getValue');
+		var beginTime = $('#beginTime').datebox('getValue');
+		if (beginTime!=null && beginTime!='') {
+			beginTime += " 00:00:00";
+		}
+		var endTime = $('#endTime').datebox('getValue');
+		if (endTime!=null && endTime!='') {
+			endTime += " 59:59:59";
+		}
+		if (beginTime>endTime) {
+			Modal.showAlert('开始时间不能大于结束时间');
+			return;
+		}
 		$('#couponGrid').datagrid('load',{
 			couponName : couponName,
 			type : type,
-			isDeliver : isDeliver
+			isDeliver : isDeliver,
+			endTime : endTime,
+			beginTime:beginTime
 		})
 	},
 	getExclusiveProducts : function(productIds){
@@ -239,7 +253,7 @@ $(function() {
 		            {field:'couponId',title:'优惠券id',width:100,align:'center'},
 		            {field:'couponName',title:'优惠券名称',width:100,align:'center'},
 		            {field:'couponDesc',title:'说明',width:100,align:'center'},
-		            {field:'isDeliver',title:'是否可转赠',width:100,align:'center',formatter:function(val){
+		            {field:'isDeliver',title:'转赠',width:50,align:'center',formatter:function(val){
 		            	if(val==1){
 		            		return '是';
 		            	}else if(val==0){
@@ -249,7 +263,7 @@ $(function() {
 		            	}
 		            }},
 		            {field:'sum',title:'金额',width:100,align:'center'},
-		            {field:'type',title:'类型',width:100,align:'center',formatter:function(val){
+		            {field:'type',title:'类型',width:80,align:'center',formatter:function(val){
 		            	if(val==1){
 		            		return '直冲抵用';
 		            	}else if(val==2){
@@ -258,8 +272,8 @@ $(function() {
 		            		return val;
 		            	}
 		            }},
-		            {field:'createTime',title:'创建时间',width:100,align:'center'},
-		            {field:'deadTime',title:'失效时间',width:100,align:'center'},
+		            {field:'createTime',title:'创建时间',width:120,align:'center'},
+		            {field:'deadTime',title:'失效时间',width:120,align:'center'},
 		            {field:'productIds',title:'套餐专用',width:100,align:'center',formatter:function(val){
 		            	if (val == ''||val==null) {
 		            		return '所有套餐'

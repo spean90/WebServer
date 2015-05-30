@@ -2,6 +2,8 @@ var operLog = {
 		searchOperLog : function() {
 			var mId = $('#mId').val();
 			var operAction = $('#operAction').val();
+			var realName = $('#realName').val();
+			var managerAccount = $('#managerAccount').val();
 			var beginTime = $('#beginTime').datebox('getValue')+" 00:00:00";
 			var endTime = $('#endTime').datebox('getValue')+" 59:59:59";
 			if (beginTime>endTime) {
@@ -12,7 +14,9 @@ var operLog = {
 				mId : mId,
 				operAction : operAction,
 				beginTime : beginTime,
-				endTime : endTime
+				endTime : endTime,
+				realName:realName,
+				managerAccount:managerAccount
 			})
 		}
 		
@@ -34,8 +38,8 @@ $(function(){
 		            		return '失败';
 		            	}
 		            }},
-		            {field:'url',title:'url',width:100,align:'center'},
-		            {field:'params',title:'参数',width:100,align:'center'},
+		            {field:'managerAccount',title:'管理员账号',width:100,align:'center'},
+		            {field:'realName',title:'姓名',width:100,align:'center'},
 		            {field:'operTime',title:'操作时间',width:100,align:'center',formatter:function(val){
 		            	return new Date(val).format("yyyy-MM-dd HH:mm:ss");
 		            }}

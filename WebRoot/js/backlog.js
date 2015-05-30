@@ -132,7 +132,7 @@ $(function(){
 		            {field:'company',title:'油卡归属',width:100,align:'center'},
 		            {field:'owner',title:'持卡人',width:100,align:'center'},
 		            {field:'sum',title:'金额',width:100,align:'center'},
-		            {field:'createTime',title:'注册时间',width:160,align:'center'},
+		            {field:'createTime',title:'创建时间',width:160,align:'center'},
 		            {field:'updateTime',title:'处理时间',width:160,align:'center'},
 		            {field:'managerAccount',title:'办理人',width:100,align:'center'},
 		            {field:'result',title:'结果',width:200,align:'center'},

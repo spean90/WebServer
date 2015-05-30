@@ -19,6 +19,14 @@
 		<if test="coupon.deadTime != null and coupon.deadTime != ''">
 			and dead_time >= #{coupon.deadTime}
 		</if>
+		<if test="coupon.beginTime != null and coupon.beginTime != '' ">
+			and create_time > #{coupon.beginTime}
+		</if>
+		<if test="coupon.endTime != null and coupon.endTime != '' ">
+			<![CDATA[
+				and create_time <= #{coupon.endTime}
+			]]>
+		</if>
 		</where>
 		order by coupon_id desc
 		<if test="pageBean!= null">
