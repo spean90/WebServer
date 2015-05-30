@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!--#include virtual="/common/html/include_head.html"  -->
+<script type="text/javascript" src="/js/uploadApk.js"></script>
+</head>
+<body style="height: 600px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-2 ">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">推送升级文件:</h3>
+					</div>
+					<div class="panel-body">
+						<form role="form" method="post" id="fileForm"
+							enctype="multipart/form-data">
+							<br>
+							<div class="form-group">
+								<input type="file" id="updateFile" name="updateFile"
+									accept=".apk" />
+								<a onclick="uploadApk.upload()" class="btn btn-sm btn-success">检测版本</a>
+							</div>
+							<div class="input-group">
+									<label class="input-group-addon" for="version">版本:</label> <input
+										type="text" name="version" id="version" class="form-control"
+										readonly required="true" >
+							</div>
+						</form>
+						</br>
+						<textarea class="form-control" rows="8" name="message"
+							id="message" readonly></textarea>
+						<a onclick="uploadApk.pushFile()" class="btn btn-sm btn-success">确认升级</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

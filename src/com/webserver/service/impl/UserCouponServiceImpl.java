@@ -81,6 +81,7 @@ public class UserCouponServiceImpl implements IUserCouponService {
 					userCoupon.setCouponId(Long.parseLong(cid));
 					userCoupon.setCouponPackageId(couponPackage.getCouponPackageId());
 					userCoupon.setCreateTime(DateUtil.getDateTimeString(new Date()));
+					userCoupon.setStatus(1);
 					userCouponDao.addUserCoupon(userCoupon);
 				}
 				operLogDao.addLog(operLog);
