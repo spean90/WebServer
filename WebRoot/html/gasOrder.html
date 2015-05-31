@@ -27,29 +27,33 @@
 					</div>
 					<div class="modal-body">
 						<form id="receiveForm">
+							<div class="input-group" style="display: none" >
+							  <span class="input-group-addon" >用户id</span>
+							  <input type="text" class="form-control" id="userId_receive" name="userId" readonly="readonly">
+						  </div>
 						 <div class="input-group">
 							  <span class="input-group-addon" >订单流水</span>
-							  <input type="text" class="form-control" id="oId" name="oId" disabled="disabled">
+							  <input type="text" class="form-control" id="oId" name="oId" readonly="readonly">
 						  </div>
 						  <div class="input-group">
 							  <span class="input-group-addon" >套餐id</span>
-							  <input type="text" class="form-control" name="productId" disabled="disabled">
+							  <input type="text" class="form-control" name="productId" readonly="readonly">
 						  </div>
 						  <div class="input-group">
 							  <span class="input-group-addon" >子套餐id</span>
-							  <input type="text" class="form-control" name="subProductId" id="subProductId" disabled="disabled">
+							  <input type="text" class="form-control" name="subProductId" id="subProductId" readonly="readonly">
 						  </div>
 						   <div class="input-group">
 							  <span class="input-group-addon" >数量</span>
-							  <input type="text"  class="form-control" name="amount" id="amount" disabled="disabled">
+							  <input type="text"  class="form-control" name="amount" id="amount" readonly="readonly">
 						  </div>
 						  <div class="input-group">
 							  <span class="input-group-addon" >金额</span>
-							  <input type="text"  class="form-control" name="sum" disabled="disabled">
+							  <input type="text"  class="form-control" name="sum" readonly="readonly">
 						  </div>
 						  <div class="input-group">
 							  <span class="input-group-addon" >支付金额</span>
-							  <input type="text" class="form-control" name="paySum" id="receiveSum" >
+							  <input type="text" class="form-control" name="paySum" id="receiveSum" readonly="readonly">
 						  </div>
 						  <div class="input-group">
 							  <span class="input-group-addon" >说明</span>

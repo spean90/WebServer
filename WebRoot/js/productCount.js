@@ -87,7 +87,7 @@ var productCount = {
 				url : '/gasOrder/countProductByParams.do',
 				title : '套餐销售情况列表', 
 				fitColumns : true,
-				pagination : true,
+				//pagination : true,
 				columns : [[
 				            {field:'productName',title:'套餐名',width:100,align:'center'},
 				            {field:'amount',title:'销售数量',width:100,align:'center'},

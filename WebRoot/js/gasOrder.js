@@ -27,12 +27,14 @@ var gasOrder = {
 		},
 		save : function() {
 			var oId = $('#oId').val();
+			var userId = $('#userId_receive').val();
 			var paySum = $('#receiveSum').val();
 			var orderDesc = $('#orderDesc').val();
 			var subProductId = $('#subProductId').val();
 			var amount = $('#amount').val();
 			var data = {
 					oId:oId,
+					userId:userId,
 					paySum:paySum,
 					orderDesc:orderDesc,
 					amount:amount,

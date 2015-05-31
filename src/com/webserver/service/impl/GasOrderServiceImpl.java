@@ -79,10 +79,22 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			result = gasOrderDao.updateGasOrder(gasOrder);
 			//根据订单生产代办事件
 			//获取套餐价格和月份
-			SubProduct subProduct = subProductDao.getSubProductById(gasOrder.getSubProductId());
-			double price = subProduct.getPrice();
-			int month = subProduct.getMonth();
-			double sum = price * gasOrder.getAmount();
+			double price = 0;;
+			int month = 1;
+			double sum = 0;
+			//如果是套餐、则获取买的月数、和每月需充值多少
+			if (gasOrder.getSubProductId()!=null) {
+				SubProduct subProduct = subProductDao.getSubProductById(gasOrder.getSubProductId());
+				price = subProduct.getPrice();
+				month = subProduct.getMonth();
+				sum = price * gasOrder.getAmount();
+			}else{
+				//如果是直冲、则month=1;
+				month=1;
+				sum = gasOrder.getPaySum();
+			}
+			
+			
 			//获取油卡信息
 			GasCard gasCard = new GasCard();
 			gasCard.setGasAccount(gasOrder.getGasAccount());

@@ -39,8 +39,8 @@ $(function(){
 		            	}
 		            }},
 		            {field:'sum',title:'金额',width:100,align:'center'},
-		            {field:'deadTime',title:'失效时间',width:100,align:'center'},
-		            {field:'productIds',title:'限用套餐id',width:100,align:'center'}
+		            {field:'deadTime',title:'失效时间',width:100,align:'center'}
+		            //{field:'productIds',title:'限用套餐id',width:100,align:'center'}
 		            ]]
 		
 	})
