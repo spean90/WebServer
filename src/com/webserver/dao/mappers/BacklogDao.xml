@@ -16,10 +16,10 @@
 		<if test="backlog.type != null">
 			and type = #{backlog.type}
 		</if>
-		<if test="backlog.owner != null">
-			and owner = #{backlog.owner}
+		<if test="backlog.owner != null and backlog.owner != ''">
+			and owner like concat('%',#{backlog.owner},'%') 
 		</if>
-		<if test="backlog.status != null">
+		<if test="backlog.status != null and backlog.status != ''">
 			and status = #{backlog.status}
 		</if>
 		<if test="backlog.managerAccount != null">

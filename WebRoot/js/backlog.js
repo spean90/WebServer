@@ -103,11 +103,20 @@ var backlog = {
 					
 				}
 			})
+		},
+		reflashDataGrid : function(){
+			$('#backlogGrid').datagrid('reload');
+		},
+		search : function() {
+			$('#backlogGrid').datagrid('reload',{
+				owner : $('#owner_search').val()
+			});
 		}
 		
 }
 
 $(function(){
+	setInterval(backlog.reflashDataGrid, 1000*60*5);
 	$('#status').combobox({
 		data : [{
 			name : "已处理",
