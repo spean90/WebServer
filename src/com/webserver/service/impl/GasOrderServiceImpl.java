@@ -102,10 +102,9 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			gasCard = list.get(0);
 			Backlog backlog = null;
 			Calendar calendar = Calendar.getInstance();
-			calendar.set(Calendar.DAY_OF_MONTH, 1);
+			//calendar.set(Calendar.DAY_OF_MONTH, 1);
 			//根据购买月份生成相印数量的代办；
 			for (int i = 0; i < month; i++) {
-				calendar.add(Calendar.MONTH, 1);
 				backlog = new Backlog();
 				backlog.setUserId(gasOrder.getUserId());
 				backlog.setAccount(gasCard.getGasAccount());
@@ -118,6 +117,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				backlog.setSum(sum);
 				backlog.setStatus(0);
 				backlogServiceImpl.addBacklog(backlog);
+				calendar.add(Calendar.MONTH, 1);
 			}
 			//如果有使用优惠券。则把优惠券设置为已使用
 			Long couponId = gasOrder.getCouponId();

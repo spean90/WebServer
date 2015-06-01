@@ -37,6 +37,9 @@
 		 	<if test="couponPackage.packageDesc!=null">
 		 		package_desc = #{couponPackage.packageDesc},
 		 	</if>
+		 	<if test="couponPackage.couponIds!=null">
+		 		coupon_ids = #{couponPackage.couponIds},
+		 	</if>
 	 	</set>
 	 	where coupon_package_id = #{couponPackage.couponPackageId}
 	</update>

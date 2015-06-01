@@ -19,6 +19,9 @@ var couponPackage = {
 			$('#packageDesc').val(row.packageDesc);
 			$('.modal-title').html('修改优惠礼包');
 			couponPackage.url = '/couponPackage/updateCouponPackage.do';
+			var gridOpts = $('#allCouponGrid').datagrid('options');
+		    gridOpts.url = '/coupon/getCouponListByIds.do';
+		    $('#allCouponGrid').datagrid('reload');
 			$('#couponModal').modal('show');
 		}else{
 			Modal.showAlert('请选择要修改的优惠券!');
@@ -55,8 +58,17 @@ var couponPackage = {
 			Modal.showAlert('请输入优惠礼包名称');
 			return;
 		}
+		var ids = '';
+		var rows = $('#allCouponGrid').datagrid('getSelections');
+		for(var i=0; i<rows.length; i++){
+		    ids+=","+rows[i].couponId;
+		}
+		
 		$('#form').form('submit',{
 			url : couponPackage.url,
+			onSubmit: function(param){  
+		        param.couponIds = ids; 
+		    }, 
 			success : function(data) {
 				var result = JSON.StrToJSON(data);
 				if(result.code == "0000"){

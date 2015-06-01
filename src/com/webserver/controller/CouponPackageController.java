@@ -52,7 +52,7 @@ public class CouponPackageController {
 	@ResponseBody
 	public Object updateCouponPackage(CouponPackage couponPackage, HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
-		couponPackage.setCreateTime(DateUtil.getDateTimeString(new Date()));
+		//couponPackage.setCreateTime(DateUtil.getDateTimeString(new Date()));
 		couponPackageService.updateCouponPackage(couponPackage, request);
 		return resultBean;
 	}
