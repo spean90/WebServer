@@ -102,4 +102,9 @@ public class BacklogServiceImpl implements IBacklogService {
 		return 1;
 	}
 
+	@Override
+	public List<Backlog> getBackLogListIds(String[] backlogIds) {
+		return backlogDao.getBackLogListIds(backlogIds);
+	}
+
 }

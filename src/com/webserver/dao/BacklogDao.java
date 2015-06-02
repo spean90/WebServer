@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.modal.Backlog;
+import com.webserver.modal.Product;
 /**
  * 代办事件
  * @author hsp
@@ -19,5 +20,6 @@ public interface BacklogDao {
 	public Backlog getBacklogById(@Param("backlogId")Long backlogId) throws Exception;
 	public int updateBacklog(@Param("backlog")Backlog backlog)throws Exception;
 	public int addBacklog(@Param("backlog")Backlog backlog)throws Exception;
+	public List<Backlog> getBackLogListIds(@Param("backlogIds")String[] backlogIds);
 
 }

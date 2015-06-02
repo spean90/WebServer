@@ -64,4 +64,17 @@
 		where backlog_id = #{backlogId}
 	</select>
 	
+	<select id="getBackLogListIds" resultType="Backlog">
+		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
+		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
+		from backlog
+		<if test="backlogIds!=null and backlogIds!=''">
+			where backlog_id in
+			<foreach item="item" index="index" collection="backlogIds" open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		order by backlog_id DESC
+	</select>
+	
 </mapper>

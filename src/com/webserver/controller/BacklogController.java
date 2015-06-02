@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,6 +42,16 @@ public class BacklogController {
 		}
 		return resultBean;
 	}
+	@RequestMapping("getBackLogListIds")
+	@ResponseBody
+	public Object getBackLogListIds(String backlogIds) {
+		String[] ids = null;
+		if (!StringUtils.isEmpty(backlogIds)) {
+			ids = backlogIds.split(",");
+		}
+		return backlogService.getBackLogListIds(ids);
+	}
+	
 	@RequestMapping("updateBacklog")
 	@ResponseBody
 	public Object updateBacklog(Backlog backlog,HttpServletRequest request) {

@@ -72,7 +72,7 @@ $(function(){
 		singleSelect : true,
 		toolbar : '#tbar',
 		columns : [[
-		            {field:'orderId',title:'订单号',width:100,align:'center'},
+		            //{field:'orderId',title:'订单号',width:100,align:'center'},
 		            {field:'productId',title:'套餐id',width:100,align:'center'},
 		            {field:'amount',title:'数量',width:60,align:'center'},
 		            {field:'sum',title:'订单金额',width:100,align:'center'},
