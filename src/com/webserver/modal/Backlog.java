@@ -26,7 +26,7 @@ public class Backlog implements Serializable {
 	private String owner;//持卡人；
 	private Integer status;//状态：0-未生效；1-待处理；2-处理中；3-已处理；4-异常；
 	private String managerAccount;//办理员工；
-	private String orderId;//由哪个订单生成的；
+	private Long oId;//由哪个订单生成的；
 	private String updateTime;//处理时间
 	private String result;//处理结果
 	
@@ -108,14 +108,13 @@ public class Backlog implements Serializable {
 	public void setManagerAccount(String managerAccount) {
 		this.managerAccount = managerAccount;
 	}
-	public String getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
 	
-	
+	public Long getoId() {
+		return oId;
+	}
+	public void setoId(Long oId) {
+		this.oId = oId;
+	}
 	
 	
 }

@@ -59,6 +59,12 @@ var gasOrder = {
 				Modal.ajax(config);
 			})
 			
+		},
+		getBackLogInfo : function(val) {
+			var gridOpts = $('#backlogGrid').datagrid('options');
+		    gridOpts.url = '/backlog/getBackLogListByParams.do?oId='+val;
+		    $('#backlogGrid').datagrid('load');
+			$('#backlogModal').modal('show');
 		}
 		
 }
@@ -89,8 +95,8 @@ $(function(){
 		            {field:'payAccount',title:'付款账号',width:100,align:'center'},
 		            {field:'couponId',title:'优惠券id',width:100,align:'center'},
 		            {field:'createTime',title:'创建时间',width:100,align:'center'},
-		            {field:'orderDesc',title:'订单描述',width:100,align:'center'},
-		            {field:'oid',title:'操作',width:100,align:'center',formatter:function(val,row,index){
+		            //{field:'orderDesc',title:'订单描述',width:100,align:'center'},
+		            {field:'field',title:'操作',width:100,align:'center',formatter:function(val,row,index){
 		            	if (row.payType==2 && row.status==1) {
 							return '<div class="btn btn-xs btn-success" onclick=gasOrder.receive('+index+')>确认收款</div>';
 						}else if(row.payType==2 && row.status==2){
@@ -99,10 +105,36 @@ $(function(){
 							return '在线支付';
 						}
 		            	}
+		            },
+		            {field:'oId',title:'详情',width:100,align:'center',formatter:function(val,row,index){
+							return '<div class="btn btn-xs btn-success" onclick=gasOrder.getBackLogInfo('+val+')>处理情况</div>';
+		            	}
 		            }
 		            ]]
 		
-	})
+	});
+	$('#backlogGrid').datagrid({
+		singleSelect : true,
+		title : '待办列表', 
+		columns : [[
+		            {field:'rechargeTime',title:'充值时间',width:150,align:'center'},
+		            {field:'sum',title:'金额',width:150,align:'center'},
+		            {field:'manager_account',title:'办理人',width:150,align:'center'},
+		            {field:'status',title:'操作',width:100,align:'center',formatter:function(val,row){
+		            	if (val==0) {
+		            		return '未生效';
+						}else if(val==1) {
+							return '待处理';
+						}else if(val==2) {
+							return '处理中';
+						}else if(val==3) {
+							return '已处理';
+						}else {
+							return '异常';
+						}
+		            }}
+		            ]]
+	});
 })
 
 

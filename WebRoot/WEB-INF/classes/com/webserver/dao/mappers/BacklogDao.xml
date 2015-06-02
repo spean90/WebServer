@@ -4,7 +4,7 @@
 
 	<select id="getBacklogListByParams" resultType="Backlog">
 		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
+		company,owner,status,manager_account managerAccount,oid oId,update_time updateTime,result
 		from backlog
 		<where>
 		<if test="backlog.userId != null">
@@ -15,6 +15,9 @@
 		</if>
 		<if test="backlog.type != null">
 			and type = #{backlog.type}
+		</if>
+		<if test="backlog.oId != null and backlog.oId != ''">
+			and oid = #{backlog.oId}
 		</if>
 		<if test="backlog.owner != null and backlog.owner != ''">
 			and owner like concat('%',#{backlog.owner},'%') 
@@ -34,8 +37,8 @@
 	
 	
 	<insert id="addBacklog" parameterType="Backlog" useGeneratedKeys="true" keyProperty="backlog.backlogId">
-		insert into backlog (user_id, recharge_time,  create_time,account,sum,type,company, owner,status,manager_account ,order_id) 
-		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime}, #{backlog.account},#{backlog.sum},#{backlog.type},#{backlog.company},#{backlog.owner}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.orderId})
+		insert into backlog (user_id, recharge_time,  create_time,account,sum,type,company, owner,status,manager_account ,oid) 
+		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime}, #{backlog.account},#{backlog.sum},#{backlog.type},#{backlog.company},#{backlog.owner}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId})
 	</insert>
 	
 	<update id="updateBacklog"  parameterType="Backlog">
@@ -59,14 +62,14 @@
 	
 	<select id="getBacklogById" resultType="Backlog">
 		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
+		company,owner,status,manager_account managerAccount,oid oId,update_time updateTime,result
 		from backlog
 		where backlog_id = #{backlogId}
 	</select>
 	
 	<select id="getBackLogListIds" resultType="Backlog">
 		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,order_id orderId,update_time updateTime,result
+		company,owner,status,manager_account managerAccount,oid oId,update_time updateTime,result
 		from backlog
 		<if test="backlogIds!=null and backlogIds!=''">
 			where backlog_id in

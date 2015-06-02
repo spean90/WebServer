@@ -97,7 +97,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			
 			//获取油卡信息
 			GasCard gasCard = new GasCard();
-			gasCard.setGasAccount(gasOrder.getGasAccount());
+			gasCard.setGasId(gasOrder.getGasId());
 			List<GasCard> list = gasCardDao.getGasCardListByParams(gasCard, null, null);
 			gasCard = list.get(0);
 			Backlog backlog = null;
@@ -111,7 +111,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				backlog.setOwner(gasCard.getOwner());
 				backlog.setCompany(gasCard.getCompany());
 				backlog.setType(1);
-				backlog.setOrderId(gasOrder.getOrderId());
+				backlog.setoId(gasOrder.getoId());
 				backlog.setCreateTime(DateUtil.getDateTimeString(new Date()));
 				backlog.setRechargeTime(DateUtil.getDateString(calendar.getTime()));
 				backlog.setSum(sum);
