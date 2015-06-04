@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.PageBean;
+import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.modal.Coupon;
+import com.webserver.modal.UserCoupon;
 import com.webserver.service.ICouponService;
+import com.webserver.service.IUserCouponService;
 /**
  * 优惠券
  * @author hsp
@@ -26,6 +29,8 @@ public class CouponController {
 
 	@Resource
 	private ICouponService couponService;
+	@Resource
+	private IUserCouponService userCouponService;
 	
 	@RequestMapping("getCouponListByParams")
 	@ResponseBody
@@ -57,11 +62,13 @@ public class CouponController {
 	@ResponseBody
 	public Object deleteCouponById(Long couponId,String deadTime, HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
-		String nowTime = DateUtil.getDateTimeString(new Date());
-		if (nowTime.compareTo(deadTime)<0) {
+		UserCoupon userCoupon = new UserCoupon();
+		userCoupon.setCouponId(couponId);
+		PageData<UserCoupon> pageData = userCouponService.getUserCouponListByParams(userCoupon, null);
+		if (pageData.getRows()!=null && pageData.getRows().size()>0) {
 			resultBean.setCode("1001");
-			resultBean.setMsg("套餐未失效，不能删除");
-		}else {
+			resultBean.setMsg("该优惠券已经发出，不能删除");
+		}else{
 			couponService.deleteCouponById(couponId, request);
 		}
 		return resultBean;

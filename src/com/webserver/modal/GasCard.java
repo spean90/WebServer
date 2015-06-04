@@ -20,13 +20,13 @@ public class GasCard implements Serializable {
 	private String gasAccount;
 	private String company;
 	private String owner;
-	private String personId;
+	private String phone;
 	
-	public String getPersonId() {
-		return personId;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPersonId(String personId) {
-		this.personId = personId;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public Long getGasId() {
 		return gasId;

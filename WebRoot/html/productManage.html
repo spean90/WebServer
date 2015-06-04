@@ -56,11 +56,11 @@
 				        	<input type="hidden"  name="productId" id="productId_sub">
 				           <div class="input-group">
 							  <span class="input-group-addon" >月数</span>
-							  <input type="text" class="form-control" id="month" name="month" placeholder="月数" >
+							  <input type="text" class="form-control" id="month" name="month" placeholder="月数" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
 						  </div>
 						  <div class="input-group">
 							  <span class="input-group-addon" >折扣</span>
-							  <input type="text" class="form-control" id="discount" name="discount" placeholder="折扣 (数字)" >
+							  <input type="text" class="form-control" id="discount" name="discount" placeholder="折扣 (数字)"  >
 						  </div>
 				        </form>
 					</div>
@@ -89,7 +89,7 @@
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >单价</span>
-					  <input type="text" class="form-control" id="price" name="price" placeholder="单月金额" >
+					  <input type="text" class="form-control" id="price" name="price" placeholder="单月金额(仅限数字)" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >类型</span>

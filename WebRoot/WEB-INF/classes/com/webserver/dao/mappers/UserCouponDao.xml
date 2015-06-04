@@ -11,13 +11,16 @@
 		left join coupon a on t.coupon_id=a.coupon_id
 		left join user_info b on t.user_id = b.user_id
 		<where>
+		<if test="userCoupon.couponId != null and userCoupon.couponId != ''">
+			and t.coupon_id  = #{userCoupon.couponId} 
+		</if>
 		<if test="userCoupon.userId != null and userCoupon.userId != ''">
 			and t.user_id  = #{userCoupon.userId} 
 		</if>
 		<if test="userCoupon.deadTime != null and userCoupon.deadTime != ''">
 			and a.dead_time >= #{userCoupon.deadTime}
 		</if>
-		<if test="userCoupon.type != null">
+		<if test="userCoupon.type != null and userCoupon.type != ''">
 			and a.type = #{userCoupon.type}
 		</if>
 		<if test="userCoupon.status != null and userCoupon.status != ''">

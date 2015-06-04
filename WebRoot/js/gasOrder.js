@@ -2,9 +2,11 @@ var gasOrder = {
 		searchGasOrder : function() {
 			var userId = $('#userId').val();
 			var orderId = $('#orderId').val();
+			var userName = $('#userName').val();
 			$('#gasOrderGrid').datagrid('load',{
 				userId : userId,
-				orderId : orderId
+				orderId : orderId,
+				userName:userName
 			})
 		},
 		detail : function() {
@@ -82,7 +84,7 @@ $(function(){
 		            {field:'productId',title:'套餐id',width:100,align:'center'},
 		            {field:'amount',title:'数量',width:60,align:'center'},
 		            {field:'sum',title:'订单金额',width:100,align:'center'},
-		            {field:'userName',title:'用户名',width:100,align:'center'},
+		            {field:'userName',title:'手机号',width:100,align:'center'},
 		            {field:'payOrderId',title:'支付订单',width:100,align:'center'},
 		            {field:'paySum',title:'支付金额',width:100,align:'center'},
 		            {field:'payType',title:'支付方式',width:100,align:'center',formatter:function(val){

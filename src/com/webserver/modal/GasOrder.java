@@ -32,6 +32,7 @@ public class GasOrder implements Serializable {
 	private Integer payType;//支付方式1-支付宝；2-线下支付；
 	private Integer status;//订单状态;1-未支付；2-已支付；
 	private String receiver;//收款人;
+	private Integer delStatus; //删除状态；1为已经被删除了。失效
 	
 	/**
 	 * 查询用的属性
@@ -43,6 +44,13 @@ public class GasOrder implements Serializable {
 	private String gasAccount;
 	private String company;
 	
+
+	public Integer getDelStatus() {
+		return delStatus;
+	}
+	public void setDelStatus(Integer delStatus) {
+		this.delStatus = delStatus;
+	}
 	public Long getGasId() {
 		return gasId;
 	}

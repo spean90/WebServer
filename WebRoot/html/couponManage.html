@@ -19,8 +19,8 @@
 	<div id="couponGrid" style="height: 480px;"></div>
 		<div id="tbar">
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="coupon.addCoupon()">新增</a>
-			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="coupon.updateCoupon()">修改</a> 
-        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="coupon.deleteCoupon()">删除</a>-->
+			<!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="coupon.updateCoupon()">修改</a> -->
+        	<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="coupon.deleteCoupon()">删除</a>
 		</div>
 		
 		<div class="modal fasse" id="detailModal" role="dialog" aria-hidden="true">
@@ -57,7 +57,7 @@
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >金额</span>
-					  <input type="text" class="form-control" id="sum" name="sum" placeholder="优惠券金额" >
+					  <input type="text" class="form-control" id="sum" name="sum" placeholder="优惠券金额" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >类型</span>

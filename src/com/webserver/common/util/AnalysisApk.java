@@ -58,7 +58,7 @@ public class AnalysisApk {
              					case XmlPullParser.START_TAG:
              					{
              						for (int i=0;i!=parser.getAttributeCount();++i) {
-             							if("versionName".equals(parser.getAttributeName(i))){
+             							if("versionCode".equals(parser.getAttributeName(i))){
              								st[0] = getAttributeValue(parser,i);
              							}else if("package".equals(parser.getAttributeName(i))){
              								st[1] = getAttributeValue(parser,i);

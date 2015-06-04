@@ -4,18 +4,20 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/task  
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd  
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	
+	<!-- <import resource="classpath:cfg/springconfig-task.xml" /> -->
 	<context:property-placeholder location="classpath:cfg/config.properties"/>
-	<!-- <import resource="resources/messageSource.xml"/> -->
 	
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
 		destroy-method="close">
@@ -90,6 +92,6 @@
 		</aop:aspect>
 	</aop:config> 
 	 -->
-	
+	<task:annotation-driven/> 
 	<context:component-scan base-package="com.webserver"/>
 </beans>

@@ -3,7 +3,7 @@
 <mapper namespace="com.webserver.dao.GasCardDao">
 
 	<select id="getGasCardListByParams" resultType="GasCard">
-		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,person_id personId 
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone
 		from gas_card
 		<where>
 		<if test="gasCard.userId != null and gasCard.userId != ''">
@@ -21,8 +21,8 @@
 		<if test="gasCard.company != null and gasCard.company != ''">
 			and company = #{gasCard.company}
 		</if>
-		<if test="gasCard.personId != null and gasCard.personId != ''">
-			and person_id = #{gasCard.personId}
+		<if test="gasCard.phone != null and gasCard.phone != ''">
+			and phone = #{gasCard.phone}
 		</if>
 		</where>
 		order by gas_id 
@@ -32,13 +32,13 @@
 	</select>
 	
 	<select id="getGasCardById" resultType="GasCard">
-		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,person_id personId 
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone 
 		from gas_card
 		where gas_id = #{gasId}
 	</select>
 	
 	<select id="getGasCardByUser" resultType="GasCard">
-		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,person_id personId 
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone 
 		from gas_card
 		<where>
 		<if test="gasCard.userId != null and gasCard.userId != ''">
@@ -52,8 +52,8 @@
 	
 	
 	<insert id="addGasCard" parameterType="GasCard" useGeneratedKeys="true" keyProperty="gasCard.gasId">
-		insert into gas_card (user_id, gas_account,company, owner,person_id ) 
-		VALUES (#{gasCard.userId}, #{gasCard.gasAccount},  #{gasCard.company}, #{gasCard.owner}, #{gasCard.personId})
+		insert into gas_card (user_id, gas_account,company, owner,phone ) 
+		VALUES (#{gasCard.userId}, #{gasCard.gasAccount},  #{gasCard.company}, #{gasCard.owner}, #{gasCard.phone})
 	</insert>
 	
 	 <delete id="deleteGasCardById" parameterType="java.lang.Long">

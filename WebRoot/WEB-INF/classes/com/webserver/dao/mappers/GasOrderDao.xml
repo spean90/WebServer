@@ -34,6 +34,7 @@
 		<if test="gasOrder.userName != null and gasOrder.userName != ''">
 			and a.user_name like concat('%',#{gasOrder.userName},'%')
 		</if>
+			and t.del_status != 1
 		</where>
 		order by oid desc 
 		<if test="pageBean!= null">
@@ -54,6 +55,7 @@
 				and t.create_time <= #{gasOrder.endTime}
 			]]>
 		</if>
+		and t.del_status != 1
 		</where>
 		group by productId
 		<if test="pageBean!= null">
@@ -85,6 +87,13 @@
 		 	</if>
 	 	</set>
 	 	where oid = #{gasOrder.oId}
+	</update>
+	<update id="clearUnPayOrder">
+		update gas_order
+		set del_status = 1
+		<![CDATA[
+			where create_time <= #{clearTime} and status = 1 and del_status!=1
+			]]>
 	</update>
 	
 </mapper>

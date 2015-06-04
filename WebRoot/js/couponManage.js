@@ -35,16 +35,10 @@ var coupon = {
 	deleteCoupon : function() {
 		var row = $('#couponGrid').datagrid('getSelected');
 		if(row) {
-			var datetime = row.deadTime;
-			var nowtime = new Date().format("yyyy-MM-dd HH:mm:ss");
-			if (nowtime < datetime) {
-				Modal.showAlert('套餐还未失效，不能删除！');
-				return;
-			}
 			Modal.showConfirm('确定要删除优惠券"'+row.couponName+'"吗？',null,function(){
 				var config = {
 						type:"post",
-						url:'/coupon/deleteCouponById.do?couponId='+row.couponId+'&deadTime='+datetime,
+						url:'/coupon/deleteCouponById.do?couponId='+row.couponId,
 						success:function(data){
 							if(data.code == "0000"){
 								Modal.showAlert('删除成功');

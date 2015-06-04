@@ -2,9 +2,11 @@ var userCoupon = {
 		search : function() {
 			var userId = $('#userId').val();
 			var userName = $('#userName').val();
+			var type = $('#type').combobox('getValue');
 			$('#userCouponGrid').datagrid('load',{
 				userId : userId,
-				userName : userName
+				userName : userName,
+				type : type
 			})
 		}
 		
@@ -18,7 +20,7 @@ $(function(){
 		fitColumns : true,
 		columns : [[
 		            {field:'userId',title:'用户id',width:100,align:'center'},
-		            {field:'userName',title:'用户名',width:100,align:'center'},
+		            {field:'userName',title:'手机号',width:100,align:'center'},
 		            {field:'couponName',title:'优惠券名',width:100,align:'center'},
 		            {field:'type',title:'类型',width:100,align:'center',formatter:function(val){
 		            	if(val==1){
@@ -43,7 +45,22 @@ $(function(){
 		            //{field:'productIds',title:'限用套餐id',width:100,align:'center'}
 		            ]]
 		
-	})
+	});
+	$('#type').combobox({
+		data : [{
+			name : "全部",
+			value : ""
+		},{
+			name : "直冲",
+			value : "1"
+		},{
+			name : "套餐",
+			value : "2"
+		}],
+		textField : 'name',
+		valueField : 'value',
+		panelHeight : 80
+	});
 })
 
 
