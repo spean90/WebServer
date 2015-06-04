@@ -15,4 +15,6 @@ public interface NewsDao {
 	
 	public int addNews(@Param("news")News news);
 	
+	public void updateNews(@Param("news")News news);
+	
 }

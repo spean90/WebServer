@@ -36,11 +36,16 @@ public class SecurityUtil {
 		return result;
 	}
 	
-
+	public static String createRedeemCode(Long userId){
+		String str = new Date().getTime()+"-"+userId; 
+		str = str.substring(8);
+		String token = Base64.encode(str.getBytes());
+		return token;
+	}
 	
 	public static void main(String[] args) {
 		
-		String s = SecurityUtil.createToken(117l);
+		String s = SecurityUtil.createRedeemCode(117l);
 		//System.out.println("MTE3LTE0MzI3MzQ2NDQ3NTQ=");
 		
 		//boolean r = SecurityUtil.isValidate("ODBmMTAwLTExNy0xNDMyNzM0OTU4MTkx", 117l);

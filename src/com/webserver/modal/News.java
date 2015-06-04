@@ -21,6 +21,14 @@ public class News implements Serializable {
 	private String content;
 	private Integer status;
 	private String createTime;
+	private Integer type;
+	
+	public Integer getType() {
+		return type;
+	}
+	public void setType(Integer type) {
+		this.type = type;
+	}
 	public Long getNewsId() {
 		return newsId;
 	}

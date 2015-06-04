@@ -1,5 +1,7 @@
 package com.webserver.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,8 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.PageBean;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.DateUtil;
+import com.webserver.common.util.SecurityUtil;
+import com.webserver.modal.RedeemCode;
 import com.webserver.modal.UserCoupon;
+import com.webserver.service.IRedeemCodeService;
 import com.webserver.service.IUserCouponService;
+import com.webserver.service.impl.RedeemCodeServiceImpl;
 
 @Controller
 @RequestMapping("userCoupon")
@@ -22,6 +29,8 @@ public class UserCouponController {
 	private Logger logger = LoggerFactory.getLogger(UserCouponController.class);
 	@Resource
 	private IUserCouponService userCouponService;
+	@Resource
+	private IRedeemCodeService redeemCodeService;
 	
 	@RequestMapping("getUserCouponListByParams")
 	@ResponseBody
@@ -34,8 +43,16 @@ public class UserCouponController {
 	public Object addUserCoupon(Long userId,String couponPackageIds,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (!StringUtils.isEmpty(couponPackageIds)) {
+			String redeemCodeString = SecurityUtil.createRedeemCode(userId);
+			RedeemCode redeemCode = new RedeemCode();
+			redeemCode.setUserId(userId);
+			redeemCode.setStatus(1);
+			redeemCode.setCouponPackageIds(couponPackageIds);
+			redeemCode.setRedeemCode(redeemCodeString);
+			redeemCode.setCreateTime(DateUtil.getDateTimeString(new Date()));
 			try {
-				userCouponService.addUserCouponByPackageId(userId, couponPackageIds, request);
+				redeemCodeService.addRedeemCode(redeemCode,request);
+				//userCouponService.addUserCouponByPackageId(userId, couponPackageIds, request);
 			} catch (Exception e) {
 				logger.error("err:", e);
 				resultBean.setCode("5001");

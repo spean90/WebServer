@@ -33,6 +33,8 @@ public class GasOrder implements Serializable {
 	private Integer status;//订单状态;1-未支付；2-已支付；
 	private String receiver;//收款人;
 	private Integer delStatus; //删除状态；1为已经被删除了。失效
+	private Long userCouponId;//用户的优惠券id
+	
 	
 	/**
 	 * 查询用的属性
@@ -44,7 +46,12 @@ public class GasOrder implements Serializable {
 	private String gasAccount;
 	private String company;
 	
-
+	public Long getUserCouponId() {
+		return userCouponId;
+	}
+	public void setUserCouponId(Long userCouponId) {
+		this.userCouponId = userCouponId;
+	}
 	public Integer getDelStatus() {
 		return delStatus;
 	}

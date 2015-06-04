@@ -47,10 +47,10 @@
 		update user_coupon 
 		<set>
 	 		<if test="userCoupon.status != null and userCoupon.status != ''">
-				and t.status = #{userCoupon.status}
+				status = #{userCoupon.status}
 			</if>
 	 	</set>
-	 	where id = #{coupon.id}
+	 	where id = #{userCoupon.id}
 	</update>
 	
 </mapper>
