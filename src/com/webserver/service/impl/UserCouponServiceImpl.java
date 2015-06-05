@@ -17,10 +17,12 @@ import com.webserver.common.util.StringUtil;
 import com.webserver.dao.CouponDao;
 import com.webserver.dao.CouponPackageDao;
 import com.webserver.dao.OperLogDao;
+import com.webserver.dao.RedeemCodeDao;
 import com.webserver.dao.UserCouponDao;
 import com.webserver.modal.Coupon;
 import com.webserver.modal.CouponPackage;
 import com.webserver.modal.OperLog;
+import com.webserver.modal.RedeemCode;
 import com.webserver.modal.UserCoupon;
 import com.webserver.service.IUserCouponService;
 
@@ -36,6 +38,8 @@ public class UserCouponServiceImpl implements IUserCouponService {
 	private CouponDao couponDao;
 	@Resource
 	private OperLogDao operLogDao;
+	@Resource
+	private RedeemCodeDao redeemCodeDao;
 	@Override
 	public PageData<UserCoupon> getUserCouponListByParams(
 			UserCoupon userCoupon, PageBean pageBean) {
@@ -60,33 +64,31 @@ public class UserCouponServiceImpl implements IUserCouponService {
 	}
 
 	@Override
-	public void addUserCouponByPackageId(Long userId, String couponPackageIds,
+	public void addUserCouponByPackageId(RedeemCode redeemCode, String couponPackageIds,
 			HttpServletRequest request) {
 		String[] packageIds = couponPackageIds.split(",");
 		List<CouponPackage> packages = couponPackageDao.getCouponPackageListByIds(packageIds);
 		if (packages!=null &&packages.size()>0) {
-			List<Coupon> coupons = null;
+			//List<Coupon> coupons = null;
 			String couponIds = "";
 			String[] cids = null;
 			UserCoupon userCoupon = null;
 			for (CouponPackage couponPackage : packages) {
 				couponIds = couponPackage.getCouponIds();
 				cids = couponIds.split(",");
-				OperLog operLog = new OperLog(request);
-				operLog.setOperAction("发送优惠礼包");
-				operLog.setParams(StringUtil.toJson(couponPackage));
 				for (String cid : cids) {
 					userCoupon = new UserCoupon();
-					userCoupon.setUserId(userId);
+					userCoupon.setUserId(redeemCode.getUserId());
 					userCoupon.setCouponId(Long.parseLong(cid));
 					userCoupon.setCouponPackageId(couponPackage.getCouponPackageId());
 					userCoupon.setCreateTime(DateUtil.getDateTimeString(new Date()));
 					userCoupon.setStatus(1);
 					userCouponDao.addUserCoupon(userCoupon);
 				}
-				operLogDao.addLog(operLog);
 			}
 		}
+		redeemCode.setStatus(0);
+		redeemCodeDao.updateRedeemCode(redeemCode);
 	}
 
 }

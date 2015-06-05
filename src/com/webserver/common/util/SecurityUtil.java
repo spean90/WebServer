@@ -45,9 +45,9 @@ public class SecurityUtil {
 	
 	public static void main(String[] args) {
 		
-		String s = SecurityUtil.createRedeemCode(117l);
+		//String s = SecurityUtil.createRedeemCode(117l);
 		//System.out.println("MTE3LTE0MzI3MzQ2NDQ3NTQ=");
-		
+		String s = SecurityUtil.createToken(117l);
 		//boolean r = SecurityUtil.isValidate("ODBmMTAwLTExNy0xNDMyNzM0OTU4MTkx", 117l);
 		System.out.println(s);
 	}

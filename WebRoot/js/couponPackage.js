@@ -60,6 +60,10 @@ var couponPackage = {
 		}
 		var ids = '';
 		var rows = $('#allCouponGrid').datagrid('getSelections');
+		if(rows.length==0){
+			Modal.showAlert('请选择优惠券！');
+			return;
+		}
 		for(var i=0; i<rows.length; i++){
 		    ids+=","+rows[i].couponId;
 		}

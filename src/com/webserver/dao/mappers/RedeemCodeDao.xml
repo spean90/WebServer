@@ -45,9 +45,7 @@
 	<update id="updateRedeemCode" parameterType="RedeemCode">
 		update redeem_code 
 		<set>
-	 		<if test="RedeemCode.status != null and RedeemCode.status != ''">
-				status = #{RedeemCode.status}
-			</if>
+			status = #{RedeemCode.status}
 	 	</set>
 	 	where redeem_code_id = #{RedeemCode.redeemCodeId}
 	</update>

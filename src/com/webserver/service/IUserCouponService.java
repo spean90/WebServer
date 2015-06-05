@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
+import com.webserver.modal.RedeemCode;
 import com.webserver.modal.UserCoupon;
 
 public interface IUserCouponService {
@@ -12,6 +13,6 @@ public interface IUserCouponService {
 	
 	public void addUserCoupon(UserCoupon userCoupon,HttpServletRequest request);
 	
-	public void addUserCouponByPackageId(Long userId,String couponPackageIds,
+	public void addUserCouponByPackageId(RedeemCode redeemCode,String couponPackageIds,
 			HttpServletRequest request) throws Exception;
 }
