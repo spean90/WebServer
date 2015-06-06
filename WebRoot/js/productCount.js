@@ -16,7 +16,7 @@ var config = {
 							paySum += parseInt(data[i].paySum);
 						}
 						$('#sum').text(sum);
-						$('#paySum').text(paySum);
+						//$('#paySum').text(paySum);
 						 $('#productChart').highcharts({
 						        chart: {
 						            plotBackgroundColor: null,

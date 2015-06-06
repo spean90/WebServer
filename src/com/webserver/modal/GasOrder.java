@@ -45,7 +45,14 @@ public class GasOrder implements Serializable {
 	private String userName;
 	private String gasAccount;
 	private String company;
+	private String productDesc;
 	
+	public String getProductDesc() {
+		return productDesc;
+	}
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
+	}
 	public Long getUserCouponId() {
 		return userCouponId;
 	}

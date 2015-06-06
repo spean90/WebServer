@@ -85,4 +85,32 @@
 	 	where product_id = #{productId}
 	 </delete>
 	
+	<select id="getProductListByProduct" resultType="Product">
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime,status
+		from product
+		<where>
+		<if test="product.productId != null and product.productId != ''">
+			and product_id = #{product.productId}
+		</if>
+		<if test="product.productName != null and product.productName != ''">
+			and product_name like concat('%',#{product.productName},'%') 
+		</if>
+		<if test="product.productType != null and product.productType != ''">
+			and product_type = #{product.productType}
+		</if>
+		<if test="product.status != null and product.status != ''">
+			and status = #{product.status}
+		</if>
+		<if test="product.beginTime != null and product.beginTime != '' ">
+			and create_time > #{product.beginTime}
+		</if>
+		<if test="product.endTime != null and product.endTime != '' ">
+			<![CDATA[
+				and create_time <= #{product.endTime}
+			]]>
+		</if>
+		</where>
+		order by product_id DESC
+	</select>
+	
 </mapper>

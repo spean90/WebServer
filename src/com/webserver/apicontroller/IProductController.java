@@ -41,8 +41,8 @@ public class IProductController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, userId)) {
 			try {
-				PageData<Product> pageData = productService.getProductListByParams(product, null);
-				resultBean.setObject(pageData.getRows());
+				List<Product> productList = productService.getProductListByProduct(product);
+				resultBean.setObject(productList);
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
@@ -61,7 +61,7 @@ public class IProductController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, userId)) {
 			try {
-				PageData<Product> pageData = productService.getProductListByParams(product, null);
+				List<Product> productList = productService.getProductListByProduct(product);
 				Map<String, Object> obj = new HashMap<String, Object>();
 				GasCard gasCard = new GasCard();
 				gasCard.setUserId(userId);
@@ -69,7 +69,7 @@ public class IProductController {
 				if (p.getRows()!=null&&p.getRows().size()>0) {
 					gasCard = p.getRows().get(0);
 				}
-				obj.put("productList", pageData.getRows());
+				obj.put("productList", productList);
 				obj.put("gasCard", gasCard);
 				resultBean.setObject(obj);
 			} catch (Exception e) {

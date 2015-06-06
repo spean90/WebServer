@@ -20,5 +20,7 @@ public interface ProductDao {
 	
 	public List<Product> getProductListIds(@Param("productIds")String[] productIds);
 	public Product getProductById(@Param("productId")Long productId);
+	
+	public List<Product> getProductListByProduct(@Param("product")Product product);
 
 }

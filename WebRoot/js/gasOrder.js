@@ -109,6 +109,9 @@ $(function(){
 		            	}
 		            },
 		            {field:'oId',title:'详情',width:100,align:'center',formatter:function(val,row,index){
+		            		if(row.status==1){
+		            			return '未支付';
+		            		}
 							return '<div class="btn btn-xs btn-success" onclick=gasOrder.getBackLogInfo('+val+')>处理情况</div>';
 		            	}
 		            }

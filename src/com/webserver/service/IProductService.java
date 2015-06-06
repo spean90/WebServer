@@ -15,5 +15,5 @@ public interface IProductService {
 	public int updateProduct(Product product, HttpServletRequest request);
 	public int deleteProductById(Long productId, HttpServletRequest request);
 	public List<Product> getProductListIds(String[] productIds);
-
+	public List<Product> getProductListByProduct(Product product);
 }

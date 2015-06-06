@@ -26,4 +26,6 @@ public interface IGasOrderService {
 	public PageData<Map<String, Object>> countSumByUser(GasOrder gasOrder,PageBean pageBean);
 
 	public Object countProductDetail(GasOrder gasOrder);
+	
+	public GasOrder getGasOrderById(GasOrder gasOrder);
 }

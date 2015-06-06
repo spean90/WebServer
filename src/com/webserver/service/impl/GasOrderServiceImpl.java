@@ -95,6 +95,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		ResultBean resultBean = new ResultBean();
 		gasOrder.setOrderId(UUID.randomUUID().toString().replace("-", ""));
 		gasOrder.setCreateTime(DateUtil.getDateTimeString(new Date()));
+		gasOrder.setStatus(1);
 		Long userCouponId = gasOrder.getUserCouponId();
 		//优惠券金额
 		int couponSum = 0;
@@ -138,6 +139,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			}
 		}
 		gasOrderDao.addGasOrder(gasOrder);
+		resultBean.setObject(gasOrder);
 		return resultBean;
 	}
 
@@ -251,6 +253,11 @@ public class GasOrderServiceImpl implements IGasOrderService {
 	public Object countProductDetail(GasOrder gasOrder) {
 		List<Map<String, Object>> result = gasOrderDao.countProductDetail(gasOrder);
 		return result;
+	}
+	@Override
+	public GasOrder getGasOrderById(GasOrder gasOrder) {
+		// TODO Auto-generated method stub
+		return gasOrderDao.getGasOrderById(gasOrder);
 	}
 
 }

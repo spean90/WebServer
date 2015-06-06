@@ -75,4 +75,10 @@ public class ProductServiceImpl implements IProductService {
 		return productDao.getProductListIds(productIds);
 	}
 
+	@Override
+	public List<Product> getProductListByProduct(Product product) {
+		 List<Product> rows = productDao.getProductListByProduct(product);
+		return rows;
+	}
+
 }

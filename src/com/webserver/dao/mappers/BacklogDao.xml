@@ -44,21 +44,23 @@
 	<update id="updateBacklog"  parameterType="Backlog">
 		update backlog
 		<set>
-	 		<if test="backlog.status!=null">
+	 		<if test="backlog.status!=null and backlog.status!=''">
 	 			status = #{backlog.status},
 		 	</if>
-		 	<if test="backlog.managerAccount!=null">
+		 	<if test="backlog.managerAccount!=null and backlog.managerAccount!=''">
 	 			manager_account = #{backlog.managerAccount},
 		 	</if>
-		 	<if test="backlog.updateTime!=null">
+		 	<if test="backlog.updateTime!=null and backlog.updateTime!=''">
 	 			update_time = #{backlog.updateTime},
 		 	</if>
-		 	<if test="backlog.result!=null">
+		 	<if test="backlog.result!=null and backlog.result!=''">
 	 			result = #{backlog.result},
 		 	</if>
 	 	</set>
 	 	where backlog_id = #{backlog.backlogId}
 	</update>
+	
+	
 	
 	<select id="getBacklogById" resultType="Backlog">
 		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
@@ -79,5 +81,15 @@
 		</if>
 		order by backlog_id DESC
 	</select>
+	<!-- 激活代办事件 -->
+	<update id="activateBacklog">
+		update backlog
+		set status = 1
+	 	where status = 0 and 
+	 	<![CDATA[
+	 		recharge_time <= #{currentTime}
+	 	]]>
+	</update>
+	
 	
 </mapper>

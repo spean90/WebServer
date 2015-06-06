@@ -7,9 +7,11 @@
 		t.pay_order_id payOrderId ,t.coupon_id couponId,t.pay_sum paySum,t.pay_type payType,t.pay_account payAccount,receiver,t.status
 		,a.user_name userName
 		,b.gas_account gasAccount ,b.company company
+		,c.product_name productName,c.product_desc productDesc
 		from gas_order t
 		left join user_info a on t.user_id=a.user_id
 		left join gas_card b on b.gas_id = t.gas_id
+		left join product c on t.product_id = c.product_id
 		<where>
 		<if test="gasOrder.userId != null and gasOrder.userId != ''">
 			and t.user_id = #{gasOrder.userId}
@@ -58,7 +60,7 @@
 				and t.create_time <= #{gasOrder.endTime}
 			]]>
 		</if>
-		and t.del_status != 1
+		and t.del_status != 1 and t.status = 2
 		</where>
 		group by productId
 		<if test="pageBean!= null">
@@ -163,6 +165,9 @@
 		</if>
 		<if test="gasOrder.oId != null and gasOrder.oId != ''">
 			and t.oid = #{gasOrder.oId}
+		</if>
+		<if test="gasOrder.orderId != null and gasOrder.orderId != ''">
+			and t.order_id = #{gasOrder.orderId}
 		</if>
 		<if test="gasOrder.status!=null and gasOrder.status!='' ">
 	 		and	t.status = #{gasOrder.status}

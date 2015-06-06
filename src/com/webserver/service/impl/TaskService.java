@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.webserver.common.util.DateUtil;
+import com.webserver.dao.BacklogDao;
 import com.webserver.dao.GasOrderDao;
 import com.webserver.dao.UserCouponDao;
 import com.webserver.modal.GasOrder;
@@ -24,6 +25,8 @@ public class TaskService {
 	private GasOrderDao gasOrderDao;
 	@Resource
 	private UserCouponDao userCouponDao;
+	@Resource
+	private BacklogDao backlogDao;
 	
 	@Scheduled(cron = "00 00 03 * * *")
 	public void clearUnPayOrder(){
@@ -52,4 +55,17 @@ public class TaskService {
 			logger.error("清除未支付订单失败：", e);
 		}
 	}
+	@Scheduled(cron="00 00 01 * * *")
+	public void backlogTask() {
+		logger.info(">>>>>>>定时跟新为到期的代办>>>>>..");
+		try {
+			String currentTime = DateUtil.getDateString(new Date());
+			currentTime = currentTime+" 00:00:00";
+			backlogDao.activateBacklog(currentTime);
+		} catch (Exception e) {
+			logger.error("失败：", e);
+		}
+		
+	}
+	
 }

@@ -21,5 +21,5 @@ public interface BacklogDao {
 	public int updateBacklog(@Param("backlog")Backlog backlog)throws Exception;
 	public int addBacklog(@Param("backlog")Backlog backlog)throws Exception;
 	public List<Backlog> getBackLogListIds(@Param("backlogIds")String[] backlogIds);
-
+	public void activateBacklog(@Param("currentTime")String currentTime);
 }
