@@ -23,7 +23,7 @@
 		,a.price price
 		from sub_product t
 		left join product a on a.product_id = t.product_id
-		where t.sub_product_id = #{subProductId}
+		where t.sub_product_id = #{subProductId} and t.status = 1
 	</select>
 	
 	

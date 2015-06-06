@@ -26,5 +26,5 @@ public interface CouponDao {
 	
 	public int deleteCouponById(@Param("couponId")Long couponId)throws Exception;
 	
-	
+	public Coupon getCouponById(@Param("couponId")Long couponId);
 }

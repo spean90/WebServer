@@ -12,6 +12,7 @@ import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.SecurityUtil;
 import com.webserver.modal.GasOrder;
+import com.webserver.modal.News;
 import com.webserver.service.IGasOrderService;
 
 @Controller
@@ -26,13 +27,39 @@ public class IGasOrderController {
 	public Object createOrder(GasOrder gasOrder,String token) {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasOrder.getUserId())) {
-			
+			try {
+				resultBean = gasOrderService.addGasOrder(gasOrder);
+			} catch (Exception e) {
+				logger.error("err:",e);
+				resultBean.setCode("5001");
+				resultBean.setMsg(e.getMessage());
+			}
 		}else{
 			resultBean.setCode("3004");
 			resultBean.setMsg("token失效请重新登录");
 		}
 		return resultBean;
 	}
+	
+	@RequestMapping("cancelOrder")
+	@ResponseBody
+	public Object cancelOrder(GasOrder gasOrder,String token) {
+		ResultBean resultBean = new ResultBean();
+		if (SecurityUtil.isValidate(token, gasOrder.getUserId())) {
+			try {
+				gasOrderService.cancelGasOrder(gasOrder);
+			} catch (Exception e) {
+				logger.error("err:",e);
+				resultBean.setCode("5001");
+				resultBean.setMsg(e.getMessage());
+			}
+		}else{
+			resultBean.setCode("3004");
+			resultBean.setMsg("token失效请重新登录");
+		}
+		return resultBean;
+	}
+	
 	
 	@RequestMapping("getUserOrderList")
 	@ResponseBody
@@ -42,6 +69,7 @@ public class IGasOrderController {
 			try {
 				PageData<GasOrder> pageData = gasOrderService.getGasOrderListByParams(gasOrder, null);
 				resultBean.setObject(pageData.getRows());
+				
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");

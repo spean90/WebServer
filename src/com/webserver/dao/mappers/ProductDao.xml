@@ -44,7 +44,11 @@
 		</if>
 		order by product_id DESC
 	</select>
-	
+	<select id="getProductById" resultType="Product">
+		select product_id productId, product_name productName, product_desc productDesc, price, limit_time limitTime, product_type productType, create_time createTime,status
+		from product
+		where product_id = #{productId}
+	</select>
 	
 	<insert id="addProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="product.productId">
 		insert into product (product_name, product_desc,  price, limit_time, product_type, create_time,status) 

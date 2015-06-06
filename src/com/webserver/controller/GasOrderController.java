@@ -37,6 +37,26 @@ public class GasOrderController {
 	public Object countProductByParams(GasOrder gasOrder,PageBean pageBean) {
 		return gasOrderService.countProductByParams(gasOrder,pageBean);
 	}
+	@RequestMapping("countSumByUser")
+	@ResponseBody
+	public Object countSumByUser(GasOrder gasOrder,PageBean pageBean) {
+		return gasOrderService.countSumByUser(gasOrder,pageBean);
+	}
+	
+	@RequestMapping("countProductDetail")
+	@ResponseBody
+	public Object countProductDetail(GasOrder gasOrder) {
+		ResultBean resultBean = new ResultBean();
+		resultBean.setObject(gasOrderService.countProductDetail(gasOrder));
+		return resultBean;
+	}
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("receiveOrder")
 	@ResponseBody
 	public Object receiveOrder(GasOrder gasOrder,HttpServletRequest request) {

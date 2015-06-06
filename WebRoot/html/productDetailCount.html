@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/js/productDetailCount.js"></script>
+		<script type="text/javascript" src="/common/highchart/highcharts.js"></script>
+	</head>
+	<body style="height: 700px;">
+	<div style="margin-bottom: 10px;">
+				统计时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
+				<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;">
+				套餐：<input id="productId" style="width: 100px;">
+				统计类型：<input id="type" style="width: 100px;">
+				<button class="btn btn-success" onclick="productDetailCount.search()">查询</button>
+			</div>
+		<div id="productDetailChart"></div>
+	</body>
+</html>

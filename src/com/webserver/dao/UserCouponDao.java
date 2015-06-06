@@ -17,4 +17,6 @@ public interface UserCouponDao {
 	
 	public int updateUserCoupon(@Param("userCoupon")UserCoupon userCoupon);
 	
+	public UserCoupon getUserCouponById(@Param("userCouponId")Long userCouponId,@Param("userId")Long userId);
+	
 }

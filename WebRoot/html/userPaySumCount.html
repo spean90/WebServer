@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/js/userPaySumCount.js"></script>
+	</head>
+	<body style="height: 700px;">
+			<div style="margin-bottom: 10px;">
+				手机号：<input name="userName" id="userName"  style="width: 100px;height: 25px;">
+				统计时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
+				<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;">
+				<button class="btn btn-success" onclick="userPaySumCount.search()">查询</button>
+			</div>
+			<div id="userPaySumGrid" style="height: 550px"></div>
+			
+			<div class="modal fasse" id="detailModal" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		 <h4 class="modal-title">选择礼包</h4>
+					</div>
+					<div class="modal-body">
+						<div id="couponPackageGrid" style="width: 550px;"></div>
+					</div>
+					<div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				        <button type="button" class="btn btn-success" onclick="userPaySumCount.submit()">发送</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

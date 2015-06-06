@@ -36,6 +36,15 @@
 		</if>
 	</select>
 	
+	<select id="getUserCouponById" resultType="UserCoupon">
+		select t.id,t.user_id userId,t.coupon_id couponId,t.coupon_package_id couponPackageId,t.status status,
+		t.create_time createTime,a.dead_time deadTime,a.coupon_name couponName,a.type type,a.is_deliver isDeliver,
+		a.sum sum,a.coupon_desc couponDesc,a.product_ids productIds
+		from user_coupon t
+		left join coupon a on t.coupon_id=a.coupon_id
+		where t.id = #{userCouponId} and t.user_id = #{userId} and t.status = 1
+	</select>
+	
 	
 	<insert id="addUserCoupon" parameterType="UserCoupon" >
 		insert into user_coupon (user_id, coupon_id,coupon_package_id, create_time,status) 

@@ -17,7 +17,13 @@ public interface GasOrderDao {
 	
 	public List<Map<String, Object>> countProductByParams(@Param("gasOrder")GasOrder gasOrder,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData) throws Exception;
 
-	public int updateGasOrder(@Param("gasOrder")GasOrder gasOrder)throws Exception;
+	public int updateGasOrder(@Param("gasOrder")GasOrder gasOrder);
 	
 	public void clearUnPayOrder(@Param("clearTime")String clearTime)throws Exception;;
+	
+	public GasOrder getGasOrderById(@Param("gasOrder")GasOrder gasOrder);
+	
+	public List<Map<String, Object>> countSumByUser(@Param("gasOrder")GasOrder gasOrder,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
+
+	public List<Map<String, Object>> countProductDetail(@Param("gasOrder")GasOrder gasOrder);
 }
