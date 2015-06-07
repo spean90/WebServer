@@ -53,4 +53,5 @@ $(function(){
 	$('#managerAccount').val(account);
 	$('#mId').val(sessionStorage.mId);
 	$('#realName').val(sessionStorage.realName);
+	$('#pic').attr("src",sessionStorage.pic);
 })

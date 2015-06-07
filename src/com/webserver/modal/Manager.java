@@ -15,7 +15,16 @@ public class Manager implements Serializable {
 	private Integer roleId;
 	private String addMan;
 	private String roleName;
-	public Integer getmId() {
+	private String pic;
+	
+	
+	public String getPic() {
+		return pic;
+	}
+	public void setPic(String pic) {
+		this.pic = pic;
+	}
+	public Integer getmId() { 
 		return mId;
 	}
 	public void setmId(Integer mId) {

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.DownloadLogDao">
+
+	<select id="getDownloadLogListByParams" resultType="DownloadLog">
+	</select>
+	
+	
+	<insert id="addDownloadLog" parameterType="DownloadLog">
+		insert into download_log (manager_account,create_time) 
+		VALUES (#{DownloadLog.managerAccount} ,#{DownloadLog.createTime})
+	</insert>
+	
+</mapper>
