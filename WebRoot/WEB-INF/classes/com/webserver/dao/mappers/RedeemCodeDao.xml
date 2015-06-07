@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webserver.dao.RedeemCodeDao">
+
+	<select id="getRedeemCodeListByParams" resultType="RedeemCode">
+		select redeem_code_id redeemCodeId,user_id userId,redeem_code redeemCode,status, coupon_package_ids couponPackageIds,create_time createTime
+		from redeem_code
+		<where>
+		<if test="RedeemCode.userId != null and RedeemCode.userId != ''">
+			and user_id = #{RedeemCode.userId}
+		</if>
+		<if test="RedeemCode.status != null and RedeemCode.status != ''">
+			and status = #{RedeemCode.status}
+		</if>
+		</where>
+		order by redeem_code_id 
+		<if test="pageBean!= null">
+			limit #{pageBean.start}, #{pageBean.rows}
+		</if>
+	</select>
+	
+	
+	<select id="getRedeemCodeByCode" resultType="RedeemCode">
+		select redeem_code_id redeemCodeId,user_id userId,redeem_code redeemCode,status, coupon_package_ids couponPackageIds,create_time createTime
+		from redeem_code
+		<where>
+		<if test="RedeemCode.userId != null and RedeemCode.userId != ''">
+			and user_id = #{RedeemCode.userId}
+		</if>
+		<if test="RedeemCode.status != null and RedeemCode.status != ''">
+			and status = #{RedeemCode.status}
+		</if>
+		<if test="RedeemCode.redeemCode != null and RedeemCode.redeemCode != ''">
+			and redeem_code = #{RedeemCode.redeemCode}
+		</if>
+		</where>
+		order by redeem_code_id 
+	</select>
+	
+	<insert id="addRedeemCode" parameterType="RedeemCode">
+		insert into redeem_code (user_id,redeem_code,status, create_time,coupon_package_ids) 
+		VALUES (#{RedeemCode.userId},#{RedeemCode.redeemCode},#{RedeemCode.status}, #{RedeemCode.createTime}, #{RedeemCode.couponPackageIds})
+	</insert>
+	
+	<update id="updateRedeemCode" parameterType="RedeemCode">
+		update redeem_code 
+		<set>
+			status = #{RedeemCode.status}
+	 	</set>
+	 	where redeem_code_id = #{RedeemCode.redeemCodeId}
+	</update>
+</mapper>
