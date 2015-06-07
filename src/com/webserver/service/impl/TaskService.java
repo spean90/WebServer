@@ -55,7 +55,7 @@ public class TaskService {
 			logger.error("清除未支付订单失败：", e);
 		}
 	}
-	@Scheduled(cron="00 00 01 * * *")
+	@Scheduled(cron="05 00 01 * * *")
 	public void backlogTask() {
 		logger.info(">>>>>>>定时跟新为到期的代办>>>>>..");
 		try {

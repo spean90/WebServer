@@ -13,6 +13,7 @@ var manager = {
 		if(row) {
 			$('#pwd').hide();
 			$('#repwd').hide();
+			$('#userName').hide();
 			$('#re_password').val(row.password);
 			$('#dialog').dialog('setTitle','修改管理员信息').dialog('open');
 			$('#form').form('load',row);
@@ -53,22 +54,52 @@ var manager = {
 			return;
 		}
 		$('#password').val(hex_md5(pwd).toUpperCase());
-		$('#form').form('submit',{
-			url : manager.url,
-			success : function(data) {
-				var result = JSON.StrToJSON(data);
-				if(result.success){
+		
+		var data = {
+				mId : $('#mId').val(),
+				roleId : $('#roleId').combobox('getValue'),
+				managerAccount : $('#managerAccount').val(),
+				realName : $('#realName').val(),
+				password : $('#password').val(),
+				isLock : $('#isLock').combobox('getValue')
+		}
+		var config = {
+				url : manager.url,
+				data : data,
+				type : "post",
+				success : function(data) {
 					$('#dialog').dialog('close');
 					$('#userGrid').datagrid('reload');
-				}else{
-					var msg = result.msg?result.msg:'服务器出错！';
-					Modal.showAlert(msg);
-					$('#dialog').dialog('close');
-					$('#userGrid').datagrid('reload');
+//					var result = JSON.StrToJSON(data);
+//					if(result.success){
+//						$('#dialog').dialog('close');
+//						$('#userGrid').datagrid('reload');
+//					}else{
+//						var msg = result.msg?result.msg:'服务器出错！';
+//						Modal.showAlert(msg);
+//						$('#dialog').dialog('close');
+//						$('#userGrid').datagrid('reload');
+//					}
+					
 				}
-				
-			}
-		})
+		}
+		Modal.ajax(config);
+//		$('#form').form('submit',{
+//			url : manager.url,
+//			success : function(data) {
+//				var result = JSON.StrToJSON(data);
+//				if(result.success){
+//					$('#dialog').dialog('close');
+//					$('#userGrid').datagrid('reload');
+//				}else{
+//					var msg = result.msg?result.msg:'服务器出错！';
+//					Modal.showAlert(msg);
+//					$('#dialog').dialog('close');
+//					$('#userGrid').datagrid('reload');
+//				}
+//				
+//			}
+//		})
 	}
 }
 
