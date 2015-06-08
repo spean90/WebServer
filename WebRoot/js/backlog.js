@@ -130,7 +130,7 @@ $(function(){
 		panelHeight : 80
 	});
 	$('#backlogGrid').datagrid({
-		url : '/backlog/getBackLogListByParams.do',
+		url : '/backlog/getBackLogListByParams.do?status=1',
 		pagination : true,
 		singleSelect :true,
 		title : '代办事件', 
@@ -146,6 +146,9 @@ $(function(){
 		            {field:'managerAccount',title:'办理人',width:100,align:'center'},
 		            {field:'result',title:'结果',width:200,align:'center'},
 		            {field:'status',title:'状态',width:80,align:'center',formatter: function(val,row,index){
+		            	if(row.gasCardStatus==2){
+		            		return '挂失中...';
+		            	}
 		            	if (val==1) {
 							return '<div class="btn btn-primary btn-xs" onclick=backlog.handle('+index+')>待处理</div>';
 						}else if (val==2) {

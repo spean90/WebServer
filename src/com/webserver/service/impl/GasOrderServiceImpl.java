@@ -101,6 +101,16 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		int couponSum = 0;
 		//验证优惠券是否有效
 		if (userCouponId!=null&&userCouponId!=0) {
+			//判断油卡是否已经用过了这种优惠券、只能用一次
+			GasOrder g = new GasOrder();
+			g.setGasId(gasOrder.getGasId());
+			g.setCouponId(gasOrder.getCouponId());
+			g = gasOrderDao.getGasOrderById(gasOrder);
+			if (g!=null) {
+				resultBean.setCode("1001");
+				resultBean.setMsg("该油卡已使用过该优惠券！");
+				return resultBean;
+			}
 			couponSum = checkCoupon(userCouponId, gasOrder.getUserId(), gasOrder.getSubProductId());
 			if(couponSum==0){
 				resultBean.setCode("1001");
@@ -181,28 +191,33 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			
 			
 			//获取油卡信息
-			GasCard gasCard = new GasCard();
-			gasCard.setGasId(gasOrder.getGasId());
-			List<GasCard> list = gasCardDao.getGasCardListByParams(gasCard, null, null);
-			gasCard = list.get(0);
+			GasCard gasCard = gasCardDao.getGasCardById(gasOrder.getGasId());
+			if (gasCard==null) {
+				logger.error("确认收款时、油卡信息为空》》》》》》》》》》》》》》》》。");
+				throw new RuntimeException();
+			}
 			Backlog backlog = null;
 			
 			//根据购买月份生成相印数量的代办；
 			for (int i = 0; i < month; i++) {
 				Calendar calendar = Calendar.getInstance();
-				calendar.add(Calendar.DAY_OF_MONTH, 1);
+				//calendar.add(Calendar.DAY_OF_MONTH, 1);
 				calendar.add(Calendar.MONTH, i);
 				backlog = new Backlog();
 				backlog.setUserId(gasOrder.getUserId());
 				backlog.setAccount(gasCard.getGasAccount());
 				backlog.setOwner(gasCard.getOwner());
 				backlog.setCompany(gasCard.getCompany());
+				backlog.setGasId(gasCard.getGasId());
 				backlog.setType(1);
 				backlog.setoId(gasOrder.getoId());
 				backlog.setCreateTime(DateUtil.getDateTimeString(new Date()));
 				backlog.setRechargeTime(DateUtil.getDateString(calendar.getTime()));
 				backlog.setSum(sum);
 				backlog.setStatus(0);
+				if (i==0) {
+					backlog.setStatus(1);
+				}
 				backlogServiceImpl.addBacklog(backlog);
 			}
 			//如果有使用优惠券。则把优惠券设置为已使用
@@ -258,6 +273,10 @@ public class GasOrderServiceImpl implements IGasOrderService {
 	public GasOrder getGasOrderById(GasOrder gasOrder) {
 		// TODO Auto-generated method stub
 		return gasOrderDao.getGasOrderById(gasOrder);
+	}
+	@Override
+	public void updateGasOrderForDeleteGasCard(Long userId) {
+		gasOrderDao.updateGasOrderForDeleteGasCard(userId);
 	}
 
 }

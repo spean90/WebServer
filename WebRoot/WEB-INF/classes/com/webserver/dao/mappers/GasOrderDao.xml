@@ -6,7 +6,7 @@
 		select t.oid oId,t.user_id userId,t.sub_product_id subProductId, t.product_id productId, t.order_id orderId, t.sum sum, t.create_time createTime,t.gas_id gasId,t.amount,t.order_desc orderDesc,t.user_coupon_id userCouponId,
 		t.pay_order_id payOrderId ,t.coupon_id couponId,t.pay_sum paySum,t.pay_type payType,t.pay_account payAccount,receiver,t.status
 		,a.user_name userName
-		,b.gas_account gasAccount ,b.company company
+		,b.gas_account gasAccount ,b.company company 
 		,c.product_name productName,c.product_desc productDesc
 		from gas_order t
 		left join user_info a on t.user_id=a.user_id
@@ -147,6 +147,13 @@
 	 	</set>
 	 	where oid = #{gasOrder.oId}
 	</update>
+	
+	<update id="updateGasOrderForDeleteGasCard" parameterType="GasOrder">
+		update gas_order 
+		set del_status = 1
+	 	where user_id = #{userId} and status = 1 and del_status!=1
+	</update>
+	
 	<update id="clearUnPayOrder">
 		update gas_order
 		set del_status = 1
@@ -171,6 +178,12 @@
 		</if>
 		<if test="gasOrder.status!=null and gasOrder.status!='' ">
 	 		and	t.status = #{gasOrder.status}
+		</if>
+		<if test="gasOrder.couponId!=null and gasOrder.couponId!='' ">
+	 		and	t.couponId = #{gasOrder.couponId}
+		 </if>
+		 <if test="gasOrder.gasId!=null and gasOrder.gasId!='' ">
+	 		and	t.gasId = #{gasOrder.gasId}
 		 </if>
 			and t.del_status != 1
 		</where>

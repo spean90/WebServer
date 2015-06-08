@@ -26,4 +26,7 @@ public interface GasOrderDao {
 	public List<Map<String, Object>> countSumByUser(@Param("gasOrder")GasOrder gasOrder,@Param("pageBean")PageBean pageBean,@Param("pageData") PageData pageData);
 
 	public List<Map<String, Object>> countProductDetail(@Param("gasOrder")GasOrder gasOrder);
+	
+	public void updateGasOrderForDeleteGasCard(@Param("userId")Long userId);
+	
 }

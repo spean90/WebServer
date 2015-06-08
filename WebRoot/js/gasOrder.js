@@ -34,8 +34,10 @@ var gasOrder = {
 			var orderDesc = $('#orderDesc').val();
 			var subProductId = $('#subProductId').val();
 			var amount = $('#amount').val();
+			var gasId = $('#gasId_receive').val();
 			var data = {
 					oId:oId,
+					gasId : gasId,
 					userId:userId,
 					paySum:paySum,
 					orderDesc:orderDesc,

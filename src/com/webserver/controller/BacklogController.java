@@ -28,7 +28,7 @@ public class BacklogController {
 	@RequestMapping("getBackLogListByParams")
 	@ResponseBody
 	public Object getBackLogListByParams(Backlog backlog,PageBean pageBean){
-		backlog.setStatus(1);
+		//backlog.setStatus(1);
 		return backlogService.getBacklogListByParams(backlog, pageBean);
 	}
 	@RequestMapping("lockBacklog")

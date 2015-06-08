@@ -21,7 +21,8 @@ public class GasCard implements Serializable {
 	private String company;
 	private String owner;
 	private String phone;
-	
+	private Integer status;
+	private String sign;
 	public String getPhone() {
 		return phone;
 	}
@@ -57,6 +58,18 @@ public class GasCard implements Serializable {
 	}
 	public void setOwner(String owner) {
 		this.owner = owner;
+	}
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+	public String getSign() {
+		return sign;
+	}
+	public void setSign(String sign) {
+		this.sign = sign;
 	}
 	
 	

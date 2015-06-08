@@ -3,7 +3,7 @@
 <mapper namespace="com.webserver.dao.GasCardDao">
 
 	<select id="getGasCardListByParams" resultType="GasCard">
-		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone,status,sign
 		from gas_card
 		<where>
 		<if test="gasCard.userId != null and gasCard.userId != ''">
@@ -24,6 +24,9 @@
 		<if test="gasCard.phone != null and gasCard.phone != ''">
 			and phone = #{gasCard.phone}
 		</if>
+		<if test="gasCard.status != null and gasCard.status != ''">
+			and status = #{gasCard.status}
+		</if>
 		</where>
 		order by gas_id 
 		<if test="pageBean!= null">
@@ -32,13 +35,13 @@
 	</select>
 	
 	<select id="getGasCardById" resultType="GasCard">
-		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone 
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone ,status,sign
 		from gas_card
 		where gas_id = #{gasId}
 	</select>
 	
 	<select id="getGasCardByUser" resultType="GasCard">
-		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone 
+		select gas_id gasId,user_id userId, gas_account gasAccount,company, owner owner ,phone ,status,sign
 		from gas_card
 		<where>
 		<if test="gasCard.userId != null and gasCard.userId != ''">
@@ -47,18 +50,36 @@
 		<if test="gasCard.gasAccount != null and gasCard.gasAccount != ''">
 			and gas_account = #{gasCard.gasAccount}
 		</if>
+		<if test="gasCard.status != null and gasCard.status != ''">
+			and status = #{gasCard.status}
+		</if>
 		</where>
 	</select>
 	
 	
 	<insert id="addGasCard" parameterType="GasCard" useGeneratedKeys="true" keyProperty="gasCard.gasId">
-		insert into gas_card (user_id, gas_account,company, owner,phone ) 
-		VALUES (#{gasCard.userId}, #{gasCard.gasAccount},  #{gasCard.company}, #{gasCard.owner}, #{gasCard.phone})
+		insert into gas_card (user_id, gas_account,company, owner,phone,status,sign ) 
+		VALUES (#{gasCard.userId}, #{gasCard.gasAccount},  #{gasCard.company}, #{gasCard.owner}, #{gasCard.phone}, #{gasCard.status}, #{gasCard.sign})
 	</insert>
 	
 	 <delete id="deleteGasCardById" parameterType="java.lang.Long">
 	 	delete from gas_card 
 	 	where gas_id = #{gasId}
 	 </delete>
-	
+	 
+	<update id="updateGasCard">
+		update gas_card
+		<set>
+	 		<if test="gasCard.status != null and gasCard.status != ''">
+				status = #{gasCard.status},
+			</if>
+		 	<if test="gasCard.gasAccount != null and gasCard.gasAccount != ''">
+			 	gas_account = #{gasCard.gasAccount},
+			</if>
+			<if test="gasCard.sign != null and gasCard.sign != ''">
+			 	sign = #{gasCard.sign},
+			</if>
+	 	</set>
+	 	where gas_id = #{gasCard.gasId}
+	</update>
 </mapper>

@@ -1,5 +1,7 @@
 package com.webserver.apicontroller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.SecurityUtil;
 import com.webserver.modal.GasCard;
 import com.webserver.service.IGasCardService;
@@ -35,6 +38,7 @@ public class IGasCardController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasCard.getUserId())) {
 			try {
+				gasCard.setStatus(1);
 				PageData<GasCard> pageData = gasCardServiceImpl.getGasCardListByParams(gasCard, null);
 				resultBean.setObject(pageData.getRows());
 			} catch (Exception e) {
@@ -55,11 +59,13 @@ public class IGasCardController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasCard.getUserId())) {
 			try {
+				gasCard.setStatus(1);
 				GasCard g = gasCardServiceImpl.getGasCardByUser(gasCard);
 				if (g!=null) {
 					resultBean.setCode("1001");
 					resultBean.setMsg("该油卡已经绑定！");
 				}else{
+					gasCard.setSign(gasCard.getGasAccount());
 					gasCardServiceImpl.addGasCard(gasCard);
 					resultBean.setObject(gasCard);
 				}
@@ -77,11 +83,15 @@ public class IGasCardController {
 	}
 	@RequestMapping("removeGasCardById")
 	@ResponseBody
-	public Object removeGasCardById(Long gasId,Long userId,String token,HttpServletRequest request) {
+	public Object removeGasCardById(Long gasId ,Long userId,String token,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
-		if (SecurityUtil.isValidate(token, userId)) {
+		if (SecurityUtil.isValidate(token,userId)) {
 			try {
-				gasCardServiceImpl.deleteGasCardById(gasId);
+				GasCard gasCard = new GasCard();
+				gasCard.setUserId(userId);
+				gasCard.setGasId(gasId);
+				gasCard.setStatus(3);
+				gasCardServiceImpl.updateGasCard(gasCard);
 			} catch (Exception e) {
 				logger.error("解除绑定油卡失败：", e);
 				resultBean.setCode("5001");
@@ -93,4 +103,26 @@ public class IGasCardController {
 		}
 		return resultBean;
 	}
+	
+	@RequestMapping("modifyGasCardById")
+	@ResponseBody
+	public Object modifyGasCardById(GasCard gasCard,String newAccount,String reason,String token,HttpServletRequest request) {
+		ResultBean resultBean = new ResultBean();
+		if (SecurityUtil.isValidate(token,gasCard.getUserId())) {
+			try {
+				gasCard.setSign(gasCard.getSign()+"#"+DateUtil.getDateTimeString(new Date())+"变更账号为："+newAccount+" 原因："+reason);
+				gasCard.setGasAccount(newAccount);
+				gasCardServiceImpl.updateGasCard(gasCard);
+			} catch (Exception e) {
+				logger.error("解除绑定油卡失败：", e);
+				resultBean.setCode("5001");
+				resultBean.setMsg("err："+e.getMessage());
+			}
+		}else{
+			resultBean.setCode("3004");
+			resultBean.setMsg("token失效请重新登录");
+		}
+		return resultBean;
+	}
+	
 }

@@ -28,4 +28,6 @@ public interface IGasOrderService {
 	public Object countProductDetail(GasOrder gasOrder);
 	
 	public GasOrder getGasOrderById(GasOrder gasOrder);
+	
+	public void updateGasOrderForDeleteGasCard(Long userId);
 }

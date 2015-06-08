@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.dao.GasCardDao;
+import com.webserver.dao.GasOrderDao;
 import com.webserver.modal.GasCard;
 import com.webserver.service.IGasCardService;
 
@@ -17,6 +18,8 @@ public class GasCardServiceImpl implements IGasCardService {
 
 	@Resource
 	private GasCardDao gasCardDao;
+	@Resource
+	private GasOrderDao gasOrderDao;
 	
 	@Override
 	public PageData<GasCard> getGasCardListByParams(GasCard gasCard,
@@ -49,6 +52,15 @@ public class GasCardServiceImpl implements IGasCardService {
 	public GasCard getGasCardByUser(GasCard gasCard) {
 		// TODO Auto-generated method stub
 		return gasCardDao.getGasCardByUser(gasCard);
+	}
+
+	@Override
+	public void updateGasCard(GasCard gasCard) {
+		if (gasCard.getStatus()!=null && gasCard.getStatus()==3) {
+			//如果是接触绑定,删除未支付的订单
+			gasOrderDao.updateGasOrderForDeleteGasCard(gasCard.getUserId());
+		}
+		gasCardDao.updateGasCard(gasCard);
 	}
 
 }

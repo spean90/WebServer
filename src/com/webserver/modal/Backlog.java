@@ -19,6 +19,7 @@ public class Backlog implements Serializable {
 	private Long userId;
 	private String rechargeTime;//充值时间
 	private String createTime;//创建时间；
+	private Long gasId;
 	private String account;//油卡；或者提现银行卡；
 	private Double sum;//金额；
 	private Integer type;//1-油卡充值；2-提现；
@@ -29,6 +30,7 @@ public class Backlog implements Serializable {
 	private Long oId;//由哪个订单生成的；
 	private String updateTime;//处理时间
 	private String result;//处理结果
+	private Integer gasCardStatus;//油卡状态
 	
 	public String getResult() {
 		return result;
@@ -114,6 +116,18 @@ public class Backlog implements Serializable {
 	}
 	public void setoId(Long oId) {
 		this.oId = oId;
+	}
+	public Long getGasId() {
+		return gasId;
+	}
+	public void setGasId(Long gasId) {
+		this.gasId = gasId;
+	}
+	public Integer getGasCardStatus() {
+		return gasCardStatus;
+	}
+	public void setGasCardStatus(Integer gasCardStatus) {
+		this.gasCardStatus = gasCardStatus;
 	}
 	
 	

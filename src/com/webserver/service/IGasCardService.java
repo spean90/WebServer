@@ -11,4 +11,5 @@ public interface IGasCardService {
 	public int deleteGasCardById(Long gasId);
 	public GasCard getGasCardById(Long gasId);
 	public GasCard getGasCardByUser(GasCard gasCard);
+	public void updateGasCard(GasCard gasCard);
 }

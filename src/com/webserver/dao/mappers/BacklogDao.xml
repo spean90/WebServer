@@ -3,30 +3,32 @@
 <mapper namespace="com.webserver.dao.BacklogDao">
 
 	<select id="getBacklogListByParams" resultType="Backlog">
-		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,oid oId,update_time updateTime,result
-		from backlog
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
+		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus
+		from backlog t 
+		left join gas_card a on a.gas_id = t.gas_id
 		<where>
 		<if test="backlog.userId != null">
-			and user_id = #{backlog.userId}
+			and t.user_id = #{backlog.userId}
 		</if>
 		<if test="backlog.backlogId != null">
-			and backlog_id = #{backlog.backlogId}
+			and t.backlog_id = #{backlog.backlogId}
 		</if>
 		<if test="backlog.type != null">
-			and type = #{backlog.type}
+			and t.type = #{backlog.type}
 		</if>
 		<if test="backlog.oId != null and backlog.oId != ''">
-			and oid = #{backlog.oId}
+			and t.oid = #{backlog.oId}
 		</if>
 		<if test="backlog.owner != null and backlog.owner != ''">
-			and owner like concat('%',#{backlog.owner},'%') 
+			and a.owner like concat('%',#{backlog.owner},'%') 
 		</if>
 		<if test="backlog.status != null and backlog.status != ''">
-			and status = #{backlog.status}
+			and t.status = #{backlog.status}
 		</if>
 		<if test="backlog.managerAccount != null">
-			and manager_account = #{backlog.managerAccount}
+			and t.manager_account = #{backlog.managerAccount}
 		</if>
 		</where>
 		order by backlog_id 
@@ -37,8 +39,8 @@
 	
 	
 	<insert id="addBacklog" parameterType="Backlog" useGeneratedKeys="true" keyProperty="backlog.backlogId">
-		insert into backlog (user_id, recharge_time,  create_time,account,sum,type,company, owner,status,manager_account ,oid) 
-		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime}, #{backlog.account},#{backlog.sum},#{backlog.type},#{backlog.company},#{backlog.owner}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId})
+		insert into backlog (user_id, recharge_time,  create_time,sum,type,gas_id,status,manager_account ,oid) 
+		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime},#{backlog.sum},#{backlog.type},#{backlog.gasId}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId})
 	</insert>
 	
 	<update id="updateBacklog"  parameterType="Backlog">
@@ -63,16 +65,20 @@
 	
 	
 	<select id="getBacklogById" resultType="Backlog">
-		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,oid oId,update_time updateTime,result
-		from backlog
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
+		a.company company,a.owner owner ,a.gas_account account
+		from backlog t
+		left join gas_card a on a.gas_id = t.gas_id
 		where backlog_id = #{backlogId}
 	</select>
 	
 	<select id="getBackLogListIds" resultType="Backlog">
-		select backlog_id backlogId,user_id userId, recharge_time rechargeTime, create_time createTime, account , sum, type,
-		company,owner,status,manager_account managerAccount,oid oId,update_time updateTime,result
-		from backlog
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
+		a.company company,a.owner owner ,a.gas_account account
+		from backlog t
+		left join gas_card a on a.gas_id = t.gas_id
 		<if test="backlogIds!=null and backlogIds!=''">
 			where backlog_id in
 			<foreach item="item" index="index" collection="backlogIds" open="(" separator="," close=")">
