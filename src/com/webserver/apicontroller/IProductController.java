@@ -41,6 +41,7 @@ public class IProductController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, userId)) {
 			try {
+				product.setStatus(1);
 				List<Product> productList = productService.getProductListByProduct(product);
 				resultBean.setObject(productList);
 			} catch (Exception e) {
@@ -61,6 +62,7 @@ public class IProductController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, userId)) {
 			try {
+				product.setStatus(1);
 				List<Product> productList = productService.getProductListByProduct(product);
 				Map<String, Object> obj = new HashMap<String, Object>();
 				GasCard gasCard = new GasCard();
