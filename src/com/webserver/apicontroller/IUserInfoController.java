@@ -49,7 +49,7 @@ public class IUserInfoController {
 		message = messageService.getUserfullMessage(message);
 		if (message != null&&message.getCode().equals(code)) {
 			try {
-				userInfo.setPassword(MD5.md5(userInfo.getPassword()));
+				userInfo.setPassword(userInfo.getPassword());
 				PageData<UserInfo> pageData = userInfoService.getUserListByParams(userInfo, new PageBean());
 				if (pageData.getTotal()!=0) {
 					resultBean.setCode("1001");
@@ -77,7 +77,7 @@ public class IUserInfoController {
 		ResultBean resultBean = new ResultBean();
 		Map<String, Object> resultObj = new HashMap<String, Object>();
 		try {
-			userInfo.setPassword(MD5.md5(userInfo.getPassword()));
+			userInfo.setPassword(userInfo.getPassword());
 			userInfo = userInfoService.getUserInfoByUser(userInfo);
 			if (userInfo == null) {
 				resultBean.setCode("1001");
@@ -88,7 +88,11 @@ public class IUserInfoController {
 				PageData<GasCard> pageData = gasCardServiceImpl.getGasCardListByParams(gasCard, null);
 				int gasCardAmount = 0;
 				if (pageData.getRows()!=null) {
-					gasCardAmount = pageData.getRows().size();
+					for (GasCard g : pageData.getRows()) {
+						if (g.getStatus()!=3) {
+							gasCardAmount++;
+						}
+					}
 				}
 				resultObj.put("gasCardAmount",gasCardAmount);
 				resultObj.put("userId", userInfo.getUserId());
@@ -124,12 +128,12 @@ public class IUserInfoController {
 				resultBean.setMsg("用户不存在");
 				return resultBean;
 			}
-			userInfo.setPassword(MD5.md5(newPassword));
+			userInfo.setPassword(newPassword);
 			userInfoService.updateUser(userInfo);
 		} catch (Exception e) {
 			logger.error("找回密码失败：", e);
 			resultBean.setCode("5001");
-			resultBean.setMsg("err："+e.getMessage());
+			resultBean.setMsg("服务器异常");
 		}
 		
 		return resultBean;
@@ -140,23 +144,28 @@ public class IUserInfoController {
 	public Object sendMessge(String phone,String type) {
 		ResultBean resultBean = new ResultBean();
 		//type:3032.注册；3033，找回密码
-		if ("3033".equals(type)) {
-			UserInfo userInfo = new UserInfo();
-			userInfo.setUserName(phone);
-			try {
-				userInfo = userInfoService.getUserInfoByUser(userInfo);
-				if (userInfo==null) {
-					resultBean.setCode("1001");
-					resultBean.setMsg("用户不存在");
-					return resultBean;
-				}
-			} catch (Exception e) {
-				logger.error("查询用户失败："+e);
-				resultBean.setCode("5001");
-				resultBean.setMsg("系统出错");
-				return resultBean;
-			}
+		
+		UserInfo userInfo = new UserInfo();
+		userInfo.setUserName(phone);
+		try {
+			userInfo = userInfoService.getUserInfoByUser(userInfo);
+		} catch (Exception e) {
+			logger.error("查询用户失败："+e);
+			resultBean.setCode("5001");
+			resultBean.setMsg("服务器异常");
+			return resultBean;
 		}
+		if ("3033".equals(type)&&userInfo==null) {
+			resultBean.setCode("1001");
+			resultBean.setMsg("用户不存在");
+			return resultBean;
+		}
+		if ("3032".equals(type)&&userInfo!=null) {
+			resultBean.setCode("1001");
+			resultBean.setMsg("用户已存在");
+			return resultBean;
+		}
+		
 		Calendar calendar = Calendar.getInstance();
 		calendar.add(Calendar.MINUTE, 3);
 		
@@ -181,7 +190,7 @@ public class IUserInfoController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, userInfo.getUserId())) {
 			try {
-				userInfoService.updateUser(userInfo);
+				userInfoService.authUser(userInfo);
 			} catch (Exception e) {
 				logger.error("实名验证失败:", e);
 				resultBean.setCode("1001");

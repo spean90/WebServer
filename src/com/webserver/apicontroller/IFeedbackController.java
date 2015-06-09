@@ -37,7 +37,7 @@ public class IFeedbackController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -58,7 +58,7 @@ public class IFeedbackController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");

@@ -9,6 +9,11 @@ public class DateUtil {
 
 	private static DateFormat dateTimeFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	private static DateFormat dateFormater = new SimpleDateFormat("yyyy-MM-dd");
+	private static DateFormat localFormater = new SimpleDateFormat("MM年dd日 HH:mm");
+	
+	public static String getLocalDatatimeString(Date date) {
+		return localFormater.format(date);
+	}
 	
 	public static String getDateTimeString(Date date){
 		return dateTimeFormater.format(date);

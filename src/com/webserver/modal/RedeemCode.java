@@ -12,6 +12,7 @@ public class RedeemCode implements Serializable {
 	private Long userId;
 	private String redeemCode;
 	private String couponPackageIds;
+	private String packageNames;
 	private String createTime;
 	private Integer status;
 	
@@ -50,6 +51,12 @@ public class RedeemCode implements Serializable {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getPackageNames() {
+		return packageNames;
+	}
+	public void setPackageNames(String packageNames) {
+		this.packageNames = packageNames;
 	}
 	
 	

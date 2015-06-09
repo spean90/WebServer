@@ -38,13 +38,12 @@ public class IGasCardController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasCard.getUserId())) {
 			try {
-				gasCard.setStatus(1);
 				PageData<GasCard> pageData = gasCardServiceImpl.getGasCardListByParams(gasCard, null);
 				resultBean.setObject(pageData.getRows());
 			} catch (Exception e) {
 				logger.error("获取油卡失败：", e);
 				resultBean.setCode("5001");
-				resultBean.setMsg("err："+e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -72,7 +71,7 @@ public class IGasCardController {
 			} catch (Exception e) {
 				logger.error("添加油卡失败：", e);
 				resultBean.setCode("5001");
-				resultBean.setMsg("err："+e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -83,19 +82,19 @@ public class IGasCardController {
 	}
 	@RequestMapping("removeGasCardById")
 	@ResponseBody
-	public Object removeGasCardById(Long gasId ,Long userId,String token,HttpServletRequest request) {
+	public Object removeGasCardById(Long gasId ,Long userId,String token,Integer status,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token,userId)) {
 			try {
 				GasCard gasCard = new GasCard();
 				gasCard.setUserId(userId);
 				gasCard.setGasId(gasId);
-				gasCard.setStatus(3);
+				gasCard.setStatus(status);
 				gasCardServiceImpl.updateGasCard(gasCard);
 			} catch (Exception e) {
 				logger.error("解除绑定油卡失败：", e);
 				resultBean.setCode("5001");
-				resultBean.setMsg("err："+e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -112,11 +111,12 @@ public class IGasCardController {
 			try {
 				gasCard.setSign(gasCard.getSign()+"#"+DateUtil.getDateTimeString(new Date())+"变更账号为："+newAccount+" 原因："+reason);
 				gasCard.setGasAccount(newAccount);
+				gasCard.setStatus(1);
 				gasCardServiceImpl.updateGasCard(gasCard);
 			} catch (Exception e) {
-				logger.error("解除绑定油卡失败：", e);
+				logger.error("变更油卡失败：", e);
 				resultBean.setCode("5001");
-				resultBean.setMsg("err："+e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");

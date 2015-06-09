@@ -13,7 +13,7 @@
 			and gas_id = #{gasCard.gasId}
 		</if>
 		<if test="gasCard.gasAccount != null and gasCard.gasAccount != ''">
-			and gas_account = #{gasCard.gasAccount}
+			and gas_account like concat('%',#{gasCard.gasAccount},'%')
 		</if>
 		<if test="gasCard.owner != null and gasCard.owner != ''">
 			and owner = #{gasCard.owner}
@@ -22,7 +22,7 @@
 			and company = #{gasCard.company}
 		</if>
 		<if test="gasCard.phone != null and gasCard.phone != ''">
-			and phone = #{gasCard.phone}
+			and phone like concat('%', #{gasCard.phone},'%')
 		</if>
 		<if test="gasCard.status != null and gasCard.status != ''">
 			and status = #{gasCard.status}
@@ -75,6 +75,9 @@
 			</if>
 		 	<if test="gasCard.gasAccount != null and gasCard.gasAccount != ''">
 			 	gas_account = #{gasCard.gasAccount},
+			</if>
+			<if test="gasCard.phone != null and gasCard.phone != ''">
+			 	phone = #{gasCard.phone},
 			</if>
 			<if test="gasCard.sign != null and gasCard.sign != ''">
 			 	sign = #{gasCard.sign},

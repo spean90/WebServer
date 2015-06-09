@@ -22,6 +22,7 @@ public class News implements Serializable {
 	private Integer status;
 	private String createTime;
 	private Integer type;
+	private String code;
 	
 	public Integer getType() {
 		return type;
@@ -64,6 +65,12 @@ public class News implements Serializable {
 	}
 	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
+	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
 	}
 	
 	

@@ -39,7 +39,7 @@ public class IUserCouponController {
 			} catch (Exception e) {
 				logger.error("获取用户优惠券失败：", e);
 				resultBean.setCode("5001");
-				resultBean.setMsg("err："+e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -67,7 +67,7 @@ public class IUserCouponController {
 			} catch (Exception e) {
 				logger.error("获取用户优惠券失败：", e);
 				resultBean.setCode("5001");
-				resultBean.setMsg("err："+e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");

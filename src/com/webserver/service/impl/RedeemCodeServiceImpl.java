@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
+import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.StringUtil;
 import com.webserver.dao.NewsDao;
@@ -28,17 +29,24 @@ public class RedeemCodeServiceImpl implements IRedeemCodeService {
 	private NewsDao newsDao;
 	@Override
 	public void addRedeemCode(RedeemCode redeemCode,HttpServletRequest request) {
-		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("发送优惠礼包"+redeemCode.getCouponPackageIds());
-		operLog.setParams(StringUtil.toJson(redeemCode));
+		
 		redeemCodeDao.addRedeemCode(redeemCode);
 		News news = new News();
+		news.setTitle("兑换码消息");
+		news.setType(2);
+		news.setCode(redeemCode.getRedeemCode());
 		news.setUserId(redeemCode.getUserId());
 		news.setCreateTime(DateUtil.getDateTimeString(new Date()));
 		news.setStatus(0);
-		news.setContent(redeemCode.getRedeemCode());
+		String content = ConstantUtil.MSG_SEND_REDEEMCOD(redeemCode.getPackageNames(), redeemCode.getRedeemCode());
+		news.setContent(content);
 		newsDao.addNews(news);
-		operLogDao.addLog(operLog);
+		if (request!=null) {
+			OperLog operLog = new OperLog(request);
+			operLog.setOperAction("发送优惠礼包"+redeemCode.getCouponPackageIds());
+			operLog.setParams(StringUtil.toJson(redeemCode));
+			operLogDao.addLog(operLog);
+		}
 	}
 
 	@Override

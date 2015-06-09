@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--#include virtual="/common/html/include_head.html"  -->
+		<script type="text/javascript" src="/js/gasCard.js"></script>
+	</head>
+	<body style="height: 600px;">
+		<div>
+			绑定手机：<input type="text" name="phone" id="phone" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			油卡：<input type="text" name="gasAccount" id="gasAccount" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			状态：<input type="text" name="status" id="status" style="width: 100px;height: 25px;">
+			<button class="btn btn-success" onclick="gasCard.search()">查询</button>
+		</div>
+		<div id="playergrid" style="height: 500px;"></div>
+		
+		
+		<div class="modal fasse" id="detailModal" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		 <h4 class="modal-title">变更详情</h4>
+					</div>
+					<div class="modal-body">
+						<textarea rows="8" cols="80" id="sign"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

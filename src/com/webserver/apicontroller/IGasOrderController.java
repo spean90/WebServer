@@ -36,7 +36,7 @@ public class IGasOrderController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -55,7 +55,7 @@ public class IGasOrderController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -77,7 +77,7 @@ public class IGasOrderController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 			
 		}else{
@@ -98,7 +98,7 @@ public class IGasOrderController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 			
 		}else{

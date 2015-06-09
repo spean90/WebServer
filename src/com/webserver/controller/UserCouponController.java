@@ -40,7 +40,7 @@ public class UserCouponController {
 	
 	@RequestMapping("addUserCoupon")
 	@ResponseBody
-	public Object addUserCoupon(Long userId,String couponPackageIds,HttpServletRequest request) {
+	public Object addUserCoupon(Long userId,String couponPackageIds,String packageNames,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (!StringUtils.isEmpty(couponPackageIds)) {
 			String redeemCodeString = SecurityUtil.createRedeemCode(userId);
@@ -48,6 +48,7 @@ public class UserCouponController {
 			redeemCode.setUserId(userId);
 			redeemCode.setStatus(1);
 			redeemCode.setCouponPackageIds(couponPackageIds);
+			redeemCode.setPackageNames(packageNames);
 			redeemCode.setRedeemCode(redeemCodeString);
 			redeemCode.setCreateTime(DateUtil.getDateTimeString(new Date()));
 			try {

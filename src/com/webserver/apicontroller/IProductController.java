@@ -47,7 +47,7 @@ public class IProductController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -66,6 +66,7 @@ public class IProductController {
 				List<Product> productList = productService.getProductListByProduct(product);
 				Map<String, Object> obj = new HashMap<String, Object>();
 				GasCard gasCard = new GasCard();
+				gasCard.setStatus(1);
 				gasCard.setUserId(userId);
 				PageData<GasCard> p = gasCardService.getGasCardListByParams(gasCard, null);
 				if (p.getRows()!=null&&p.getRows().size()>0) {
@@ -77,7 +78,7 @@ public class IProductController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
@@ -98,7 +99,7 @@ public class IProductController {
 			} catch (Exception e) {
 				logger.error("err:",e);
 				resultBean.setCode("5001");
-				resultBean.setMsg(e.getMessage());
+				resultBean.setMsg("服务器异常");
 			}
 		}else{
 			resultBean.setCode("3004");
