@@ -29,7 +29,7 @@ public class ConstantUtil {
 	}
 	//油卡充值完后发生的消息
 	public static String MSG_BACKLOG_DONE (String orderId,String gasAccount,double sum){
-		return "【订单号】"+orderId+"。您中国石油尾号"+gasAccount+"加油卡于"+DateUtil.getLocalDatatimeString(new Date())+"确认充值"+sum+"元，加油站圈存后方可使用。感谢您使用智惠加油代充服务，如有疑问请致电：400-072-7899。";
+		return "【订单号】"+orderId+"。您中国石油尾号"+gasAccount.substring(gasAccount.length()-4)+"加油卡于"+DateUtil.getLocalDatatimeString(new Date())+"确认充值"+sum+"元，加油站圈存后方可使用。感谢您使用智惠加油代充服务，如有疑问请致电：400-072-7899。";
 	}
 	//注册成功
 	public static String MSG_SIGNUP_SUCCESS (){

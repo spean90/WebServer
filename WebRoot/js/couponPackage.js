@@ -67,7 +67,7 @@ var couponPackage = {
 		for(var i=0; i<rows.length; i++){
 		    ids+=","+rows[i].couponId;
 		}
-		
+		ids = ids.substring(1);
 		$('#form').form('submit',{
 			url : couponPackage.url,
 			onSubmit: function(param){  

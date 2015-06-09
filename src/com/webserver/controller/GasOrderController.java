@@ -51,12 +51,6 @@ public class GasOrderController {
 		return resultBean;
 	}
 	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("receiveOrder")
 	@ResponseBody
 	public Object receiveOrder(GasOrder gasOrder,HttpServletRequest request) {
@@ -65,7 +59,7 @@ public class GasOrderController {
 		gasOrder.setStatus(2);
 		ResultBean resultBean = new ResultBean();
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("确认收款");
+		operLog.setOperAction("确认收款："+gasOrder.getoId());
 		operLog.setParams(StringUtil.toJson(gasOrder));
 		int result = 0;
 		try {
@@ -79,4 +73,35 @@ public class GasOrderController {
 		operLogServiceImpl.addOperLog(operLog);
 		return resultBean;
 	}
+	
+	//申请退款
+	@RequestMapping("refundOrder")
+	@ResponseBody
+	public Object refundOrder(GasOrder gasOrder,HttpServletRequest request) {
+		Manager user = (Manager)request.getSession().getAttribute("manager");
+		//gasOrder.setReceiver(user.getManagerAccount());
+		gasOrder.setStatus(3);
+		ResultBean resultBean = new ResultBean();
+		OperLog operLog = new OperLog(request);
+		operLog.setOperAction("申请退款："+gasOrder.getoId());
+		operLog.setParams(StringUtil.toJson(gasOrder));
+		gasOrderService.updateGasOrder(gasOrder);
+		operLogServiceImpl.addOperLog(operLog);
+		return resultBean;
+	}
+	//办理退款
+		@RequestMapping("doRefund")
+		@ResponseBody
+		public synchronized Object doRefund(GasOrder gasOrder,HttpServletRequest request) {
+			Manager user = (Manager)request.getSession().getAttribute("manager");
+			//gasOrder.setReceiver(user.getManagerAccount());
+			gasOrder.setStatus(4);
+			ResultBean resultBean = new ResultBean();
+			OperLog operLog = new OperLog(request);
+			operLog.setOperAction("办理退款："+gasOrder.getoId());
+			operLog.setParams(StringUtil.toJson(gasOrder));
+			gasOrderService.updateGasOrder(gasOrder);
+			operLogServiceImpl.addOperLog(operLog);
+			return resultBean;
+		}
 }

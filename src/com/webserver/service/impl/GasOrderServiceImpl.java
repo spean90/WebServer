@@ -18,6 +18,7 @@ import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.StringUtil;
+import com.webserver.dao.BacklogDao;
 import com.webserver.dao.CouponDao;
 import com.webserver.dao.GasCardDao;
 import com.webserver.dao.GasOrderDao;
@@ -44,7 +45,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 	@Resource
 	private GasCardDao gasCardDao;
 	@Resource
-	private IBacklogService backlogServiceImpl;
+	private BacklogDao backlogDao;
 	@Resource
 	private UserCouponDao userCouponDao;
 	@Resource
@@ -218,7 +219,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				if (i==0) {
 					backlog.setStatus(1);
 				}
-				backlogServiceImpl.addBacklog(backlog);
+				backlogDao.addBacklog(backlog);
 			}
 			//如果有使用优惠券。则把优惠券设置为已使用
 			Long couponId = gasOrder.getCouponId();
@@ -242,6 +243,13 @@ public class GasOrderServiceImpl implements IGasOrderService {
 	}
 	@Override
 	public void updateGasOrder(GasOrder gasOrder) {
+		if (null!=gasOrder.getStatus() && 3==gasOrder.getStatus()) {
+			//申请退款、把为处理的代办、修改状态；
+			Backlog backlog = new Backlog();
+			backlog.setoId(gasOrder.getoId());
+			backlog.setStatus(5);
+			backlogDao.cancelBacklog(backlog);
+		}
 		gasOrderDao.updateGasOrder(gasOrder);
 	}
 	@Override

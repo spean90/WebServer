@@ -44,7 +44,7 @@ public class CouponServiceImpl implements ICouponService {
 	public int addCoupon(Coupon coupon, HttpServletRequest request)
 			{
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("添加优惠券");
+		operLog.setOperAction("添加优惠券:"+coupon.getCouponId());
 		operLog.setParams(StringUtil.toJson(coupon));
 		try {
 			couponDao.addCoupon(coupon);
@@ -59,7 +59,7 @@ public class CouponServiceImpl implements ICouponService {
 	@Override
 	public int updateCoupon(Coupon coupon, HttpServletRequest request){
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("修改优惠券");
+		operLog.setOperAction("修改优惠券:"+coupon.getCouponId());
 		operLog.setParams(StringUtil.toJson(coupon));
 		try {
 			couponDao.updateCoupon(coupon);
@@ -74,7 +74,7 @@ public class CouponServiceImpl implements ICouponService {
 	@Override
 	public int deleteCouponById(Long couponId, HttpServletRequest request){
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("删除优惠券");
+		operLog.setOperAction("删除优惠券:"+couponId);
 		operLog.setParams(couponId+"");
 		try {
 			couponDao.deleteCouponById(couponId);

@@ -37,7 +37,7 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public int addProduct(Product product, HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("添加套餐");
+		operLog.setOperAction("添加套餐："+product.getProductId());
 		operLog.setParams(StringUtil.toJson(product));
 		try {
 			productDao.addProduct(product);
@@ -52,7 +52,7 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public int updateProduct(Product product, HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("修改套餐");
+		operLog.setOperAction("修改套餐："+product.getProductId());
 		operLog.setParams(StringUtil.toJson(product));
 		try {
 			productDao.updateProduct(product);

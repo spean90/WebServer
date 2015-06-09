@@ -42,7 +42,7 @@ public class CouponPackageServiceImpl implements ICouponPackageService {
 	public int addCouponPackage(CouponPackage couponPackage,
 			HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("添加优惠券礼包");
+		operLog.setOperAction("添加优惠券礼包："+couponPackage.getCouponIds());
 		operLog.setParams(StringUtil.toJson(couponPackage));
 		try {
 			couponPackageDao.addCouponPackage(couponPackage);
@@ -57,7 +57,7 @@ public class CouponPackageServiceImpl implements ICouponPackageService {
 	public int updateCouponPackage(CouponPackage couponPackage,
 			HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("修改优惠券礼包");
+		operLog.setOperAction("修改优惠券礼包:"+couponPackage.getCouponPackageId());
 		operLog.setParams(StringUtil.toJson(couponPackage));
 		try {
 			couponPackageDao.updateCouponPackage(couponPackage);
@@ -72,7 +72,7 @@ public class CouponPackageServiceImpl implements ICouponPackageService {
 	public int deleteCouponPackageById(Long couponPackageId,
 			HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("删除优惠券礼包");
+		operLog.setOperAction("删除优惠券礼包:"+couponPackageId);
 		operLog.setParams(couponPackageId+"");
 		try {
 			couponPackageDao.deleteCouponPackageById(couponPackageId);

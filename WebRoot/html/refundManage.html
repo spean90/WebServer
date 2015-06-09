@@ -3,77 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<!--#include virtual="/common/html/include_head.html"  -->
-		<script type="text/javascript" src="/js/gasOrder.js"></script>
+		<script type="text/javascript" src="/js/refundManage.js"></script>
 	</head>
 	<body style="height: 600px;">
 		<div>
 			用户id：<input type="text" name="userId" id="userId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			手机号：<input type="text" name="userName" id="userName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			订单号：<input type="text" name="orderId" id="orderId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
-			<button class="btn btn-success" onclick="gasOrder.searchGasOrder()">查询</button>
+			<button class="btn btn-success" onclick="refundManage.searchGasOrder()">查询</button>
 		</div>
 		<div id="gasOrderGrid" style="height: 500px;"></div>
 		<div id="tbar">
-			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="gasOrder.detail()">详情</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="refundManage.detail()">详情</a>
 		</div>
-		
-		
-		
-		<div class="modal fasse" id="receiveModal" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        		 <h4 class="modal-title">确认收款</h4>
-					</div>
-					<div class="modal-body">
-						<form id="receiveForm">
-							<div class="input-group" style="display: none" >
-							  <span class="input-group-addon" >用户id</span>
-							  <input type="text" class="form-control" id="userId_receive" name="userId" readonly="readonly">
-						  </div>
-						  <div class="input-group" >
-							  <span class="input-group-addon" >油卡id</span>
-							  <input type="text" class="form-control" id="gasId_receive" name="gasId" readonly="readonly">
-						  </div>
-						 <div class="input-group">
-							  <span class="input-group-addon" >订单流水</span>
-							  <input type="text" class="form-control" id="oId" name="oId" readonly="readonly">
-						  </div>
-						  <div class="input-group">
-							  <span class="input-group-addon" >套餐id</span>
-							  <input type="text" class="form-control" name="productId" readonly="readonly">
-						  </div>
-						  <div class="input-group">
-							  <span class="input-group-addon" >子套餐id</span>
-							  <input type="text" class="form-control" name="subProductId" id="subProductId" readonly="readonly">
-						  </div>
-						   <div class="input-group">
-							  <span class="input-group-addon" >数量</span>
-							  <input type="text"  class="form-control" name="amount" id="amount" readonly="readonly">
-						  </div>
-						  <div class="input-group">
-							  <span class="input-group-addon" >金额</span>
-							  <input type="text"  class="form-control" name="sum" readonly="readonly">
-						  </div>
-						  <div class="input-group">
-							  <span class="input-group-addon" >支付金额</span>
-							  <input type="text" class="form-control" name="paySum" id="receiveSum" readonly="readonly">
-						  </div>
-						  <div class="input-group">
-							  <span class="input-group-addon" >说明</span>
-							  <input type="text" class="form-control" name="orderDesc" id="orderDesc" >
-						  </div>
-						 </form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" onclick="gasOrder.save()">提交</button>
-				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				    </div>
-				</div>
-			</div>
-		</div>
-		
 		
 		
 		<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

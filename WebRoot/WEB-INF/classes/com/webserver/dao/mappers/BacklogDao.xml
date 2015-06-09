@@ -61,7 +61,10 @@
 	 	</set>
 	 	where backlog_id = #{backlog.backlogId}
 	</update>
-	
+	<update id="cancelBacklog"  parameterType="Backlog">
+		update backlog set status = 5
+	 	where oid = #{backlog.oId} and status = 1
+	</update>
 	
 	
 	<select id="getBacklogById" resultType="Backlog">

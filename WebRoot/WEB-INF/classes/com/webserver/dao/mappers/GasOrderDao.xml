@@ -8,10 +8,12 @@
 		,a.user_name userName
 		,b.gas_account gasAccount ,b.company company 
 		,c.product_name productName,c.product_desc productDesc
+		,d.coupon_name couponName
 		from gas_order t
 		left join user_info a on t.user_id=a.user_id
 		left join gas_card b on b.gas_id = t.gas_id
 		left join product c on t.product_id = c.product_id
+		left join coupon d on t.coupon_id = d.coupon_id
 		<where>
 		<if test="gasOrder.userId != null and gasOrder.userId != ''">
 			and t.user_id = #{gasOrder.userId}

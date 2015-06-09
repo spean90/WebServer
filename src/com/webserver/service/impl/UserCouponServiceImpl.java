@@ -52,7 +52,7 @@ public class UserCouponServiceImpl implements IUserCouponService {
 	@Override
 	public void addUserCoupon(UserCoupon userCoupon, HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("发送优惠券");
+		operLog.setOperAction("发送优惠券："+userCoupon.getCouponId());
 		operLog.setParams(StringUtil.toJson(userCoupon));
 		try {
 			userCouponDao.addUserCoupon(userCoupon);

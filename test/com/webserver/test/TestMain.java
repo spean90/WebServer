@@ -8,14 +8,16 @@ import com.sun.org.apache.xml.internal.security.utils.Base64;
 public class TestMain {
 
 	public static void main(String[] args) {
-		String s = "sdfsdfsdfsfdsfds";
-		String baseStr = Base64.encode(s.getBytes());
-		System.out.println(Base64.encode(s.getBytes()));
-		try {
-			System.out.println(new String(Base64.decode(baseStr)));
-		} catch (Base64DecodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		String s = "sdfsdfsdfsfdsfds";
+//		String baseStr = Base64.encode(s.getBytes());
+//		System.out.println(Base64.encode(s.getBytes()));
+//		try {
+//			System.out.println(new String(Base64.decode(baseStr)));
+//		} catch (Base64DecodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		String s = "12345678";
+		System.out.println(s.substring(s.length()-4));
 	}
 }
