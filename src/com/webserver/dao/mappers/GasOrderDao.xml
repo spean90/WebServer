@@ -152,6 +152,9 @@
 		 	<if test="gasOrder.payTime!=null and gasOrder.payTime!='' ">
 	 			pay_time = #{gasOrder.payTime},
 		 	</if>
+		 	<if test="gasOrder.payAccount!=null and gasOrder.payAccount!='' ">
+	 			pay_account = #{gasOrder.payAccount},
+		 	</if>
 	 	</set>
 	 	where oid = #{gasOrder.oId}
 	</update>

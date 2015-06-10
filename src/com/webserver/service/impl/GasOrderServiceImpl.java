@@ -129,6 +129,8 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			logger.info("套餐失效，订单异常");
 			return resultBean;
 		}
+		gasOrder.setProductName(product.getProductName());
+		gasOrder.setProductDesc(product.getProductDesc());
 		//套餐订单 
 		if (gasOrder.getSubProductId()!=null && gasOrder.getSubProductId()!=0) {
 			SubProduct subProduct = subProductDao.getSubProductById(gasOrder.getSubProductId());
@@ -181,6 +183,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		return pageData;
 	}
 
+	//确认收款
 	@Override
 	public int receiveOrder(GasOrder gasOrder, HttpServletRequest request) {
 		int result =0;

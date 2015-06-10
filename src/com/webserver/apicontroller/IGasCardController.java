@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.juhedata.api.GasCardRechargeApi.CardTpye;
+import com.smartgas.juhe.business.GsaCardBusiness;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
@@ -57,6 +59,14 @@ public class IGasCardController {
 	public Object addGasCard(GasCard gasCard,String token,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasCard.getUserId())) {
+			//检测油卡合法性
+			if(!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,gasCard.getGasAccount())&&
+					!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,gasCard.getGasAccount())){
+				resultBean.setCode("1001");
+				resultBean.setMsg("油卡不合法！请检查输入");
+				return resultBean;
+			}
+			
 			try {
 				gasCard.setStatus(1);
 				GasCard g = gasCardServiceImpl.getGasCardByUser(gasCard);

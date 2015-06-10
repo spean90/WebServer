@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.smartgas.juhe.business.SMSBusiness;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
@@ -174,9 +175,21 @@ public class IUserInfoController {
 		message.setCode(code);
 		message.setPhone(phone);
 		message.setDeadline(DateUtil.getDateTimeString(calendar.getTime()));
+		boolean result = false;
 		try {
-			messageService.addMessage(message);
-			MessageUtil.sendCheckCode(phone, code, type);
+			
+			if ("3032".equals(type)){
+				result = SMSBusiness.getInstance().sendRegisteredCode(phone,code);
+			}else if ("3033".equals(type)) {
+				result = SMSBusiness.getInstance().sendResetPasswordCode(phone,code);
+			}
+			if(result){
+				messageService.addMessage(message);
+			}else{
+				resultBean.setCode("1001");
+				resultBean.setMsg("发送验证码失败");
+			}
+			
 		} catch (Exception e) {
 			logger.error("添加验证码失败:", e);
 			resultBean.setCode("1001");
