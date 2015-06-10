@@ -43,7 +43,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 		userInfoDao.addUser(userInfo);
 		News news = new News();
 		news.setTitle("系统消息");
-		news.setType(2);
+		news.setType(1);
 		news.setUserId(userInfo.getUserId());
 		news.setCreateTime(DateUtil.getDateTimeString(new Date()));
 		news.setStatus(0);
