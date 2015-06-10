@@ -3,10 +3,12 @@ var gasOrder = {
 			var userId = $('#userId').val();
 			var orderId = $('#orderId').val();
 			var userName = $('#userName').val();
+			var userCouponId = $('#userCouponId').val();
 			$('#gasOrderGrid').datagrid('load',{
 				userId : userId,
 				orderId : orderId,
-				userName:userName
+				userName:userName,
+				userCouponId : userCouponId
 			})
 		},
 		detail : function() {
@@ -102,7 +104,7 @@ $(function(){
 		columns : [[
 		            //{field:'orderId',title:'订单号',width:100,align:'center'},
 		            {field:'productName',title:'套餐名',width:200,align:'center'},
-		            {field:'amount',title:'数量',width:60,align:'center'},
+		           // {field:'amount',title:'数量',width:60,align:'center'},
 		           // {field:'sum',title:'订单金额',width:100,align:'center'},
 		            {field:'userName',title:'手机号',width:100,align:'center'},
 		           // {field:'payOrderId',title:'支付订单',width:100,align:'center'},
@@ -117,7 +119,7 @@ $(function(){
 		           // {field:'payAccount',title:'付款账号',width:100,align:'center'},
 		           // {field:'couponId',title:'优惠券id',width:100,align:'center'},
 		            {field:'createTime',title:'创建时间',width:100,align:'center'},
-		            //{field:'orderDesc',title:'订单描述',width:100,align:'center'},
+		            {field:'payTime',title:'支付时间',width:100,align:'center'},
 		            {field:'field',title:'收款',width:100,align:'center',formatter:function(val,row,index){
 		            	if (row.payType==2 && row.status==1) {
 							return '<div class="btn btn-xs btn-success" onclick=gasOrder.receive('+index+')>确认收款</div>';

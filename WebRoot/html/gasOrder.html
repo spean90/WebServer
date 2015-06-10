@@ -10,6 +10,7 @@
 			用户id：<input type="text" name="userId" id="userId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			手机号：<input type="text" name="userName" id="userName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			订单号：<input type="text" name="orderId" id="orderId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			用户使用优惠券Id:<input type="text" name="userCouponId" id="userCouponId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			<button class="btn btn-success" onclick="gasOrder.searchGasOrder()">查询</button>
 		</div>
 		<div id="gasOrderGrid" style="height: 500px;"></div>
@@ -85,13 +86,21 @@
 		      </div>
 		      <div class="modal-body">
 		        <form id="form">
-		           <div class="input-group">
+		        	<div class="input-group">
 					  <span class="input-group-addon" >订单id</span>
+					  <input type="text" class="form-control"  name="oId">
+				  </div>
+		           <div class="input-group">
+					  <span class="input-group-addon" >订单号</span>
 					  <input type="text" class="form-control"  name="orderId">
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >套餐id</span>
 					  <input type="text" class="form-control" name="productId" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >购买数量</span>
+					  <input type="text" class="form-control" name="amount" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >金额</span>
@@ -108,6 +117,10 @@
 				  <div class="input-group">
 					  <span class="input-group-addon" >付款账号</span>
 					  <input type="text" class="form-control" name="payAccount">
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >用户优惠券id</span>
+					  <input type="text" class="form-control" name="userCouponId" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >优惠券名</span>

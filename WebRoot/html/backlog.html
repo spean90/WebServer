@@ -8,6 +8,7 @@
 	<body style="height: 600px;">
 		<div style="margin: 10px;">
 			持卡人：<input type="text" id="owner_search">
+			油卡号：<input type="text" id="account_search">
 			<!-- 创建时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
 				<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;"> -->
 			<button class="btn btn-success btn-sm" onclick="backlog.search()">查询</button>
@@ -26,19 +27,27 @@
 		        	<input type="hidden" name="backlogId" id="backlogId">
 		           <div class="input-group">
 					  <span class="input-group-addon" >油卡归属</span>
-					  <input type="text" class="form-control" id="company" name="company" disabled="disabled" >
+					  <input type="text" class="form-control" id="company" name="company" readonly="readonly" >
 				  </div>
 				  <div class="input-group">
-					  <span class="input-group-addon" >账号</span>
-					  <input type="text" class="form-control" id="account" name="account" disabled="disabled" >
+					  <span class="input-group-addon" >油卡账号</span>
+					  <input type="text" class="form-control" id="account" name="account" readonly="readonly" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >金额</span>
-					  <input type="text" class="form-control" id="sum" name="sum" disabled="disabled">
+					  <input type="text" class="form-control" id="sum" name="sum" readonly="readonly">
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >userId</span>
+					  <input type="text" class="form-control" id="userId" name="userId" readonly="readonly" >
 				  </div>
 				   <div class="input-group">
 					  <span class="input-group-addon" >持卡人</span>
-					  <input type="text" class="form-control" id="owner" name="owner" disabled="disabled" >
+					  <input type="text" class="form-control" id="owner" name="owner" readonly="readonly" >
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >订单号</span>
+					  <input type="text" class="form-control" id="orderId" name="orderId" readonly="readonly" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >状态</span>

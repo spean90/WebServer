@@ -31,6 +31,7 @@ public class Backlog implements Serializable {
 	private String updateTime;//处理时间
 	private String result;//处理结果
 	private Integer gasCardStatus;//油卡状态
+	private String orderId;//订单号
 	
 	public String getResult() {
 		return result;
@@ -128,6 +129,12 @@ public class Backlog implements Serializable {
 	}
 	public void setGasCardStatus(Integer gasCardStatus) {
 		this.gasCardStatus = gasCardStatus;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 	
 	

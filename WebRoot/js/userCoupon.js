@@ -22,6 +22,7 @@ $(function(){
 		            {field:'userId',title:'用户id',width:100,align:'center'},
 		            {field:'userName',title:'手机号',width:100,align:'center'},
 		            {field:'couponName',title:'优惠券名',width:100,align:'center'},
+		            {field:'id',title:'用户优惠券ID',width:100,align:'center'},
 		            {field:'type',title:'类型',width:100,align:'center',formatter:function(val){
 		            	if(val==1){
 		            		return '直冲抵用';
@@ -36,6 +37,15 @@ $(function(){
 		            		return '是';
 		            	}else if(val==0){
 		            		return '否';
+		            	}else {
+		            		return val;
+		            	}
+		            }},
+		            {field:'status',title:'状态',width:100,align:'center',formatter:function(val){
+		            	if(val==1){
+		            		return '未使用';
+		            	}else if(val==2){
+		            		return '已使用';
 		            	}else {
 		            		return val;
 		            	}

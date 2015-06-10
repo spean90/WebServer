@@ -1,5 +1,7 @@
 package com.webserver.controller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,13 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.PageBean;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.StringUtil;
 import com.webserver.modal.GasOrder;
 import com.webserver.modal.Manager;
 import com.webserver.modal.OperLog;
 import com.webserver.service.IGasOrderService;
 import com.webserver.service.IOperLogService;
-import com.webserver.service.impl.OperLogServiceImpl;
 
 @Controller
 @RequestMapping("gasOrder")
@@ -57,6 +59,7 @@ public class GasOrderController {
 		Manager user = (Manager)request.getSession().getAttribute("manager");
 		gasOrder.setReceiver(user.getManagerAccount());
 		gasOrder.setStatus(2);
+		gasOrder.setPayTime(DateUtil.getDateTimeString(new Date()));
 		ResultBean resultBean = new ResultBean();
 		OperLog operLog = new OperLog(request);
 		operLog.setOperAction("确认收款："+gasOrder.getoId());

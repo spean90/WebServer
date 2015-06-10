@@ -8,9 +8,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 import com.webserver.dao.MenuInfoDao;
-import com.webserver.dao.ManagerDao;
+import com.webserver.dao.UserCouponDao;
 import com.webserver.modal.MenuInfo;
-import com.webserver.modal.Manager;
+import com.webserver.modal.UserCoupon;
 
 public class TestDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("cfg/applicationContext.xml");
@@ -25,4 +25,12 @@ public class TestDao {
 		System.out.println(new Gson().toJson(list));
 	}
 	
+	@Test
+	public void testUserCoupon(){
+		UserCouponDao userCouponDao = (UserCouponDao) context.getBean("userCouponDao");
+		UserCoupon u = new UserCoupon();
+		u.setId(68l);
+		u.setStatus(0);
+		userCouponDao.updateUserCoupon(u);
+	}
 }

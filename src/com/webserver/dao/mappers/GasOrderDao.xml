@@ -4,7 +4,7 @@
 
 	<select id="getGasOrderListByParams" resultType="GasOrder">
 		select t.oid oId,t.user_id userId,t.sub_product_id subProductId, t.product_id productId, t.order_id orderId, t.sum sum, t.create_time createTime,t.gas_id gasId,t.amount,t.order_desc orderDesc,t.user_coupon_id userCouponId,
-		t.pay_order_id payOrderId ,t.coupon_id couponId,t.pay_sum paySum,t.pay_type payType,t.pay_account payAccount,receiver,t.status
+		t.pay_order_id payOrderId ,t.coupon_id couponId,t.pay_sum paySum,t.pay_type payType,t.pay_account payAccount,receiver,t.status status ,t.pay_time payTime
 		,a.user_name userName
 		,b.gas_account gasAccount ,b.company company 
 		,c.product_name productName,c.product_desc productDesc
@@ -29,7 +29,7 @@
 		</if>
 		<if test="gasOrder.status!=null and gasOrder.status!='' ">
 	 		and	t.status = #{gasOrder.status}
-		 	</if>
+		 </if>
 		<if test="gasOrder.beginTime != null and gasOrder.beginTime != ''">
 			and t.create_time >= #{gasOrder.beginTime}
 		</if>
@@ -40,6 +40,9 @@
 		</if>
 		<if test="gasOrder.userName != null and gasOrder.userName != ''">
 			and a.user_name like concat('%',#{gasOrder.userName},'%')
+		</if>
+		<if test="gasOrder.userCouponId != null and gasOrder.userCouponId != ''">
+			and t.user_coupon_id like concat('%',#{gasOrder.userCouponId},'%')
 		</if>
 			and t.del_status != 1
 		</where>
@@ -123,8 +126,8 @@
 	</select>
 	
 	<insert id="addGasOrder" parameterType="GasOrder" useGeneratedKeys="true" keyProperty="gasOrder.oId">
-		insert into gas_order (user_id, sub_product_id, product_id, order_id, sum, create_time,gas_id,amount,order_desc,pay_order_id,coupon_id,pay_sum,pay_account,pay_type,status) 
-		VALUES (#{gasOrder.userId}, #{gasOrder.subProductId}, #{gasOrder.productId}, #{gasOrder.orderId}, #{gasOrder.sum}, #{gasOrder.createTime}, #{gasOrder.gasId}, #{gasOrder.amount}, #{gasOrder.orderDesc}, #{gasOrder.payOrderId}, #{gasOrder.couponId}, #{gasOrder.paySum}, #{gasOrder.payAccount}, #{gasOrder.payType}, #{gasOrder.status})
+		insert into gas_order (user_id, sub_product_id, product_id, order_id, sum, create_time,gas_id,amount,order_desc,pay_order_id,user_coupon_id,coupon_id,pay_sum,pay_account,pay_type,status) 
+		VALUES (#{gasOrder.userId}, #{gasOrder.subProductId}, #{gasOrder.productId}, #{gasOrder.orderId}, #{gasOrder.sum}, #{gasOrder.createTime}, #{gasOrder.gasId}, #{gasOrder.amount}, #{gasOrder.orderDesc}, #{gasOrder.payOrderId}, #{gasOrder.userCouponId},#{gasOrder.couponId}, #{gasOrder.paySum}, #{gasOrder.payAccount}, #{gasOrder.payType}, #{gasOrder.status})
 	</insert>
 	
 	
@@ -145,6 +148,9 @@
 		 	</if>
 		 	<if test="gasOrder.delStatus!=null and gasOrder.delStatus!='' ">
 	 			del_status = #{gasOrder.delStatus},
+		 	</if>
+		 	<if test="gasOrder.payTime!=null and gasOrder.payTime!='' ">
+	 			pay_time = #{gasOrder.payTime},
 		 	</if>
 	 	</set>
 	 	where oid = #{gasOrder.oId}
@@ -182,10 +188,10 @@
 	 		and	t.status = #{gasOrder.status}
 		</if>
 		<if test="gasOrder.couponId!=null and gasOrder.couponId!='' ">
-	 		and	t.couponId = #{gasOrder.couponId}
+	 		and	t.coupon_id = #{gasOrder.couponId}
 		 </if>
 		 <if test="gasOrder.gasId!=null and gasOrder.gasId!='' ">
-	 		and	t.gasId = #{gasOrder.gasId}
+	 		and	t.gas_id = #{gasOrder.gasId}
 		 </if>
 			and t.del_status != 1
 		</where>

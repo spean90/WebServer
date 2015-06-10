@@ -6,8 +6,10 @@
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
 		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
 		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus
+		,b.order_id orderId
 		from backlog t 
 		left join gas_card a on a.gas_id = t.gas_id
+		left join gas_order b on t.oid = b.oid
 		<where>
 		<if test="backlog.userId != null">
 			and t.user_id = #{backlog.userId}
@@ -24,6 +26,9 @@
 		<if test="backlog.owner != null and backlog.owner != ''">
 			and a.owner like concat('%',#{backlog.owner},'%') 
 		</if>
+		<if test="backlog.account != null and backlog.account != ''">
+			and a.gas_account like concat('%',#{backlog.account},'%') 
+		</if>
 		<if test="backlog.status != null and backlog.status != ''">
 			and t.status = #{backlog.status}
 		</if>
@@ -31,7 +36,7 @@
 			and t.manager_account = #{backlog.managerAccount}
 		</if>
 		</where>
-		order by backlog_id 
+		order by backlog_id  desc
 		<if test="pageBean!= null">
 			limit #{pageBean.start}, #{pageBean.rows}
 		</if>

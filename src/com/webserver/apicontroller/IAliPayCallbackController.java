@@ -48,6 +48,7 @@ public class IAliPayCallbackController {
 				params.put(name, valueStr);
 			}
 			Gson gson = new Gson();
+			String paramsStr = "{\"gmt_create\":\"2015-06-10 16:29:45\",\"buyer_email\":\"liyouleo911@msn.com\",\"notify_time\":\"2015-06-10 16:29:47\",\"gmt_payment\":\"2015-06-10 16:29:46\",\"seller_email\":\"2795260389@qq.com\",\"quantity\":\"1\",\"subject\":\"中国石油中国石化加油卡充值100元\",\"use_coupon\":\"N\",\"sign\":\"dfcESncRICZwUUq2FYpUo3QzoeK+NNyZsj0itmBWCaIF6EAVYE/SXwPqaCUChoTE4O4vzDtgR+528pUKHBUSI5lcaHfXIg0ddFz1Zh+3kqCtkrLUXujcxKYR4PWsGVoDia2UCFh5vM1DdFpC1lR7SvCPWKlbVycAQ+BvKIFMeKQ\u003d\",\"discount\":\"0.00\",\"body\":\"中国石油中国石化加油卡直充100元\",\"buyer_id\":\"2088002352368889\",\"notify_id\":\"091032df3b9064757e01c3d74913d2096w\",\"notify_type\":\"trade_status_sync\",\"payment_type\":\"1\",\"out_trade_no\":\"7c1f95d5bc094f0cb271f855baebb154\",\"price\":\"0.01\",\"trade_status\":\"TRADE_SUCCESS\",\"total_fee\":\"0.01\",\"trade_no\":\"2015061000001000880053323912\",\"sign_type\":\"RSA\",\"seller_id\":\"2088911709354676\",\"is_total_fee_adjust\":\"N\"}";
 			logger.info("params>>>>>>"+gson.toJson(params));
 			//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以下仅供参考)//
 			//商户订单号
@@ -71,7 +72,7 @@ public class IAliPayCallbackController {
 				
 				if(trade_status.equals("TRADE_FINISHED")||trade_status.equals("TRADE_SUCCESS")){
 					GasOrder gasOrder = new GasOrder();
-					gasOrder.setOrderId(trade_no);
+					gasOrder.setOrderId(out_trade_no);
 					gasOrder = gasOrderService.getGasOrderById(gasOrder);
 					if (gasOrder!=null) {
 						if (gasOrder.getStatus()==2) {

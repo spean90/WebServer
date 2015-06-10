@@ -43,7 +43,7 @@ $(function(){
 		            		return val
 		            	}
 		            }},
-		            {field:'sign',title:'备注',width:100,align:'center'},
+		            //{field:'sign',title:'备注',width:100,align:'center'},
 		            {field:'gasId',title:'详情',width:100,align:'center',formatter : function(val,row,index){
 		            	return '<div class="btn btn-success btn-xs" onclick=gasCard.detail('+row.gasId+','+index+')>变更详情</div>'
 		            }}

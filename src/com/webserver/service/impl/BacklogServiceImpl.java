@@ -1,5 +1,6 @@
 package com.webserver.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,11 +12,15 @@ import org.springframework.stereotype.Service;
 
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
+import com.webserver.common.util.ConstantUtil;
+import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.StringUtil;
 import com.webserver.dao.BacklogDao;
+import com.webserver.dao.NewsDao;
 import com.webserver.dao.OperLogDao;
 import com.webserver.modal.Backlog;
 import com.webserver.modal.Manager;
+import com.webserver.modal.News;
 import com.webserver.modal.OperLog;
 import com.webserver.service.IBacklogService;
 @Service
@@ -26,6 +31,8 @@ public class BacklogServiceImpl implements IBacklogService {
 	private BacklogDao backlogDao;
 	@Resource
 	private OperLogDao operLogDao;
+	@Resource
+	private NewsDao newsDao;
 	
 	@Override
 	public PageData<Backlog> getBacklogListByParams(Backlog backlog,
@@ -42,6 +49,9 @@ public class BacklogServiceImpl implements IBacklogService {
 		return null;
 	}
 
+	/**
+	 * 处理代办
+	 */
 	@Override
 	public int updateBacklog(Backlog backlog, HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
@@ -49,10 +59,23 @@ public class BacklogServiceImpl implements IBacklogService {
 		operLog.setParams(StringUtil.toJson(backlog));
 		try {
 			backlogDao.updateBacklog(backlog);
+			if (backlog.getStatus()==3) {
+				//如果处理成功、发送应用内消息
+				News news = new News();
+				news.setTitle("订单消息");
+				news.setType(2);
+				news.setUserId(backlog.getUserId());
+				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+				news.setStatus(0);
+				news.setCode(backlog.getOrderId());
+				String content = ConstantUtil.MSG_BACKLOG_DONE(backlog.getOrderId(), backlog.getAccount(), backlog.getSum());
+				news.setContent(content);
+				newsDao.addNews(news);
+			}
 		} catch (Exception e) {
 			logger.error("处理待办失败：", e);
 			operLog.setStatus(0);
-			return 0;
+			throw new RuntimeException();
 		}
 		operLogDao.addLog(operLog);
 		return 1;
@@ -64,6 +87,7 @@ public class BacklogServiceImpl implements IBacklogService {
 			backlogDao.addBacklog(backlog);
 		} catch (Exception e) {
 			logger.error("添加代办事项出错：", e);
+			throw new RuntimeException();
 		}
 		return 0;
 	}

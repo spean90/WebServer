@@ -66,7 +66,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 	 * @param CouponId
 	 * @return 优惠券金额
 	 */
-	public int checkCoupon(Long userCouponId,Long userId,Long subProductId){
+	public int checkCoupon(Long userCouponId,Long userId,Long subProductId,Long productId){
 		int result = 0;
 		UserCoupon userCoupon = userCouponDao.getUserCouponById(userCouponId,userId);
 		if (userCoupon!=null) {
@@ -78,7 +78,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				if (!StringUtil.isEmpty(productIds)) {
 					String[] ids = productIds.split(",");
 					for (int i = 0; i < ids.length; i++) {
-						if(subProductId.equals(ids[i])){
+						if(productId.toString().equals(ids[i])){
 							return userCoupon.getSum();
 						}
 					}
@@ -109,13 +109,15 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			g = gasOrderDao.getGasOrderById(gasOrder);
 			if (g!=null) {
 				resultBean.setCode("1001");
+				logger.info("该油卡已使用过该优惠券！");
 				resultBean.setMsg("该油卡已使用过该优惠券！");
 				return resultBean;
 			}
-			couponSum = checkCoupon(userCouponId, gasOrder.getUserId(), gasOrder.getSubProductId());
+			couponSum = checkCoupon(userCouponId, gasOrder.getUserId(), gasOrder.getSubProductId(),gasOrder.getProductId());
 			if(couponSum==0){
 				resultBean.setCode("1001");
 				resultBean.setMsg("优惠券失效，订单异常");
+				logger.info("优惠券失效，订单异常");
 				return resultBean;
 			}
 		}
@@ -124,6 +126,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		if (product==null) {
 			resultBean.setCode("1001");
 			resultBean.setMsg("套餐失效，订单异常");
+			logger.info("套餐失效，订单异常");
 			return resultBean;
 		}
 		//套餐订单 
@@ -131,13 +134,15 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			SubProduct subProduct = subProductDao.getSubProductById(gasOrder.getSubProductId());
 			if (subProduct==null) {
 				resultBean.setCode("1001");
-				resultBean.setMsg("套餐失效，订单异常");
+				resultBean.setMsg("子套餐失效，订单异常");
+				logger.info("子套餐失效，订单异常");
 				return resultBean;
 			}
 			double orderSum = product.getPrice()*subProduct.getMonth()*subProduct.getDiscount()*gasOrder.getAmount()-couponSum;
 			if (orderSum!=gasOrder.getSum()) {
 				resultBean.setCode("1001");
 				resultBean.setMsg("金额计算有误，订单异常");
+				logger.info("金额计算有误，订单异常");
 				return resultBean;
 			}
 		}else{
@@ -146,10 +151,19 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			if (orderSum!=gasOrder.getSum()) {
 				resultBean.setCode("1001");
 				resultBean.setMsg("金额计算有误，订单异常");
+				logger.info("金额计算有误，订单异常");
 				return resultBean;
 			}
 		}
 		gasOrderDao.addGasOrder(gasOrder);
+		//把优惠券设置问已使用；
+		if (userCouponId!=null&&userCouponId!=0) {
+			UserCoupon u = new UserCoupon();
+			u.setId(gasOrder.getUserCouponId());
+			u.setStatus(2);
+			userCouponDao.updateUserCoupon(u);
+		}
+		
 		resultBean.setObject(gasOrder);
 		return resultBean;
 	}
@@ -221,19 +235,20 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				}
 				backlogDao.addBacklog(backlog);
 			}
-			//如果有使用优惠券。则把优惠券设置为已使用
-			Long couponId = gasOrder.getCouponId();
-			if (couponId!=null && couponId!=0l) {
-				UserCoupon userCoupon = new UserCoupon();
-				userCoupon.setCouponId(couponId);
-				userCoupon.setUserId(gasOrder.getUserId());
-				List<UserCoupon> userCoupons = userCouponDao.getUserCouponListByParams(userCoupon, null, null);
-				if (userCoupons!=null &&userCoupons.size()>0) {
-					userCoupon = userCoupons.get(0);
-					userCoupon.setStatus(0);
-					userCouponDao.updateUserCoupon(userCoupon);
-				}
-			}
+			//改为下单就改变状态；
+//			//如果有使用优惠券。则把优惠券设置为已使用
+//			Long couponId = gasOrder.getCouponId();
+//			if (couponId!=null && couponId!=0l) {
+//				UserCoupon userCoupon = new UserCoupon();
+//				userCoupon.setCouponId(couponId);
+//				userCoupon.setUserId(gasOrder.getUserId());
+//				List<UserCoupon> userCoupons = userCouponDao.getUserCouponListByParams(userCoupon, null, null);
+//				if (userCoupons!=null &&userCoupons.size()>0) {
+//					userCoupon = userCoupons.get(0);
+//					userCoupon.setStatus(2);
+//					userCouponDao.updateUserCoupon(userCoupon);
+//				}
+//			}
 			
 		} catch (Exception e) {
 			logger.error("确认收款出错", e);
@@ -259,6 +274,13 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		if (gasOrder!=null) {
 			gasOrder.setDelStatus(1);
 			gasOrderDao.updateGasOrder(gasOrder);
+			logger.info(">>>>>>>>>>取消订单>>>>>>>释放优惠券："+gasOrder.getUserCouponId());
+			if (gasOrder.getUserCouponId()!=null) {
+				UserCoupon userCoupon = new UserCoupon();
+				userCoupon.setStatus(1);
+				userCoupon.setId(gasOrder.getUserCouponId());
+				userCouponDao.updateUserCoupon(userCoupon);
+			}
 		}else{
 			resultBean.setCode("1001");
 			resultBean.setMsg("未找到给订单");

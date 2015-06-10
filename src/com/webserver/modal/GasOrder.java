@@ -34,6 +34,7 @@ public class GasOrder implements Serializable {
 	private String receiver;//收款人;
 	private Integer delStatus; //删除状态；1为已经被删除了。失效
 	private Long userCouponId;//用户的优惠券id
+	private String payTime;//支付时间
 	
 	
 	/**
@@ -202,6 +203,12 @@ public class GasOrder implements Serializable {
 	}
 	public void setOrderDesc(String orderDesc) {
 		this.orderDesc = orderDesc;
+	}
+	public String getPayTime() {
+		return payTime;
+	}
+	public void setPayTime(String payTime) {
+		this.payTime = payTime;
 	}
 	
 	

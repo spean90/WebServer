@@ -1,16 +1,6 @@
 var backlog = {
 		url : '',
 		backlogId : '',//当前处理的backlogId
-		searchUserInfo : function() {
-			var userName = $('#userName').val();
-			var idCard = $('#idCard').val();
-			var realName = $('#realName').val();
-			$('#playergrid').datagrid('load',{
-				userName : userName,
-				idCard : idCard,
-				realName : realName
-			})
-		},
 		handle : function(index) {
 			var row = $('#backlogGrid').datagrid('getData').rows[index];
 			if(row) {
@@ -25,7 +15,9 @@ var backlog = {
 								$('#account').val(row.account);
 								$('#sum').val(row.sum);
 								$('#owner').val(row.owner);
+								$('#userId').val(row.userId);
 								$('#status').combobox('select',3);
+								$('#orderId').val(row.orderId);
 								$('#result').val(row.result);
 								$('.modal-title').html('办理事项');
 								backlog.url = '/backlog/updateBacklog.do';
@@ -53,7 +45,9 @@ var backlog = {
 					$('#account').val(row.account);
 					$('#sum').val(row.sum);
 					$('#owner').val(row.owner);
+					$('#userId').val(row.userId);
 					$('#status').combobox('select',3);
+					$('#orderId').val(row.orderId);
 					$('#result').val(row.result);
 					$('.modal-title').html('办理事项');
 					backlog.url = '/backlog/updateBacklog.do';
@@ -109,7 +103,8 @@ var backlog = {
 		},
 		search : function() {
 			$('#backlogGrid').datagrid('reload',{
-				owner : $('#owner_search').val()
+				owner : $('#owner_search').val(),
+				account : $('#account_search').val()
 			});
 		}
 		
@@ -130,7 +125,7 @@ $(function(){
 		panelHeight : 80
 	});
 	$('#backlogGrid').datagrid({
-		url : '/backlog/getBackLogListByParams.do?status=1',
+		url : '/backlog/getBackLogListByParams.do',
 		pagination : true,
 		singleSelect :true,
 		title : '代办事件', 
@@ -138,6 +133,7 @@ $(function(){
 		columns : [[
 		            {field:'rechargeTime',title:'充值时间',width:120,align:'center'},
 		            {field:'account',title:'油卡账号',width:100,align:'center'},
+		            {field:'orderId',title:'orderId',width:100,align:'center'},
 		            {field:'company',title:'油卡归属',width:100,align:'center'},
 		            {field:'owner',title:'持卡人',width:100,align:'center'},
 		            {field:'sum',title:'金额',width:100,align:'center'},
