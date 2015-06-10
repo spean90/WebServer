@@ -85,6 +85,7 @@ public class IAliPayCallbackController {
 							gasOrder.setPayAccount(buyer_email);
 							gasOrder.setPayTime(gmt_payment);
 							gasOrder.setPaySum(price);
+							gasOrder.setStatus(2);
 							gasOrderService.receiveOrder(gasOrder,request);
 						}
 					}else{
