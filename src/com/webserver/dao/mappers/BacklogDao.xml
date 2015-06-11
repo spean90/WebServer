@@ -4,8 +4,8 @@
 
 	<select id="getBacklogListByParams" resultType="Backlog">
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
-		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
-		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,
+		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus,a.phone phone
 		,b.order_id orderId
 		from backlog t 
 		left join gas_card a on a.gas_id = t.gas_id
@@ -29,14 +29,25 @@
 		<if test="backlog.account != null and backlog.account != ''">
 			and a.gas_account like concat('%',#{backlog.account},'%') 
 		</if>
-		<if test="backlog.status != null and backlog.status != ''">
-			and t.status = #{backlog.status}
+		<if test="backlog.juheOrderId != null and backlog.juheOrderId != ''">
+			and t.juhe_order_id like concat('%',#{backlog.juheOrderId},'%') 
 		</if>
+		<!-- <if test="backlog.status != null and backlog.status != ''">
+			and t.status = #{backlog.status}
+		</if> -->
+		<choose>
+		    <when test="backlog.status != null and backlog.status==1">
+		      AND t.status = 1 or t.status = 2
+		    </when>
+		    <when test="backlog.status != null">
+		      and t.status = #{backlog.status}
+		    </when>
+		 </choose>
 		<if test="backlog.managerAccount != null">
 			and t.manager_account = #{backlog.managerAccount}
 		</if>
 		</where>
-		order by backlog_id  desc
+		order by backlog_id
 		<if test="pageBean!= null">
 			limit #{pageBean.start}, #{pageBean.rows}
 		</if>
@@ -44,17 +55,17 @@
 	
 	
 	<insert id="addBacklog" parameterType="Backlog" useGeneratedKeys="true" keyProperty="backlog.backlogId">
-		insert into backlog (user_id, recharge_time,  create_time,sum,type,gas_id,status,manager_account ,oid) 
-		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime},#{backlog.sum},#{backlog.type},#{backlog.gasId}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId})
+		insert into backlog (user_id, recharge_time,  create_time,sum,type,gas_id,status,manager_account ,oid,juhe_order_id,juhe_recharge_time) 
+		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime},#{backlog.sum},#{backlog.type},#{backlog.gasId}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId}, #{backlog.juheOrderId}, #{backlog.juheRechargeTime})
 	</insert>
 	
 	<update id="updateBacklog"  parameterType="Backlog">
 		update backlog
 		<set>
-	 		<if test="backlog.status!=null and backlog.status!=''">
+	 		<if test="backlog.status!=null">
 	 			status = #{backlog.status},
 		 	</if>
-		 	<if test="backlog.managerAccount!=null and backlog.managerAccount!=''">
+		 	<if test="backlog.managerAccount!=null">
 	 			manager_account = #{backlog.managerAccount},
 		 	</if>
 		 	<if test="backlog.updateTime!=null and backlog.updateTime!=''">
@@ -62,6 +73,12 @@
 		 	</if>
 		 	<if test="backlog.result!=null and backlog.result!=''">
 	 			result = #{backlog.result},
+		 	</if>
+		 	<if test="backlog.juheOrderId!=null">
+	 			juhe_order_id = #{backlog.juheOrderId},
+		 	</if>
+		 	<if test="backlog.juheRechargeTime!=null and backlog.juheRechargeTime!=''">
+	 			juhe_recharge_time = #{backlog.juheRechargeTime},
 		 	</if>
 	 	</set>
 	 	where backlog_id = #{backlog.backlogId}
@@ -74,8 +91,8 @@
 	
 	<select id="getBacklogById" resultType="Backlog">
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
-		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
-		a.company company,a.owner owner ,a.gas_account account
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,
+		a.company company,a.owner owner ,a.gas_account account,a.phone phone
 		from backlog t
 		left join gas_card a on a.gas_id = t.gas_id
 		where backlog_id = #{backlogId}
@@ -83,8 +100,8 @@
 	
 	<select id="getBackLogListIds" resultType="Backlog">
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
-		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,
-		a.company company,a.owner owner ,a.gas_account account
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,
+		a.company company,a.owner owner ,a.gas_account account,a.phone phone
 		from backlog t
 		left join gas_card a on a.gas_id = t.gas_id
 		<if test="backlogIds!=null and backlogIds!=''">

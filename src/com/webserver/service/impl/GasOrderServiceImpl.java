@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.juhedata.api.GasCardRechargeApi.CardTpye;
+import com.smartgas.juhe.business.GsaCardBusiness;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
@@ -233,26 +235,37 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				backlog.setRechargeTime(DateUtil.getDateString(calendar.getTime()));
 				backlog.setSum(sum);
 				backlog.setStatus(0);
+				//第一条当天生效；调用聚合自己充值
 				if (i==0) {
-					backlog.setStatus(1);
+					boolean re = false;
+					String juheOrderId = UUID.randomUUID().toString().replace("-", "");
+					backlog.setJuheOrderId(juheOrderId);
+					//先把订单号记录到数据库防止聚合充值成功后。更新数据失败情况下损失；
+					backlogDao.addBacklog(backlog);
+					if (gasCard.getCompany().equals("中国石化")) {
+						re = GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSH,
+								gasCard.getGasAccount(), gasCard.getOwner(), gasCard.getPhone(),
+								juheOrderId, backlog.getSum().intValue());
+					}else if(gasCard.getCompany().equals("中国石油")) {
+						re = GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY,
+								gasCard.getGasAccount(), gasCard.getOwner(), gasCard.getPhone(),
+								juheOrderId, backlog.getSum().intValue());
+					}
+					//如果请求聚合充值成功则把代办直接设置成3-已处理、、否则设置为1-未处理；
+					if (re) {
+						backlog.setStatus(3);
+						backlog.setJuheOrderId(juheOrderId);
+					}else{
+						logger.error("调用聚合充值油卡失败>>>>>>>>>>>>>>>>>>>");
+						backlog.setStatus(1);
+					}
+					//根据充值情况。更新代办状态；
+					backlogDao.updateBacklog(backlog);
+				}else{
+					backlogDao.addBacklog(backlog);
 				}
-				backlogDao.addBacklog(backlog);
+				
 			}
-			//改为下单就改变状态；
-//			//如果有使用优惠券。则把优惠券设置为已使用
-//			Long couponId = gasOrder.getCouponId();
-//			if (couponId!=null && couponId!=0l) {
-//				UserCoupon userCoupon = new UserCoupon();
-//				userCoupon.setCouponId(couponId);
-//				userCoupon.setUserId(gasOrder.getUserId());
-//				List<UserCoupon> userCoupons = userCouponDao.getUserCouponListByParams(userCoupon, null, null);
-//				if (userCoupons!=null &&userCoupons.size()>0) {
-//					userCoupon = userCoupons.get(0);
-//					userCoupon.setStatus(2);
-//					userCouponDao.updateUserCoupon(userCoupon);
-//				}
-//			}
-			
 		} catch (Exception e) {
 			logger.error("确认收款出错", e);
 			throw new RuntimeException("确认收款出错");

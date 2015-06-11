@@ -17,7 +17,7 @@ public class TestMain {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		String s = "12345678";
-		System.out.println(s.substring(s.length()-4));
+		Double d= 4.4;
+		System.out.println(d.intValue());
 	}
 }

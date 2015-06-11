@@ -25,13 +25,16 @@ public class Backlog implements Serializable {
 	private Integer type;//1-油卡充值；2-提现；
 	private String company;//油卡所属公司或开户行；
 	private String owner;//持卡人；
-	private Integer status;//状态：0-未生效；1-待处理；2-处理中；3-已处理；4-异常；
+	private Integer status;//状态：0-未生效；1-待处理；2-处理中；3-已处理；4-异常；5-已退款;6-充值成功；7-充值失败；
 	private String managerAccount;//办理员工；
 	private Long oId;//由哪个订单生成的；
 	private String updateTime;//处理时间
 	private String result;//处理结果
 	private Integer gasCardStatus;//油卡状态
 	private String orderId;//订单号
+	private String juheOrderId;//聚合充值订单id
+	private String juheRechargeTime;//聚合充值时间
+	private String phone;//油卡绑定电话
 	
 	public String getResult() {
 		return result;
@@ -135,6 +138,24 @@ public class Backlog implements Serializable {
 	}
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
+	}
+	public String getJuheOrderId() {
+		return juheOrderId;
+	}
+	public void setJuheOrderId(String juheOrderId) {
+		this.juheOrderId = juheOrderId;
+	}
+	public String getJuheRechargeTime() {
+		return juheRechargeTime;
+	}
+	public void setJuheRechargeTime(String juheRechargeTime) {
+		this.juheRechargeTime = juheRechargeTime;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	
 	

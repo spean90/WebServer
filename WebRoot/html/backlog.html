@@ -9,6 +9,8 @@
 		<div style="margin: 10px;">
 			持卡人：<input type="text" id="owner_search">
 			油卡号：<input type="text" id="account_search">
+			聚合订单号：<input type="text" id="juheOrderId_search">
+			状态：<input type="text" id="status_search">
 			<!-- 创建时间：<input name="beginTime" id="beginTime" class="easyui-datebox"  style="width: 100px;height: 25px;">-
 				<input name="endTime" id="endTime"  class="easyui-datebox" style="width: 100px;height: 25px;"> -->
 			<button class="btn btn-success btn-sm" onclick="backlog.search()">查询</button>
@@ -45,6 +47,10 @@
 					  <span class="input-group-addon" >持卡人</span>
 					  <input type="text" class="form-control" id="owner" name="owner" readonly="readonly" >
 				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >手机号</span>
+					  <input type="text" class="form-control" id="phone" name="phone" readonly="readonly" >
+				  </div>
 				   <div class="input-group">
 					  <span class="input-group-addon" >订单号</span>
 					  <input type="text" class="form-control" id="orderId" name="orderId" readonly="readonly" >
@@ -62,6 +68,7 @@
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-default" onclick="backlog.cancel()">关闭</button>
 		        <button type="button" class="btn btn-primary" onclick="backlog.save()">提交</button>
+		         <button type="button" class="btn btn-success" onclick="backlog.juheRecharge()">聚合充值</button>
 		      </div>
 		    </div>
 		  </div>

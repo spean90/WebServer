@@ -56,7 +56,7 @@ public class GasCardServiceImpl implements IGasCardService {
 
 	@Override
 	public void updateGasCard(GasCard gasCard) {
-		if (gasCard.getStatus()!=null && gasCard.getStatus()==3) {
+		if (gasCard.getStatus()!=null && (gasCard.getStatus()==3||gasCard.getStatus()==2)) {
 			//如果是接触绑定,删除未支付的订单
 			gasOrderDao.updateGasOrderForDeleteGasCard(gasCard.getUserId());
 		}

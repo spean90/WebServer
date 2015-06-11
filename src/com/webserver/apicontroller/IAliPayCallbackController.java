@@ -54,7 +54,7 @@ public class IAliPayCallbackController {
 			//商户订单号
 
 			String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-			String gmt_payment = new String(request.getParameter("gmt_payment").getBytes("ISO-8859-1"),"UTF-8");
+			String gmt_payment = new String(request.getParameter("notify_time").getBytes("ISO-8859-1"),"UTF-8");
 			String buyer_email = new String(request.getParameter("buyer_email").getBytes("ISO-8859-1"),"UTF-8");
 			double price = Double.parseDouble(new String(request.getParameter("price").getBytes("ISO-8859-1"),"UTF-8"));
 			//支付宝交易号
@@ -86,6 +86,7 @@ public class IAliPayCallbackController {
 							gasOrder.setPayTime(gmt_payment);
 							gasOrder.setPaySum(price);
 							gasOrder.setStatus(2);
+							gasOrder.setPayOrderId(trade_no);
 							gasOrderService.receiveOrder(gasOrder,request);
 						}
 					}else{

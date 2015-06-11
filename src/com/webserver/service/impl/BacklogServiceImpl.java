@@ -2,6 +2,7 @@ package com.webserver.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import com.juhedata.api.GasCardRechargeApi.CardTpye;
+import com.smartgas.juhe.business.GsaCardBusiness;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
+import com.webserver.common.ResultBean;
 import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.StringUtil;
@@ -50,7 +54,7 @@ public class BacklogServiceImpl implements IBacklogService {
 	}
 
 	/**
-	 * 处理代办
+	 * 手动充值处理代办
 	 */
 	@Override
 	public int updateBacklog(Backlog backlog, HttpServletRequest request) {
@@ -59,7 +63,7 @@ public class BacklogServiceImpl implements IBacklogService {
 		operLog.setParams(StringUtil.toJson(backlog));
 		try {
 			backlogDao.updateBacklog(backlog);
-			if (backlog.getStatus()==3) {
+			if (backlog.getStatus()==6) {
 				//如果处理成功、发送应用内消息
 				News news = new News();
 				news.setTitle("订单消息");
@@ -68,7 +72,8 @@ public class BacklogServiceImpl implements IBacklogService {
 				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
 				news.setStatus(0);
 				news.setCode(backlog.getOrderId());
-				String content = ConstantUtil.MSG_BACKLOG_DONE(backlog.getOrderId(), backlog.getAccount(), backlog.getSum());
+				String showOrderId = backlog.getOrderId();
+				String content = ConstantUtil.MSG_BACKLOG_DONE(showOrderId, backlog.getAccount(), backlog.getSum());
 				news.setContent(content);
 				newsDao.addNews(news);
 			}
@@ -129,6 +134,42 @@ public class BacklogServiceImpl implements IBacklogService {
 	@Override
 	public List<Backlog> getBackLogListIds(String[] backlogIds) {
 		return backlogDao.getBackLogListIds(backlogIds);
+	}
+
+	@Override
+	public ResultBean juheRecharge(Backlog backlog, HttpServletRequest request) {
+		ResultBean resultBean = new ResultBean();
+		boolean re = false;
+		String juheOrderId = UUID.randomUUID().toString().replace("-", "");
+		backlog.setJuheOrderId(juheOrderId);
+		//先把订单号记录到数据库防止聚合充值成功后。更新数据失败情况下损失；
+		backlog.setStatus(3);
+		backlog.setResult("使用聚合充值提交成功！");
+		backlogDao.updateBacklog(backlog);
+		if (backlog.getCompany().equals("中国石化")) {
+			re = GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSH,
+					backlog.getAccount(), backlog.getOwner(), backlog.getPhone(),
+					juheOrderId, backlog.getSum().intValue());
+		}else if(backlog.getCompany().equals("中国石油")) {
+			re = GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY,
+					backlog.getAccount(), backlog.getOwner(), backlog.getPhone(),
+					juheOrderId, backlog.getSum().intValue());
+		}
+		//如果请求聚合充值成功则把代办直接设置成3-已处理、、否则设置为1-未处理；
+		if (re) {
+			logger.error("聚合充值调用成功juheOrderId="+juheOrderId);
+		}else{
+			logger.error("调用聚合充值油卡失败>>>>>>>>>>>>>>>>>>>");
+			//还原状态
+			backlog.setStatus(1);
+			backlog.setJuheOrderId("");
+			backlog.setResult("使用聚合充值失败！");
+			backlogDao.updateBacklog(backlog);
+			resultBean.setCode("1001");
+			resultBean.setMsg("调用聚合充值油卡失败!");
+			return resultBean;
+		}
+		return resultBean;
 	}
 
 }
