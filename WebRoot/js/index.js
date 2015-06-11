@@ -10,6 +10,7 @@ var index = {
 					sessionStorage.password = data.user.password;
 					sessionStorage.realName = data.user.realName;
 					sessionStorage.pic = data.user.pic;
+					sessionStorage.signup_pic = data.user.signupPic;
 					var menuData = data.menus;
 					$('#menu-div').remove();
 					$('#analyse-basic').append('<div id="menu-div"></div>');

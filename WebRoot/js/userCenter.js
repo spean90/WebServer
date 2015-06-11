@@ -54,4 +54,5 @@ $(function(){
 	$('#mId').val(sessionStorage.mId);
 	$('#realName').val(sessionStorage.realName);
 	$('#pic').attr("src",sessionStorage.pic);
+	$('#signup_pic').attr('src',sessionStorage.signup_pic);
 })

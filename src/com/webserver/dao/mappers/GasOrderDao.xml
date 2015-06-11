@@ -81,6 +81,9 @@
 		<if test="gasOrder.userName != null and gasOrder.userName != ''">
 			and a.user_name like concat('%',#{gasOrder.userName},'%')
 		</if>
+		<if test="gasOrder.recommendId != null and gasOrder.recommendId != '' and gasOrder.recommendId !='admin'">
+			and a.recommend_id = gasOrder.recommendId
+		</if>
 		<if test="gasOrder.beginTime != null and gasOrder.beginTime != ''">
 			and t.create_time >= #{gasOrder.beginTime}
 		</if>

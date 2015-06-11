@@ -15,7 +15,8 @@ public class Manager implements Serializable {
 	private Integer roleId;
 	private String addMan;
 	private String roleName;
-	private String pic;
+	private String pic;//下载二维码
+	private String signupPic;//注册二维码
 	
 	
 	public String getPic() {
@@ -77,6 +78,12 @@ public class Manager implements Serializable {
 	}
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+	public String getSignupPic() {
+		return signupPic;
+	}
+	public void setSignupPic(String signupPic) {
+		this.signupPic = signupPic;
 	}
 	
 	

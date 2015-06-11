@@ -1,5 +1,7 @@
 package com.webserver.test;
 
+import java.util.UUID;
+
 import com.juhedata.api.GasCardRechargeApi.CardTpye;
 import com.smartgas.juhe.business.GsaCardBusiness;
 
@@ -21,8 +23,8 @@ public class SendSMSTest {
 		// "100"));
 
 		// 查询油卡合法性
-		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,
-		 "9030030000585002"));
+//		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,
+//		 "9030030000585002"));
 
 		// 查询油卡合法性
 //		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,
@@ -35,8 +37,9 @@ public class SendSMSTest {
 		// System.out.println(GsaCardBusiness.getInstance().queryOrder("S2014111111115"));
 
 		// // 下单(测试中石油任意)
-//		System.out.println(GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY, "9030030000585002", "应火平", "18559129099",
-//				"S201506100730131", 1));
+		
+		System.out.println(GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY, "9030030000585002", "应火平", "18964264097",
+				UUID.randomUUID().toString().replace("-", ""), 1));
 
 		// // 下单(测试中石化任意)
 //		 System.out.println(GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSH,

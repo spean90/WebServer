@@ -18,7 +18,7 @@ var userPaySumCount = {
 			$('#userPaySumGrid').datagrid('load',{
 				beginTime : beginTime,
 				endTime : endTime,
-				userId:userId
+				userName:userName
 			})
 		},
 		initGrid : function() {

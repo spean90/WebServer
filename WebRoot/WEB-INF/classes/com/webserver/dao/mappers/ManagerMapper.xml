@@ -6,7 +6,7 @@
 	<!--<cache />  开启缓存 -->
 	
 	 <select id="getManagerByAccount" parameterType="string" resultType="Manager">
-	   SELECT m_id mId,manager_account managerAccount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan,pic
+	   SELECT m_id mId,manager_account managerAccount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan,pic,signup_pic signupPic
 	   from manager
 	   <where>
 	   		<if test="managerAccount != null">
@@ -16,14 +16,14 @@
 	 </select>
 	 
 	 <select id="login" parameterType="string" resultType="Manager">
-	   SELECT m_id mId,manager_account managerAccount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan,pic
+	   SELECT m_id mId,manager_account managerAccount,password,real_name realName,add_time addTime,is_lock isLock,role_id roleId,add_man addMan,pic,signup_pic signupPic
 	   from manager
 	   where manager_account = #{managerAccount} and password = #{password}
 	 </select>
 	 
 	 <select id="getManagerByParams" parameterType="Manager" resultType="Manager">
 	   SELECT t.m_id mId,t.manager_account managerAccount,t.password password,t.real_name realName,t.add_time addTime,
-	   t.is_lock isLock,t.role_id roleId,t.add_man addMan,a.role_name roleName
+	   t.is_lock isLock,t.role_id roleId,t.add_man addMan,a.role_name roleName,t.signup_pic signupPic
 	   from manager t
 	   left join role_info a on t.role_id=a.role_id
 	  <where>
@@ -51,8 +51,8 @@
 	 </select>
 	 
 	 <insert id="insertManager" parameterType="Manager">
-	 	insert into manager (manager_account,password,real_name,add_time,is_lock,role_id,add_man,pic)
-	 	values (#{manager.managerAccount},#{manager.password},#{manager.realName},#{manager.addTime},#{manager.isLock},#{manager.roleId},#{manager.addMan},#{manager.pic})
+	 	insert into manager (manager_account,password,real_name,add_time,is_lock,role_id,add_man,pic,signup_pic)
+	 	values (#{manager.managerAccount},#{manager.password},#{manager.realName},#{manager.addTime},#{manager.isLock},#{manager.roleId},#{manager.addMan},#{manager.pic},#{manager.signupPic})
 	 </insert>
 	 
 	  <update id="updateManager" parameterType="Manager">

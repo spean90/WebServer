@@ -18,6 +18,7 @@ var backlog = {
 								$('#userId').val(row.userId);
 								$('#status').combobox('select',6);
 								$('#orderId').val(row.orderId);
+								$('#phone').val(row.phone);
 								$('#result').val(row.result);
 								$('.modal-title').html('办理事项');
 								backlog.url = '/backlog/updateBacklog.do';
@@ -48,6 +49,7 @@ var backlog = {
 					$('#userId').val(row.userId);
 					$('#status').combobox('select',6);
 					$('#orderId').val(row.orderId);
+					$('#phone').val(row.phone);
 					$('#result').val(row.result);
 					$('.modal-title').html('办理事项');
 					backlog.url = '/backlog/updateBacklog.do';

@@ -4,7 +4,7 @@
 
 	<select id="getUserListByParams" resultType="UserInfo">
 		select user_id userId, user_name userName, password, add_time addTime, id_card idCard, real_name realName, pay_password payPassword,
-		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital 
+		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital ,recommend_id recommendId
 		from user_info
 		<where>
 		<if test="user.userId != null">
@@ -31,8 +31,8 @@
 	
 	
 	<insert id="addUser" parameterType="UserInfo" useGeneratedKeys="true" keyProperty="user.userId">
-		insert into user_info (user_name, password,  add_time, id_card, real_name, pay_password, balance,frozen_capital,usefull_capital) 
-		VALUES (#{user.userName}, #{user.password},  #{user.addTime}, #{user.idCard}, #{user.realName}, #{user.payPassword}, #{user.balance}, #{user.frozenCapital}, #{user.usefullCapital})
+		insert into user_info (user_name, password,  add_time, id_card, real_name, pay_password, balance,frozen_capital,usefull_capital,recommend_id) 
+		VALUES (#{user.userName}, #{user.password},  #{user.addTime}, #{user.idCard}, #{user.realName}, #{user.payPassword}, #{user.balance}, #{user.frozenCapital}, #{user.usefullCapital}, #{user.recommendId})
 	</insert>
 	
 	<update id="updateUser" parameterType="UserInfo">
@@ -70,7 +70,7 @@
 	 
 	 <select id="getUserInfoByUser" resultType="UserInfo">
 		select user_id userId, user_name userName, password, add_time addTime, id_card idCard, real_name realName, pay_password payPassword,
-		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital 
+		balance balance, frozen_capital frozenCapital,usefull_capital usefullCapital ,recommend_id recommendId
 		from user_info
 		<where>
 		<if test="user.userId != null and user.userId != ''">

@@ -47,6 +47,7 @@ public class GasOrder implements Serializable {
 	private String gasAccount;
 	private String company;
 	private String productDesc;
+	private String recommendId;
 	
 	public String getProductDesc() {
 		return productDesc;
@@ -209,6 +210,12 @@ public class GasOrder implements Serializable {
 	}
 	public void setPayTime(String payTime) {
 		this.payTime = payTime;
+	}
+	public String getRecommendId() {
+		return recommendId;
+	}
+	public void setRecommendId(String recommendId) {
+		this.recommendId = recommendId;
 	}
 	
 	

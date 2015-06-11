@@ -58,6 +58,8 @@ public class ManagerController {
 		String path =  request.getSession().getServletContext().getRealPath("")+File.separator+"files";
 		ZxingUtils.createQRCode("http://115.28.65.214/api/downLoadApk.do?managerAccount="+manager.getManagerAccount(), 200, 200, path, manager.getManagerAccount()+".png");
 		manager.setPic("/files/"+manager.getManagerAccount()+".png");
+		ZxingUtils.createQRCode("http://115.28.65.214/signup.html?recommendId="+manager.getManagerAccount(), 200, 200, path, manager.getManagerAccount()+"_signup.png");
+		manager.setSignupPic("/files/"+manager.getManagerAccount()+"_signup.png");
 		managerService.insertManager(manager,request);
 		result.put("success", true);
 		result.put("user", manager);

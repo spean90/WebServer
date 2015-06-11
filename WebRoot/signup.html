@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="common/easyui/jquery.min.js"></script>
     <script type="text/javascript" src="common/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="common/bootstrap-jquery/jquery.bootstrap.min.js"></script>
+	<script type="text/javascript" src="/common/js/md5.min.0.9.5.js"></script>
 </head>
 <body>
 
@@ -15,22 +16,79 @@
   <div class="panel-body">
    <form id="loginform" role="form">
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">手机号</label>
           <input type="username" class="form-control"
            id="username">
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">密码</label>
           <input type="password" class="form-control"
           id="password">
+        </div>
+        <div class="form-group">
+          <label for="re_password">确认密码</label>
+          <input type="password" class="form-control"
+          id="re_password">
+        </div>
+        <div class="form-group">
+          <label for="code">验证码</label>
+          <input type="text" class="form-control"
+           id="code">
+           <a class="btn btn-xs btn-success" onclick="getCode()">获取验证码</a>
         </div>
       </form>
   </div>
   <div class="panel-footer">
-  		<button class="btn btn-sm btn-default">重置</button><button class="btn btn-sm btn-success">提交</button>
+  		<button class="btn btn-sm btn-default">重置</button><button onclick="signup()" class="btn btn-sm btn-success">提交</button>
   </div>
 </div>
 </body>
 <script type="text/javascript">
+	var search = window.location.search;
+	var recommendId = search.split('=')[1];
+	alert(recommendId);
+	function signup(){
+		var password = $('#password').val();
+		var repassword = $('#re_password').val();
+		if(password==''||repassword==''){
+			alert('请输入密码');
+			return;
+		}
+		if(password!=repassword){
+			alert('两次密码不一致');
+			return;
+		}
+		var phone = $('#username').val();
+		if(phone==""){
+			alert('请输入手机号码');
+			return;
+		}
+		var code = $('#code').val();
+		if(code==""){
+			alert('请输入验证码');
+			return;
+		}
+		var pwd = $('#password').val();
+		pwd = hex_md5(pwd).toUpperCase();
+		$.ajax({
+			url:'/api/signUp.do?userName='+phone+"&password="+pwd+"&code="+code+"&recommendId="+recommendId,
+			success : function(data){
+				console.log(data);
+			}
+		})
+	}
+	function getCode(){
+		var phone = $('#username').val();
+		if(phone==""){
+			alert('请输入手机号码');
+			return;
+		}
+		$.ajax({
+			url:'/api/sendMessage.do?type=3032&phone='+phone,
+			success : function(data){
+				console.log(data);
+			}
+		})
+	}
 </script>
 </html>

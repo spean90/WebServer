@@ -25,6 +25,7 @@ public class UserInfo implements Serializable {
 	private String balance;//余额
 	private String frozenCapital;//冻结资金--已经提交提现申请的金额；
 	private String usefullCapital;//可以取的资金；
+	private String recommendId;//推荐人id;
 	
 	public Long getUserId() {
 		return userId;
@@ -85,6 +86,12 @@ public class UserInfo implements Serializable {
 	}
 	public void setUsefullCapital(String usefullCapital) {
 		this.usefullCapital = usefullCapital;
+	}
+	public String getRecommendId() {
+		return recommendId;
+	}
+	public void setRecommendId(String recommendId) {
+		this.recommendId = recommendId;
 	}
 	
 	
