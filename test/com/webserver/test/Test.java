@@ -1,7 +1,5 @@
 package com.webserver.test;
 
-import com.biappstore.security.MD5Utils;
-import com.biappstore.security.SecurityUtils;
 import com.google.zxing.utils.ZxingUtils;
 
 public class Test {

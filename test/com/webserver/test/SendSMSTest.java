@@ -21,12 +21,12 @@ public class SendSMSTest {
 		// "100"));
 
 		// 查询油卡合法性
-//		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,
-//		 "9030030000585002"));
+		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,
+		 "9030030000585002"));
 
 		// 查询油卡合法性
-		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,
-		 "1000113500001311694"));
+//		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,
+//		 "1000113500001311694"));
 
 		// // 查询聚合余额
 		// System.out.println(GsaCardBusiness.getInstance().queryJuheBalance());
