@@ -25,8 +25,8 @@ public class SendSMSTest {
 		// 查询油卡合法性
 //		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,
 //		 "9030030000585002"));
-
-		// 查询油卡合法性
+//
+//		// 查询油卡合法性
 //		 System.out.println(GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,
 //		 "1000113500001311694"));
 
@@ -38,8 +38,8 @@ public class SendSMSTest {
 
 		// // 下单(测试中石油任意)
 		
-		System.out.println(GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY, "9030030000585002", "应火平", "18964264097",
-				UUID.randomUUID().toString().replace("-", ""), 1));
+//		System.out.println(GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY, "9030030000585002", "应火平", "18964264097",
+//				UUID.randomUUID().toString().replace("-", ""), 1));
 
 		// // 下单(测试中石化任意)
 //		 System.out.println(GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSH,

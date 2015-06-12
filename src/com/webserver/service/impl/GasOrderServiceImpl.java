@@ -197,6 +197,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			double price = 0;;
 			int month = 1;
 			double sum = 0;
+			
 			//如果是套餐、则获取买的月数、和每月需充值多少
 			if (gasOrder.getSubProductId()!=null) {
 				SubProduct subProduct = subProductDao.getSubProductById(gasOrder.getSubProductId());
@@ -206,7 +207,8 @@ public class GasOrderServiceImpl implements IGasOrderService {
 			}else{
 				//如果是直冲、则month=1;
 				month=1;
-				sum = gasOrder.getPaySum();
+				Product product = productDao.getProductById(gasOrder.getProductId());
+				sum = product.getPrice();
 			}
 			
 			
@@ -242,14 +244,16 @@ public class GasOrderServiceImpl implements IGasOrderService {
 					backlog.setJuheOrderId(juheOrderId);
 					//先把订单号记录到数据库防止聚合充值成功后。更新数据失败情况下损失；
 					backlogDao.addBacklog(backlog);
+					
+					logger.info("创建代办 调用聚合充值油卡：backlog.backlogId="+backlog.getBacklogId()+" company = "+gasCard.getCompany()+" 油卡号="+gasCard.getGasAccount()+" 持卡人="+gasCard.getOwner()+" 金额="+sum+" backlog金额="+backlog.getSum());
 					if (gasCard.getCompany().equals("中国石化")) {
 						re = GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSH,
 								gasCard.getGasAccount(), gasCard.getOwner(), gasCard.getPhone(),
-								juheOrderId, backlog.getSum().intValue());
+								juheOrderId, (int)sum);
 					}else if(gasCard.getCompany().equals("中国石油")) {
 						re = GsaCardBusiness.getInstance().submitOrder(CardTpye.ZSY,
 								gasCard.getGasAccount(), gasCard.getOwner(), gasCard.getPhone(),
-								juheOrderId, backlog.getSum().intValue());
+								juheOrderId, (int)sum);
 					}
 					//如果请求聚合充值成功则把代办直接设置成3-已处理、、否则设置为1-未处理；
 					if (re) {

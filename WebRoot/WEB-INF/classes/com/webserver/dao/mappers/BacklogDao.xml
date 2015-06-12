@@ -4,7 +4,7 @@
 
 	<select id="getBacklogListByParams" resultType="Backlog">
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
-		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus,a.phone phone
 		,b.order_id orderId
 		from backlog t 
@@ -77,6 +77,12 @@
 		 	<if test="backlog.juheOrderId!=null">
 	 			juhe_order_id = #{backlog.juheOrderId},
 		 	</if>
+		 	<if test="backlog.juheId!=null">
+	 			juhe_id = #{backlog.juheId},
+		 	</if>
+		 	<if test="backlog.juheResult!=null">
+	 			juhe_result = #{backlog.juheResult},
+		 	</if>
 		 	<if test="backlog.juheRechargeTime!=null and backlog.juheRechargeTime!=''">
 	 			juhe_recharge_time = #{backlog.juheRechargeTime},
 		 	</if>
@@ -91,16 +97,32 @@
 	
 	<select id="getBacklogById" resultType="Backlog">
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
-		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.phone phone
 		from backlog t
 		left join gas_card a on a.gas_id = t.gas_id
 		where backlog_id = #{backlogId}
 	</select>
 	
+	<select id="getBacklogByBacklog" resultType="Backlog">
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
+		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus,a.phone phone
+		,b.order_id orderId
+		from backlog t 
+		left join gas_card a on a.gas_id = t.gas_id
+		left join gas_order b on t.oid = b.oid
+		
+		<where>
+			<if test="backlog.juheOrderId != null and backlog.juheOrderId != ''">
+				and t.juhe_order_id = #{backlog.juheOrderId}
+			</if>
+		</where>
+	</select>
+	
 	<select id="getBackLogListIds" resultType="Backlog">
 		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
-		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,
+		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.phone phone
 		from backlog t
 		left join gas_card a on a.gas_id = t.gas_id

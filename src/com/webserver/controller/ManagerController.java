@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.zxing.utils.ZxingUtils;
 import com.webserver.common.PageBean;
+import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.modal.Manager;
 import com.webserver.service.IManagerService;
@@ -56,9 +57,9 @@ public class ManagerController {
 		manager.setAddMan(oper.getRealName());
 		manager.setAddTime(DateUtil.getDateTimeString(new Date()));
 		String path =  request.getSession().getServletContext().getRealPath("")+File.separator+"files";
-		ZxingUtils.createQRCode("http://115.28.65.214/api/downLoadApk.do?managerAccount="+manager.getManagerAccount(), 200, 200, path, manager.getManagerAccount()+".png");
+		ZxingUtils.createQRCode(ConstantUtil.DownloadPicPath+manager.getManagerAccount(), 200, 200, path, manager.getManagerAccount()+".png");
 		manager.setPic("/files/"+manager.getManagerAccount()+".png");
-		ZxingUtils.createQRCode("http://115.28.65.214/signup.html?recommendId="+manager.getManagerAccount(), 200, 200, path, manager.getManagerAccount()+"_signup.png");
+		ZxingUtils.createQRCode(ConstantUtil.SignupPicPaht+manager.getManagerAccount(), 200, 200, path, manager.getManagerAccount()+"_signup.png");
 		manager.setSignupPic("/files/"+manager.getManagerAccount()+"_signup.png");
 		managerService.insertManager(manager,request);
 		result.put("success", true);

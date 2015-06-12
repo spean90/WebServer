@@ -23,4 +23,5 @@ public interface BacklogDao {
 	public List<Backlog> getBackLogListIds(@Param("backlogIds")String[] backlogIds);
 	public void activateBacklog(@Param("currentTime")String currentTime);
 	public void cancelBacklog(@Param("backlog")Backlog backlog);
+	public Backlog getBacklogByBacklog(@Param("backlog")Backlog backlog);
 }

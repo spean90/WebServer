@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.juhedata.api.GasCardRechargeApi.CardTpye;
 import com.smartgas.juhe.business.GsaCardBusiness;
+import com.smartgas.juhe.business.SMSBusiness;
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
@@ -67,7 +68,7 @@ public class BacklogServiceImpl implements IBacklogService {
 				//如果处理成功、发送应用内消息
 				News news = new News();
 				news.setTitle("订单消息");
-				news.setType(2);
+				news.setType(3);
 				news.setUserId(backlog.getUserId());
 				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
 				news.setStatus(0);
@@ -76,6 +77,8 @@ public class BacklogServiceImpl implements IBacklogService {
 				String content = ConstantUtil.MSG_BACKLOG_DONE(showOrderId, backlog.getAccount(), backlog.getSum());
 				news.setContent(content);
 				newsDao.addNews(news);
+				SMSBusiness.getInstance().sendRechargeMsg(backlog.getPhone(), backlog.getCompany(),
+						backlog.getAccount(), new Date(System.currentTimeMillis()), backlog.getSum().toString());
 			}
 		} catch (Exception e) {
 			logger.error("处理待办失败：", e);
@@ -170,6 +173,39 @@ public class BacklogServiceImpl implements IBacklogService {
 			return resultBean;
 		}
 		return resultBean;
+	}
+
+	@Override
+	public boolean juheRechargeCallback(Backlog backlog) {
+		try {
+			backlogDao.updateBacklog(backlog);
+			if (backlog.getStatus()==6) {
+				//如果处理成功、发送应用内消息
+				News news = new News();
+				news.setTitle("订单消息");
+				news.setType(3);
+				news.setUserId(backlog.getUserId());
+				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+				news.setStatus(0);
+				news.setCode(backlog.getOrderId());
+				String showOrderId = backlog.getJuheOrderId();
+				String content = ConstantUtil.MSG_BACKLOG_DONE(showOrderId, backlog.getAccount(), backlog.getSum());
+				news.setContent(content);
+				newsDao.addNews(news);
+				SMSBusiness.getInstance().sendRechargeMsg(backlog.getPhone(), backlog.getCompany(),
+						backlog.getAccount(), new Date(System.currentTimeMillis()), backlog.getSum().toString());
+			}
+		} catch (Exception e) {
+			logger.error("处理待办失败：", e);
+			throw new RuntimeException();
+		}
+		return true;
+	}
+
+	@Override
+	public Backlog getBacklogByBacklog(Backlog backlog) {
+		// TODO Auto-generated method stub
+		return backlogDao.getBacklogByBacklog(backlog);
 	}
 
 }

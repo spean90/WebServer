@@ -16,7 +16,6 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	<!-- <import resource="classpath:cfg/springconfig-task.xml" /> -->
 	<context:property-placeholder location="classpath:cfg/config.properties"/>
 	
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"

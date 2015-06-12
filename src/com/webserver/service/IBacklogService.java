@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
@@ -27,6 +29,8 @@ public interface IBacklogService {
 	* @return
 	 */
 	public ResultBean juheRecharge(Backlog backlog,HttpServletRequest request);
+	public boolean juheRechargeCallback(Backlog backlog);
+	public Backlog getBacklogByBacklog(Backlog backlog);
 	public int addBacklog(Backlog backlog)throws Exception;
 	public int lockBacklogById(Backlog backlog,HttpServletRequest request);
 	public List<Backlog> getBackLogListIds(String[] ids);

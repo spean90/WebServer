@@ -89,7 +89,7 @@ public class BacklogController {
 		ResultBean resultBean = backlogService.juheRecharge(backlog, request);
 		//操作日志
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("调用聚合充值-代办id:"+backlog.getBacklogId());
+		operLog.setOperAction("手动调用聚合充值-代办id:"+backlog.getBacklogId());
 		operLog.setParams(StringUtil.toJson(backlog));
 		operLogService.addOperLog(operLog);
 		return resultBean;

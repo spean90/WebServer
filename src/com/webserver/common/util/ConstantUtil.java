@@ -13,6 +13,17 @@ public class ConstantUtil {
 
 	public static final String RETURN_MESSAGE = "message";
 
+	/** 聚合充值应用AppKey **/
+	public final static String JuheAppKey = "a307318a4f21c83e3d7273bac7e46890";
+	/**
+	 * 二维码  下载app地址
+	 */
+	public final static String DownloadPicPath = "http://115.28.65.214/api/downLoadApk.do?managerAccount=";
+	/**
+	 * 二维码  注册页地址
+	 */
+	public final static String SignupPicPaht = "http://115.28.65.214/signup.html?recommendId=";
+	
 	/**
 	 * session中验证码
 	 */
@@ -25,7 +36,7 @@ public class ConstantUtil {
 	
 	//发送兑换码
 	public static String MSG_SEND_REDEEMCOD (String packageName,String redeemCode){
-		return "恭喜您获得"+packageName+"礼包，兑换码为"+redeemCode+"。快去个人中心兑换您的礼包吧！如有疑问请致电：400-072-7899。";
+		return "恭喜您获得"+packageName+"，兑换码为"+redeemCode+"。快去个人中心兑换您的礼包吧！如有疑问请致电：400-072-7899。";
 	}
 	//油卡充值完后发生的消息
 	public static String MSG_BACKLOG_DONE (String orderId,String gasAccount,double sum){

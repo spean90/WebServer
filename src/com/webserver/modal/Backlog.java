@@ -35,6 +35,8 @@ public class Backlog implements Serializable {
 	private String juheOrderId;//聚合充值订单id
 	private String juheRechargeTime;//聚合充值时间
 	private String phone;//油卡绑定电话
+	private String juheId;//聚合流水号
+	private Integer juheResult;//聚合结果
 	
 	public String getResult() {
 		return result;
@@ -156,6 +158,18 @@ public class Backlog implements Serializable {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getJuheId() {
+		return juheId;
+	}
+	public void setJuheId(String juheId) {
+		this.juheId = juheId;
+	}
+	public Integer getJuheResult() {
+		return juheResult;
+	}
+	public void setJuheResult(Integer juheResult) {
+		this.juheResult = juheResult;
 	}
 	
 	
