@@ -43,7 +43,13 @@ public class UserCouponController {
 	public Object addUserCoupon(Long userId,String couponPackageIds,String packageNames,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (!StringUtils.isEmpty(couponPackageIds)) {
-			String redeemCodeString = SecurityUtil.createRedeemCode(userId);
+			String redeemCodeString = "";
+			RedeemCode newRedeemCode = new RedeemCode();
+			while (newRedeemCode!=null) {
+				 redeemCodeString = SecurityUtil.createRedeemCode(userId);
+				newRedeemCode.setRedeemCode(redeemCodeString);
+				newRedeemCode = redeemCodeService.getRedeemCodeByCode(newRedeemCode, request);
+			}
 			RedeemCode redeemCode = new RedeemCode();
 			redeemCode.setUserId(userId);
 			redeemCode.setStatus(1);

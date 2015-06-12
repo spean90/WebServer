@@ -53,7 +53,7 @@ public class IFeedbackController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, feedback.getUserId())) {
 			try {
-				PageData<Feedback> pageData = feedbackService.getFeedbackListByParams(feedback, pageBean);
+				PageData<Feedback> pageData = feedbackService.getFeedbackListByParams(feedback, null);
 				resultBean.setObject(pageData);
 			} catch (Exception e) {
 				logger.error("err:",e);

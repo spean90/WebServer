@@ -29,7 +29,7 @@ public class INewsController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, news.getUserId())) {
 			try {
-				PageData<News> pageData = newsService.getNewsListByParams(news, pageBean);
+				PageData<News> pageData = newsService.getNewsListByParams(news, null);
 				resultBean.setObject(pageData);
 			} catch (Exception e) {
 				logger.error("err:",e);

@@ -54,7 +54,7 @@ public class IUserInfoController {
 				PageData<UserInfo> pageData = userInfoService.getUserListByParams(userInfo, new PageBean());
 				if (pageData.getTotal()!=0) {
 					resultBean.setCode("1001");
-					resultBean.setMsg("注册失败，改手机已经注册");
+					resultBean.setMsg("注册失败，改手机号已经注册");
 					return resultBean;
 				}
 				userInfo.setAddTime(DateUtil.getDateTimeString(new Date()));
