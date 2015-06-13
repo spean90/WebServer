@@ -35,6 +35,7 @@ var gasOrder = {
 			var paySum = $('#receiveSum').val();
 			var orderDesc = $('#orderDesc').val();
 			var subProductId = $('#subProductId').val();
+			var productId = $('#productId').val();
 			var amount = $('#amount').val();
 			var gasId = $('#gasId_receive').val();
 			var data = {
@@ -44,7 +45,8 @@ var gasOrder = {
 					paySum:paySum,
 					orderDesc:orderDesc,
 					amount:amount,
-					subProductId:subProductId
+					subProductId:subProductId,
+					productId : productId
 			}
 			Modal.showConfirm('确认收款"'+paySum+'"元吗？',null,function(){
 				var config = {

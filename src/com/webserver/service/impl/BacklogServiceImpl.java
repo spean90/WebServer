@@ -78,7 +78,7 @@ public class BacklogServiceImpl implements IBacklogService {
 				news.setContent(content);
 				newsDao.addNews(news);
 				SMSBusiness.getInstance().sendRechargeMsg(backlog.getPhone(), backlog.getCompany(),
-						backlog.getAccount(), new Date(System.currentTimeMillis()), backlog.getSum().toString());
+						backlog.getAccount().substring(backlog.getAccount().length()-4), new Date(System.currentTimeMillis()), backlog.getSum().toString());
 			}
 		} catch (Exception e) {
 			logger.error("处理待办失败：", e);
@@ -139,6 +139,9 @@ public class BacklogServiceImpl implements IBacklogService {
 		return backlogDao.getBackLogListIds(backlogIds);
 	}
 
+	/**
+	 * 手动调用聚合处理
+	 */
 	@Override
 	public ResultBean juheRecharge(Backlog backlog, HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
@@ -161,6 +164,7 @@ public class BacklogServiceImpl implements IBacklogService {
 		//如果请求聚合充值成功则把代办直接设置成3-已处理、、否则设置为1-未处理；
 		if (re) {
 			logger.error("聚合充值调用成功juheOrderId="+juheOrderId);
+			//在聚合回调中处理结果
 		}else{
 			logger.error("调用聚合充值油卡失败>>>>>>>>>>>>>>>>>>>");
 			//还原状态
@@ -193,7 +197,7 @@ public class BacklogServiceImpl implements IBacklogService {
 				news.setContent(content);
 				newsDao.addNews(news);
 				SMSBusiness.getInstance().sendRechargeMsg(backlog.getPhone(), backlog.getCompany(),
-						backlog.getAccount(), new Date(System.currentTimeMillis()), backlog.getSum().toString());
+						backlog.getAccount().substring(backlog.getAccount().length()-4), new Date(System.currentTimeMillis()), backlog.getSum().toString());
 			}
 		} catch (Exception e) {
 			logger.error("处理待办失败：", e);

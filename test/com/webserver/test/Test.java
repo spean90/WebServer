@@ -19,6 +19,7 @@ public class Test {
 //		// MD5校验
 //		System.out.println("MD5校验:" + MD5Utils.CheckMD5("1234567890ABCDEF", "3A6BFF0799C7389F522F3847C33A468F"));
 		// 生成二维码
-		System.out.println("生成二维码：" + ZxingUtils.createQRCode("http://115.28.65.214/api/downLoadApk.do?managerAccount=admin", 200, 200, "D://", "test.png"));
+		System.out.println("生成二维码：" + ZxingUtils.createQRCode("http://120.26.206.140/api/downLoadApk.do?managerAccount=admin", 200, 200, "D://", "admin.png"));
+		System.out.println("生成二维码：" + ZxingUtils.createQRCode("http://120.26.206.140/signup.html?recommendId=admin", 200, 200, "D://", "admin_signup.png"));
 	}
 }
