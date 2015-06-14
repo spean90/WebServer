@@ -91,7 +91,7 @@
 	</update>
 	<update id="cancelBacklog"  parameterType="Backlog">
 		update backlog set status = 5
-	 	where oid = #{backlog.oId} and status = 1
+	 	where oid = #{backlog.oId} and (status = 1 or status = 0)
 	</update>
 	
 	

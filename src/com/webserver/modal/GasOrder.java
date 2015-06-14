@@ -30,11 +30,18 @@ public class GasOrder implements Serializable {
 	private Double paySum;//实际支付金额  （sum-优惠券金额）
 	private String payAccount;//支付账户；
 	private Integer payType;//支付方式1-支付宝；2-线下支付；
-	private Integer status;//订单状态;1-未支付；2-已支付；
+	private Integer status;//订单状态;状态：1-未付款；2-已付款；3-申请退款；4-已退款;5-退款处理中
 	private String receiver;//收款人;
 	private Integer delStatus; //删除状态；1为已经被删除了。失效
 	private Long userCouponId;//用户的优惠券id
 	private String payTime;//支付时间
+	private String buyGasAccount;  //下单是的油卡信息
+	private String buyGasCompany;
+	private String buyGasPhone;
+	private String refundMan;//办理退款的人 
+	private String refundSign;//退款备注
+	private String refundTime;//退款时间
+	private Double refundSum;//退款金额
 	
 	
 	/**
@@ -48,6 +55,8 @@ public class GasOrder implements Serializable {
 	private String company;
 	private String productDesc;
 	private String recommendId;
+	private String couponName; //优惠券名；
+	private Double couponSum;//优惠券金额
 	
 	public String getProductDesc() {
 		return productDesc;
@@ -216,6 +225,60 @@ public class GasOrder implements Serializable {
 	}
 	public void setRecommendId(String recommendId) {
 		this.recommendId = recommendId;
+	}
+	public String getBuyGasAccount() {
+		return buyGasAccount;
+	}
+	public void setBuyGasAccount(String buyGasAccount) {
+		this.buyGasAccount = buyGasAccount;
+	}
+	public String getBuyGasCompany() {
+		return buyGasCompany;
+	}
+	public void setBuyGasCompany(String buyGasCompany) {
+		this.buyGasCompany = buyGasCompany;
+	}
+	public String getBuyGasPhone() {
+		return buyGasPhone;
+	}
+	public void setBuyGasPhone(String buyGasPhone) {
+		this.buyGasPhone = buyGasPhone;
+	}
+	public String getCouponName() {
+		return couponName;
+	}
+	public void setCouponName(String couponName) {
+		this.couponName = couponName;
+	}
+	public Double getCouponSum() {
+		return couponSum;
+	}
+	public void setCouponSum(Double couponSum) {
+		this.couponSum = couponSum;
+	}
+	public String getRefundMan() {
+		return refundMan;
+	}
+	public void setRefundMan(String refundMan) {
+		this.refundMan = refundMan;
+	}
+	public String getRefundSign() {
+		return refundSign;
+	}
+	public void setRefundSign(String refundSign) {
+		this.refundSign = refundSign;
+	}
+	public String getRefundTime() {
+		return refundTime;
+	}
+	public void setRefundTime(String refundTime) {
+		this.refundTime = refundTime;
+	}
+	public Double getRefundSum() {
+		return refundSum;
+	}
+	public void setRefundSum(Double refundSum) {
+		this.refundSum = refundSum;
 	}
 	
 	

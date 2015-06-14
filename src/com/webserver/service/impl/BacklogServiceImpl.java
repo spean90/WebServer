@@ -60,7 +60,7 @@ public class BacklogServiceImpl implements IBacklogService {
 	@Override
 	public int updateBacklog(Backlog backlog, HttpServletRequest request) {
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("处理待办");
+		operLog.setOperAction("处理待办 id"+backlog.getBacklogId());
 		operLog.setParams(StringUtil.toJson(backlog));
 		try {
 			backlogDao.updateBacklog(backlog);
@@ -116,7 +116,7 @@ public class BacklogServiceImpl implements IBacklogService {
 		}
 		
 		OperLog operLog = new OperLog(request);
-		operLog.setOperAction("锁单处理");
+		operLog.setOperAction("锁单处理 代办id:"+backlog.getBacklogId());
 		operLog.setParams(StringUtil.toJson(backlog));
 		Manager user = (Manager)request.getSession().getAttribute("manager");
 		backlog.setManagerAccount(user.getManagerAccount());

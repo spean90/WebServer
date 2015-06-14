@@ -79,6 +79,9 @@
 			<if test="gasCard.phone != null and gasCard.phone != ''">
 			 	phone = #{gasCard.phone},
 			</if>
+			<if test="gasCard.company != null and gasCard.company != ''">
+			 	company = #{gasCard.company},
+			</if>
 			<if test="gasCard.sign != null and gasCard.sign != ''">
 			 	sign = #{gasCard.sign},
 			</if>

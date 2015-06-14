@@ -29,7 +29,15 @@ var userPaySumCount = {
 				columns : [[
 				            {field:'userName',title:'手机号',width:100,align:'center'},
 				            {field:'paySum',title:'总支付金额',width:100,align:'center'}
-				            ]]
+				            ]],
+				onLoadSuccess : function(data){
+					var data = data.rows;
+					var sum = 0;
+					for(var i=0;i<data.length;i++){
+						sum+=parseFloat(data[i].sum);
+					}
+					$('#sum').html('<strong>合计：</strong>'+sum);
+				}
 				
 			});
 		}

@@ -16,7 +16,7 @@
 			and type = #{news.type}
 		</if>
 		</where>
-		order by news_id 
+		order by news_id desc
 		<if test="pageBean!= null">
 			limit #{pageBean.start}, #{pageBean.rows}
 		</if>

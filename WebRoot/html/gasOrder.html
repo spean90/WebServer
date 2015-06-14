@@ -9,6 +9,7 @@
 		<div>
 			用户id：<input type="text" name="userId" id="userId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			手机号：<input type="text" name="userName" id="userName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			订单状态：<input type="text" name="status" id="status" style="width: 80px;">&nbsp;&nbsp;
 			订单号：<input type="text" name="orderId" id="orderId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			用户使用优惠券Id:<input type="text" name="userCouponId" id="userCouponId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			<button class="btn btn-success" onclick="gasOrder.searchGasOrder()">查询</button>
@@ -125,6 +126,22 @@
 				  <div class="input-group">
 					  <span class="input-group-addon" >优惠券名</span>
 					  <input type="text" class="form-control" name="couponName" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >优惠券金额</span>
+					  <input type="text" class="form-control" name="couponSum" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >下单油卡号</span>
+					  <input type="text" class="form-control" name="buyGasAccount" >
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >下单油卡类型</span>
+					  <input type="text" class="form-control" name="buyGasCompany" >
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >下单油卡电话</span>
+					  <input type="text" class="form-control" name="buyGasPhone" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >创建时间</span>

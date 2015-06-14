@@ -1,5 +1,7 @@
 package com.webserver.test;
 
+import java.util.Date;
+
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
@@ -17,7 +19,13 @@ public class TestMain {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		Double d= 4.4;
-		System.out.println(d.intValue());
+		System.out.println(new Date());
+		System.out.println(new Date(System.currentTimeMillis()));
+		java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#0.00"); 
+		double d = 0.100004;
+		d = Double.parseDouble(df.format(d));
+		System.out.println(d);
+		double dd=0.1;
+		System.out.println(d==dd);
 	}
 }

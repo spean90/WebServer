@@ -10,12 +10,49 @@
 			用户id：<input type="text" name="userId" id="userId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			手机号：<input type="text" name="userName" id="userName" style="width: 100px;height: 25px;">&nbsp;&nbsp;
 			订单号：<input type="text" name="orderId" id="orderId" style="width: 100px;height: 25px;">&nbsp;&nbsp;
+			订单状态：<input type="text" name="status" id="status" style="width: 80px;">&nbsp;&nbsp;
 			<button class="btn btn-success" onclick="refundManage.searchGasOrder()">查询</button>
 		</div>
 		<div id="gasOrderGrid" style="height: 500px;"></div>
 		<div id="tbar">
 			<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="refundManage.detail()">详情</a>
 		</div>
+		
+		
+		<div class="modal fasse" id="refundModal" data-backdrop="static" data-keyboard="false"  role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+		        		 <h4 class="modal-title">确认退款</h4>
+					</div>
+					<div class="modal-body">
+						<form id="refundForm">
+						  <div class="input-group">
+							  <span class="input-group-addon" >订单id</span>
+							  <input type="text"  class="form-control" name="oId" readonly="readonly">
+						  </div>
+						  <div class="input-group">
+							  <span class="input-group-addon" >金额</span>
+							  <input type="text"  class="form-control" name="refundSum" id="refundSum" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+						  </div>
+						  <div class="input-group">
+							  <span class="input-group-addon" >备注</span>
+							  <input type="text" class="form-control" name="refundSign" id="refundSign" >
+						  </div>
+						 </form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" onclick="refundManage.save()">提交</button>
+				       <button type="button" class="btn btn-default" onclick="refundManage.cancel()">关闭</button>
+				    </div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
 		
 		
 		<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -27,13 +64,21 @@
 		      </div>
 		      <div class="modal-body">
 		        <form id="form">
-		           <div class="input-group">
+		        	<div class="input-group">
 					  <span class="input-group-addon" >订单id</span>
+					  <input type="text" class="form-control"  name="oId">
+				  </div>
+		           <div class="input-group">
+					  <span class="input-group-addon" >订单号</span>
 					  <input type="text" class="form-control"  name="orderId">
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >套餐id</span>
 					  <input type="text" class="form-control" name="productId" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >购买数量</span>
+					  <input type="text" class="form-control" name="amount" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >金额</span>
@@ -52,8 +97,28 @@
 					  <input type="text" class="form-control" name="payAccount">
 				  </div>
 				  <div class="input-group">
+					  <span class="input-group-addon" >用户优惠券id</span>
+					  <input type="text" class="form-control" name="userCouponId" >
+				  </div>
+				  <div class="input-group">
 					  <span class="input-group-addon" >优惠券名</span>
 					  <input type="text" class="form-control" name="couponName" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >优惠券金额</span>
+					  <input type="text" class="form-control" name="couponSum" >
+				  </div>
+				  <div class="input-group">
+					  <span class="input-group-addon" >下单油卡号</span>
+					  <input type="text" class="form-control" name="buyGasAccount" >
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >下单油卡类型</span>
+					  <input type="text" class="form-control" name="buyGasCompany" >
+				  </div>
+				   <div class="input-group">
+					  <span class="input-group-addon" >下单油卡电话</span>
+					  <input type="text" class="form-control" name="buyGasPhone" >
 				  </div>
 				  <div class="input-group">
 					  <span class="input-group-addon" >创建时间</span>
@@ -62,6 +127,10 @@
 		          <div class="form-group">
 		            <label for="couponDesc" class="control-label">订单描述:</label>
 		            <textarea class="form-control" name="orderDesc"></textarea>
+		          </div>
+		          <div class="form-group">
+		            <label for="couponDesc" class="control-label">退款备注:</label>
+		            <textarea class="form-control" name="refundSign"></textarea>
 		          </div>
 		        </form>
 		      </div>

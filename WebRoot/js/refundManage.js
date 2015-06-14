@@ -1,12 +1,17 @@
 var refundManage = {
+		currentOid : '',
 		searchGasOrder : function() {
 			var userId = $('#userId').val();
 			var orderId = $('#orderId').val();
 			var userName = $('#userName').val();
+			var status = $('#status').combobox('getValue');
+			var gridOpts = $('#gasOrderGrid').datagrid('options');
+		    gridOpts.url = '/gasOrder/getGasOrderListByParams.do';
 			$('#gasOrderGrid').datagrid('load',{
 				userId : userId,
 				orderId : orderId,
-				userName:userName
+				userName:userName,
+				status : status
 			})
 		},
 		detail : function() {
@@ -24,28 +29,116 @@ var refundManage = {
 		    $('#backlogGrid').datagrid('load');
 			$('#backlogModal').modal('show');
 		},
-		refund : function(val) {
-			Modal.showConfirm('确认要申请退款吗？',null,function(){
+		//锁单、防止同时给退款
+		handle : function(index) {
+			var row = $('#gasOrderGrid').datagrid('getData').rows[index];
+			if(row) {
+				refundManage.currentOid = row.oId;
 				var config = {
-						url : '/gasOrder/doRefund.do?oId='+val,
-						type : 'post',
+						url : '/gasOrder/lockFefundOrder.do?oId='+row.oId+'&status=5',
 						success : function(data){
-							if(data.code=='0000'){
-								Modal.showAlert('操作成功');
-								$('#gasOrderGrid').datagrid('load')
+							if(data.code == "0000"){
+								$('#refundForm').form('clear');
+								$('#refundForm').form('load',row);
+								$('#refundModal').modal('show');
 							}else{
-								Modal.showAlert('服务器出错！');
-								$('#couponModal').modal('hide');
+								Modal.showAlert(data.msg);
+								$('#gasOrderGrid').datagrid('load')
+								return;
 							}
 						}
 				}
 				Modal.ajax(config);
+			}else{
+				Modal.showAlert('请选择要处理的事项!');
+			}
+		},
+		//意外退出后继续处理
+		continueHandle : function(rowIndex) {
+			var row = $('#gasOrderGrid').datagrid('getData').rows[rowIndex];
+			if(row) {
+				refundManage.currentOid = row.oId;
+				if (row.refundMan == sessionStorage.managerAccount) {
+					$('#refundForm').form('clear');
+					$('#refundForm').form('load',row);
+					$('#refundModal').modal('show');
+				}else{
+					Modal.showAlert(row.refundMan+' 正在处理中...');
+					return;
+				}
+			}else{
+				Modal.showAlert('请选择要处理的事项!');
+			}
+		},
+		cancel : function(){
+			var config = {
+					url : '/gasOrder/lockFefundOrder.do?oId='+refundManage.currentOid+'&status=3',
+					success : function(data){
+						if(data.code == "0000"){
+							$('#refundModal').modal('hide');
+							$('#gasOrderGrid').datagrid('load')
+						}else{
+							Modal.showAlert(data.msg);
+							$('#refundModal').modal('hide');
+							return;
+						}
+					}
+			}
+			Modal.ajax(config);
+		},
+		
+		save : function() {
+			var refundSum = $('#refundSum').val();
+			if (refundSum=='') {
+				Modal.showAlert('请填写退款金额...');
+				return;
+			}
+			var refundSign = $('#refundSign').val();
+			if (refundSign=='') {
+				Modal.showAlert('请填写备注...');
+				return;
+			}
+			$('#refundForm').form('submit',{
+				url : '/gasOrder/doRefund.do',
+				success : function(data) {
+					var result = JSON.StrToJSON(data);
+					if(result.code == "0000"){
+						Modal.showAlert('操作成功');
+						$('#refundModal').modal('hide');
+						$('#gasOrderGrid').datagrid('reload');
+					}else{
+						Modal.showAlert('服务器出错！');
+						$('#refundModal').modal('hide');
+					}
+					
+				}
 			})
-		}
+		},
 		
 }
 
 $(function(){
+	$('#status').combobox({
+		data : [{
+			name : "全部",
+			value : ""
+		},{
+			name : "未支付",
+			value : "1"
+		},{
+			name : "已支付",
+			value : "2"
+		},{
+			name : "退款中",
+			value : "3"
+		},{
+			name : "已退款",
+			value : "4"
+		}],
+		textField : 'name',
+		valueField : 'value',
+		panelHeight : 80
+	});
 	$('#gasOrderGrid').datagrid({
 		url : '/gasOrder/getGasOrderListByParams.do?status=3',
 		pagination : true,
@@ -68,9 +161,9 @@ $(function(){
 							return '线下支付';
 						}
 		            }},
-		           // {field:'payAccount',title:'付款账号',width:100,align:'center'},
-		           // {field:'couponId',title:'优惠券id',width:100,align:'center'},
-		            {field:'createTime',title:'创建时间',width:100,align:'center'},
+		            {field:'refundSum',title:'退款金额',width:100,align:'center'},
+		            {field:'refundMan',title:'退款办理人',width:100,align:'center'},
+		            {field:'refundTime',title:'退款时间',width:100,align:'center'},
 		            //{field:'orderDesc',title:'订单描述',width:100,align:'center'},
 		            {field:'oId',title:'详情',width:100,align:'center',formatter:function(val,row,index){
 		            		if(row.status==1){
@@ -80,9 +173,11 @@ $(function(){
 		            	}
 		            },{field:'tuikuan',title:'退款',width:100,align:'center',formatter:function(val,row,index){
 	            		if(row.status==3){
-	            			return '<div class="btn btn-xs btn-success" onclick=refundManage.refund('+row.oId+')>确认退款</div>';
+	            			return '<div class="btn btn-xs btn-success" onclick=refundManage.handle('+index+')>确认退款</div>';
 	            		}else if(row.status==4){
 	            			return '已退款';
+	            		}else if(row.status ==5 ){
+	            			return '<div class="btn btn-default btn-xs" onclick=refundManage.continueHandle('+index+')>处理中..</div>';
 	            		}
 	            	}
 	            }

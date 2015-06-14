@@ -77,7 +77,10 @@ public class GasOrderController {
 		return resultBean;
 	}
 	
-	//申请退款
+	
+	
+	
+	//提交退款
 	@RequestMapping("refundOrder")
 	@ResponseBody
 	public Object refundOrder(GasOrder gasOrder,HttpServletRequest request) {
@@ -92,6 +95,23 @@ public class GasOrderController {
 		operLogServiceImpl.addOperLog(operLog);
 		return resultBean;
 	}
+	
+
+	//开始退款，锁单/消息锁单
+	@RequestMapping("lockFefundOrder")
+	@ResponseBody
+	public synchronized Object lockFefundOrder(GasOrder gasOrder,HttpServletRequest request) {
+		Manager user = (Manager)request.getSession().getAttribute("manager");
+		//gasOrder.setReceiver(user.getManagerAccount());
+		gasOrder.setRefundMan(user.getManagerAccount());
+		ResultBean resultBean = new ResultBean();
+		OperLog operLog = new OperLog(request);
+		operLog.setOperAction("办理退款锁单："+gasOrder.getoId());
+		operLog.setParams(StringUtil.toJson(gasOrder));
+		gasOrderService.updateGasOrder(gasOrder);
+		operLogServiceImpl.addOperLog(operLog);
+		return resultBean;
+	}
 	//办理退款
 		@RequestMapping("doRefund")
 		@ResponseBody
@@ -99,9 +119,10 @@ public class GasOrderController {
 			Manager user = (Manager)request.getSession().getAttribute("manager");
 			//gasOrder.setReceiver(user.getManagerAccount());
 			gasOrder.setStatus(4);
+			gasOrder.setRefundTime(DateUtil.getDateTimeString(new Date()));
 			ResultBean resultBean = new ResultBean();
 			OperLog operLog = new OperLog(request);
-			operLog.setOperAction("办理退款："+gasOrder.getoId());
+			operLog.setOperAction("办理退款 oId："+gasOrder.getoId());
 			operLog.setParams(StringUtil.toJson(gasOrder));
 			gasOrderService.updateGasOrder(gasOrder);
 			operLogServiceImpl.addOperLog(operLog);

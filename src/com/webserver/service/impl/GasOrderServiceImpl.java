@@ -40,6 +40,7 @@ import com.webserver.service.IGasOrderService;
 public class GasOrderServiceImpl implements IGasOrderService {
 	
 	private Logger logger = LoggerFactory.getLogger(GasOrderServiceImpl.class);
+	java.text.DecimalFormat   df   =new   java.text.DecimalFormat("#0.00"); 
 	@Resource
 	private GasOrderDao gasOrderDao;
 	@Resource
@@ -106,9 +107,9 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		if (userCouponId!=null&&userCouponId!=0) {
 			//判断油卡是否已经用过了这种优惠券、只能用一次
 			GasOrder g = new GasOrder();
-			g.setGasId(gasOrder.getGasId());
+			g.setBuyGasAccount(gasOrder.getBuyGasAccount());
 			g.setCouponId(gasOrder.getCouponId());
-			g = gasOrderDao.getGasOrderById(gasOrder);
+			g = gasOrderDao.getGasOrderById(g);
 			if (g!=null) {
 				resultBean.setCode("1001");
 				logger.info("该油卡已使用过该优惠券！");
@@ -143,6 +144,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				return resultBean;
 			}
 			double orderSum = product.getPrice()*subProduct.getMonth()*subProduct.getDiscount()*gasOrder.getAmount()-couponSum;
+			orderSum = Double.parseDouble(df.format(orderSum));
 			if (orderSum!=gasOrder.getSum()) {
 				resultBean.setCode("1001");
 				resultBean.setMsg("金额计算有误，订单异常");
@@ -152,6 +154,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 		}else{
 			//直冲订单
 			double orderSum = product.getPrice()*0.99*gasOrder.getAmount()-couponSum;
+			orderSum = Double.parseDouble(df.format(orderSum));
 			if (orderSum!=gasOrder.getSum()) {
 				resultBean.setCode("1001");
 				resultBean.setMsg("金额计算有误，订单异常");

@@ -3,12 +3,14 @@ var gasOrder = {
 			var userId = $('#userId').val();
 			var orderId = $('#orderId').val();
 			var userName = $('#userName').val();
+			var status = $('#status').combobox('getValue');
 			var userCouponId = $('#userCouponId').val();
 			$('#gasOrderGrid').datagrid('load',{
 				userId : userId,
 				orderId : orderId,
 				userName:userName,
-				userCouponId : userCouponId
+				userCouponId : userCouponId,
+				status : status
 			})
 		},
 		detail : function() {
@@ -96,6 +98,27 @@ var gasOrder = {
 }
 
 $(function(){
+	$('#status').combobox({
+		data : [{
+			name : "全部",
+			value : ""
+		},{
+			name : "未支付",
+			value : "1"
+		},{
+			name : "已支付",
+			value : "2"
+		},{
+			name : "退款中",
+			value : "3"
+		},{
+			name : "已退款",
+			value : "4"
+		}],
+		textField : 'name',
+		valueField : 'value',
+		panelHeight : 80
+	});
 	$('#gasOrderGrid').datagrid({
 		url : '/gasOrder/getGasOrderListByParams.do',
 		pagination : true,
