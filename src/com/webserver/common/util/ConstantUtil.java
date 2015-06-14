@@ -18,11 +18,11 @@ public class ConstantUtil {
 	/**
 	 * 二维码  下载app地址
 	 */
-	public final static String DownloadPicPath = "http://115.28.65.214/api/downLoadApk.do?managerAccount=";
+	public final static String DownloadPicPath = "http://120.26.206.140/api/downLoadApk.do?managerAccount=";
 	/**
 	 * 二维码  注册页地址
 	 */
-	public final static String SignupPicPaht = "http://115.28.65.214/signup.html?recommendId=";
+	public final static String SignupPicPaht = "http://120.26.206.140/signup.html?recommendId=";
 	
 	/**
 	 * session中验证码

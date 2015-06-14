@@ -95,8 +95,9 @@ a:link{ color:#658BA3;}
 			success : function(data){
 				console.log(data);
 				data = JSON.parse(data);
+				window.location.href='welcome.html';
     			if(data.code=='0000'){
-    				//alert('注册成功');
+    				window.location.href='welcome.html';
     			}else{
     				alert(data.msg);
     				return;
