@@ -1,17 +1,16 @@
 var mypoints = {
 		initMyPoints : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listCustomersReviewsOrder?recordPerPage=4", 
+					url : Sys.serviceDomain+"/detailOwnCustomersIntegral?key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
 							return;
 						}
 						var content = data.content;
-						var list = content.list;
-						$('.wallet-title .c-red').html('12345');
+						$('.wallet-title .c-red').html(content.amount);
 					}
-			}
+			};
 			Modal.jsonp(config);
 		},
 		getMyPointsByPage : function(page,type) {

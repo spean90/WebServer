@@ -6,7 +6,7 @@ var category = {
 		/*获取热门品牌*/
 		getHotBrands:function (bId){
 			$.jsonp({
-				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
+				url : Sys.serviceDomain+"/listHotBrands?currentPage=0",
 				callbackParameter : "callback",
 				success : function(data){
 					if (data.msg.code!="0000") {
@@ -130,7 +130,6 @@ var category = {
 			if(tag != null){//是否选择了全部
 				tagId = $(tag).attr('id')
 			}
-			alert("bId="+bId+ ",tagId="+tagId);
 			var url = '';
 			if(bId==null){//没有选中品牌
 				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage="+page;

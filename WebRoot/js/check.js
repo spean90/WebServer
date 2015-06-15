@@ -1,50 +1,84 @@
 var check = {
 		check : function() {
 			var imei = $('.search-common').val();
+			if(imei==""){
+				Modal.alert("IMEI码为空，请输入手机IMEI码！");
+				return false;
+			}
 			var config = {
-					url : Sys.serviceDomain+"/listCustomersReviewsOrder?recordPerPage=4", 
+					url : Sys.serviceDomain+"/detailTacTerminalByImei?tac=" + imei, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
 							return;
 						}
 						var content = data.content;
-						var list = content.list;
 						$('.breadcrumb>ul').append($('<li class="on"><a href="#">查询结果</a></li>'))
 						$('.verify-section').empty();
 						var str = '';
-						if (list.length==0) {
+						if (!content.tac) {
 							str = '<i class="icon-search"></i> 亲，没有查询到相关信息哦！'
 								+'<br /><br />'
 								+'<a href="javascript:;" class="big-btn mt-30" onclick="check.reCheck()">重新查询</a>';
 						}else{
+							var terminalProperty = content.terminalProperty;
 							str = '<p class="verify-result">查询结果：该手机为正品手机</p>'
 								+' <div class="verify-table">'
 								+'<table>'
 								+'<tr>'
-								+' <td>电池状态：正在充电(USB)</td>'
-								+' <td>服务状态：</td>'
-								+' <td>IMEI SV：01</td>'
+								+' <td>主屏尺寸：'+terminalProperty.screenSize+'</td>'
+								+' <td>www支持：'+terminalProperty.isWww+'</td>'
+								+' <td>操作系统：'+terminalProperty.operatingSystem+'</td>'
 								+' </tr>'
 								+' <tr>'
-								+' <td>电池电量：41%</td>'
-								+' <td>漫游状态：非漫游</td>'
-								+' <td>IP地址：192.168.1.1</td>'
+								+' <td>waln功能：'+terminalProperty.isWlan+'</td>'
+								+' <td>自有业务：'+terminalProperty.privateBus+'</td>'
+								+' <td>后摄像头像素：'+terminalProperty.flankCameraPixel+'</td>'
 								+' </tr>'
-								+' <tr>'
-								+' <td>网络：中国移动</td>'
-								+' <td>移动网络状态：</td>'
-								+'<td></td>'
+								+'<tr>'
+								+' <td>手写输入：'+terminalProperty.isHandwriting+'</td>'
+								+' <td>2g模式：'+terminalProperty.is2g+'</td>'
+								+' <td>终端品牌编码：'+terminalProperty.modelNameId+'</td>'
 								+'</tr>'
 								+'<tr>'
-								+'<td>信号强度：</td>'
-								+'<td>本机号码：</td>'
-								+'<td></td>'
+								+' <td>主流第三方业务：'+terminalProperty.thirdPartyBus+'</td>'
+								+' <td>终端款式：'+terminalProperty.modelStyle+'</td>'
+								+' <td>终端类型：'+terminalProperty.modelType+'</td>'
 								+'</tr>'
 								+'<tr>'
-								+'<td>手机网络类型：</td>'
-								+'<td>IMEI：888888888</td>'
-								+'<td></td>'
+								+' <td>4g模式：'+terminalProperty.is4g+'</td>'
+								+' <td>蓝牙：'+terminalProperty.isBluetooth+'</td>'
+								+' <td>终端型号：'+terminalProperty.modelDesc+'</td>'
+								+'</tr>'
+								+'<tr>'
+								+' <td>别名：'+terminalProperty.otherName+'</td>'
+								+' <td>屏幕像素：'+terminalProperty.screenPixel+'</td>'
+								+' <td>终端设备标识：'+terminalProperty.modelId+'</td>'
+								+'</tr>'
+								+'<tr>'
+								+' <td>触摸屏类型：'+terminalProperty.touchType+'</td>'
+								+' <td>gps功能：'+terminalProperty.isGps+'</td>'
+								+' <td>usb：'+terminalProperty.isUsb+'</td>'
+								+'</tr>'
+								+'<tr>'
+								+' <td>彩信功能：'+terminalProperty.isMms+'</td>'
+								+' <td>彩色屏色深：'+terminalProperty.colorScreenDepth+'</td>'
+								+' <td>3g模式：'+terminalProperty.is3g+'</td>'
+								+'</tr>'
+								+'<tr>'
+								+' <td>前摄像头像素：'+terminalProperty.frontCameraPixel+'</td>'
+								+' <td>终端品牌：'+terminalProperty.modelName+'</td>'
+								+' <td>红外：'+terminalProperty.isIrda+'</td>'
+								+'</tr>'
+								+'<tr>'
+								+' <td>操作系统版本：'+terminalProperty.systemVersion+'</td>'
+								+' <td>wap支持：'+terminalProperty.isWap+'</td>'
+								+' <td>是否智能机：'+terminalProperty.isIntelligent+'</td>'
+								+'</tr>'
+								+'<tr>'
+								+' <td>gprs功能：'+terminalProperty.isGprs+'</td>'
+								+' <td></td>'
+								+' <td></td>'
 								+'</tr>'
 								+'</table>'
 								+'</div>'

@@ -1,7 +1,7 @@
 var mywallet = {
 		initMyWallet : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listCustomersReviewsOrder?recordPerPage=4", 
+					url : Sys.serviceDomain+"/listOwnRecommendInvoice?recordPerPage=4&key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -16,7 +16,7 @@ var mywallet = {
 		},
 		getStatementByPage : function(page) {
 			var config = {
-					url : Sys.serviceDomain+"/listHotModels?recordPerPage=5&currentPage="+page, 
+					url : Sys.serviceDomain+"/listOwnRecommendInvoice?recordPerPage=5&currentPage="+page+"&key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -26,16 +26,22 @@ var mywallet = {
 						var list = content.list;
 						$('#statement tr:gt(0)').remove();
 						var str = '';
-						for(var i=0;i<list.length;i++) {
+						for(var i=0; i<list.length;i++){
+							var item = list[i];
+							var isSettled = item.isSettled;
 							str = '<tr>'
-								+'<td>ehs324654</td>'
-								+'<td>2015-03-01 --  2015-03-30</td>'
-								+'<td>'+list[i].modelsId+'</td>'
-								+'<td>200</td>'
-								+'<td>￥800</td>'
-								+'<td class="c-red">未付款</td>'
-								+'</tr>';
-							$('#statement').append($(str));
+								+ '<td>'+item.recommendInvoiceId+'</td>'
+								+ '<td>'+item.beginDate+' --  '+item.endDate+'</td>'
+								+ '<td>'+item.totalOrderCount+'</td>'
+								+ '<td>'+item.totalCount+'</td>'
+								+ '<td>￥'+item.totalAmount+'</td>';
+							if(isSettled=='0'){
+								str = str + '<td class="c-red">未付款</td>'
+							}else{
+								str = str + '<td class="c-red">已付款</td>'
+							}
+							str = str + '</tr>';
+							$("#statement").append(str);
 						}
 						var recordPerPage = content.recordPerPage;
 						var totalPage = content.totalPage;
@@ -55,7 +61,7 @@ var mywallet = {
 		},
 		getDetailByPage : function(page) {
 			var config = {
-					url : Sys.serviceDomain+"/listHotModels?recordPerPage=4&currentPage="+page, 
+					url : Sys.serviceDomain+"/listOwnRecommendDetailFee?recordPerPage=4&currentPage="+page+"&key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -67,14 +73,22 @@ var mywallet = {
 						var str = '';
 						for(var i=0;i<list.length;i++) {
 							str = '<tr>'
-				                +'<td>ehs324654</td>'
-				                +'<td>1778877657</td>'
-				                +'<td>￥400</td>'
-				                +'<td>￥200</td>'
-				                +'<td>2014-04-23  12:32:21</td>'
-				                +'<td>'+list[i].modelsId+'</td>'
-				                +'<td class="c-red">未出帐</td>'
-				                +'</tr>';
+				                +'<td>'+list[i].ordersId+'</td>'
+				                +'<td>'+list[i].customersId+'</td>'
+				                +'<td>￥'+list[i].finalPrice+'</td>'
+				                +'<td>￥'+list[i].recommendFee+'</td>'
+				                +'<td>'+list[i].addedDate+'</td>'
+				                +'<td>'+list[i].recommendInvoiceId+'</td>';
+							if(list[i].isCharged=='0'){
+								str = str + '<td class="c-red">未出账,未打款</td>';
+							}else if(list[i].isCharged=='0'){
+								str = str + '<td class="c-red">未出账</td>';
+							}else if(list[i].isCharged=='0'){
+								str = str + '<td class="c-red">已出账,未打款</td>';
+							}else{
+								str = str + '<td class="c-red">未知状态</td>';
+							}
+				            str = str + '</tr>';
 							$('#detail').append($(str));
 						}
 						var recordPerPage = content.recordPerPage;
@@ -99,15 +113,18 @@ var mywallet = {
 //前端写的
 tabs($('.tabs'));
 $(function(){
-	//初始化分页条
-    $("#pagination, #pagination1").pagination({
-        items: 40,
-        itemsOnPage: 10,
-        cssStyle: 'light-theme'
-    });
-    
-    mywallet.initMyWallet();
-    mywallet.getStatementByPage(1);//初始化结算单；
-    mywallet.getDetailByPage(1);//初始化详细清单；
-    
+	if(sessionStorage.userId==null){
+		window.location.href = '/login.html';
+	}else{
+		//初始化分页条
+	    $("#pagination, #pagination1").pagination({
+	        items: 40,
+	        itemsOnPage: 10,
+	        cssStyle: 'light-theme'
+	    });
+	    mywallet.initMyWallet();
+	    mywallet.getStatementByPage(1);//初始化结算单；
+	    mywallet.getDetailByPage(1);//初始化详细清单；
+	
+	}
 });

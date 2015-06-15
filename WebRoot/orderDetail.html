@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>我的订单</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" href="css/buycar.css" />
+<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/index2.css" media="screen" />
+<!--[if lte IE 8]>
+ <script src="scripts/excanvas.min.js"></script>
+ <![endif]-->
+
+</head>
+
+<body>
+<!--Str 公用顶部-->
+<#include "/common/html/body_include.html">
+<!--End 公用顶部-->
+<!--Str 主体内容-->
+<div class="wrapper mt-15 clearfix">
+  <div class="breadcrumb">
+    <ul>
+      <li><i class="icon-home"></i><a href="index.html">首页</a><span>&gt;</span></li>
+      <li><a href="#">我的壹回收</a><span>&gt;</span></li>
+      <li><a href="#">估价结果</a></li>
+    </ul>
+  </div>
+  <div class="my-order">
+    <div class="tabs">
+      <ul class="tabs-label">
+        <li><a href="javascript:;">全部</a></li>
+        <li class="active"><a href="javascript:;">待处理(2)</a></li>
+        <li><a href="javascript:;">回收失败</a></li>
+        <li><a href="javascript:;">回收成功</a></li>
+      </ul>
+            <div class="tabs-content">
+        <div class="none">abc</div>
+        <div>
+          <div class="catbox order-table">
+            <table id="cartTable">
+              <thead>
+                <tr>
+                  <th class="w_96 t_c table_l_line none"><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>
+                  <th class="w_456">手机型号</th>
+                  <th>商家最高价</th>
+                   <th>价格状态</th>
+                  <th>回收数量</th>
+                  <th class="w_93 t_c table_l_line">金额小计</th>
+                  <th class="t_c table_l_line">评估情况</th>
+                  <th>订单状态</th>
+                </tr>
+                <tr class="dark">
+                  <th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">2015-04-26</span></label><span class="order-id">订单号：ehs2353464</span>　　<a href="javascript:;" class="underline">订单详情</a></th>
+                  <th class="c-red">待处理</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="checkbox none"><input class="check-one check" type="checkbox"/></td>
+                  <td class="goods"><img src="images/phone.png" alt=""/><span>iphone4s</span></td>
+                  <td class="price">599.00</td>
+                   <td class="status">价格有效</td>
+                  <td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="1"/><span class="add none"></span></td>
+                  <td class="subtotal">599.00</td>
+                  <td><a href="javascript:;" class="underline">评估详情</a></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="checkbox none"><input class="check-one check" type="checkbox"/></td>
+                  <td class="goods"><img src="images/phone.png" alt=""/><span>iphone5</span></td>
+                  <td class="price">600</td>
+                  <td class="status">价格有效</td>
+                  <td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="1"/><span class="add none"></span></td>
+                  <td class="subtotal">600</td>
+                  <td><a href="javascript:;" class="underline">评估详情</a></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="foot" id="foot">
+              <label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
+              <a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>
+              <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+              <div class="fr selected" id="selected">共<span id="selectedTotal">2</span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>
+              <div class="selected-view none">
+                <div id="selectedViewList" class="clearfix">
+                  <div><img src="images/1.jpg"><span>取消选择</span></div>
+                </div>
+              </div>
+            </div>
+            <table class="order-table" style="margin-top: -10px;">
+              <tr class="item">
+                <td colspan="6" class="tx-right">
+                  <a href="#" class="btn-radius">客户发货</a> &nbsp;
+                  <a href="#" class="btn-radius">　取消　</a> &nbsp;
+                  <a href="#" class="btn-radius">　评价　</a> &nbsp;
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="catbox order-table mt-30">
+            <table>
+              <thead>
+                <tr>
+                  <th class="w_96 t_c table_l_line none"><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>
+                  <th class="w_456">手机型号</th>
+                  <th>商家最高价</th>
+                   <th>价格状态</th>
+                  <th>回收数量</th>
+                  <th class="w_93 t_c table_l_line">金额小计</th>
+                  <th class="t_c table_l_line">评估情况</th>
+                  <th>订单状态</th>
+                </tr>
+                <tr class="dark">
+                  <th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">2015-04-26</span></label><span class="order-id">订单号：ehs2353464</span>　　<a href="javascript:;" class="underline">订单详情</a></th>
+                  <th class="c-red">待处理</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="checkbox none"><input class="check-one check" type="checkbox"/></td>
+                  <td class="goods"><img src="images/phone.png" alt=""/><span>iphone4s</span></td>
+                  <td class="price">599.00</td>
+                   <td class="status">价格有效</td>
+                  <td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="1"/><span class="add none"></span></td>
+                  <td class="subtotal">599.00</td>
+                  <td><a href="javascript:;" class="underline">评估详情</a></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="foot" id="foot">
+              <label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
+              <a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>
+              <div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>
+              <div class="fr selected" id="selected">共<span id="selectedTotal"></span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>
+              <div class="selected-view none">
+                <div id="selectedViewList" class="clearfix">
+                  <div><img src="images/1.jpg"><span>取消选择</span></div>
+                </div>
+              </div>
+            </div>
+            <table class="order-table" style="margin-top: -10px;">
+              <tr class="item">
+                <td colspan="6" class="tx-right">
+                  <a href="#" class="btn-radius">客户发货</a> &nbsp;
+                  <a href="#" class="btn-radius">　取消　</a> &nbsp;
+                  <a href="#" class="btn-radius">　评价　</a> &nbsp;
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="mt-30">
+            <label><input type="checkbox" /> 全选</label>
+            <div id="pagination" class="page mt-30 fr"></div>
+          </div>
+        </div>
+        <div class="none">def</div>
+        <div class="none">ghi</div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End 主体内容-->
+<!--Str 公用底部-->
+<#include "/common/html/footer_include.html">
+<!--End 公用底部-->
+<script src="scripts/buycar.js"></script>
+<script type="text/javascript" src="scripts/jquery.smartWizard-2.1.js"></script>
+<script type="text/javascript" src="js/orderDetail.js"></script>
+</body>
+</html>

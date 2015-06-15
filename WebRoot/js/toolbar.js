@@ -4,7 +4,7 @@
  */
 var toolBar = {
 		initRetrieveCar : function() {
-			sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKjd2b7gp6QimDNo0gAUjsKEH0ld9fLeCsaynC9T091K4';
+			//sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKjd2b7gp6QimDNo0gAUjsKEH0ld9fLeCsaynC9T091K4';
 			if(sessionStorage.token==null||sessionStorage.token=='undefined'){
 				console.log('未登录，不能获取回收车内容');
 				$('.hs-box-js').remove();
@@ -65,12 +65,35 @@ var toolBar = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		//页面跳转，判断是否已经登录
+		goTo : function(href){
+			if(sessionStorage.userId!=null){
+				window.location.href = href;
+			}else{
+				window.location.href = '/login.html';
+			}
 		}
 		
 }
 
 $(function(){
 	toolBar.initRetrieveCar()//初始化购物车；
+	//判断是否已经登录
+	if(sessionStorage.userId!=null){
+		$(".top-bar-rt-1>a>span").html(sessionStorage.userId);
+		$(".top-bar-rt-1>a").attr('href','#');
+		
+		$(".link-login").html("欢迎您，"+sessionStorage.userId);
+	}
+	//右侧帮助按钮弹窗
+	$(".btn.btn-help").click(function(){
+		window.open("/help.html");
+	})
+	//右侧意见反馈按钮弹窗
+	$(".edit").click(function(){
+		
+	})
 });
 
 

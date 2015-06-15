@@ -19,19 +19,20 @@
                       <a href="#"> <img src="images/avatar.png" width="60" height="60"></a>
                       </div>
                       <div class="u-name u-login">
-                        <a href="" class="link-login">你好，请登录</a>
-                        <a href="">壹回收欢迎你！</a>
+                        <a href="/login.html" class="link-login">你好，请登录</a>
+                        <a href="/index.html">壹回收欢迎你！</a>
                       </div>
                     </div>
                              
                     <div class="u-extra">           
                         <ul class="clearfix">
-                         <li><a href="">我的订单</a></li>
-                         <li><a href="/mywallet.html">我的钱包</a></li>
-                         <li><a href="">待处理订单</a></li>
-                         <li><a href="">推荐壹回收</a></li>
-                         <li><a href="/referralAgent.html">下线代理商</a></li>
-                         <li><a href="">关于壹回收</a></li>
+                         <li><a onclick="toolBar.goTo('/orderDetail.html');" href="#">我的订单</a></li>
+                         <li><a onclick="toolBar.goTo('/mywallet.html');" href="#">我的钱包</a></li>
+                         <li><a onclick="toolBar.goTo('/orderDetail.html');" href="#">待处理订单</a></li>
+                         <li><a onclick="toolBar.goTo('/replaceDealOrders.html');" href="#">我的代处理订单</a></li>
+                         <li><a onclick="toolBar.goTo('');" href="#">推荐壹回收</a></li>
+                         <li><a onclick="toolBar.goTo('/referralAgent.html');" href="#">下线代理商</a></li>
+                         <li><a onclick="toolBar.goTo('/about.html');" href="#">关于壹回收</a></li>
                         </ul>       
                      </div>   
                    </div>
@@ -79,8 +80,8 @@
          .tb-5 .u-extra ul{padding: 10px 0px 0px 0px;}
          .tb-5 .u-extra li{background: none;width: 43%;padding: 0px 5px; }
           .viewlast .tit{padding:5px}
-          .viewlast .content{padding: 15px 0px;}
-          .viewlast .content li{height: 50px;background: none;padding: 0px;}
+          .viewlast .content{padding: 5px 0px;}
+          .viewlast .content li{height: 50px;background: none;padding: 0px;margin-bottom:10px;}
           .viewlast .content li img{width: 50px;height: 50px;position: relative;top:0px;left:0px;}
 
           .hs-box-js ul li{height: 100%;background: none;line-height: 21px;padding: 0px;width: 100%;color:#666;}
@@ -189,12 +190,17 @@
         <!-- 修改 -->
         <li class="drop-down drop-down-s"><a><span>客户中心</span><i class="r-srw"></i></a>
           <div class="tb tb-2">
-            <div class="h-list"> <a>帮助中心</a> <a>咨询与建议</a> <a>在线客服</a> <a class="last">常见问题</a> </div>
+            <div class="h-list"> 
+            	<a href="help.html" target="_blank">帮助中心</a> 
+            	<a href="myissue.html" target="_blank" >咨询与建议</a> 
+            	<a href="tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes">在线客服</a> 
+            	<a href="help.html" target="_blank" class="last">常见问题</a> 
+            </div>
           </div>
         </li>
       <!-- 修改 end-->
 
-        <li class="collect"><a ><i class="icon icon-start"></i>藏壹回收</a></li>
+        <li class="collect"><a href="javascript:void(0)" class="bookmark"><i class="icon icon-start"></i>藏壹回收</a></li>
         <li id="fristHover"><a><i class="icon icon-code"></i>关注壹回收<i class="header-code p-a"></i></a></li>
         <li class="drop-down drop-down-s"><a><span>网站导航</span><i class="r-srw"></i></a>
         <span class="outline"></span> <span class="blank"></span>
@@ -299,15 +305,13 @@
 （D820mu/双4G）S（黑色）</a><a>HTC Desire 820 Mini
 （D820mu/双4G）S（白色）</a><a>小米 2S</a> </div>
       </div>
-      <div class="header-rt-box p-a"> 
-        <div class="h-code-box clearfix">
-         <a href="#" class="btn">
-           <span>
-             签到+1
-           </span>
-           
+      <div class="header-rt-box p-a">
+        <div class="h-code-box clearfix" id="qiandao">
+        <div class="qiandao">签到<strong id="element" class="element" style="-webkit-transform: translate(0px, 0px); margin-left: 0px; margin-top: 0px;">+1</strong> </div>
+         <div  class="btn target" id="target" >
+         <span class="coin"></span>
            <i class="icon icon-jifen"></i>
-         </a>
+         </div>
         <!--   <img src="images/code-1.jpg" alt="" width="55" height="55" />
           <div class="fr">
             <span>扫一扫</span>
@@ -322,9 +326,9 @@
   <!--Str 导航-->
   <div class="nav-box clearfix">
     <ul class="nav wrapper clearfix">
-      <li><a href="index.html" target="_blank">首页</a></li>
+      <li class="on"><a href="index.html" target="_blank">首页</a></li>
       <li><a href="/brands_0.html" target="_blank">回收类别</a></li>
-      <li><a>服务中心</a></li>
+      <li><a href="help.html" target="_blank">服务中心</a></li>
       <li><a href="check.html" target="_blank">真伪查询</a></li>
       <li><a href="about.html" target="_blank">关于我们</a></li>
     </ul>

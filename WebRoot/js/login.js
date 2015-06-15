@@ -18,6 +18,7 @@ var login = {
 							return;
 						}
 						sessionStorage.token = data.key;
+						sessionStorage.userId = userId;
 						window.location.href = '/index.html';
 					}
 			}

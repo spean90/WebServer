@@ -18,17 +18,54 @@ var outlets = {
                 marker.openInfoWindow(info);  
 			});
 		},
-		initOutletsData : function() {
+		//初始化网点信息
+		initOutletsData : function(page) {
 			var config = {
-					url : Sys.serviceDomain+"/userlogin?userId="+userId+'&passwd='+passwd, 
+					url : Sys.serviceDomain+"/listStoreOneCity?recordPerPage=3&currentPage="+page+"&cityId=1", 
 					callbackParameter: "callback",
 					success : function(data){
 						console.log(data);
 						if (data.msg.code!="0000") {
-							alert('登录失败！');
+							alert('加载失败，请刷新重试！');
 							return;
 						}
+						var content = data.content;
+						var list = content.list;
+						$("#store-list>ul").empty();
+						var str = '';
+						for(var i=0; i<list.length; i++){
+							var item = list[i];
+							if(item.latitude==""){
+								var x = 116+i*2;
+								item.latitude=x;
+							}
+							if(item.longitude==""){
+								var y = 39+i*2;
+								item.longitude=y;
+							}
+							//alert(item.latitude+","+tem.longitude);
+							str = '<li id="'+item.customersId+'" onclick="outlets.createMarker(this)" data-id="28" data-name="'+item.name+'" '
+								+ 'data-addr="'+item.address+'" data-phone="'+item.telephone+'" data-desc="" '
+								+ 'data-x="'+item.latitude+'" data-y="'+item.longitude+'" '
+								+ 'data-image="'+item.image+'" >'
+								+ '<a href="javascript:;">'+item.name+'</a> '
+								+ '</li>';
+							$("#store-list>ul").append(str);
+							$("#"+item.customersId).click();
+						}
 						
+						var recordPerPage = content.recordPerPage;
+						var totalPage = content.totalPage;
+						//初始化分页条
+					    $("#pagination").pagination({
+					        items: recordPerPage*totalPage,
+					        itemsOnPage: 3,
+					        cssStyle: 'light-theme',
+					        currentPage : page,
+					        onPageClick: function(pageNum,event){
+					        	outlets.initOutletsData(pageNum);
+					        }
+					    });
 					}
 			}
 			Modal.jsonp(config);
@@ -71,7 +108,7 @@ $(function(){
 	map.addControl(new BMap.NavigationControl());
 	map.enableScrollWheelZoom();
 	map.centerAndZoom('北京', 13);
-    
+    outlets.initOutletsData(1);
 });
 
 

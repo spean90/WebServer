@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	$('input, textarea').placeholder({customClass:'my-placeholder'});
     var $terms = [
             'search',
             'test',
@@ -73,11 +74,11 @@ $(document).ready(function () {
     						 if ($search == '' || !$('input').val) {
     			                    $('.output').html('').slideUp();
     			                     $('.icon-so').show();
-    			                    $('.search-input').css('paddingLeft',40);
+    			                    //$('.search-input').css('paddingLeft',40);
     			                } else {
     			                    $('.output').html($return).slideDown();
     			                    $('.icon-so').hide();
-    			                    $('.search-input').css('paddingLeft',10);
+    			                   // $('.search-input').css('paddingLeft',10);
     			                }
     			                $('.prediction-item').on('click', function () {
     			                	$text = $(this).find('span.prediction-text').text();
@@ -114,6 +115,7 @@ $(document).ready(function () {
             $('.output').slideUp();
         }
         $('.icon-so').show();
-       $('.search-input').css('paddingLeft',40);
+        $(this).val('');
+      // $('.search-input').css('paddingLeft',40);
     });
 });

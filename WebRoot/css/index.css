@@ -130,12 +130,12 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .round-digit{ display: inline-block; border-radius: 9999px; width: 20px; height: 20px; line-height: 20px; text-align: center; background: #aaa; color: #fff; vertical-align: middle; margin: 0 10px; margin-top: -3px; font-weight: bold; }
 .flow-box.active .round-digit{ background: #fff; color: #ffb973; }
 i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; background-position: center; }
-.icon-item1{ background-image: url(../images/item1.png); width: 59px; height: 52px; }
-.icon-item2{ background-image: url(../images/item2.png); width: 63px; height: 48px; }
+.icon-item1{ background-image: url(../images/item1.png); width: 59px; height: 62px; }
+.icon-item2{ background-image: url(../images/item2.png); width: 63px; height: 62px; }
 .icon-item3{ background-image: url(../images/item3.png); width: 66px; height: 62px; }
-.icon-item4{ background-image: url(../images/item4.png); width: 33px; height: 60px; }
-.icon-item5{ background-image: url(../images/item5.png); width: 42px; height: 56px; }
-.icon-close{ background-image: url(../images/close.gif); width: 13px; height: 13px; }
+.icon-item4{ background-image: url(../images/item4.png); width: 33px; height: 62px; }
+.icon-item5{ background-image: url(../images/item5.png); width: 42px; height: 62px; }
+.icon-close{ background-image: url(../images/close.gif); width: 13px; height: 62px; }
 .branch-recycle{ padding: 0 30px 30px; }
 .branch-recycle h1{ font-size: 28px; color: #aaa; }
 .branch-recycle .branch-title{ font-size: 20px; color: #000; height: 60px; line-height: 60px; border-bottom: 1px solid #ddd; }
@@ -148,7 +148,7 @@ i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; 
 .flip li:hover .front{ height: 0; opacity: 0; transition: all 0.1s ease-in; }
 .flip li .back{ height: 0; background: #2168CC; color: #fff; }
 .flip li:hover .back{ display: block; width: 140px; height: 140px; transition: all 0.1s ease-in; }
-.flip .front i{ padding: 20px 0 15px; }
+.flip .front i{ margin: 20px 0 15px; }
 .flip .back-title{ font-size: 20px; padding-top: 25px; }
 .flip li .back p{ color: #fff; font-size: 14px; }
 .map-wrapper{ height: 600px; overflow: hidden; }

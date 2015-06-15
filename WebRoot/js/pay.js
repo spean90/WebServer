@@ -37,5 +37,16 @@ var pay = {
 				}
 		}
 		Modal.jsonp(config);
+	},
+	//获取图片验证码
+	getPicCheckCode : function(){
+		$(this).attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
 	}
 };
+
+$(function(){
+	//alert($("div[class='pay-page'] img").attr('src'));
+	$("div[class='pay-page'] img").click(pay.getPicCheckCode);
+	$("div[class='pay-page'] img").click();
+	pay.initRetrieveList();
+});
