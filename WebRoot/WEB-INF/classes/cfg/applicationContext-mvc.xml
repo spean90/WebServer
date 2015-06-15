@@ -9,14 +9,13 @@
   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd  
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
    <!-- mvc返回页面的配置 -->
-     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="viewResolver">
         <property name="prefix">
             <value>/html/</value>
         </property>
         <property name="suffix">
-            <value>.jsp</value>
+            <value>.html</value>
         </property>
-         <property name="order" value="1"/>
     </bean>
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -55,41 +54,5 @@
    
     
     </mvc:annotation-driven>
-    <!-- 没有匹配到路由则使用默认servlet  也可以使用下面的resources标签 -->
-    <mvc:default-servlet-handler/> 
-    <!-- 一级目录下的请求为webroot下的静态html文件 
-  <mvc:resources location="/common/html/" mapping="/common/html/**"/> 
-  <mvc:resources location="/" mapping="/*"/> -->
-  
-  <!-- freemarker的配置 --> 
-	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"> 
-	  <property name="templateLoaderPath" value="/" /> 
-	  <property name="defaultEncoding" value="utf-8" /> 
-	  <property name="freemarkerSettings"> 
-	  <props> 
-	   <prop key="template_update_delay">10</prop> 
-	   <prop key="locale">zh_CN</prop> 
-	   <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop> 
-	   <prop key="date_format">yyyy-MM-dd</prop> 
-	   <prop key="number_format">#.##</prop> 
-	  </props> 
-	 </property> 
-	</bean> 
-	<!-- FreeMarker视图解析   如返回student。。在这里配置后缀名ftl和视图解析器。。--> 
-	<bean  class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"> 
-	    
-	 <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"></property> 
-	    
-	 <property name="suffix" value=".html" /> 
-	  <property name="order" value="0"/>
-	 <property name="contentType" value="text/html;charset=utf-8" /> 
-	 <property name="exposeRequestAttributes" value="true" /> 
-	 <property name="exposeSessionAttributes" value="true" /> 
-	 <property name="exposeSpringMacroHelpers" value="true" /> 
-	</bean>
-  
-  
-  
-  
   
 </beans>  

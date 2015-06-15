@@ -4,18 +4,81 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task" 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/task  
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd  
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
+	<context:property-placeholder location="classpath:cfg/config.properties"/>
 	
-	<!-- <context:property-placeholder location="classpath:cfg/config.properties"/> -->
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="poolProperties">
+			<bean class="org.apache.tomcat.jdbc.pool.PoolProperties">
+				<property name="driverClassName" value="${jdbc.driverClassName}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+				<property name="jmxEnabled" value="true" />
+				<property name="testWhileIdle" value="true" />
+				<property name="testOnBorrow" value="true" />
+				<property name="testOnReturn" value="false" />
+				<property name="validationInterval" value="30000" />
+				<property name="validationQuery" value="SELECT 1" />
+				<property name="timeBetweenEvictionRunsMillis" value="30000" />
+				<property name="maxActive" value="500" />
+				<property name="initialSize" value="2" />
+				<property name="maxWait" value="10000" />
+				<property name="minEvictableIdleTimeMillis" value="30000" />
+				<property name="minIdle" value="20" />
+				<property name="logAbandoned" value="false" />
+				<property name="removeAbandoned" value="true" />
+				<property name="removeAbandonedTimeout" value="60" />
+				<property name="jdbcInterceptors"
+					value="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer" />
+			</bean>
+		</property>
+	</bean>
 	
+	<!-- mybatis物理分页拦截器 -->
+	<bean id="paginationInterceptor" class="com.webserver.common.PaginationInterceptor"></bean> 
+	
+	 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="com.webserver.modal" />
+        <property name="mapperLocations" value="classpath*:com/webserver/dao/mappers/*.xml" />
+        <property name="plugins">  
+            <ref bean="paginationInterceptor"/>  
+        </property>  
+    </bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.webserver.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*" propagation="REQUIRED"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="serviceOperation" expression="execution(* com.webserver.service.impl.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation"/>
+	</aop:config>
 	
 	
 	<!-- 添加切换、使用通知；暂时不用
@@ -28,6 +91,6 @@
 		</aop:aspect>
 	</aop:config> 
 	 -->
-	
+	<task:annotation-driven/> 
 	<context:component-scan base-package="com.webserver"/>
 </beans>

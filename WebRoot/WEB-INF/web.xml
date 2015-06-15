@@ -12,7 +12,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	 <welcome-file-list>
-	   <welcome-file>welcome.html</welcome-file>
+	   <welcome-file>login.html</welcome-file>
 	 </welcome-file-list>
 	 <error-page>
 	   <error-code>404</error-code>
@@ -39,11 +39,9 @@
 		</init-param>
         <load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- url静态化，前台请求以.html后缀访问；保持url结构一致 -->
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.do</url-pattern>
-		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
   
   	<!-- 验证码 -->
@@ -83,6 +81,7 @@
     <servlet-mapping>
 	<servlet-name>ssi</servlet-name>
 		<url-pattern>*.shtml</url-pattern>
+		<url-pattern>*.html</url-pattern>
 		<url-pattern>*.inc</url-pattern>
     </servlet-mapping>
 </web-app>
