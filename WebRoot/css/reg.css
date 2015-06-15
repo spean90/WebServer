@@ -1,0 +1,56 @@
+body{background:#f2f2f2 !important;}
+.w{margin:0 auto;width:990px;}
+.hide{display:none;}
+#logo{position:relative;margin-bottom:20px;padding:10px 0;}
+#logo b{position:absolute;top:22px;left:180px;width:111px;height:46px;background:url(../images/regist-word.png) no-repeat;}
+.top-bar{background:#fafafa !important;}
+.banner_wrapper{height:330px;background:#2782d5;}
+.banner_inner{margin:0 auto;width:100%;height:327px;background:url(../images/bannerbg.jpg);}
+.banner_title{display:inline-block;padding-top:30px;padding-left:30px;}
+.banner_title h1{color:#fff;text-align:center;font-family:"微软雅黑";}
+.banner_text{margin:0 auto;margin-top:30px;width:80%;}
+.banner_text p{margin-bottom:18px;color:#FFF;font-weight:bold;font-size:14px;line-height:18px;}
+.mod_reg{padding:0 20px 0 20px;}
+.tab{padding-left:277px;height:33px;}
+.reg_top{position:relative;margin:0 auto;padding:0;width:990px;zoom:1;}
+.reg_top .tab{position:relative;overflow:visible;margin-bottom:-1px;padding-right:10px;border-bottom:1px solid #ddd;}
+.reg_top .tab li.curr{margin-top:1px;height:32px;border-bottom:0;background:#fff;color:#fff;color:#e4393c;font-weight:bold;line-height:32px;}
+.reg_top .tab li a{display:block;width:100px;}
+.tab li{float:left;margin-top:3px;margin-right:5px;width:100px;height:28px;border:1px solid #ddd;border-bottom:0;background:#f7f7f7;color:#f79100;text-align:center;font-size:14px;line-height:28px;}
+.person{position:relative;background-position:0 0;}
+.company{position:relative;background-position:-300px 0;}
+.reg_top .tab .cur{border-bottom:0;background:#e9e7e7;font-weight:bold;}
+.reg_top .extra{position:absolute;top:5px;right:20px;float:right;}
+.reg_top .extra span{font-size:14px;line-height:32px;}
+.reg_content{padding:30px 0 20px;width:100%;border:solid #ddd;border-width:0 1px 1px;background:#fff;}
+.extra{position:absolute;top:5px;right:20px;}
+.extra a{color:#005aa0;font-size:12px;}
+.reg_content .company{margin:0 auto;padding-top:30px;width:100%;}
+.reg_content .person form{float:left;width:800px;}
+.duan span{display:inline-block;margin:0 10px;}
+.person .line_div,.company .line_div{position:relative;height:65px;line-height:45px;}
+.person em{background-image:url(../images/person.png);}
+.company em{background-image:url(../images/company.png);}
+form .msgs1{border:1px solid #ccc;background:#e6e6e6;color:#818080;cursor:default;}
+#superior{overflow:hidden;padding:30px 20px 20px;background:url(../images/bg_welcome_company.gif) no-repeat 20px 0;zoom:1;}
+#superior dl{float:left;padding:10px 20px;width:270px;height:135px;border-left:1px solid #eee;}
+#superior dt{margin-bottom:8px;font-weight:bold;font-size:14px;}
+#superior dd{color:#666;text-align:justify;line-height:22px;}
+.form h3{margin-bottom:10px;padding:2px 16px 3px;height:28px;border-top:1px solid #e7e7e7;background:#f7f7f7;font-weight:normal;font-family:"微软雅黑";line-height:28px;}
+.person .line_div label,.company .line_div label{float:left;display:inline-block;padding-right:10px;height:36px;color:#999;text-align:right;font-size:14px;line-height:36px;}
+.person .line_div label{width:190px;}
+.company .line_div label{width:290px;}
+.commonInput{float:left;overflow:hidden;padding:10px 0 10px 5px;width:245px;border:1px solid #ccc;color:#999;font-size:14px;font-family:arial,"宋体";}
+.form_text{float:left;padding:5px 25px 5px 5px;height:24px;border:1px solid #ddd;line-height:24px;}
+.i-name{top:10px;right:3px;background:url(../images/one4.jpg) no-repeat scroll 0 0 transparent;}
+.i-pass{top:10px;right:3px;background:url(../images/one5.jpg) no-repeat scroll 0 0 transparent;}
+.i-mobile{top:10px;right:3px;background:url(../images/one6.jpg) no-repeat scroll 0 0 transparent;}
+.blank{position:absolute;float:none;padding:3px;width:16px;height:16px;}
+.succeed{top:10px;right:3px;background:url(../images/sucess.png) no-repeat #fff;}
+.errtip{border:1px solid #ffbdbe;background:#ffebeb;color:#e4393c;}
+.defaulttip{border:1px solid #ddd;background:#f7f7f7;color:#999;}
+.tip_div{position:absolute;top:0;right:-295px;overflow:hidden;padding:0 0 0 5px;width:285px;height:34px;text-align:left;line-height:34px;}
+.btn-submit{width:115px;height:45px;background:url(../images/company.png) no-repeat 0 -80px;cursor:pointer;}
+.btn-get-verify{float:left;display:inline-block;margin-top:0;margin-left:10px;padding:0;width:106px;height:34px;border:1px solid #ddd;background:#f4f4f4;color:#333;text-align:center;text-decoration:none;line-height:34px;}
+.line_div label span{margin-right:5px;font-weight:normal;}
+.line_div .item-info{position:relative;float:left;}

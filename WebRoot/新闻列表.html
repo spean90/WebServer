@@ -1,0 +1,723 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>周边网点</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+<!--[if lte IE 8]>
+ <script src="scripts/excanvas.min.js"></script>
+ <![endif]-->
+
+</head>
+
+<body>
+<!--Str 公用顶部-->
+<div class="header clearfix">
+  <!--Str TopBar-->
+  <div class="top-bar clearfix" id="TopBar">
+    <div class="wrapper clearfix">
+      <ul class="top-bar-rt fr">
+        <li class="top-bar-rt-1"><em>Hi,欢迎来壹回收!</em><a><span class="red">请登录</span></a></li>
+         <!-- 2015-04-15 修改开始 -->
+         <li class="drop-down">
+            <a class="myaccount">
+              <i class="icon icon-user"></i>
+              <span>我的壹回收</span>
+              <i class="r-srw"></i>
+              <div class="tb tb-5">
+                <div class="tb-dbox">
+                  <div class="userinfo">
+                    <div class="clearfix">
+                      <div class="u-pic">
+                      <a href="#"> <img src="images/avatar.png" width="60" height="60"></a>
+                      </div>
+                      <div class="u-name u-login">
+                        <a href="" class="link-login">你好，请登录</a>
+                        <a href="">壹回收欢迎你！</a>
+                      </div>
+                    </div>
+
+                    <div class="u-extra">
+                        <ul class="clearfix">
+                         <li><a href="">我的订单</a></li>
+                         <li><a href="">我的钱包</a></li>
+                         <li><a href="">待处理订单</a></li>
+                         <li><a href="">推荐壹回收</a></li>
+                         <li><a href="">下线代理商</a></li>
+                         <li><a href="">关于壹回收</a></li>
+                        </ul>
+                     </div>
+                   </div>
+                        <div class="viewlast">
+                       <div class="tit clearfix">
+                         <span class="fl">最近浏览</span>
+                         <a class="fr">更多</a>
+                       </div>
+                       <div class="content clearfix">
+                         <ul>
+                           <li><a href=""><img src="images/phone.png" alt="" /></a></li>
+                           <li><a href=""><img src="images/phone.png" alt="" /></a></li>
+                           <li><a href=""><img src="images/phone.png" alt="" /></a></li>
+                           <li><a href=""><img src="images/phone.png" alt="" /></a></li>
+                         </ul>
+                       </div>
+                     </div>
+                </div>
+              </div>
+            </a>
+         </li>
+
+          <!-- 新增样式部分 -->
+          <style>
+          .tb-5{margin-top:8px;}
+          .tb-5 .tb-dbox{padding:10px 5px 10px 5px;width: 200px;}
+          .tb-5 .tb-dbox:before{width: 210px;height: 20px;top:-9px;left:32px;position: absolute;display: inline-block;content: '';background: url(images/arrow-up.png) no-repeat;}
+          .tb-5 .userinfo{ border-bottom: 1px solid #ddd; padding: 10px 0px 10px 0px;font-size: 12px;}
+          .tb-5 .u-pic img {
+          border-radius: 50%;
+          -moz-border-radius: 50%;
+          -webkit-border-radius: 50%;
+          position: relative;
+          left:5px;
+          top:0px;
+          width: 50px;
+          height: 50px;
+          border: 1px solid #ddd;
+          }
+          .tb-5 .u-pic{float: left; margin-right: 10px;}
+          .tb-5 .link-login{color: #f60}
+          .tb-5 .u-name{float:left;margin-left: 15px;}
+          .tb-5 .u-name a{display: block;line-height: 25px;}
+         .tb-5 .u-extra {border-top: 1px solid #ccc;margin-top: 15px;text-align: left;padding: 0px 10px;}
+         .tb-5 .u-extra ul{padding: 10px 0px 0px 0px;}
+         .tb-5 .u-extra li{background: none;width: 43%;padding: 0px 5px; }
+          .viewlast .tit{padding:5px}
+          .viewlast .content{padding: 15px 0px;}
+          .viewlast .content li{height: 50px;background: none;padding: 0px;}
+          .viewlast .content li img{width: 50px;height: 50px;position: relative;top:0px;left:0px;}
+
+          .hs-box-js ul li{height: 100%;background: none;line-height: 21px;padding: 0px;width: 100%;color:#666;}
+          .hs-box-js .item {margin: 10px;border-bottom: 1px solid #ddd;padding-bottom: 15px;margin-bottom: 0px;}
+
+
+         .hs-box-js .item img{
+            float:left;
+            width: 60px
+          }
+          .hs-box-js .item>span{float:left;width: 160px;}
+          .hs-box-js .item>span li a{float:right;}
+          .hs-box-js .item>span li a:hover{color: #f60}
+          .hs-box-js .item>span li span{color: #f60}
+
+          .hs-box-js .total{padding: 10px 15px 0px 15px;}
+          .hs-box-js .total span{color:#666;}
+          .hs-box-js .total em{color: #f60}
+          .hs-box-js a.entercar{height: 32px;line-height: 32px;width: 70px;display: inline-block;background: #f60;text-align: center;color: #fff;float: right;}
+          </style>
+          <!-- 新增样式部分 end-->
+          <li>
+            <div id="sBtn">
+              <i class="icon icon-car"></i>
+              <span>去回收车结算</span>
+              <i class="r-srw"></i>
+              <div class="hs-box">
+                  <!-- <div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div> -->
+                   <div class="hs-box-js">
+                    <ul class="clearfix">
+                      <li>
+                        <div class="item clearfix">
+                          <img src="images/phone.png" alt="" />
+                          <span>
+                            <ul>
+                              <li>iphone4</li>
+                             <li>回收价：<span>￥550</span><a>删除</a></li>
+                              <li>12306人回收</li>
+                            </ul>
+                          </span>
+
+                        </div>
+                      </li>
+                      <li>
+                        <div class="item clearfix">
+                          <img src="images/phone.png" alt="" />
+                          <span>
+                            <ul>
+                              <li>iphone4</li>
+                             <li>回收价：<span>￥550</span><a>删除</a></li>
+                              <li>12306人回收</li>
+                            </ul>
+                          </span>
+
+                        </div>
+                      </li>
+                       <li>
+                        <div class="item clearfix">
+                          <img src="images/phone.png" alt="" />
+                          <span>
+                            <ul>
+                              <li>iphone4</li>
+                              <li><span>回收价：￥550</span><a>删除</a></li>
+                              <li>12306人回收</li>
+                            </ul>
+                          </span>
+
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="total">
+                      <span>共3件商品</span>
+                      <span>
+                        合计:
+                        <em>
+                          ￥1850
+                        </em>
+                      </span>
+                      <a href="" class="entercar">
+                        去回收车
+                      </a>
+                    </div>
+                   </div>
+              </div>
+            </div>
+          </li>
+           <!-- 2015-04-15 修改结束 -->
+        <li class="drop-down drop-down-b"><a><i class="icon icon-tel"></i><span>手机壹回收</span><i class="r-srw"></i></a>
+
+        <!-- <span class="outline"></span> <span class="blank"></span> -->
+          <div class="tb tb-1">
+            <div class="tb-dbox"> <img src="images/code-1.jpg" alt="" />
+              <div class="tb-dbox-txt">
+                <h4>壹回收客户端</h4>
+                  <a href=""><i class="tspr t-dbtn-1"></i> <span>iphone</span></a>
+
+                  <a href=""> <i class="tspr t-dbtn-2"></i> <span>android</span></a>
+
+
+
+
+            </div>
+          </div>
+        </li>
+
+        <!-- 修改 -->
+        <li class="drop-down drop-down-s"><a><span>客户中心</span><i class="r-srw"></i></a>
+          <div class="tb tb-2">
+            <div class="h-list"> <a>帮助中心</a> <a>咨询与建议</a> <a>在线客服</a> <a class="last">常见问题</a> </div>
+          </div>
+        </li>
+      <!-- 修改 end-->
+
+        <li class="collect"><a ><i class="icon icon-start"></i>藏壹回收</a></li>
+        <li id="fristHover"><a><i class="icon icon-code"></i>关注壹回收<i class="header-code p-a"></i></a></li>
+        <li class="drop-down drop-down-s"><a><span>网站导航</span><i class="r-srw"></i></a>
+        <span class="outline"></span> <span class="blank"></span>
+        <div class="tb tb-3">
+            <div class="l-lixt-box clearfix">
+              <h4>网站导航</h4>
+              <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> </div>
+            <div class="l-lixt-box clearfix">
+              <h4>网站导航</h4>
+              <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> <a>网站导航</a> </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="top-bar-lf fl">
+
+        <li><i class="icon icon-addr"></i><em id="address">上海</em></li>
+         <li class="drop-down drop-down-s more-city"><a class=""><span>[更多城市]</span><i class="r-srw"></i></a><span class="outline"></span> <span class="blank"></span>
+          <div class="tb tb-4">
+<!-- 最新修改部分 -->
+            <div id="citySelect">
+        <div class="city-box clearfix">
+        <div class="city-con clearfix">
+          <dl class="city-list-1 clearfix">
+            <dt>  热门城市</dt>
+            <dd><a>北京</a></dd>
+            <dd><a>北京</a></dd>
+            <dd><a>北京</a></dd>
+            <dd><a>北京</a></dd>
+             <dd><a>北京</a></dd>
+            <dd><a>北京</a></dd>
+          </dl>
+
+            <div class="city-list-3 clearfix">
+            <dl>
+                    <dt> 选择城市<span>  (按拼音首字母)</span></dt>
+               <dd> <a class="active">A</a></dd>
+               <dd> <a>B</a></dd>
+               <dd> <a>C</a></dd>
+               <dd> <a>D</a></dd>
+               <dd> <a>E</a></dd>
+               <dd> <a>F</a></dd>
+               <dd> <a>G</a></dd>
+               <dd> <a>H</a></dd>
+               <dd> <a>I</a></dd>
+               <dd> <a>J</a></dd>
+               <dd> <a>K</a></dd>
+               <dd> <a>L</a></dd>
+                <dd> <a>M</a></dd>
+            </dl>
+            <dl>
+
+               <dd> <a>N</a></dd>
+               <dd> <a>O</a></dd>
+               <dd> <a>P</a></dd>
+               <dd> <a>Q</a></dd>
+               <dd> <a>R</a></dd>
+               <dd> <a>S</a></dd>
+               <dd> <a>T</a></dd>
+               <dd> <a>U</a></dd>
+               <dd> <a>V</a></dd>
+               <dd> <a>W</a></dd>
+               <dd> <a>X</a></dd>
+               <dd> <a>Y</a></dd>
+               <dd> <a>Z</a></dd>
+             </dl>
+
+          </div>
+           <dl class="city-list-result clearfix">
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                  <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+                <dd><a>北京</a></dd>
+            </dl>
+        </div>
+      </div>
+</div>
+<!-- 最新修改部分end -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--End TopBar-->
+  <!--Str 顶部内容-->
+  <div class="header-con clearfix">
+    <div class="wrapper p-r clearfix">
+      <a class="logo fl"><img src="images/logo.png" alt="壹回收" width="210" height="73"/></a>
+      <!-- <div class="flow">
+        <div class="flow-box first"><span class="round-digit">1</span>我的回收车</div>
+        <div class="flow-box active"><span class="round-digit">2</span>确认订单信息</div>
+        <div class="flow-box"><span class="round-digit">3</span>提交订单成功</div>
+      </div> -->
+    </div>
+  </div>
+  <!--End 顶部内容-->
+  <!--Str 导航-->
+  <div class="nav-box clearfix">
+    <ul class="nav wrapper clearfix">
+      <li><a>首页</a></li>
+      <li><a>回收类别</a></li>
+      <li><a>服务中心</a></li>
+      <li><a>真伪查询</a></li>
+      <li><a>关于我们</a></li>
+    </ul>
+  </div>
+  <!--End 导航-->
+</div>
+<!--End 公用顶部-->
+<!--Str 首页内容-->
+<div class="wrapper mt-15 clearfix">
+  <div class="breadcrumb">
+    <ul>
+      <li><i class="icon-home"></i><a href="#">首页</a><span>></span></li>
+      <li><a href="#">新闻管理</a><span>></span></li>
+       <li><a href="#">修改新闻</a></li>
+    </ul>
+  </div>
+
+  <div class="news-wrapper clearfix">
+    <div class="store-list">
+      <ul>
+        <li><a href="javascript:;">新闻列表1</a></li>
+        <li><a href="javascript:;">新闻列表2</a></li>
+        <li><a href="javascript:;">新闻列表3</a></li>
+        <li><a href="javascript:;">新闻列表4</a></li>
+        <li><a href="javascript:;">新闻列表6</a></li>
+        <li><a href="javascript:;">新闻列表7</a></li>
+        <li><a href="javascript:;">新闻列表8</a></li>
+        <li><a href="javascript:;">新闻列表9</a></li>
+        <li><a href="javascript:;">新闻列表10</a></li>
+        <li><a href="javascript:;">新闻列表11</a></li>
+        <li><a href="javascript:;">新闻列表12</a></li>
+      </ul>
+      <div id="pagination" class="page"></div>
+    </div>
+    <div class="parea">
+    	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    	这里是新闻列表展示内容，没有样式，后台编辑新闻文章时怎么排版就怎么显示。
+    </div>
+   
+  </div>
+  <div class="clearfix mt-20"><a><img src="pic/ad.jpg" alt="" width="1200" height="100" /></a></div>
+</div>
+<!--End 首页内容-->
+<!--Str 公用底部-->
+<div class="footer mt-30 clearfix">
+  <div class="footer-t clearfix">
+    <ul class="footer-t-list wrapper clearfix">
+      <li class="footer-icon footer-icon1">
+        <h4>回收价格承诺</h4>
+        <p>重构市场格局，价格公道</p>
+      </li>
+      <li class="footer-icon footer-icon2">
+        <h4>免费服务承诺</h4>
+        <p>颠覆传统回收，免费上门服务</p>
+      </li>
+      <li class="footer-icon footer-icon3">
+        <h4>专业质检承诺</h4>
+        <p>质检不满意无条件取消交易</p>
+      </li>
+      <li class="footer-icon footer-icon4">
+        <h4>隐私保护</h4>
+        <p>质检完成，手机恢复出厂设置</p>
+      </li>
+    </ul>
+  </div>
+  <div class="footer-m clearfix">
+    <div class="wrapper clearfix">
+      <div class="footer-m-lf fl">
+        <ul class="footer-info clearfix">
+          <li>
+            <h4>回收指南</h4>
+            <a>上海交易方式</a><a>北京交易方式</a><a>全国交易方式</a></li>
+          <li>
+            <h4>质检说明</h4>
+            <a>质检名词解释</a><a>专业质检说明</a></li>
+          <li>
+            <h4>帮助中心</h4>
+            <a>常见问题</a><a>服务条款</a><a>投诉建议</a></li>
+          <li>
+            <h4>关于我们</h4>
+            <a>了解我们</a><a>加入我们</a><a>联系我们</a></li>
+          <li>
+            <h4>关注我们</h4>
+            <a>新浪微博</a><a>腾讯微博</a><a>官方微信</a></li>
+          <li>
+            <h4>友情链接</h4>
+            <a>友情链接</a><a>友情链接</a></li>
+        </ul>
+      </div>
+      <div class="footer-m-rt fr">
+        <div class="footter-tel"> <em>400-8888-888</em> <span>免费客服周一至周日9：00-21：00</span> </div>
+        <div class="footer-down p-r"> <a class="bspr icon-ios"></a> <a class="bspr icon-android"></a> <img src="images/code-1.jpg" class="footer-code p-a" alt="二维码" width="60" height="60" /> </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-b clearfix">
+    <div class="footer-link-pic tx-cen"> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> </div>
+    <p class="tx-cen">Copyright 2014-2015 壹回收网  闽ICP备88888888号-2</p>
+  </div>
+</div>
+
+<div id="top"></div>
+<!--End 公用底部-->
+<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script>
+<script src="scripts/jquery.paginate.js"></script>
+<script type="text/javascript" src="scripts/script.js"></script>
+<script src="scripts/Chart.min.js"></script>
+<script>
+$(document).ready(function () {
+    var $terms = [
+            'search',
+            'test',
+            'css',
+            'apple',
+            'bear',
+            'cat',
+            'crabapple',
+            'creep',
+            'czar',
+            'danger',
+            'dominant',
+            'doppler',
+            'everclear',
+            'evangelism',
+            'frodo'
+        ].sort(), $return = [];
+    function strInArray(str, strArray) {
+        for (var j = 0; j < strArray.length; j++) {
+            if (window.CP.shouldStopExecution(1)) {
+                break;
+            }
+            if (strArray[j].match(str) && $return.length < 5) {
+                var $h = strArray[j].replace(str, '<strong>' + str + '</strong>');
+                $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">1200人回收</span></li>');
+            }
+        }
+        window.CP.exitedLoop(1);
+    }
+    function nextItem(kp) {
+        if ($('.focus').length > 0) {
+            var $next = $('.focus').next(), $prev = $('.focus').prev();
+        }
+        if (kp == 38) {
+            if ($('.focus').is(':first-child')) {
+                $prev = $('.prediction-item:last-child');
+            }
+            $('.prediction-item').removeClass('focus');
+            $prev.addClass('focus');
+        } else if (kp == 40) {
+            if ($('.focus').is(':last-child')) {
+                $next = $('.prediction-item:first-child');
+            }
+            $('.prediction-item').removeClass('focus');
+            $next.addClass('focus');
+        }
+    }
+    $(function () {
+        $('#search-bar').keydown(function (e) {
+            $key = e.keyCode;
+            if ($key == 38 || $key == 40) {
+                nextItem($key);
+                return;
+            }
+            setTimeout(function () {
+                var $search = $('#search-bar').val();
+                $return = [];
+                strInArray($search, $terms);
+                if ($search == '' || !$('input').val) {
+                    $('.output').html('').slideUp();
+                     $('.icon-so').show();
+                    $('.search-input').css('paddingLeft',40);
+                } else {
+                    $('.output').html($return).slideDown();
+                    $('.icon-so').hide();
+                    $('.search-input').css('paddingLeft',10);
+                }
+                $('.prediction-item').on('click', function () {
+                    $text = $(this).find('span').text();
+                    $('.output').slideUp(function () {
+                        $(this).html('');
+                    });
+                    $('#search-bar').val($text);
+                });
+                $('.prediction-item:first-child').addClass('focus');
+            }, 50);
+        });
+    });
+    $('#search-bar').focus(function () {
+        if ($('.prediction-item').length > 0) {
+            $('.output').slideDown();
+
+        }
+        $('#searchform').submit(function (e) {
+            e.preventDefault();
+            $text = $('.focus').find('span').text();
+            $('.output').slideUp();
+
+            $('#search-bar').val($text);
+            $('input').blur();
+        });
+
+    });
+
+    $('#search-bar').blur(function () {
+        if ($('.prediction-item').length > 0) {
+            $('.output').slideUp();
+        }
+        $('.icon-so').show();
+       $('.search-input').css('paddingLeft',40);
+    });
+});
+</script>
+<script>
+$(function() {
+	//搜索框
+
+	//头部鼠标经过
+	var $dd = $("#TopBar").find(".drop-down");
+  var $li = $('.brand-list').find("li a"),
+		$fh = $("#fristHover"),
+		$sBtn=$("#sBtn");
+	$dd.hover(function() {
+		var $this = $(this);
+		$this.addClass("hover")
+	}, function() {
+		var $this = $(this);
+		$this.removeClass("hover")
+	});
+  $li.hover(function() {
+    var $this = $(this);
+    $this.addClass("hover")
+  }, function() {
+    var $this = $(this);
+    $this.removeClass("hover")
+  });
+	$fh.hover(function() {
+		var $this = $(this);
+		$this.addClass("hover")
+	}, function() {
+		var $this = $(this);
+		$this.removeClass("hover")
+	});
+	$sBtn.hover(function() {
+		var $this = $(this);
+		$this.addClass("header-btn-2-hover")
+	}, function() {
+		var $this = $(this);
+		$this.removeClass("header-btn-2-hover")
+	})
+
+  //导航
+  $select = $('.nav-box').find('.nav li');
+  $select.click(function(){
+    $(this).siblings().removeClass('on');
+    $(this).addClass('on');
+  })
+})
+//城市
+function citySelect(){
+
+}
+
+$(document).ready(function() {
+	 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
+	cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
+	cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
+
+
+
+	 function phoneList(){
+
+		var $list= $(".phone-list"),$li=$list.find("li");
+
+		for(var i=0 ; i < $li.length ; i++){
+			$li.eq(i).append("<div class=\"trend-box\"><h4>"+"Phone4（黑/白）"+"</h4><div class=\"chart-box\"><canvas id=\"chart" + i +"\" style=\"z-index: 1000\"></canvas></div></div>");
+			}
+
+		$li.hover(function () {
+			var $this = $(this),
+				// $btn = $this.find(".phone-btn"),
+				// priceTxt = "回收价"+"<em>￥"+ $btn.attr("data-price")+"</em>",
+				$icon=$this.find(".trend-icon"),
+				$trendBox=$this.find(".trend-box"),
+				$chartBox=$this.find(".chart-box");
+
+
+			// $btn.html(priceTxt);
+
+      //修改click事件为mouseover
+			$icon.mouseover(function(){
+					$trendBox.show();
+					var idTxt= $(this).parent().find("canvas").attr("id"),
+					 ctx = document.getElementById(idTxt).getContext("2d"),
+					 datalebel= $(this).parent().attr("data-label").split(","),
+					 datadata= $(this).parent().attr("data-data").split(",");
+
+					var myLineChart = new Chart(ctx).Line({
+			labels : datalebel,
+			datasets : [{
+					fillColor : "rgba(253,245,211,0.9)",
+					strokeColor : "rgba(252,223,112,1)",
+					pointColor : "rgba(252,223,112,1)",
+					pointStrokeColor : "#fff",
+					data : datadata
+				}]
+			}, {responsive: true});
+				})
+			},function(){
+			var $this = $(this),
+				// $btn = $this.find(".phone-btn"),
+				// numberTxt = "<em>"+ $btn.attr("data-number")+"</em>人回收",
+				$icon=$this.find(".trend-icon"),
+				$trendBox=$this.find(".trend-box");
+
+
+			$trendBox.hide();
+			// $btn.html(numberTxt);
+			})
+		}
+
+    function scrollTop(){
+      var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a href=\"tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes\" class=\"btn btn-qq\"><div class=\"kefu\">在线客服<i class=\"arrow-right\"></i></div></a><div class=\"btn btn-edit\"><div class=\"edit\">意见反馈<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-help\"></div><div class=\"btn btn-top\"><div class=\"gotop\">返回顶部<i class=\"arrow-right\"></i></div></div></div>";
+        $("#top").html(tophtml);
+        $("#izl_rmenu").each(function(){
+          // $(this).find(".btn-edit").mouseenter(function(){
+          //   $(this).find(".pic").fadeIn("fast");
+          // });
+          // $(this).find(".btn-edit").mouseleave(function(){
+          //   $(this).find(".pic").fadeOut("fast");
+          // });
+
+          $(this).find(".btn").mouseenter(function(){
+            $(this).children('div').fadeIn("fast");
+            // $(this).find(".edit")
+          });
+          $(this).find(".btn").mouseleave(function(){
+            $(this).children('div').fadeOut("fast");
+          });
+          $(this).find(".btn-top").click(function(){
+            $("html, body").animate({
+              "scroll-top":0
+            },"fast");
+          });
+        });
+        var lastRmenuStatus=false;
+        $(window).scroll(function(){//bug
+          var _top=$(window).scrollTop();
+          if(_top>200){
+            $("#izl_rmenu").data("expanded",true);
+          }else{
+            $("#izl_rmenu").data("expanded",false);
+          }
+          if($("#izl_rmenu").data("expanded")!=lastRmenuStatus){
+            lastRmenuStatus=$("#izl_rmenu").data("expanded");
+            if(lastRmenuStatus){
+              $("#izl_rmenu .btn-top").slideDown();
+            }else{
+              $("#izl_rmenu .btn-top").slideUp();
+            }
+          }
+        });
+    }
+
+    function paginaton(){
+      $("#pagination").pagination({
+        items: 40,
+        itemsOnPage: 10,
+        cssStyle: 'light-theme'
+      });
+    }
+
+    // 门店切换
+    $('.store-list > ul > li').click(function(){
+      $(this).addClass('active').siblings().removeClass('active');
+      $(this).parents('.store-list').siblings('.map-area').animate({'width': '700px'}, 300);
+      $(this).parents('.store-list').siblings('.store-photo').show(300);
+    });
+    $('.store-photo').hover(function(){
+      $(this).animate({'width': '500px'}, 300);
+      $(this).siblings('.map-area').animate({'width': '450px'}, 300);
+    }, function(){
+      $(this).animate({'width': '250px'}, 'fast', function(){
+        if ($(this).css('display') == 'block') {
+          $(this).siblings('.map-area').animate({'width': '700px'}, 'fast');
+        }
+      });
+    });
+    $('.store-photo i.icon-close').click(function(){
+      $(this).parent().hide(300);
+      $(this).parent().siblings('.map-area').animate({'width': '950px'}, 300);
+    });
+
+    paginaton();
+  	phoneList();
+    scrollTop();
+})
+</script>
+</body>
+</html>

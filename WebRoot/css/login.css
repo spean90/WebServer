@@ -1,0 +1,104 @@
+
+/*登录页面*/
+        .w {
+        width: 990px;
+        margin: 0 auto;
+        }
+        #logo {
+        position: relative;
+        width: 300px;
+        margin: 10px 0 0;
+        height: 60px;
+        }
+        .mt h1 {
+        position: relative;
+        height: 27px;
+        line-height: 27px;
+        top: -5px;
+        float: left;
+        color: #666;
+        font-size: 20px;
+        }
+         .mt .extra-r {
+        float: right;
+        }
+        .mt .regist-link {
+        color: #b61d1d;
+        font-size: 14px;
+        }
+        .login_wrap .mt{margin-bottom: 10px;}
+        .mod_login {
+            float: right;
+            top: 40px;
+            width:315px;
+            background: #fff;
+            position: relative;
+            padding: 20px;
+            z-index: 4
+            }
+            .login_wrap .login-banner {
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 475px;
+            background: #e93854;
+            }
+        .login_panel{width: 100%;}
+        .login{line-height: 30px;}
+        .login .line_div{line-height: 38px;height: 38px;margin-bottom:20px;position: relative;}
+        .login .line_div label{font-size: 15px;color: #999;padding-right: 10px;text-align: right;display: inline-block}
+        .login .line_div .i-name{left: 70px;}
+        .login .line_div .i-pass{left:70px}
+        .login .line_div .extra{margin-left: 60px;}
+        .extra span{font-size: 14px}
+        .login h3{font-family: "Microsoft YaHei";font-size: 16px;color: #666;margin-left: 5px;}
+        .btn_login
+        {
+            width:252px;
+            display: block;
+            margin-left: 60px;
+            height: 38px;
+            line-height: 38px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+            background: #3f89ec;
+            border-radius: 3px;
+            border: none;
+        }
+            /*display:block;height:28px;background: url(img/login.png) no-repeat 0 -28px;overflow: hidden;text-indent: -9999em;margin-left: 65px}*/
+
+        .btn_login:hover{background: #4490f7;color: #fff;text-decoration: none}
+        .login_person{width:125px;height:45px;background: #e5e5e5}
+        .login_company{width:125px;height:45px;background: #00a2ca}
+        .extra_login_title{border-top: 1px solid #eee;}
+        #logo{padding-bottom: 10px}
+       #logo b {
+        display: block;
+        width: 110px;
+        height: 40px;
+        position: absolute;
+        right: 0;
+        top: 18px;
+        background: url(../images/l-icon.png) no-repeat;
+        }
+        .commonInput {
+        padding: 0px 0px 0px 30px;
+        }
+        .form_text {
+        height: 42px;
+        width: 220px;
+        border: 1px solid #ddd;
+       font-size: 15px;
+        }
+        .login-banner .i-inner {
+        position: relative;
+        z-index: 3;
+        height: 475px;
+        }
+         .i-name{background: url(../images/one4.jpg) no-repeat scroll 0 0 transparent;height: 16px;width: 16px;position: absolute;left: 390px;top: 13px;}
+      .i-pass{background: url(../images/one5.jpg) no-repeat scroll 0 0 transparent;height: 20px;width: 16px;position: absolute;left: 390px;top: 13px;}
+
+        /*登录页面end*/

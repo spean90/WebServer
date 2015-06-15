@@ -1,0 +1,594 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>回收估价</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="css/valuation.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
+<link href="css/smart_wizard.css" rel="stylesheet" type="text/css">
+<!--[if lte IE 8]>
+ <script src="scripts/excanvas.min.js"></script>
+ <![endif]-->
+
+</head>
+
+<body>
+<!--Str 公用顶部-->
+<#include "/common/html/body_include.html">
+<!--End 公用顶部--> 
+<!--Str 首页内容-->
+<div class="mt-15 clearfix"> 
+	<div class="container">
+		 <div class="breadcrumb">
+        <ul>
+           <li><i class="icon-home"></i><a href="#">首页</a><span>></span></li>
+        <li><a href="#">回收估价</a></li>
+        </ul>
+     
+ 		</div >
+	</div>
+  
+	<div class="content">
+		<div class="valuation">
+			<div class="container clearfix">
+					<div class="left">
+						<img src="images/phone.png" alt="iPhone 4S" title="iPhone 4S">
+						<h2 class="product_name">iPhone 4S</h2>
+					</div>
+					<div class="right">
+						<ul>
+							<li>
+								<div>11772</div>
+								<span>本月回收次数</span>
+							</li>
+							<li>
+								<div>740</div>
+								<span>本月回收均价/元</span>
+							</li>
+						</ul>				
+					</div>				
+				</div>
+    </div>
+    <div class="box">
+        <div id="wizard" class="swMain">
+                <ul id="wizard_ul">
+                  <li>
+                  <a href="#step-1"><strong>1.</strong>第一步</a>
+                  </li>
+                  <li>
+                  <a href="#step-2"><strong>2.</strong>第二步</a>
+                  </li>
+                  <li>
+                  <a href="#step-3"><strong>3.</strong>第三步</a>
+                  </li>
+                  <li>
+                  <a href="#step-4"><strong>4.</strong>第四步</a>
+                  </li>
+                   <li>
+                  <a href="#step-5"><strong>5.</strong>第五步</a>
+                  </li>
+                   <li>
+                  <a href="#step-6"><strong>6.</strong>第六步</a>
+                  </li>
+                   <li>
+                  <a href="#step-7"><strong>7.</strong>第七步</a>
+                  </li>
+                   <li>
+                  <a href="#step-8"><strong>8.</strong>第八步</a>
+                  </li>
+                </ul>
+           
+                  <dl class="filter clearfix">
+                   <dt>已经选择：</dt>
+                   <dd style="line-height: 25px;">暂时没有选择回收条件</dd>
+                  </dl>
+             
+                <div id="step-1" class="page"> 
+                 <dl>
+                   <dt class="property_title first">
+                            <span class="square"><span class="gou"></span></span>
+                            <h3>购买渠道</h3>
+                    </dt>
+                    <dd class="first" name="radio">
+                            <ul>
+                            <li data-id="1" class="  ">
+                              <span class="property_value">大陆国行</span>
+                                <span class="property_detail">有“进网许可”标签</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            <li data-id="2" class="  ">
+                              <span class="property_value">香港行货</span>
+                                <span class="property_detail">香港购买，全球联保</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            <li data-id="3" class="  ">
+                              <span class="property_value">水货有锁</span>
+                                <span class="property_detail">日/韩/美等非特殊机，需要“卡贴”解锁</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            <li data-id="4" class="  ">
+                              <span class="property_value">水货无锁</span>
+                                <span class="property_detail">非国行/港行，其他国家</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            </ul>
+                    </dd>
+                 </dl>
+                              
+                </div>
+                <div id="step-2" class="page">
+                  <dl>
+                          <dt class="property_title">
+                            <span class="square"><span class="gou"></span></span>
+                            <h3>版本/型号</h3>
+                    </dt>
+                    <dd>
+                            <ul>
+                            <li data-id="5" class="oneline  ">
+                              <span class="property_value">全网通</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            <li data-id="6" class="oneline  ">
+                              <span class="property_value">移动版</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            <li data-id="7" class="oneline  ">
+                              <span class="property_value">电信版</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            <li data-id="8" class="oneline  ">
+                              <span class="property_value">联通版</span>
+                                                    <span class="gou"></span>                
+                            </li>
+                            </ul>
+                    </dd>
+                  </dl>
+                </div>
+                <div id="step-3" class="page">
+                  <dl>
+                    
+                        <dt class="property_title">
+                          <span class="square"><span class="gou"></span></span>
+                          <h3>存储容量</h3>
+                        </dt>
+                        <dd class="">
+                          <ul>
+                          <li data-id="12" class="oneline  ">
+                            <span class="property_value">8G</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                          <li data-id="13" class="oneline  ">
+                            <span class="property_value">16G</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                          <li data-id="14" class="oneline  ">
+                            <span class="property_value">32G</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                          <li data-id="15" class="oneline  ">
+                            <span class="property_value">64G</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                           <li data-id="16" class="oneline  ">
+                            <span class="property_value">128G</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                          </ul>
+                        </dd>
+                  </dl>
+                </div>
+                <div id="step-4" class="page">
+                 <dl>
+                   <dt class="property_title">
+                        <span class="square"><span class="gou"></span></span>
+                        <h3>颜色</h3>
+                   </dt>
+                   <dd class="" name="radio">
+                        <ul>
+                        <li data-id="9" class="oneline">
+                          <span class="property_value">金色</span>
+                                                <span class="gou"></span>                
+                        </li>
+                        <li data-id="10" class="oneline">
+                          <span class="property_value">白色</span>
+                                                <span class="gou"></span>                
+                        </li>
+                        <li data-id="11" class="oneline">
+                          <span class="property_value">黑色</span>
+                                                <span class="gou"></span>                
+                        </li>
+                        </ul>
+                      </dd>
+                 </dl>
+                  
+                </div>
+                <div id="step-5" class="page">
+                  <dl>
+                    <dt class="property_title">
+                          <span class="square"><span class="gou"></span></span>
+                          <h3>保修情况</h3>
+                        </dt>
+                        <dd class="" name="radio">
+                          <ul>
+                          <li data-id="17" class="oneline  ">
+                            <span class="property_value">一个月以上</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                          <li data-id="18" class="oneline  ">
+                            <span class="property_value">一个月以内或无保修</span>
+                                                  <span class="gou"></span>                
+                          </li>
+                          </ul>
+                        </dd>
+                  </dl>
+                </div>
+                <div id="step-6" class="page">
+                      <dl>
+                     
+                        <dt id="functions_title" class="property_title">
+                        <span class="square"><span class="gou"></span></span>
+                        <h3>是否存在故障现象（可多选 ，若无问题，选择"都正常，下一步）</h3>
+                      </dt>
+                      <dd>
+                        <ul id="step2_list">
+                                  <li data-id="19"  class="first_value oneline ">
+                                    <span class="property_value">通话不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="20"  class="first_value oneline ">
+                                    <span class="property_value">触屏不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="21"class="first_value oneline ">
+                                    <span class="property_value">充电不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="22" class="first_value oneline ">
+                                    <span class="property_value">WIFI不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="23" class="first_value oneline last">
+                                    <span class="property_value">蓝牙不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="24"  class="first_value oneline ">
+                                    <span class="property_value">GPS不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="25" class="first_value oneline ">
+                                    <span class="property_value">无法开机</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="26"  class="first_value oneline ">
+                                    <span class="property_value">iCloud已绑定并无法解除</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="27" class="first_value oneline ">
+                                    <span class="property_value">指纹功能不正常</span>
+                                                                <span class="gou"></span>
+                                  </li>
+                                  <li data-id="28" class="first_value oneline last">
+                                    <span class="property_value">机身变形         </span>
+                                                                <span class="gou"></span>
+                                  </li>
+                        </ul>
+                      </dd>
+                    </dl>     
+                </div>                      
+                <div id="step-7" class="page">
+                    <dl>
+                          <dt class="property_title ">
+                            <span class="square"><span class="gou"></span></span>
+                            <h3>屏幕显示</h3>
+                          </dt>
+                    <dd class="" name="radio">
+                            <ul>
+                                    <li data-id="29" class=" ">
+                                       <span class="property_value">全新</span>
+                                          <span class="property_detail">未开封或仅打开过包装，机器未激活，配件齐全未使用</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                                    <li data-id="30" class=" ">
+                                       <span class="property_value">极少使用</span>
+                                          <span class="property_detail">完好，无划痕、磨损、掉漆、磕碰</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                                    <li data-id="31" class=" ">
+                                       <span class="property_value">轻微使用</span>
+                                          <span class="property_detail">有轻微磨损或划痕，无掉漆、无磕碰</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                                    <li data-id="32" class=" ">
+                                       <span class="property_value">明显使用</span>
+                                          <span class="property_detail">有明显磨损或划痕、轻微掉漆，无磕碰</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                                    <li data-id="33" class=" last">
+                                       <span class="property_value">外观损伤</span>
+                                          <span class="property_detail">机身有磕碰或多处掉漆</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                            </ul>
+                          </dd>  
+                     </dl>
+                </div>
+                <div id="step-8" class="page">
+                 <dl>
+                  
+                    <dt class="property_title ">
+                            <span class="square"><span class="gou"></span></span>
+                            <h3>屏幕外观</h3>
+                      </dt>
+                      <dd class="" name="radio">
+                            <ul>
+                                    <li data-id="34" class=" ">
+                                       <span class="property_value">屏幕无划痕 </span>
+                                          <span class="property_detail">保护很好，一直贴膜</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                                    <li data-id="35" class=" ">
+                                       <span class="property_value">屏幕有划痕</span>
+                                          <span class="property_detail">有划痕</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+ 
+                                    <li data-id="36" class=" ">
+                                       <span class="property_value">磕碰缺角</span>
+                                          <span class="property_detail">屏幕边缘有小缺口</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                                    <li data-id="37" class=" last">
+                                       <span class="property_value">碎裂/内屏破损</span>
+                                          <span class="property_detail">屏幕有裂痕/整块碎裂/大块缺角等</span>
+                                                                    <span class="gou"></span>
+                                    </li>
+                            </ul>
+                          </dd>
+                 </dl>
+                                  
+                </div>
+              </div> 
+      </div>
+	</div>
+<!--End 首页内容--> 
+<!--End 公用底部-->
+<#include "/common/html/footer_include.html">
+<!--End 公用底部-->
+<script type="text/javascript" src="scripts/jquery.smartWizard-2.1.js"></script>
+<script type="text/javascript" src="scripts/jquery.scrollTo.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+
+  $('#wizard').smartWizard(
+  { transitionEffect: "slideUp",
+    enableAllSteps: true,
+    onFinish:test,  // triggers when Finish button is clicke
+    onPreviousStep:PreviouStepCallback,
+    onLeaveStep:null, // triggers when leaving a step
+    onShowStep:showStepCallback,  // triggers when showing a step
+    onNextStep:NextStepCallback//点击下一步时 触发回调函数
+  });
+
+  $('#wizard_ul [rel = 1]').removeClass().addClass('selected');
+  
+	 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
+	cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
+	cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
+	option_value();
+  phoneList();
+  scrollTop();
+})
+  
+    function PreviouStepCallback(obj){
+   var step_num= obj.attr('rel'); 
+   var prevStepIdx = (parseInt(step_num )-1);
+    /*点击上一步骤条变色控制*/
+    var is_selcted = checkstep(step_num);
+  
+      if(is_selcted){
+       
+          $('#wizard_ul [rel = '+step_num+']').removeClass().addClass('do');
+          $('#wizard_ul [rel = '+prevStepIdx+']').removeClass().addClass('selected');
+      }
+      else{
+          $('#wizard_ul [rel = '+step_num+']').removeClass().addClass('done');
+          $('#wizard_ul [rel = '+prevStepIdx+']').removeClass().addClass('selected');
+      }
+
+   return true;
+  }
+
+  function NextStepCallback(obj){
+     var step_num= obj.attr('rel'); 
+     var nextStepIdx = (parseInt(step_num )+1);
+      /*点击下一步步骤条变色控制*/
+      // alert(step_num);
+      var is_selcted = checkstep(obj.attr('rel'));
+      if(is_selcted){
+         $('#wizard_ul [rel = '+step_num +']').removeClass().addClass('do');
+        $ ('#wizard_ul [rel = '+nextStepIdx+']').removeClass().addClass('selected');
+      }
+      else{
+          $('#wizard_ul [rel = '+step_num +']').removeClass().addClass('done');
+          $('#wizard_ul [rel = '+nextStepIdx +']').removeClass().addClass('selected');
+      }
+    
+   
+     return true;
+  }
+
+  function showStepCallback(obj){
+      var step_num= obj.attr('rel')-1;
+      var nextStepIdx =obj.attr('rel');
+      var is_selcted = checkstep(obj.attr('rel'));
+
+      $('.page').eq(step_num+1).find('dl dd ul li').click(function(){
+             $('#wizard').smartWizard('skipTo',step_num+2)
+            // $(this).unbind("click").siblings().unbind("click");
+          })
+  }
+
+   function checkstep(obj){
+   var box_one =  $('#step-'+obj).find('dl dt').hasClass('selected');
+   var box_two =  $('#step-'+(obj++)).find('dl dt').hasClass('selected');
+   if(box_one && box_two){
+    return true
+   }
+   else{
+    return false
+   }
+ };
+
+  function test(obj){
+ // $('html,body').animate({scrollTop:$('#wizard').offset().top},500);
+  var flag =true;
+  $('.page dl dd').each(function(){
+    if($(this).prev().hasClass('selected') == false){
+      if($(this).attr('name') == 'radio'){
+        flag = false;
+        return false;
+      }
+    }
+  })
+   if(flag){
+     $('#wizard').smartWizard('showMessage','必填项全都填写成功可以提交了');
+    }else
+   {
+      var unfinish_step = 0;
+      $('.page dl dt').each(function(){
+        if($(this).hasClass('selected') == false){
+         unfinish_step = $(this).parents('.content').attr('id').substr(-1);
+         return false;
+        }
+      })
+
+      $('#wizard').smartWizard('skipTo',unfinish_step);
+   }
+    $('.page dd li').map(function(){
+      // 主项和子项编码
+      console.log($(this).parents('.content').attr('id'));
+      console.log($(this).index()+1);
+    })
+   }
+ 
+  // $('#wizard_ul [rel = 1]').addClass('selected');
+
+
+  function option_value(){
+    $dd  = $('.page').find('dl dd');
+    $dt  =  $('.page').find('dl dt');
+
+   $dd.find('ul li').click(function(){
+          $.scrollTo('#wizard',500); 
+         // $('html,body').animate({scrollTop:$('#wizard').offset().top},500);
+        var is_radio = $(this).parent().parent().attr('name');
+        var hasSelected = $(this).hasClass("selected");
+        if(is_radio === "radio")
+        {
+          if ($(this).hasClass("selected"))
+          {
+
+             $(this).removeClass('selected');
+          }
+          else{
+             $(this).addClass('selected');
+             $(this).siblings().removeClass('selected');
+          }
+        }
+        else{
+          $(this)[hasSelected?"removeClass":"addClass"]("selected");
+        }
+
+        optag();
+
+        $(this).parent().find('li').each(function(){
+        var filter_id = parseInt($(this).parents('.page').attr('id').substr(-1));
+        if($(this).hasClass("selected")){                                                
+         $(this).parent().parent().prev(".property_title").addClass('selected');
+        
+         return false;
+        }
+        else{
+
+          $(this).parent().parent().prev(".property_title").removeClass('selected');
+        }
+
+      });
+    });
+
+     $('#wizard_ul li a').on('click',function(){
+       /*直接点击步骤条变色控制*/
+       // $('html,body').animate({scrollTop:$('#wizard').offset().top},500);
+        $(this).parent().parent().find('li').each(function(){
+          
+          if( $(this).children().hasClass('selected')){
+            var rel = $(this).children().attr('rel');
+            var is_selcted = checkstep(rel);
+            if(is_selcted){
+              $('#wizard_ul [rel ='+(rel)+']').removeClass().addClass('do');
+              
+            }else{
+              $('#wizard_ul [rel ='+(rel)+']').removeClass().addClass('done');
+              
+            }
+          
+            return false
+          }
+        })
+         $(this).removeClass().addClass('selected');
+       });
+
+    
+ }
+
+ function optag(step){
+    var html = "<dt>已经选择:</dt>";
+      $dd.find('ul li').map(function(){
+        if($(this).hasClass('selected')){
+           
+          var val = $(this).find('.property_value').text();
+          var dataid =$(this).attr('data-id');
+          var step = $(this).parent().parent().parent().parent().attr('id').substr(-1);
+           html += '<dd><a id="'+dataid+'" step="'+step+'">'+val+'</a></dd>';
+        }   
+       })
+      $('.filter').html(html);
+      del_tag();
+ }
+ 
+function del_tag(){
+        $('.filter').find('dd').on('click',function(){
+        $(this).remove();
+         id=$(this).find('a').attr('id');
+        var to = $(this).find('a').attr('step');
+        var rel = $('#wizard_ul li').find('.selected').attr('rel');
+
+       $('#wizard').smartWizard('skipTo',to);
+ 
+        $dd.find('ul li').map(function(){ 
+          if($(this).attr('data-id')==id){
+            $(this).removeClass('selected');
+            var is_selcted=$(this).parent().find('li').each(function(){
+             if($(this).is('.selected')){
+              $(this).parent().parent().prev(".property_title").addClass('selected');
+              return false;
+             }
+             else{
+               $(this).parent().parent().prev(".property_title").removeClass('selected');
+              }
+            })
+          } 
+        })
+        return true;
+      })
+      return false;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>弹窗-意见反馈</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/index2.css" media="screen" />
+<!--[if lte IE 8]>
+ <script src="scripts/excanvas.min.js"></script>
+ <![endif]-->
+
+</head>
+
+<body>
+<div class="pop-feedback">
+	<div class="feedback-title">
+		<div class="fl">
+			<i class="icon-chat"></i>
+		</div>
+		<div class="fr">
+			<div class="cn-title">意见反馈</div>
+			<div class="en-title">feedback</div>
+		</div>
+	</div>
+	<p>壹回收真诚欢迎您的反馈，以更好的为您服务！</p>
+	<div class="cor-gary">
+		<p>反馈类型 <select><option value="1">咨询类</option><option value="2">建议类</option><option value="3">投诉类</option></select></p>
+		<textarea class="gray-textarea" placeholder="请输入您的意见或建议(必填)"></textarea>
+		<p>为了方便我们进一步跟您联系，请填写如下联系信息</p>
+		<p><span style="color: #f00;">*</span> <input type="text" class="feedback-email" placeholder="手机邮箱/QQ邮箱" style="width: 300px;" /></p>
+		<p>验证码 <input type="text" />　<img id="valid_code" src="/valid_code" height="32" width="96" />　<a id="valid_code_btn" href="javascript:;">换一张</a></p>
+	</div>
+	<div class="form-submit">
+		<a href="javascript:void(0);" class="oran-btn">确认提交</a>
+	</div>
+</div>
+  
+	<script type="text/javascript" src="scripts/jquery-1.9.1.min.js"></script> 
+	<script src="scripts/main.js"></script>
+	<script type="text/javascript" src="scripts/script.js"></script>
+	<script src="common/jquery/jquery.jsonp-2.4.0.min.js"></script>
+	<script src="common/js/sys.js"></script>
+	<script src="common/js/modal.js"></script>
+    <script type="text/javascript" src="js/feedback.js"></script>
+</body>
+</html>

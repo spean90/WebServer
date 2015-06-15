@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>壹回收-用户注册</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="css/reg.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/index2.css" media="screen" />
+
+<!--[if lte IE 8]>
+ <script src="scripts/excanvas.min.js"></script>
+ <![endif]-->
+
+</head>
+
+<body>
+<!--Str 公用顶部-->
+<#include "/common/html/body_include.html">
+<!--End 公用顶部--> 
+<!--Str 首页内容-->
+<div class="mt-15 clearfix"> 
+<div class="w" id="logo">
+    <div><a href="#"><img src="images/logo.png" alt="壹回收" width="170" height="60"></a> <b></b>
+    </div>
+</div>
+   <div class="mod_reg">
+     <div class="reg_top pt10 pb10">
+       <ul class="tab clearfix">
+       <li class="curr"><a href="javascript:void(0)">个人用户</a><em class="arrow"></em></li>
+       <li><a href="javascript:void(0)">企业用户</a><em class=""></em></li>
+       </ul>
+       <div class="extra">
+               <span style="text-align: right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <span>我已经注册，现在就&nbsp;<a href="login.html" class="flk13">登录</a></span>
+     </div>
+       <div class="reg_content pb10">
+       <div class="person clearfix">
+         <form class="form">
+           <div class="line_div">
+               <label for="login_name"><span style="display: inline;width:2px;color:red;">*</span>用户名：</label>
+               <div class="item-info">
+                 <input type="text" class="form_text commonInput" name="username">
+                 <i class="blank i-name"></i>
+                 <!-- <i  class="blank succeed"></i> -->
+                 <div class="tip_div">用户名长度只能在4-20位字符之间</div>
+               </div>
+               
+           </div>
+
+           <div class="line_div">
+               
+               <label for="password"><span style="display: inline;width:2px;color:red;">*</span>请设置密码：</label>
+                <div class="item-info">
+                  <input type="password" class="form_text commonInput"  name="password">
+                  <i class="blank i-pass"></i>
+                  <div class="tip_div">密码长度只能在4-20位字符之间</div>
+                </div>
+               
+           </div>
+           <div class="line_div">
+             
+              <label for="rpassword"><span style="display: inline;width:2px;color:red;">*</span>请确认密码：</label>
+               <div class="item-info">
+                 <input type="password" class="form_text commonInput"  name="rpassword">
+                 <i class="blank i-pass"></i>
+                 <div class="tip_div">与密码不一致</div>
+               </div>
+              
+           </div>
+  
+           <div class="line_div">
+          
+              <label for="tel"><span style="display: inline;width:2px;color:red;">*</span>验证手机：</label>
+               <div class="item-info">
+                 <input type="text" class="form_text commonInput" style="width:230" name="tel">
+                  <i class="blank i-mobile"></i>
+                  <div class="tip_div">请输入有效的手机号码</div>
+               </div>
+              
+           </div>
+           <div class="line_div">
+              
+              <label for="volidCoder_register"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
+              <input type="text" class="form_text commonInput" style="width:160px" id="volidCoder_register">
+               <a class="btn-get-verify"><span class="msgs">获取短信验证码</span></a>
+           </div>
+           <div class="line_div">
+           
+            <div style="margin-bottom:10px;"><label></label><input type="checkbox" id="isCheck">同意<a href="/iptp/public/interpreter.jsp">《壹回收平台网络服务协议》</a></div>
+           </div>
+           <div class="line_div">
+             <label></label>
+             <input type="button" class="btn-submit" style="border:0px;" id="sumbt"> 
+           </div>
+         </form>
+         <div class="duan">
+           <span>
+             <img src="images/code-1.jpg" alt="" />
+             <p>手机客户端</p>
+           </span>
+           <span>
+             <img src="images/code-1.jpg" alt="" />
+             <p>微信公众号</p>
+           </span>
+         </div>
+       </div>
+       <div class="company" style="display:none">
+          <div id="superior">
+              <dl>
+                  <dt>专享服务</dt>
+                  <dd>        
+                      1. 采购流程化；<br>
+                2. 价格透明化；<br>
+                3. 服务一体化；<br>
+                4. 信息系统化；
+                  </dd>
+              </dl>
+
+              <dl>
+                  <dt>四大特权</dt>
+                  <dd>          
+                1. 专属VIP客服，专属客户经理；<br>
+                2. 专属采购频道，专属活动特权；<br>
+                3. 采购合同签订，增值税票开具；<br>
+                4. 批量采购，产品定制需求；<br>
+                <b>为您提供全方位的服务！</b>
+                  </dd>
+              </dl>
+
+              <dl>
+                  <dt>服务须知</dt>
+                  <dd>
+                我们的审核时限为24小时（工作日），遇法定节假日顺延。<br>
+                如您对企业用户注册有疑问，或有批量采购需求，<br>
+                请拨打企业专享热线：400-656-0055或<a href="#" target="_blank" class="flk13">留言咨询</a>。
+                  </dd>
+              </dl>
+          </div>
+         <form class="form">
+          <h3>账户信息</h3>
+           <div class="line_div">
+               
+               <label for="login_name"><span style="display: inline;width:2px;color:red;">*</span>用 &nbsp;户&nbsp;名：</label>
+                <div class="item-info">
+                  <input type="text" class="form_text commonInput" name="username">
+                  <i class="blank i-name"></i>
+                   <div class="tip_div">用户名长度只能在4-20位字符之间</div>
+                </div>
+               
+           </div>
+           <div class="line_div">
+               
+               <label for="password"><span style="display: inline;width:2px;color:red;">*</span>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                <div class="item-info">
+                  <input type="password" class="form_text commonInput"  name="password">
+                  <i class="blank i-pass"></i>
+                  <div class="tip_div">密码长度只能在4-20位字符之间</div>
+                </div>
+               
+           </div>
+           <div class="line_div">
+              <label for="rpassword"><span style="display: inline;width:2px;color:red;">*</span>确认密码：</label>
+               <div class="item-info">
+                 <input type="password" class="form_text commonInput"  name="rpassword">
+                <i class="blank i-pass"></i>
+                  <div class="tip_div">与密码不一致</div>
+               </div>
+              
+              
+           </div>
+
+            <h3>联系人信息</h3>
+            <div class="line_div">
+               
+                <label for="login_name"><span style="display: inline;width:2px;color:red;">*</span>联系人姓名：</label>
+                 <div class="item-info">
+                   <input type="text" class="form_text commonInput" name="username">
+                   <i class="blank i-name"></i>
+                  <div class="tip_div">姓名长度只能在4-20位字符之间</div>
+                 </div>
+                
+            </div>
+           <div class="line_div">
+              <div class="err_div"><div class="visible" style="width: 305px;" id="homeProv_error"></div></div>
+              <label><span style="display: inline;width:2px;color:red;">*</span>所在部门：</label>
+              <select style="width: 278px" name="homeProv" id="homeProv" value="" class="commonInput">
+                    <option value="-1">请选择</option>
+                 <option value="1">办公室</option>
+                <option value="2">市场部</option>
+                <option value="3">采购部</option>
+                <option value="4">技术部</option>
+                <option value="5">人力资源</option>
+                <option value="6">其他</option>
+              </select>
+           </div>
+            <div class="line_div">
+              
+               <label for="tel"><span style="display: inline;width:2px;color:red;">*</span>固定电话：</label>
+                <div class="item-info">
+                  <input type="text" class="form_text commonInput" style="width:230" name="tel">
+                   <i class="blank"></i>
+                  <div class="tip_div">请输入合法的固定电话</div>
+                </div>
+               
+            </div>
+
+            <div class="line_div">
+            
+               <label for="tel"><span style="display: inline;width:2px;color:red;">*</span>验收手机：</label>
+                <div class="item-info">
+                  <input type="text" class="form_text commonInput" style="width:230" name="tel">
+                  <i class="blank i-mobile"></i>
+                  <div class="tip_div">请输入有效的手机号码</div>
+                </div>
+               
+            </div>
+            <div class="line_div">
+              
+               <label for="volidCoder_register"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
+                <div class="item-info">
+                  <input type="text" class="form_text commonInput" style="width:160px" id="volidCoder_register">
+                <a class="btn-get-verify"><span class="msgs">获取短信验证码</span></a>
+                </div>
+               
+            </div>
+
+          <div class="line_div">
+            
+             <label for="companyEmail"><span style="display: inline;width:2px;color:red;">*</span>联系人邮箱：</label>
+              <div class="item-info"><input type="text" class="form_text commonInput" style="width:230" name="email"></div>
+                  <i class="blank"></i>
+                  <div class="tip_div">请输入有效的邮箱地址</div>
+             
+          </div>
+           <h3>公司信息</h3>
+           <div class="line_div">
+              
+              <label><span style="display: inline;width:2px;color:red;">*</span>公司名称：</label>
+               <div class="item-info">
+                 <input type="text" class="form_text commonInput" style="width:230" name="companyName">
+                 <i class="blank"></i>
+                  <div class="tip_div">请输入公司名称</div>
+               </div>
+                
+           </div>
+            <div class="line_div">
+               
+              <label><span style="display: inline;width:2px;color:red;">*</span>公司地址：</label>
+               <div class="item-info">
+                <input type="text" class="form_text commonInput" style="width:230" name="companyName">
+                <i class="blank"></i>
+                  <div class="tip_div">请输入公司地址</div>
+               </div>
+                
+           </div>
+           <div class="line_div">
+               
+              <label><span style="display: inline;width:2px;color:red;">*</span>负责销售：</label>
+               <div class="item-info">
+                 <input type="text" class="form_text commonInput" style="width:230" name="companyName">
+                <i class="blank"></i>
+                  <div class="tip_div">请输负责销售</div>
+               </div>
+                
+           </div>
+           
+             <div class="line_div">
+              
+              <label><span style="display: inline;width:2px;color:red;">*</span>企业人数：</label>
+               <div class="item-info">
+                 <select style="width: 278px" name="homeProv" id="homeProv" value="" class="commonInput">
+                    <option value="-1">1-49</option>
+                    <option value="1">50-99</option>
+                    <option value="2">99-200</option>
+                    <option value="3">200-300</option>
+                    <option value="4">500+</option>
+                </select>
+               </div>
+              
+           </div>
+
+
+            <div class="line_div">
+              
+              <label><span style="display: inline;width:2px;color:red;">*</span>公司行业：</label>
+               <div class="item-info">
+                 <select style="width: 278px" name="homeProv" id="homeProv" value="" class="commonInput">
+                        <option value="-1">请选择</option>
+                     <option value="1">计算机硬件及网络设备</option>
+                    <option value="2">计算机软件</option>
+                    <option value="3">IT服务（系统/数据/维护）/多领域经营</option>
+                    <option value="4">互联网/电子商务</option>
+                    <option value="5">网络游戏</option>
+                    <option value="6">通讯（设备/运营/增值服务）</option>
+                    <option value="7">电子技术/半导体/集成电路</option>
+                    <option value="8">仪器仪表及工业自动化</option>
+                    <option value="9">金融/银行/投资/基金/证券</option>
+                    <option value="10">保险</option>
+                    <option value="11">房地产/建筑/建材/工程</option>
+                    <option value="12">家居/室内设计/装饰装潢</option>
+                    <option value="13">物业管理/商业中心</option>
+                    <option value="14">广告/会展/公关/市场推广</option>
+                    <option value="15">媒体/出版/影视/文化/艺术</option>
+                    <option value="16">印刷/包装/造纸</option>
+                    <option value="17">咨询/管理产业/法律/财会</option>
+                    <option value="18">教育/培训</option>
+                    <option value="19">检验/检测/认证</option>
+                    <option value="20">中介服务</option>
+                    <option value="21">贸易/进出口</option>
+                    <option value="22">零售/批发</option>
+                    <option value="23">快速消费品（食品/饮料/烟酒/化妆品</option>
+                    <option value="24">耐用消费品（服装服饰/纺织/皮革/家具/家电）</option>
+                    <option value="25">办公用品及设备</option>
+                    <option value="26">礼品/玩具/工艺美术/收藏品</option>
+                    <option value="27">大型设备/机电设备/重工业</option>
+                    <option value="28">加工制造（原料加工/模具）</option>
+                    <option value="29">汽车/摩托车（制造/维护/配件/销售/服务）</option>
+                    <option value="30">交通/运输/物流</option>
+                    <option value="31">医药/生物工程</option>
+                    <option value="32">医疗/护理/美容/保健</option>
+                    <option value="33">医疗设备/器械</option>
+                    <option value="34">酒店/餐饮</option>
+                    <option value="35">娱乐/体育/休闲</option>
+                    <option value="36">旅游/度假</option>
+                    <option value="37">石油/石化/化工</option>
+                    <option value="38">能源/矿产/采掘/冶炼</option>
+                    <option value="39">电气/电力/水利</option>
+                    <option value="40">航空/航天</option>
+                    <option value="41">学术/科研</option>
+                    <option value="42">政府/公共事业/非盈利机构</option>
+                    <option value="43">环保</option>
+                    <option value="44">农/林/牧/渔</option>
+                    <option value="45">跨领域经营</option>
+                    <option value="46">其它</option>
+              </select>
+               </div>
+              
+           </div>
+
+           <div class="line_div">
+              
+              <label><span style="display: inline;width:2px;color:red;">*</span>公司性质：</label>
+               <div class="item-info">
+                 <select style="width: 278px" name="homeProv" id="homeProv" value="" class="commonInput">
+                        <option value="-1">请选择</option>
+                     <option value="1">政府机关/事业单位</option>
+                    <option value="2">国营</option>
+                    <option value="3">私营</option>
+                    <option value="4">中外合资</option>
+                    <option value="5">外资</option>
+                    <option value="6">其他</option>
+                </select>
+               </div>
+              
+
+           </div>
+
+           <div class="line_div">
+              
+              <label><span style="display: inline;width:2px;color:red;">*</span>验&nbsp;证&nbsp;码：</label>
+               <div class="item-info">
+                 <input type="text" class="form_text commonInput" style="width:160px" id="volidCoder_register">
+               <a style="cursor: pointer;float: left;margin-left: 10px;"><img id="codeImg_regist" title="看不清？点击换一张" align="AbsMiddle" src="images/verify.jpg" onclick="this.src='/iptp/jcaptcha?'+Math.random();this.blur();" alt="点击验证码即可刷新" style="margin-top:1px"></a>
+               </div>
+              
+
+           </div>
+           <div class="line_div">
+           
+            <div style="margin-bottom:10px;"><label></label><input type="checkbox" id="isCheck">同意<a href="/iptp/public/interpreter.jsp">《壹回收平台网络服务协议》</a></div>
+           </div>
+            <div class="line_div">
+              <label></label>
+              <input type="button" class="btn-submit" style="border:0px;" id="sumbt">
+            </div>
+         </form>
+       </div>
+     </div>
+   </div>
+ </div>
+
+</div>
+<!--End 首页内容--> 
+<!--End 首页内容--> 
+<!--Str 公用底部-->
+<#include "/common/html/footer_include.html">
+<!--End 公用底部-->
+<script type="text/javascript" src="js/register.js"></script>
+
+</body>
+</html>

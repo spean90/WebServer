@@ -20,11 +20,11 @@ var Modal = {
 			data : config.data,
 			async: config.async || false,
 			success : function(data) {
-				data = JSON.StrToJSON(data);
+				data = JSON.parse(data);
 				var success = data.success;
 				
 				if(success == false) {
-					Modal.showError(data.message || "操作失败", "", function() {});
+					alert("操作失败");
 				}
 				else {
 					config.success(data);
@@ -33,21 +33,44 @@ var Modal = {
 			error : function(XMLHttpRequest, textStatus, errorThrown) {
 				var status = XMLHttpRequest.status;
 				if(status == 401) {
-					Modal.showError(Modal.status[status], "错误提示", function() {
-						window.location.href = "/login.html";
-					});
+					alert("操作失败");
 				}
 				else if(status == 403) {
-					Modal.showError(Modal.status[status], "错误提示", function() {
-						window.location.href = "/login.html";
-					});
+					window.location.href = "/login.html";
 				} else {
-					Modal.showError( Modal.status[status]||"服务器异常");
+					alert("操作失败");
 				}
 			}
 		});
 	},
 
+	jsonp : function(config){
+		$.jsonp({
+			url : config.url,
+			data : config.data,
+			callbackParameter: "callback",
+			success : function(data){ 
+				config.success(data);
+			},
+			complete: function() {
+	          // 数据获取完成后，需要做的事，此为隐藏读取数据的滚动条。
+	        },
+	        error : function(xOptions, textStatus) {
+	        	console.log(xOptions);
+				//alert(textStatus);
+				//window.location.href = "/index.html";
+			}
+		});
+	},
+	
+	alert : function(content,title) {
+		var mytitle = title?title:'友情提示';
+		$('#modal').remove();
+		//$(this).modal('modal',mytitle,content);
+		$(this).hint('modal', mytitle, content);
+	},
+	
+	
 	/**
 	 * 封装的表单submit方法，对操作失败进行了封装处理
 	 * 
@@ -61,9 +84,9 @@ var Modal = {
 				return $(this).form('validate');
 			},
 			success : function(data) {
-				data = JSON.StrToJSON(data);
+				data = JSON.parse(data);
 				if (data.success == false) {
-					Modal.showError(data.message || "操作失败", "", function() {});
+					alert("操作失败");
 				} else {
 					config.success(data);
 				}
@@ -80,68 +103,34 @@ var Modal = {
 			});
 		}*/
 	},
-
-	/**
-	 * 弹出普通提示层
-	 * 
-	 * @param msg 提示内容
-	 * @param titie 提示标题
+	/*
+	 * 验证手机号码
+	 * 验证规则：11位数字，以1开头。
 	 */
-	showAlert : function(msg, title) {
-		$.messager.alert(title || '操作提示', msg, 'info');
+	checkMobile : function(str) {
+	    var re = /^1\d{10}$/
+	    if (re.test(str)) {
+	        //alert("正确");
+	    	return 0;
+	    } else {
+	        //alert("错误");
+	    	return 1;
+	    }
 	},
-
-	/**
-	 * 弹出错误提示层
-	 * 
-	 * @param msg 提示内容
-	 * @param titie 提示标题
+	/*
+	 * 验证邮箱
+	 * 验证规则：姑且把邮箱地址分成“第一部分@第二部分”这样
+	 * 第一部分：由字母、数字、下划线、短线“-”、点号“.”组成，
+	 * 第二部分：为一个域名，域名由字母、数字、短线“-”、域名后缀组成，而域名后缀一般为.xxx或.xxx.xx，一区的域名后缀一般为2-4位，如cn,com,net，现在域名有的也会大于4位
 	 */
-	showError : function(msg, titie, fuc) {
-		$.messager.alert(titie || '错误提示', msg, 'error', fuc);
-	},
-
-	/**
-	 * 弹出确认提示层
-	 * 
-	 * @param titie 提示标题
-	 * @param msg 提示内容
-	 * @param fuc 点击确定后执行的函数
-	 */
-	showConfirm : function(msg,titie, fuc) {
-		$.messager.alert(titie || '提示', msg, 'info', fuc);
-	},
-	
-	/**
-	 * 无父页面则跳转无权限页面，不是刷新父页面
-	 */
-	gotoPermissionPage:function(status){
-		if (window.top!=window.self) {
-			Modal.showError(Modal.status[status], "错误提示", function() {
-				window.parent.location.reload();
-			});
-		}else{ 
-			Modal.showError(Modal.status[status], "错误提示", function() {
-				window.location.href = "/login.html";
-			});
-		 } 
+	checkEmail : function(str){
+		var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+		if(re.test(str)){
+			//alert("正确");
+			return 0;
+		}else{
+			//alert("错误");
+			return 1;
+		}
 	}
-	
 };
-
-
-//跨域iframe高度自适应  begin
-function initFrameHeight() {
-	var pdiv = window.parent.document.getElementById('mainDiv');
-	pdiv.style.height = document.body.scrollHeight+'px';
-	
-	var piframe = window.parent.document.getElementById('centerIFrame');
-	piframe.style.height = (document.body.scrollHeight-20)+'px';
-}
-
-$(function() {
-	//跨域iframe高度自适应  begin
-	window.onload = initFrameHeight;
-});
-
-

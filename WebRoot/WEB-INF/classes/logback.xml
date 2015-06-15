@@ -22,7 +22,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">  
             <!--  <fileNamePattern>E:/Log/logout-%d{yyyy-MM-dd}.log</fileNamePattern>  -->
             <fileNamePattern>../applogs/logout-%d{yyyy-MM-dd}.log</fileNamePattern>
-            <maxHistory>30</maxHistory>  
+            <maxHistory>10</maxHistory>  
         </rollingPolicy>  
   
         <!-- 下面这段注释的代码可以在日志文件超过 5MB 时进行归档，并且归档文件后缀只要是 .zip 或 .gz 就会自动压缩日志归档 -->  
@@ -50,6 +50,7 @@
 	<logger name="org.springframework" level="WARN"/> 
 	<logger name="com.mchang" level="WARN"/> 
 	<logger name="org.mybatis.spring.SqlSessionUtils" level="WARN"/>
+	<logger name="org.apache.ibatis.io.ResolverUtil" level="WARN"/>
 	<!--     显示sql -->
 	
     
