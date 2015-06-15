@@ -39,7 +39,7 @@ public class FileController {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("version", arr[0]);
 				
-				String currentFile =  request.getSession().getServletContext().getRealPath("")+File.separator+"files"+File.separator+"update.apk";
+				String currentFile =  request.getSession().getServletContext().getRealPath("")+File.separator+"files"+File.separator+"SmartGas.apk";
 				String[] currentInfo = AnalysisApk.unZip(currentFile, "./");
 				if (StringUtils.isEmpty(currentInfo[0])) {
 					map.put("message", "目前还没有更新过版本！");
@@ -70,7 +70,7 @@ public class FileController {
 				if (!filePath.exists()) {
 					filePath.mkdirs();
 				}
-				String localTempFile =path +File.separator + "update.apk";
+				String localTempFile =path +File.separator + "SmartGas.apk";
 				updateFile.transferTo(new File(localTempFile));
 			} catch (Exception e) {
 				logger.error("upload update file error", e);

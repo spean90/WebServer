@@ -45,6 +45,11 @@ public class IJuheCallbackController {
 		Backlog backlog = new Backlog();
 		backlog.setJuheOrderId(orderid);
 		backlog = backlogService.getBacklogByBacklog(backlog);
+		if (backlog==null) {
+			logger.info("聚合回调。。。 没有找到该订单。。。。");
+			out.write("success");
+			out.close();
+		}
 		if (!StringUtils.isEmpty(backlog.getJuheId())) {
 			logger.info("聚合回调。。。订单已处理。。");
 			out.write("success");

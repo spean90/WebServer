@@ -8,21 +8,14 @@ import java.util.Date;
  */
 public class ConstantUtil {
 
-	
+	public final static String LOCALHOST = "http://120.26.206.140";
+	//public final static String LOCALHOST = "http://115.28.65.214";
 	public static final String RETURN_SUCCESS = "success";
 
 	public static final String RETURN_MESSAGE = "message";
 
 	/** 聚合充值应用AppKey **/
 	public final static String JuheAppKey = "a307318a4f21c83e3d7273bac7e46890";
-	/**
-	 * 二维码  下载app地址
-	 */
-	public final static String DownloadPicPath = "http://120.26.206.140/api/downLoadApk.do?managerAccount=";
-	/**
-	 * 二维码  注册页地址
-	 */
-	public final static String SignupPicPaht = "http://120.26.206.140/signup.html?recommendId=";
 	
 	/**
 	 * session中验证码

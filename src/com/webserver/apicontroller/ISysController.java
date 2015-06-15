@@ -58,7 +58,7 @@ public class ISysController {
 		logger.info(">>>>>>>>>>>用户下载>>>>>>>>"+downloadLog.getManagerAccount());
 		downloadLog.setCreateTime(DateUtil.getDateTimeString(new Date()));
 		downloadLogService.addDownloadLog(downloadLog);
-		response.sendRedirect("http://115.28.65.214/files/update.apk");
+		response.sendRedirect("http://115.28.65.214/files/SmartGas.apk");
 		
 //		String currentFile =  request.getSession().getServletContext().getRealPath("")+File.separator+"files"+File.separator+"update.apk";
 //		File file = new File(currentFile);
