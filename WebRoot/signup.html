@@ -46,7 +46,7 @@ a:link{ color:#658BA3;}
 ==''){value='请输入手机号'}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/></div>  
       <div  class="t">验证码 &nbsp;<input type="text" id="code" name="checkno" class="text1" maxlength="6" value="请输短信验证码"onfocus="if (value =='请输短信验证码'){value 
 =''}"onblur="if (value 
-==''){value='请输短信验证码'}"/><input id="btn" type="submit" style="width:80px; margin-left:10px" value="获取验证码"  class="button"/></div>
+==''){value='请输短信验证码'}"/><input id="btn" type="button" style="width:80px; margin-left:10px" value="获取验证码"  class="button"/></div>
       </div>
   <div class="conten">
       <div  class="t">密码 &nbsp;<input type="text" id="password" name="pwd" class="text" maxlength="16" value="6~16位数字或者字母"onfocus="if (value =='6~16位数字或者字母'){value 
@@ -56,7 +56,7 @@ a:link{ color:#658BA3;}
 ='';type='password' }"onblur="if (value 
 ==''){value='6~16位数字或者字母';type='text'}"/></div>
       <div class="textji">
-      <section><button class="progress-button" id="submit_btn" onclick="signup()" data-style="fill" data-horizontal style="width:100%">提交</button>
+      <section><button class="progress-button" onclick="signup()" data-style="fill" data-horizontal style="width:100%">提交</button>
       </section></div>
     <div class="foot">点击提交,表示您同意<a href="" style="text-decoration:none">《智惠加油注册协议》</a></div>
   </div>
@@ -68,9 +68,10 @@ a:link{ color:#658BA3;}
  var search = window.location.search;
 	var recommendId = search.split('=')[1];
 	function signup(){
+		
 		var password = $('#password').val();
 		var repassword = $('#re_password').val();
-		if(password==''||repassword==''){
+		if(password=='6~16位数字或者字母'||repassword=='6~16位数字或者字母'){
 			alert('请输入密码');
 			return;
 		}
@@ -79,12 +80,12 @@ a:link{ color:#658BA3;}
 			return;
 		}
 		var phone = $('#phone').val();
-		if(phone==""){
+		if(phone=="请输入手机号"){
 			alert('请输入手机号码');
 			return;
 		}
 		var code = $('#code').val();
-		if(code==""){
+		if(code=="请输短信验证码"){
 			alert('请输入验证码');
 			return;
 		}

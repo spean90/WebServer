@@ -231,6 +231,7 @@ public class GasOrderServiceImpl implements IGasOrderService {
 				backlog = new Backlog();
 				backlog.setUserId(gasOrder.getUserId());
 				backlog.setAccount(gasCard.getGasAccount());
+				backlog.setRechargeGasAccount(gasCard.getGasAccount());
 				backlog.setOwner(gasCard.getOwner());
 				backlog.setCompany(gasCard.getCompany());
 				backlog.setGasId(gasCard.getGasId());

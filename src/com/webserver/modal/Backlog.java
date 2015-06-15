@@ -37,6 +37,7 @@ public class Backlog implements Serializable {
 	private String phone;//油卡绑定电话
 	private String juheId;//聚合流水号
 	private Integer juheResult;//聚合结果
+	private String rechargeGasAccount; //充值的油卡号。用于记录油卡变更前的充值情况
 	
 	public String getResult() {
 		return result;
@@ -170,6 +171,12 @@ public class Backlog implements Serializable {
 	}
 	public void setJuheResult(Integer juheResult) {
 		this.juheResult = juheResult;
+	}
+	public String getRechargeGasAccount() {
+		return rechargeGasAccount;
+	}
+	public void setRechargeGasAccount(String rechargeGasAccount) {
+		this.rechargeGasAccount = rechargeGasAccount;
 	}
 	
 	

@@ -24,4 +24,6 @@ public interface BacklogDao {
 	public void activateBacklog(@Param("currentTime")String currentTime);
 	public void cancelBacklog(@Param("backlog")Backlog backlog);
 	public Backlog getBacklogByBacklog(@Param("backlog")Backlog backlog);
+	public void updateBacklogForUpdateGasCard(@Param("backlog")Backlog backlog);
+	
 }

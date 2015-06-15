@@ -3,7 +3,7 @@
 <mapper namespace="com.webserver.dao.BacklogDao">
 
 	<select id="getBacklogListByParams" resultType="Backlog">
-		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,t.recharge_gas_account rechargeGasAccount,
 		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus,a.phone phone
 		,b.order_id orderId
@@ -55,8 +55,8 @@
 	
 	
 	<insert id="addBacklog" parameterType="Backlog" useGeneratedKeys="true" keyProperty="backlog.backlogId">
-		insert into backlog (user_id, recharge_time,  create_time,sum,type,gas_id,status,manager_account ,oid,juhe_order_id,juhe_recharge_time) 
-		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime},#{backlog.sum},#{backlog.type},#{backlog.gasId}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId}, #{backlog.juheOrderId}, #{backlog.juheRechargeTime})
+		insert into backlog (user_id, recharge_time,  create_time,sum,type,gas_id,status,manager_account ,oid,juhe_order_id,juhe_recharge_time,recharge_gas_account) 
+		VALUES (#{backlog.userId}, #{backlog.rechargeTime},  #{backlog.createTime},#{backlog.sum},#{backlog.type},#{backlog.gasId}, #{backlog.status}, #{backlog.managerAccount}, #{backlog.oId}, #{backlog.juheOrderId}, #{backlog.juheRechargeTime},#{backlog.rechargeGasAccount})
 	</insert>
 	
 	<update id="updateBacklog"  parameterType="Backlog">
@@ -86,17 +86,29 @@
 		 	<if test="backlog.juheRechargeTime!=null and backlog.juheRechargeTime!=''">
 	 			juhe_recharge_time = #{backlog.juheRechargeTime},
 		 	</if>
+		 	<if test="backlog.rechargeGasAccount!=null and backlog.rechargeGasAccount!=''">
+	 			recharge_gas_account = #{backlog.rechargeGasAccount},
+		 	</if>
 	 	</set>
 	 	where backlog_id = #{backlog.backlogId}
+	 	<!-- 变更油卡时，变更响应未处理和未生效的代办中的充值油卡号  历史记录用 -->
+	 		<if test="backlog.status!=null and backlog.status==1">
+	 			and (status=0 or status = 1)
+	 		</if>
 	</update>
 	<update id="cancelBacklog"  parameterType="Backlog">
 		update backlog set status = 5
 	 	where oid = #{backlog.oId} and (status = 1 or status = 0)
 	</update>
 	
+	<update id="updateBacklogForUpdateGasCard"  parameterType="Backlog">
+		update backlog set recharge_gas_account = #{backlog.rechargeGasAccount}
+	 	where gas_id = #{backlog.gasId} and (status = 1 or status = 0)
+	</update>
+	
 	
 	<select id="getBacklogById" resultType="Backlog">
-		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,t.recharge_gas_account rechargeGasAccount,
 		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.phone phone
 		from backlog t
@@ -105,7 +117,7 @@
 	</select>
 	
 	<select id="getBacklogByBacklog" resultType="Backlog">
-		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,t.recharge_gas_account rechargeGasAccount,
 		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.status gasCardStatus,a.phone phone
 		,b.order_id orderId
@@ -121,7 +133,7 @@
 	</select>
 	
 	<select id="getBackLogListIds" resultType="Backlog">
-		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,
+		select t.backlog_id backlogId,t.user_id userId, t.recharge_time rechargeTime, t.create_time createTime, t.gas_id gasId, t.sum sum, t.type type,t.recharge_gas_account rechargeGasAccount,
 		t.status status,t.manager_account managerAccount,t.oid oId,t.update_time updateTime,t.result result,t.juhe_order_id juheOrderId,t.juhe_recharge_time juheRechargeTime,t.juhe_id juheId,t.juhe_result juheResult,
 		a.company company,a.owner owner ,a.gas_account account,a.phone phone
 		from backlog t
