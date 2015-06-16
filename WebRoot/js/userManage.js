@@ -1,5 +1,19 @@
 var manager = {
 	url : '',
+	reSetPsw : function(mId) {
+		Modal.showConfirm('确定要给管理员"'+mId+'"重置密码吗？',null,function(){
+			var config = {
+					type:"post",
+					url:'/manager/reSetPsw.do?mId='+mId,
+					success:function(data){
+						alert("执行成功");
+						$('#dialog').dialog('close');
+						$('#userGrid').datagrid('reload');
+					}
+			}
+			Modal.ajax(config);
+		})
+	},
 	addManager : function(){
 		$('#pwd').show();
 		$('#repwd').show();
@@ -122,6 +136,8 @@ $(function() {
 		            	}else{
 		            		return '禁用';
 		            	}
+		            }},{field:'aa',title:'操作',width:100,align:'center',formatter:function(val,row){
+		            	return '<a class="btn btn-xs btn-success" onclick="manager.reSetPsw('+row.mId+')">重置密码</a>';
 		            }}
 		            ]],
 		toolbar : '#tbar'

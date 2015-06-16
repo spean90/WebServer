@@ -50,9 +50,10 @@ public class IUserInfoController {
 		message = messageService.getUserfullMessage(message);
 		if (message != null&&message.getCode().equals(code)) {
 			try {
-				userInfo.setPassword(userInfo.getPassword());
-				PageData<UserInfo> pageData = userInfoService.getUserListByParams(userInfo, new PageBean());
-				if (pageData.getTotal()!=0) {
+				UserInfo u = new UserInfo();
+				u.setUserName(userInfo.getUserName());
+				u = userInfoService.getUserInfoByUser(u);
+				if (u!=null) {
 					resultBean.setCode("1001");
 					resultBean.setMsg("注册失败，改手机号已经注册");
 					return resultBean;

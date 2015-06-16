@@ -19,6 +19,7 @@ import com.google.zxing.utils.ZxingUtils;
 import com.webserver.common.PageBean;
 import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
+import com.webserver.common.util.MD5;
 import com.webserver.modal.Manager;
 import com.webserver.service.IManagerService;
 
@@ -75,6 +76,18 @@ public class ManagerController {
 		result.put("user", manager);
 		return result;
 	}
+	@RequestMapping("reSetPsw.do")
+	@ResponseBody
+	public Object reSetPsw(Manager manager,HttpServletRequest request) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		String password = MD5.md5("123456");
+		manager.setPassword(password);
+		managerService.updateManager(manager,request);
+		result.put("success", true);
+		result.put("user", manager);
+		return result;
+	}
+	
 	@RequestMapping("deleteManager.do")
 	@ResponseBody
 	public Object deleteManager(Integer uid,HttpServletRequest request) {
