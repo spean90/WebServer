@@ -200,10 +200,16 @@ $(function(){
 							return '处理中';
 						}else if(val==3) {
 							return '已处理';
-						}else if(val==4){
+						}else if(val==4) {
 							return '异常';
-						}else if(val==5){
-							return '退款';
+						}else if(val==5) {
+							return '已退款';
+						}else if(val==6) {
+							return '充值成功';
+						}else if(val==7) {
+							return '充值失败';
+						}else {
+							return val;
 						}
 		            }}
 		            ]]

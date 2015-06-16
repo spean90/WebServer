@@ -127,7 +127,7 @@ var backlog = {
 		    gridOpts.url = '/backlog/getBackLogListByParams.do';
 			$('#backlogGrid').datagrid('reload',{
 				owner : $('#owner_search').val(),
-				account : $('#account_search').val(),
+				rechargeGasAccount : $('#account_search').val(),
 				juheOrderId : $('#juheOrderId_search').val(),
 				status : $('#status_search').combobox('getValue')
 			});
@@ -187,7 +187,7 @@ $(function(){
 		fitColumns : true,
 		columns : [[
 		            {field:'rechargeTime',title:'充值时间',width:120,align:'center'},
-		            {field:'account',title:'油卡账号',width:100,align:'center'},
+		            {field:'rechargeGasAccount',title:'油卡账号',width:100,align:'center'},
 		            {field:'orderId',title:'orderId',width:100,align:'center'},
 		            {field:'company',title:'油卡归属',width:100,align:'center'},
 		            {field:'owner',title:'持卡人',width:100,align:'center'},
@@ -195,7 +195,7 @@ $(function(){
 		            {field:'juheOrderId',title:'聚合订单号',width:160,align:'center'},
 		            {field:'juheRechargeTime',title:'聚合处理时间',width:160,align:'center'},
 		            {field:'managerAccount',title:'办理人',width:100,align:'center'},
-		            {field:'result',title:'结果',width:200,align:'center'},
+		            {field:'result',title:'结果',width:100,align:'center'},
 		            {field:'status',title:'状态',width:80,align:'center',formatter: function(val,row,index){
 		            	if(row.gasCardStatus==2){
 		            		return '挂失中...';
@@ -214,6 +214,8 @@ $(function(){
 							return '<div class="btn btn-default btn-xs">充值成功</div>';
 						}else if (val==7) {
 							return '<div class="btn btn-default btn-xs">充值失败</div>';
+						}else if (val==0) {
+							return '<div class="btn btn-default btn-xs">未生效</div>';
 						}
 		            }},
 		            ]]

@@ -29,6 +29,9 @@
 		<if test="backlog.account != null and backlog.account != ''">
 			and a.gas_account like concat('%',#{backlog.account},'%') 
 		</if>
+		<if test="backlog.rechargeGasAccount != null and backlog.rechargeGasAccount != ''">
+			and t.recharge_gas_account like concat('%',#{backlog.rechargeGasAccount},'%') 
+		</if>
 		<if test="backlog.juheOrderId != null and backlog.juheOrderId != ''">
 			and t.juhe_order_id like concat('%',#{backlog.juheOrderId},'%') 
 		</if>
