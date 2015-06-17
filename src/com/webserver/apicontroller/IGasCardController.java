@@ -62,6 +62,7 @@ public class IGasCardController {
 			//检测油卡合法性
 			if(!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,gasCard.getGasAccount())&&
 					!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,gasCard.getGasAccount())){
+				logger.info("聚合验证油卡返回false....油卡不合法。。");
 				resultBean.setCode("1001");
 				resultBean.setMsg("油卡不合法！请检查输入");
 				return resultBean;
@@ -71,6 +72,7 @@ public class IGasCardController {
 				gasCard.setStatus(1);
 				GasCard g = gasCardServiceImpl.getGasCardByUser(gasCard);
 				if (g!=null) {
+					logger.info("该油卡已经绑定！");
 					resultBean.setCode("1001");
 					resultBean.setMsg("该油卡已经绑定！");
 				}else{
