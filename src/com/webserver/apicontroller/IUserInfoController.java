@@ -4,24 +4,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smartgas.juhe.business.SMSBusiness;
-import com.webserver.common.PageBean;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.DateUtil;
-import com.webserver.common.util.MD5;
 import com.webserver.common.util.SecurityUtil;
-import com.webserver.common.util.message.MessageUtil;
 import com.webserver.modal.GasCard;
 import com.webserver.modal.Message;
 import com.webserver.modal.UserInfo;
@@ -172,7 +169,7 @@ public class IUserInfoController {
 		calendar.add(Calendar.MINUTE, 3);
 		
 		Message message = new Message();
-		String code = (int)(Math.random()*1000000)+"";
+		String code = getRandom()+"";
 		message.setCode(code);
 		message.setPhone(phone);
 		message.setDeadline(DateUtil.getDateTimeString(calendar.getTime()));
@@ -197,6 +194,24 @@ public class IUserInfoController {
 			resultBean.setMsg("发送验证码失败");
 		}
 		return resultBean;
+	}
+	
+	
+	/**
+	 * 获得随机数[min,max]
+	 * 
+	 * @param min
+	 *            最小值
+	 * @param max
+	 *            最大值
+	 * @return
+	 */
+	public static int getRandom() {
+		int random_min = 100000;
+		int random_max = 999999;
+		Random random = new Random();
+		int result = random.nextInt(random_max) % (random_max - random_min + 1) + random_min;
+		return result;
 	}
 	@RequestMapping("/userAuth")
 	@ResponseBody
