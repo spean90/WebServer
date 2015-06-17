@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.ResultBean;
 import com.webserver.common.util.AnalysisApk;
+import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.modal.DownloadLog;
 import com.webserver.service.IDownloadLogService;
@@ -58,7 +59,7 @@ public class ISysController {
 		logger.info(">>>>>>>>>>>用户下载>>>>>>>>"+downloadLog.getManagerAccount());
 		downloadLog.setCreateTime(DateUtil.getDateTimeString(new Date()));
 		downloadLogService.addDownloadLog(downloadLog);
-		response.sendRedirect("http://115.28.65.214/files/SmartGas.apk");
+		response.sendRedirect(ConstantUtil.LOCALHOST+"/files/SmartGas.apk");
 		
 //		String currentFile =  request.getSession().getServletContext().getRealPath("")+File.separator+"files"+File.separator+"update.apk";
 //		File file = new File(currentFile);
