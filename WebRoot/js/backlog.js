@@ -136,6 +136,15 @@ var backlog = {
 }
 
 $(function(){
+	if (sessionStorage.managerAccount=='admin') {
+		var config = {
+				url : '/backlog/countUnPaySum.do',
+				success : function(data){
+					$('#sum_unPay').html('<strong>未生效充值合计：</strong>'+data);
+				}
+		}
+		Modal.ajax(config);
+	}
 	setInterval(backlog.reflashDataGrid, 1000*60*5);
 	$('#status').combobox({
 		data : [{

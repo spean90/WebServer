@@ -158,6 +158,8 @@
 	 		recharge_time <= #{currentTime}
 	 	]]>
 	</update>
-	
+	<select id="countUnPaySum" resultType="java.lang.Integer">
+		select SUM(sum) FROM backlog where status = 0
+	</select>
 	
 </mapper>

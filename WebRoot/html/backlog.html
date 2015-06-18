@@ -5,7 +5,7 @@
 		<!--#include virtual="/common/html/include_head.html"  -->
 		<script type="text/javascript" src="/js/backlog.js"></script>
 	</head>
-	<body style="height: 600px;">
+	<body style="height: 700px;">
 		<div style="margin: 10px;">
 			持卡人：<input type="text" id="owner_search">
 			油卡号：<input type="text" id="account_search">
@@ -17,7 +17,7 @@
 			<button class="btn btn-success btn-sm" onclick="backlog.reflashDataGrid()">刷新</button>
 		</div>
 		<div id="backlogGrid" style="height: 500px;"></div>
-		
+		<div id="sum_unPay" align="right" style="margin: 30px;"></div>
 		<div class="modal fade" id="modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">

@@ -34,4 +34,5 @@ public interface IBacklogService {
 	public int addBacklog(Backlog backlog)throws Exception;
 	public int lockBacklogById(Backlog backlog,HttpServletRequest request);
 	public List<Backlog> getBackLogListIds(String[] ids);
+	public int countUnPaySum();
 }

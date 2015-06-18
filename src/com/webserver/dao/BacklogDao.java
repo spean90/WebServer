@@ -25,5 +25,5 @@ public interface BacklogDao {
 	public void cancelBacklog(@Param("backlog")Backlog backlog);
 	public Backlog getBacklogByBacklog(@Param("backlog")Backlog backlog);
 	public void updateBacklogForUpdateGasCard(@Param("backlog")Backlog backlog);
-	
+	public int countUnPaySum();
 }

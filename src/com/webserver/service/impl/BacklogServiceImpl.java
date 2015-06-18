@@ -212,4 +212,10 @@ public class BacklogServiceImpl implements IBacklogService {
 		return backlogDao.getBacklogByBacklog(backlog);
 	}
 
+	@Override
+	public int countUnPaySum() {
+		// TODO Auto-generated method stub
+		return backlogDao.countUnPaySum();
+	}
+
 }

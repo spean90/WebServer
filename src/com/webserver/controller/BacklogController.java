@@ -40,6 +40,11 @@ public class BacklogController {
 		//backlog.setStatus(1);
 		return backlogService.getBacklogListByParams(backlog, pageBean);
 	}
+	@RequestMapping("countUnPaySum")
+	@ResponseBody
+	public Object countUnPaySum(){
+		return backlogService.countUnPaySum();
+	}
 	@RequestMapping("lockBacklog")
 	@ResponseBody
 	public Object lockBacklog(Backlog backlog,HttpServletRequest request){
