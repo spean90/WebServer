@@ -40,12 +40,12 @@ public class ISysController {
 	public Object checkUpdate(HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		Map<String, Object> map = new HashMap<String, Object>();
-		String currentFile =  request.getSession().getServletContext().getRealPath("")+File.separator+"files"+File.separator+"update.apk";
+		String currentFile =  request.getSession().getServletContext().getRealPath("")+File.separator+"files"+File.separator+"SmartGas.apk";
 		String[] currentInfo = AnalysisApk.unZip(currentFile, "./");
 		if (StringUtils.isEmpty(currentInfo[0])) {
 			map.put("currentCode", "0");
 		}else{
-			String url = "/files/update.apk";
+			String url = "/files/SmartGas.apk";
 			map.put("versionCode", currentInfo[0]);
 			map.put("url", url);
 		}

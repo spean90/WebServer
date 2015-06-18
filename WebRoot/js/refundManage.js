@@ -93,6 +93,10 @@ var refundManage = {
 				Modal.showAlert('请填写退款金额...');
 				return;
 			}
+			if (isNaN(refundSum)) {
+				Modal.showAlert('金额必须为数字');
+				return;
+			}
 			var refundSign = $('#refundSign').val();
 			if (refundSign=='') {
 				Modal.showAlert('请填写备注...');

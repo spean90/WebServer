@@ -15,11 +15,14 @@ import com.juhedata.api.GasCardRechargeApi.CardTpye;
 import com.smartgas.juhe.business.GsaCardBusiness;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.SecurityUtil;
 import com.webserver.modal.GasCard;
+import com.webserver.modal.News;
 import com.webserver.service.IGasCardService;
 import com.webserver.service.IMessageService;
+import com.webserver.service.INewsService;
 import com.webserver.service.IUserInfoService;
 
 @Controller
@@ -32,7 +35,8 @@ public class IGasCardController {
 	private IUserInfoService userInfoService;
 	@Resource 
 	private IGasCardService gasCardServiceImpl;
-	
+	@Resource 
+	private INewsService newsService;
 	
 	@RequestMapping("getGasCard")
 	@ResponseBody
@@ -60,13 +64,13 @@ public class IGasCardController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, gasCard.getUserId())) {
 			//检测油卡合法性
-			if(!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,gasCard.getGasAccount())&&
-					!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,gasCard.getGasAccount())){
-				logger.info("聚合验证油卡返回false....油卡不合法。。");
-				resultBean.setCode("1001");
-				resultBean.setMsg("油卡不合法！请检查输入");
-				return resultBean;
-			}
+//			if(!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSY,gasCard.getGasAccount())&&
+//					!GsaCardBusiness.getInstance().isGasCardValid(CardTpye.ZSH,gasCard.getGasAccount())){
+//				logger.info("聚合验证油卡返回false....油卡不合法。。");
+//				resultBean.setCode("1001");
+//				resultBean.setMsg("油卡不合法！请检查输入");
+//				return resultBean;
+//			}
 			
 			try {
 				gasCard.setStatus(1);
@@ -94,7 +98,7 @@ public class IGasCardController {
 	}
 	@RequestMapping("removeGasCardById")
 	@ResponseBody
-	public Object removeGasCardById(Long gasId ,Long userId,String token,Integer status,HttpServletRequest request) {
+	public Object removeGasCardById(Long gasId ,String gasAccount,Long userId,String token,Integer status,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token,userId)) {
 			try {
@@ -103,6 +107,21 @@ public class IGasCardController {
 				gasCard.setGasId(gasId);
 				gasCard.setStatus(status);
 				gasCardServiceImpl.updateGasCard(gasCard);
+				
+				News news = new News();
+				news.setTitle("系统消息");
+				news.setType(1);
+				news.setUserId(gasCard.getUserId());
+				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+				news.setStatus(0);
+				String content = ConstantUtil.MSG_REMOVE_GAS(gasAccount);
+				if (status==2) {  //挂失
+					content = ConstantUtil.MSG_LEAVE_GAS(gasAccount);
+				}else if (status==3) { //解绑
+					content = ConstantUtil.MSG_REMOVE_GAS(gasAccount);
+				}
+				news.setContent(content);
+				newsService.addNews(news);
 			} catch (Exception e) {
 				logger.error("解除绑定油卡失败：", e);
 				resultBean.setCode("5001");
@@ -125,6 +144,17 @@ public class IGasCardController {
 				gasCard.setGasAccount(newAccount);
 				gasCard.setStatus(1);
 				gasCardServiceImpl.updateGasCard(gasCard);
+				
+				News news = new News();
+				news.setTitle("系统消息");
+				news.setType(1);
+				news.setUserId(gasCard.getUserId());
+				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+				news.setStatus(0);
+				String content = ConstantUtil.MSG_MODIFY_GAS(gasCard.getGasAccount(), newAccount);
+				news.setContent(content);
+				newsService.addNews(news);
+				
 			} catch (Exception e) {
 				logger.error("变更油卡失败：", e);
 				resultBean.setCode("5001");

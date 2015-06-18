@@ -15,10 +15,12 @@ var userPaySumCount = {
 				return;
 			}
 			var userName = $('#userName').val();
+			var  subProductId = $('#type').combobox('getValue');
 			$('#userPaySumGrid').datagrid('load',{
 				beginTime : beginTime,
 				endTime : endTime,
-				userName:userName
+				userName:userName,
+				subProductId : subProductId
 			})
 		},
 		initGrid : function() {
@@ -91,6 +93,21 @@ var userPaySumCount = {
 
 $(function(){
 	userPaySumCount.initGrid();
+	$('#type').combobox({
+		data : [{
+			name : "全部",
+			value : ""
+		},{
+			name : "直充",
+			value : "1"
+		},{
+			name : "套餐",
+			value : "2"
+		}],
+		textField : 'name',
+		valueField : 'value',
+		panelHeight : 80
+	});
 })
 
 

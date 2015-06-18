@@ -12,8 +12,8 @@ var config = {
 							row.push(data[i].productName);
 							row.push(data[i].sum);
 							productCount.productData.push(row);
-							sum += parseInt(data[i].sum);
-							paySum += parseInt(data[i].paySum);
+							sum += parseFloat(data[i].sum);
+							paySum += parseFloat(data[i].paySum);
 						}
 						$('#sum').text(sum);
 						//$('#paySum').text(paySum);

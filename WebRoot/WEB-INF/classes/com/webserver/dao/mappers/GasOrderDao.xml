@@ -98,6 +98,14 @@
 				and t.create_time <= #{gasOrder.endTime}
 			]]>
 		</if>
+		 <choose>
+		    <when test="gasOrder.subProductId!=null and gasOrder.subProductId ==1 ">
+		      AND t.sub_product_id IS NULL <!-- 直冲类型 -->
+		    </when>
+		    <when test="gasOrder.subProductId!=null and gasOrder.subProductId == 2 ">
+		      and  t.sub_product_id IS NOT NULL 
+		    </when>
+		 </choose>
 		and t.del_status != 1 and status = 2
 		</where>
 		group by userId

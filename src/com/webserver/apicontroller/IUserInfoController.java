@@ -17,13 +17,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.smartgas.juhe.business.SMSBusiness;
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.SecurityUtil;
 import com.webserver.modal.GasCard;
 import com.webserver.modal.Message;
+import com.webserver.modal.News;
 import com.webserver.modal.UserInfo;
 import com.webserver.service.IGasCardService;
 import com.webserver.service.IMessageService;
+import com.webserver.service.INewsService;
 import com.webserver.service.IUserInfoService;
 
 @Controller
@@ -36,7 +39,8 @@ public class IUserInfoController {
 	private IUserInfoService userInfoService;
 	@Resource 
 	private IGasCardService gasCardServiceImpl;
-	
+	@Resource 
+	private INewsService newsService;
 	@RequestMapping("/signUp")
 	@ResponseBody
 	public Object signUp(UserInfo userInfo,String code) {
@@ -129,6 +133,15 @@ public class IUserInfoController {
 			}
 			userInfo.setPassword(newPassword);
 			userInfoService.updateUser(userInfo);
+			News news = new News();
+			news.setTitle("系统消息");
+			news.setType(1);
+			news.setUserId(userInfo.getUserId());
+			news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+			news.setStatus(0);
+			String content = ConstantUtil.MSG_MODIFY_PASSWORD();
+			news.setContent(content);
+			newsService.addNews(news);
 		} catch (Exception e) {
 			logger.error("找回密码失败：", e);
 			resultBean.setCode("5001");

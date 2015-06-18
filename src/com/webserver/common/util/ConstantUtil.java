@@ -43,4 +43,20 @@ public class ConstantUtil {
 	public static String MSG_MODIFY_SUCCESS (String account,String newAccount){
 		return "您中国石油卡号"+account+"变更为"+newAccount+"，操作成功。如有疑问请致电：400-072-7899。";
 	}
+	//修改密码
+	public static String MSG_MODIFY_PASSWORD (){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，进行了密码修改操作，如有疑问请致电：400-072-7899";
+	}
+	//油卡变更
+	public static String MSG_MODIFY_GAS (String oldGas,String newGas){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，将油卡号"+oldGas+"变更为"+newGas+"，如有疑问请致电：400-072-7899";
+	}
+	//油卡解绑
+	public static String MSG_REMOVE_GAS (String oldGas){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，解绑了油卡尾号"+oldGas.substring(oldGas.length()-4)+"，如有疑问请致电：400-072-7899";
+	}
+	//油卡解绑
+	public static String MSG_LEAVE_GAS (String oldGas){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，申请油卡尾号"+oldGas.substring(oldGas.length()-4)+"挂失操作，如有疑问请致电：400-072-7899";
+	}
 }

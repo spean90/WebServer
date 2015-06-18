@@ -42,6 +42,10 @@ public class GasOrderController {
 	@RequestMapping("countSumByUser")
 	@ResponseBody
 	public Object countSumByUser(GasOrder gasOrder,PageBean pageBean) {
+		//如果是分销统计  则不分页
+		if (!StringUtil.isEmpty(gasOrder.getRecommendId())) {
+			pageBean = null;
+		}
 		return gasOrderService.countSumByUser(gasOrder,pageBean);
 	}
 	
