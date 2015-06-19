@@ -98,7 +98,7 @@ public class IGasCardController {
 	}
 	@RequestMapping("removeGasCardById")
 	@ResponseBody
-	public Object removeGasCardById(Long gasId ,String gasAccount,Long userId,String token,Integer status,HttpServletRequest request) {
+	public Object removeGasCardById(Long gasId ,String gasAccount,String company,Long userId,String token,Integer status,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token,userId)) {
 			try {
@@ -114,11 +114,11 @@ public class IGasCardController {
 				news.setUserId(gasCard.getUserId());
 				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
 				news.setStatus(0);
-				String content = ConstantUtil.MSG_REMOVE_GAS(gasAccount);
+				String content = ConstantUtil.MSG_REMOVE_GAS(gasAccount,company);
 				if (status==2) {  //挂失
-					content = ConstantUtil.MSG_LEAVE_GAS(gasAccount);
+					content = ConstantUtil.MSG_LEAVE_GAS(gasAccount,company);
 				}else if (status==3) { //解绑
-					content = ConstantUtil.MSG_REMOVE_GAS(gasAccount);
+					content = ConstantUtil.MSG_REMOVE_GAS(gasAccount,company);
 				}
 				news.setContent(content);
 				newsService.addNews(news);
@@ -136,10 +136,11 @@ public class IGasCardController {
 	
 	@RequestMapping("modifyGasCardById")
 	@ResponseBody
-	public Object modifyGasCardById(GasCard gasCard,String newAccount,String reason,String token,HttpServletRequest request) {
+	public Object modifyGasCardById(GasCard gasCard,String newAccount,String company,String reason,String token,HttpServletRequest request) {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token,gasCard.getUserId())) {
 			try {
+				String oldGas = gasCard.getGasAccount();
 				gasCard.setSign(gasCard.getSign()+"#"+DateUtil.getDateTimeString(new Date())+"变更账号为："+newAccount+" 原因："+reason);
 				gasCard.setGasAccount(newAccount);
 				gasCard.setStatus(1);
@@ -151,7 +152,7 @@ public class IGasCardController {
 				news.setUserId(gasCard.getUserId());
 				news.setCreateTime(DateUtil.getDateTimeString(new Date()));
 				news.setStatus(0);
-				String content = ConstantUtil.MSG_MODIFY_GAS(gasCard.getGasAccount(), newAccount);
+				String content = ConstantUtil.MSG_MODIFY_GAS(oldGas, newAccount,company);
 				news.setContent(content);
 				newsService.addNews(news);
 				

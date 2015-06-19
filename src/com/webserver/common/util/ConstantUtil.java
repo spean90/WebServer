@@ -48,15 +48,15 @@ public class ConstantUtil {
 		return "您于"+DateUtil.getDateTimeString(new Date())+"，进行了密码修改操作，如有疑问请致电：400-072-7899";
 	}
 	//油卡变更
-	public static String MSG_MODIFY_GAS (String oldGas,String newGas){
-		return "您于"+DateUtil.getDateTimeString(new Date())+"，将油卡号"+oldGas+"变更为"+newGas+"，如有疑问请致电：400-072-7899";
+	public static String MSG_MODIFY_GAS (String oldGas,String newGas,String company){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，将"+company+"油卡号"+oldGas+"变更为"+newGas+"，如有疑问请致电：400-072-7899";
 	}
 	//油卡解绑
-	public static String MSG_REMOVE_GAS (String oldGas){
-		return "您于"+DateUtil.getDateTimeString(new Date())+"，解绑了油卡尾号"+oldGas.substring(oldGas.length()-4)+"，如有疑问请致电：400-072-7899";
+	public static String MSG_REMOVE_GAS (String oldGas,String company){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，解绑了"+company+"油卡尾号"+oldGas.substring(oldGas.length()-4)+"，如有疑问请致电：400-072-7899";
 	}
 	//油卡解绑
-	public static String MSG_LEAVE_GAS (String oldGas){
-		return "您于"+DateUtil.getDateTimeString(new Date())+"，申请油卡尾号"+oldGas.substring(oldGas.length()-4)+"挂失操作，如有疑问请致电：400-072-7899";
+	public static String MSG_LEAVE_GAS (String oldGas,String company){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，申请"+company+"油卡尾号"+oldGas.substring(oldGas.length()-4)+"挂失操作，如有疑问请致电：400-072-7899";
 	}
 }
