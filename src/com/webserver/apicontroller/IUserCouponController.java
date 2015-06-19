@@ -1,5 +1,7 @@
 package com.webserver.apicontroller;
 
+import java.util.Date;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.PageData;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.SecurityUtil;
 import com.webserver.modal.RedeemCode;
 import com.webserver.modal.UserCoupon;
@@ -34,6 +37,7 @@ public class IUserCouponController {
 		ResultBean resultBean = new ResultBean();
 		if (SecurityUtil.isValidate(token, userCoupon.getUserId())) {
 			try {
+				userCoupon.setDeadTime(DateUtil.getDateTimeString(new Date()));
 				PageData<UserCoupon> pageData = userCouponService.getUserCouponListByParams(userCoupon, null);
 				resultBean.setObject(pageData.getRows());
 			} catch (Exception e) {

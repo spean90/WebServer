@@ -2,14 +2,15 @@ package com.webserver.test;
 
  import java.io.IOException;
  
+
  import org.apache.http.HttpEntity;
- import org.apache.http.client.ClientProtocolException;
- import org.apache.http.client.methods.CloseableHttpResponse;
- import org.apache.http.client.methods.HttpPost; import org.apache.http.entity.ContentType;
- import org.apache.http.entity.StringEntity;
- import org.apache.http.impl.client.CloseableHttpClient;
- import org.apache.http.impl.client.HttpClients;
- import org.apache.http.util.EntityUtils;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost; import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
  
  public class TestPost {
  
@@ -51,8 +52,16 @@ package com.webserver.test;
      }
  
      public static void main(String[] args) {
-         String json = "{\"name\":\"zhangsan\", \"age\":20, \"gender\": \"mail\"} ";
-         String result = sendInfo("", json);
-         System.out.println(result);
+         final String json = "{\"name\":\"zhangsan\", \"age\":20, \"gender\": \"mail\"} ";
+         for (int i = 0; i < 50; i++) {
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					String result = sendInfo("http://foxitreader.cn/pushCallbackLog?messageId=aaaa&tag=bbbb&uuid=ddd12",json);
+			         System.out.println(result);
+				}
+			}).start();
+		}
+         
      }
  }
