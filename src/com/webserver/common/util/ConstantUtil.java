@@ -59,4 +59,12 @@ public class ConstantUtil {
 	public static String MSG_LEAVE_GAS (String oldGas,String company){
 		return "您于"+DateUtil.getDateTimeString(new Date())+"，申请"+company+"油卡尾号"+oldGas.substring(oldGas.length()-4)+"挂失操作，如有疑问请致电：400-072-7899";
 	}
+	//申请退款
+	public static String MSG_REFUND (String orderId){
+		return "您于"+DateUtil.getDateTimeString(new Date())+"，申请了【订单号】"+orderId+"的退款操作，如有疑问请致电：400-072-7899";
+	}
+	//退款成功
+	public static String MSG_REFUND_SUCCESS (String orderId){
+		return "您的【订单号】"+orderId+"，于"+DateUtil.getDateTimeString(new Date())+"，已成功退款。如有疑问请致电：400-072-7899";
+	}
 }

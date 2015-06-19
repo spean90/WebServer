@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.webserver.common.PageBean;
 import com.webserver.common.ResultBean;
+import com.webserver.common.util.ConstantUtil;
 import com.webserver.common.util.DateUtil;
 import com.webserver.common.util.StringUtil;
 import com.webserver.modal.GasOrder;
 import com.webserver.modal.Manager;
+import com.webserver.modal.News;
 import com.webserver.modal.OperLog;
 import com.webserver.service.IGasOrderService;
+import com.webserver.service.INewsService;
 import com.webserver.service.IOperLogService;
 
 @Controller
@@ -27,7 +30,9 @@ public class GasOrderController {
 	private IGasOrderService gasOrderService;
 	@Resource
 	private IOperLogService operLogServiceImpl;
-
+	@Resource 
+	private INewsService newsService;
+	
 	@RequestMapping("getGasOrderListByParams")
 	@ResponseBody
 	public Object getGasOrderListByParams(GasOrder gasOrder,PageBean pageBean) {
@@ -84,7 +89,7 @@ public class GasOrderController {
 	
 	
 	
-	//提交退款
+	//申请退款
 	@RequestMapping("refundOrder")
 	@ResponseBody
 	public Object refundOrder(GasOrder gasOrder,HttpServletRequest request) {
@@ -96,6 +101,19 @@ public class GasOrderController {
 		operLog.setOperAction("申请退款："+gasOrder.getoId());
 		operLog.setParams(StringUtil.toJson(gasOrder));
 		gasOrderService.updateGasOrder(gasOrder);
+		
+		News news = new News();
+		news.setTitle("订单消息");
+		news.setType(3);
+		news.setUserId(gasOrder.getUserId());
+		news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+		news.setStatus(0);
+		news.setCode(gasOrder.getOrderId());
+		String showOrderId = gasOrder.getOrderId();
+		String content = ConstantUtil.MSG_REFUND(showOrderId);
+		news.setContent(content);
+		newsService.addNews(news);
+		
 		operLogServiceImpl.addOperLog(operLog);
 		return resultBean;
 	}
@@ -129,6 +147,20 @@ public class GasOrderController {
 			operLog.setOperAction("办理退款 oId："+gasOrder.getoId());
 			operLog.setParams(StringUtil.toJson(gasOrder));
 			gasOrderService.updateGasOrder(gasOrder);
+			
+			
+			News news = new News();
+			news.setTitle("订单消息");
+			news.setType(3);
+			news.setUserId(gasOrder.getUserId());
+			news.setCreateTime(DateUtil.getDateTimeString(new Date()));
+			news.setStatus(0);
+			news.setCode(gasOrder.getOrderId());
+			String showOrderId = gasOrder.getOrderId();
+			String content = ConstantUtil.MSG_REFUND_SUCCESS(showOrderId);
+			news.setContent(content);
+			newsService.addNews(news);
+			
 			operLogServiceImpl.addOperLog(operLog);
 			return resultBean;
 		}

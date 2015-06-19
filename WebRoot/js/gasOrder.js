@@ -76,10 +76,10 @@ var gasOrder = {
 		    $('#backlogGrid').datagrid('load');
 			$('#backlogModal').modal('show');
 		},
-		refund : function(val) {
+		refund : function(val,userId,orderId) {
 			Modal.showConfirm('确认要申请退款吗？',null,function(){
 				var config = {
-						url : '/gasOrder/refundOrder.do?oId='+val,
+						url : '/gasOrder/refundOrder.do?oId='+val+"&orderId="+orderId+"&userId="+userId,
 						type : 'post',
 						success : function(data){
 							if(data.code=='0000'){
@@ -163,7 +163,7 @@ $(function(){
 		            	}
 		            },{field:'tuikuan',title:'退款',width:100,align:'center',formatter:function(val,row,index){
 	            		if(row.status==2){
-	            			return '<div class="btn btn-xs btn-success" onclick=gasOrder.refund('+row.oId+')>申请退款</div>';
+	            			return '<div class="btn btn-xs btn-success" onclick=gasOrder.refund('+row.oId+','+row.userId+',"'+row.orderId+'")>申请退款</div>';
 	            		}else if(row.status==3){
 	            			return '退款中';
 	            		}else if(row.status==4){
