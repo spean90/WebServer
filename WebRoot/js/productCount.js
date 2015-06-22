@@ -15,6 +15,7 @@ var config = {
 							sum += parseFloat(data[i].sum);
 							paySum += parseFloat(data[i].paySum);
 						}
+						sum = sum.toFixed(2);
 						$('#sum').text(sum);
 						//$('#paySum').text(paySum);
 						 $('#productChart').highcharts({
