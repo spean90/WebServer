@@ -18,6 +18,9 @@ var toolBar = {
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
+							$('.hs-box-js').remove();
+							var boxNone = $('<div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div>');
+							$('.hs-box').append(boxNone);
 							return;
 						}
 						if (data.content.list==null||data.content.list.length==0) {
@@ -91,8 +94,8 @@ $(function(){
 		window.open("/help.html");
 	})
 	//右侧意见反馈按钮弹窗
-	$(".edit").click(function(){
-		
+	$(".btn.btn-edit").click(function(){
+		$(this).modal('/feedback.html', '反馈')
 	})
 });
 

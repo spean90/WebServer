@@ -4,6 +4,7 @@ i{ vertical-align: middle; display: inline-block; background-repeat: no-repeat; 
 *:focus { outline: 0; }
 .c-black{ color: #000; }
 .c-red{ color: #FF5C26; }
+.c-gray{ color: #999; }
 .tx-right{ text-align: right !important; }
 .tx-left{ text-align: left !important; }
 .oran-btn{ padding: 0 50px; display: inline-block; height: 32px; line-height: 32px; background: #FF5C26 !important; color: #fff; border: 0; }
@@ -29,23 +30,22 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .pop-feedback{ width: 720px; margin: 0 auto; padding: 40px; background: #fff; }
 .feedback-title{ width: 135px; }
 .icon-chat{ background-image: url(../images/icon_chat.png); width: 41px; height: 42px; display: inline-block; }
-.feedback-title .cn-title{ font-size: 20px; line-height: 18px; }
-.feedback-title .en-title{ font-size: 18px; color: #999; }
+.feedback-title .cn-title, .advice-title .cn-title{ font-size: 20px; line-height: 18px; }
+.feedback-title .en-title, .advice-title .en-title{ font-size: 18px; color: #999; }
 .pop-feedback p{ clear: both; line-height: 50px; }
 .pop-feedback select, .pop-feedback input{ background: #eee; min-width: 180px; height: 26px; line-height: 26px; text-indent: 10px; border: 1px solid #aaa; vertical-align: middle; }
 .pop-feedback select{ text-indent: 0; }
 .pop-feedback textarea{ width: 700px; height: 100px; background: #eee; text-indent: 10px; }
 .pop-feedback img{ vertical-align: middle; }
-.pop-feedback .form-submit{ width: 800px; margin-left: -40px; height: 90px; text-align: center; padding-top: 20px; border-top: 1px solid #aaa; margin-top: 30px; }
+.pop-feedback .form-submit{ width: 800px; margin-left: -40px; height: 30px; text-align: center; padding-top: 20px; border-top: 1px solid #aaa; margin-top: 30px; }
 .pop-feedback .feedback-email::-webkit-input-placeholder{ line-height: 26px; }
 
 /*下线代理商*/
 .agent-list{ margin-bottom: 30px; }
 .agent-list .agent-title{ height: 70px; line-height: 70px; font-size: 20px; color: #000; border-bottom: 1px solid #ddd; margin-bottom: 30px; }
-.agent-list li{ float: left; width: 160px; padding: 15px; border: 1px solid #ddd; margin-right: 60px; margin-bottom: 40px; }
+.agent-list li{ float: left; width: 160px; padding: 15px; border: 1px solid #ddd; margin: 0 23px; margin-bottom: 40px; }
 .agent-list img{ margin-bottom: 10px; }
 .agent-list p{ height: 30px; line-height: 30px; }
-.agent-list li:last-of-type{ margin-right: 0; }
 .search-field{ margin: 50px 0; }
 .search-field .search-txt{ height: 50px; line-height: 50px; line-height: 50px\9; border: 1px solid #ddd; text-indent: 50px; background: #eee url(../images/icon_search.png) no-repeat 15px center; border-radius: 100px 0 0 100px; width: 350px; font-size: 14px; }
 .search-field input::-webkit-input-placeholder{ line-height: 50px; }
@@ -53,10 +53,10 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .search-field .search-btn:hover{ color: #000; }
 
 /*我的咨询*/
-.my-consult{ padding: 30px 50px; }
+.my-consult{ padding: 0 50px 30px; }
 .icon-question{ background-image: url(../images/icon_question.png); width: 36px; height: 36px; }
 .icon-download{ background-image: url(../images/icon_download.png); width: 12px; height: 12px; }
-.consult-title{ font-size: 20px; color: #000; margin-left: -50px; }
+.consult-title{ font-size: 20px; color: #000; margin-left: -50px; margin-top: 30px; }
 .date-time{ font-size: 12px; color: #aaa; margin-left: 20px; vertical-align: middle; }
 .my-consult p{ color: #999; font-size: 14px; line-height: 40px; }
 .my-consult > p{ line-height: 35px; color: #666; }
@@ -65,7 +65,7 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .btn-gray{ border: 1px solid #aaa; background: #eee; padding: 5px; color: #000; }
 .btn-gray:hover{ color: #000; }
 .consult-box{ background: #eee; padding: 20px; margin-bottom: 30px; }
-.consult-comment{ padding: 40px; position: relative; }
+.consult-comment{ padding: 40px; position: relative; padding-top: 0; }
 .consult-comment span{ position: absolute; left: 10px; top: 40px; }
 .consult-comment textarea{ width: 100%; height: 100px; padding: 10px 0; text-indent: 10px; background: #f0f0f0; border: 1px solid #ddd; line-height: 30px; font-size: 14px; }
 
@@ -89,9 +89,9 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .order-table th{ height: 50px; line-height: 50px; background: #eee; border-bottom: 1px solid #ddd; }
 .order-table td{ text-align: center; line-height: 50px; }
 .order-table tr.dark td{ background: #eee; height: 50px !important; line-height: 50px !important; }
-.order-table tr.item td{ padding: 20px 0; }
+.order-table tr.item td{ padding: 10px 0; }
 .order-table tr.item .item-name{ vertical-align: middle; color: #000; font-size: 24px; }
-.order-table tr.itme img{ width: 120px; height: 120px; }
+.order-table tr.item img{ width: 120px; height: 120px; }
 .order-table img{ vertical-align: middle; }
 .order-table .none{ display: none !important; }
 .my-order .order-table th:first-child{ padding-left: 20px; }
@@ -122,12 +122,12 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .btn-gray{ padding: 14px 44px; background: #eee; color: #666; border: 1px solid #ddd; cursor: pointer; }
 .btn-gray:hover{ background: #ddd; }
 .pop{ position: relative; width: 100%; height: 100%; display: none; font-family: '微软雅黑'; }
-.pop .dark-mask{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.3); z-index: 100; }
-.pop .pop-box{ width: 450px; background: #fff; position: fixed; top: 50%; left: 50%; margin-left: -225px; z-index: 1000; -webkit-box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); -moz-box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); }
-.pop .pop-header{ height: 40px; line-height: 40px; padding: 0 15px; font-size: 14px; color: #666; background: #ededed; position: relative; }
-.pop .pop-body{ font-size: 16px; padding: 20px; text-align: center; }
-.pop .pop-footer{ text-align: center; margin-top: 30px; margin-bottom: 20px; }
-.pop .pop-footer .btn-green{ font-size: 14px; }
+.dark-mask{ position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.3); z-index: 100; }
+.pop-box{ background: #fff; position: fixed; top: 50%; left: 50%; z-index: 1000; -webkit-box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); -moz-box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); box-shadow: 0px 2px 4px 3px rgba(0,0,0,0.55); }
+.pop-header{ height: 40px; line-height: 40px; padding: 0 15px; font-size: 14px; color: #666; background: #ededed; position: relative; }
+.pop-body{ font-size: 16px; padding: 20px; text-align: center; }
+.pop-footer{ text-align: center; margin-top: 30px; margin-bottom: 20px; }
+.pop-footer .btn-green{ font-size: 14px; }
 
 /*结算页面*/
 .gray-text{ height: 30px; line-height: 30px; background: #eee; border: 1px solid #ddd; text-indent: 10px; vertical-align: middle; }
@@ -139,7 +139,7 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .pay-page input[type='text']{ height: 30px; line-height: 30px; text-indent: 10px; }
 .pay-page input[type='text']::-webkit-input-placeholder{ line-height: 30px; }
 .pay-page img{ vertical-align: middle; }
-.pay-page .bank-area{ background: #f5f5f5; padding: 10px 20px; display: inline-block; }
+.pay-page .bank-area{ background: #fff; border: 1px solid #ddd; padding: 10px 20px; display: inline-block; }
 .pay-page .bank-area select{ color: #999; height: 30px; line-height: 30px; width: 170px; }
 .pay-page .order-count{ height: 60px; line-height: 60px; padding: 0 20px; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
 .pay-page .all-count{ font-weight: bold; font-size: 20px; color: #000; }
@@ -185,51 +185,6 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .notice-list p{ font-size: 14px; line-height: 30px; text-align: left; padding-left: 20px; }
 .service-box{ overflow: hidden; }
 
-/*订单详情*/
-.order-view .order-info{margin-bottom: 30px;width: 100%}
-.order-view .order-info td{height: 30px;line-height: 30px;width: 20%;font-size: 14px;padding: 10px 0px;}
-.order-view .order-info td span{font-size: 14px;font-weight:bold}
-.order-view-table{ font-size: 14px; width:100%;color: #333; border-collapse: collapse; border: 1px solid #ddd;}
-.order-view-table th{ height: 50px;  text-align:center;line-height: 50px; background: #eee;}
-.order-view-table td{ text-align:center; line-height: 50px;padding: 20px 0px;}
-.order-view .foot{margin-top: 0px;border:1px solid #ddd;background: #eee;border-top:none;}
-#wizard2 .stepContainer{height: 320px;}
-#wizard2  .stepContainer div.content{height: 100px}
-#wizard2 ul.anchor{ background: none;height:100%}
-#wizard2 ul.anchor li a{height: 34px;line-height: 34px;padding:0px;color: #aaa;}
-#wizard2 ul.anchor li{ display: inline-block; width: 190px; height: 34px; line-height: 34px; background: url(../images/flow_normal.png) no-repeat center; }
-#wizard2 ul.anchor li.first a{ background: url(../images/flow_first.png) no-repeat center!important; }
-#wizard2 ul.anchor li.first a.selected{ background: url(../images/flow-first-active.png) no-repeat center!important;color: #fff; }
-#wizard2 ul.anchor li a:hover{ background: url(../images/flow_active.png) no-repeat center!important;color: #fff; }
-#wizard2 ul.anchor li a.selected{ background: url(../images/flow_active.png) no-repeat center!important;color: #fff; }
-#wizard2 ul.anchor li a.done{background: none}
-#wizard2 ul.anchor li.first a.selected{color:#fff;}
-#wizard2 ul.anchor li a:hover .round-digit{ background: #fff;color: #ffb973;}
-.round-digit{ display: inline-block; border-radius: 9999px; width: 20px; height: 20px; line-height: 20px; text-align: center; background: #aaa; color: #fff; vertical-align: middle; margin: 0 10px; margin-top: -3px; font-weight: bold; }
-.selected .round-digit{ background: #fff; color: #ffb973; }
-#wizard2 dl{padding: 0px 20px;}
-#wizard2 dl dd{float:left;width: 30%;font-size: 14px;}
-.tipbox table{width: 605px;margin-top: 20px;font-family:'微软雅黑';font-size:14px;border: 1px solid #ddd;padding: 10px;}
-.tipbox table tr td.first{width: 100px;}
-.tipbox table tr td{line-height: 25px;vertical-align: text-bottom;}
-.tipbox table tr.first td{color:blue;}
-.tipbox {position: relative;}
-.arrow-top{width: 30px;height: 26px;background: url(../images/arrow_top.png) no-repeat;display: inline-block;position: absolute;}
-
-#step-1 .tipbox {left: 0%;}
-#step-2 .tipbox {left: 25%;}
-#step-3 .tipbox {left: 15%;}
-#step-4 .tipbox {left: 25%;}
-#step-5 .tipbox {left: 25%;}
-#step-6 .tipbox {left: 25%;}
-#step-1 .arrow-top{top: -19px;left: 6%;}
-#step-2 .arrow-top{top: -19px;left: 20%;}
-#step-3 .arrow-top{top: -19px;left: 25%;}
-#step-4 .arrow-top{top: -19px;left: 25%;}
-#step-5 .arrow-top{top: -19px;left: 25%;}
-#step-6 .arrow-top{top: -19px;left: 25%;}
-
-
 /*弹窗-订单操作提示*/
 .operate-pop{ width: 400px; padding-bottom: 10px; }
 .operate-pop textarea{ width: 100%; height: 90px; background: #eee; border: 1px solid #ddd; padding: 5px 0; text-indent: 10px; }
@@ -239,7 +194,86 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .green-radio label.on{ color: #30C66C; }
 
 
+/*后台管理*/
+.navbar .navbar-inner{ background: #fff; padding-top: 5px; border-bottom: 2px solid #2168cc; margin-bottom: 30px; }
+.navbar .nav{ margin-top: 18px; border: 1px solid #2168cc; }
+.navbar .nav > li > a{ color: #2168cc; }
+.navbar .nav>li>a:focus, .navbar .nav>li>a:hover, .navbar .nav li.dropdown.open > .dropdown-toggle{ background: #2186cc; }
+.navbar .dropdown-menu{ z-index: 100; }
+footer p{ text-align: center; font-size: 14px; }
+#line-chart {
+    height:300px;
+    width:800px;
+    margin: 0px auto;
+    margin-top: 1em;
+}
+.brand { font-family: '微软雅黑', serif; }
+.brand .first {
+    color: #ccc;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: bold;
+}
+.brand .second {
+    color: #fff;
+    font-weight: bold;
+}
+.sidebar-nav .nav-header, .sidebar-nav .nav-header:hover, .block-heading, .block-heading[data-toggle="collapse"]:hover{ background: #2168cc; color: #fff; text-shadow: 0 0 0; border-radius: 0; border: 1px solid #2168cc; font-size: 18px; font-weight: normal; line-height: 35px; }
+.sidebar-nav .nav-list, .sidebar-nav .nav-header.collapsed, .block{ border-radius: 0; border-color: #2168cc; }
+.sidebar-nav .nav-list.collapse.in{ border-color: #2168cc; }
+.sidebar-nav .nav-header .label, .block-heading .label{ margin-top: 8px; }
+.page-title span{ font-weight: normal; font-size: 30px; color: #2168cc; vertical-align: bottom; display: inline-block; margin-left: 10px; }
+
+/*后台管理 登录*/
+.login-form{ position: absolute; top: 50%; left: 50%; width: 400px; margin-top: -130px; margin-left: -200px; border: 1px solid #ddd; text-align: center; }
+.login-head{ height: 30px; line-height: 30px; border-bottom: 1px solid #ddd; background-color: #eee; }
+.login-body{ padding: 30px; padding-bottom: 20px; background-color: #fff; }
+.login-form a{ display: inline-block; height: 24px; line-height: 24px; padding: 0 15px; border: 1px solid #ddd; color: #333; background-color: #eee; }
+.login-form .login-btn{ background-color: #2168cc; color: #fff; border: 1px solid #2168cc; }
+
 /*我的待处理订单*/
 .pending-order{ position: relative; }
 .pending-order h2{ font-weight: bold; height: 80px; line-height: 80px; }
 .pending-order .search-field{ position: absolute; top: -40px; left: 50%; margin-left: -210px; }
+.pending-order th{ font-weight: normal; }
+
+/*弹窗-处理订单*/
+.pop-deal{ width: 660px; margin: 0 auto; }
+.deal-title{ height: 50px; padding: 20px 90px; background: #fff url(../images/icon_deal.png) no-repeat 20px center; }
+.deal-title p{ line-height: 25px; font-size: 20px; }
+.deal-neck{ height: 40px; line-height: 40px; padding: 0 20px; background: #eee; }
+.deal-body{ padding: 20px; }
+.deal-body td{ height: 30px; line-height: 30px; }
+.deal-body .yuan{ display: inline-block; height: 26px; line-height: 26px; background: #ddd; width: 26px; text-align: center; vertical-align: middle; }
+.deal-body input.num{ display: inline-block; height: 26px; line-height: 26px; background: #eee; width: 50px; text-align: center; border: 0; vertical-align: middle; }
+.deal-body .deal-textarea{ clear: both; padding-left: 80px; margin-top: 20px; }
+.deal-textarea span{ margin-left: -80px; vertical-align: top; }
+.deal-textarea textarea{ width: 100%; height: 60px; overflow: auto; }
+.deal-footer{ height: 62px; padding-top: 30px; background: #eee; text-align: center; clear: both; }
+
+/*弹窗-咨询与建议*/
+.advice-title{ width: 250px; }
+.pop-advice .gray-textarea{ width: 550px; margin-bottom: 15px; width: 100%; }
+.pop-advice td:first-of-type{ vertical-align: top; }
+.pop-advice input{ width: 100%; }
+.pop-advice input, .pop-advice select{ margin-bottom: 15px; border: 1px solid #ddd; }
+.attachment-btn, .attachment-btn:hover{ padding: 3px 20px; color: #fff; background: #A8C6ED; border: 1px solid #73A2E2; }
+
+/*回收车结算*/
+.captcha-btn{ height: 30px; line-height: 30px; background: #2168CC; color: #fff !important; display: inline-block; padding: 0 10px; border: 1px solid #2168CC; }
+.captcha-btn:hover{ background: #fff; color: #2168CC !important; }
+.captcha-btn.disabled{ background: #eee; cursor: no-drop; color: #999 !important; border: 1px solid #ddd; }
+.captcha-btn + .gray-text{ width: 100px; }
+.focus-text:focus{ border: 1px solid #ff6801; }
+.depart-line{ border-bottom: 1px dashed #ddd; line-height: 30px !important; margin-bottom: 30px; margin-top: 10px; }
+.depart-line span{ display: inline-block; background: #fff; padding: 0 10px; position: relative; top: 15px; left: 100px; color: #999; }
+.icon-map{ background-image: url(../images/icon_map.png); width: 24px; height: 24px; }
+.icon-engineer{ background-image: url(../images/icon_engineer.png); width: 24px; height: 24px; }
+.pay-address p{ line-height: 40px; }
+.pay-address select{ height: 30px; line-height: 30px; text-align: center; color: #999; margin-bottom: 10px; }
+.pay-address input[type="text"]{ width: 100%; }
+
+.underline{ font-weight: normal; color: #2067cc; text-decoration: underline; }
+.icon-rob{ background-image: url(../images/icon_rob.png); width: 28px; height: 28px; }
+.btn-border{ border: 1px solid #ddd; height: 40px; line-height: 40px; padding: 0 10px; border-radius: 10px; display: inline-block; }
+.btn-border:hover{ border: 1px solid #2067cc; }

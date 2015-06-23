@@ -14,12 +14,13 @@ var feedback = {
 			
 		},
 		changeVerifyCode : function() {
-			$("#valid_code").attr("src","valid_code");
+			$('#valid_code').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
 		}
 		
 }
 
 $(function(){
 	$("#valid_code_btn").click(feedback.changeVerifyCode);
+	$("#valid_code_btn").click();
 	$('.oran-btn').click(feedback.submit);
 })

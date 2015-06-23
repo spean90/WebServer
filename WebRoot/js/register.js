@@ -2,6 +2,26 @@
  * 注册界面
  */
 var register = {
+		//获取短信验证码
+		generateCheckCode : function() {
+			var tel = $("input[name='tel']").val();
+			if(tel==''){
+				Modal.alert('请输入联系电话！');
+				return false;
+			}
+			var config = {
+					url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							Modal.alert('短信发送失败，请稍后再试！');
+							return;
+						}
+						Modal.alert('短信发送成功！');
+					}
+			}
+			Modal.jsonp(config);
+		},
 		getCheckCode : function(){
 			var tel = $("input[name='tel']").val();
 			if(tel==''){
@@ -19,7 +39,21 @@ var register = {
 		submitRegister_person : function(){
 			//TODO 提交注册信息
 			if($('form:eq(0) i[class="blank succeed"]').length==4){
-				
+				var phone = $("input[name='username']:eq(0)").val();
+				var passwd = $("input[name='password']:eq(0)").val();
+				var randomCode = $('#volidCoder_register_ps').val();
+				var config = {
+						url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+phone+"&randomCode="+randomCode,
+						callbackParameter: "callback",
+						success : function(data){ 
+							if (data.msg.code!="0000") {
+								Modal.alert('注册失败，请稍后再试！');
+								return;
+							}
+							Modal.alert('注册成功！');
+						}
+				}
+				Modal.jsonp(config);
 			}else{
 				register.checkUsername($("input[name='username']:eq(0)"));
 				register.checkPassword($("input[name='password']:eq(0)"));
@@ -197,7 +231,8 @@ $(function(){
 					code.parent().removeAttr("disabled");
 					code.parent().removeClass("msgs1");
 				}
-			}, 1000)
+			}, 1000);
+			register.generateCheckCode();
 		}
 	});
 

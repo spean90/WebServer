@@ -96,7 +96,7 @@ var valuation = {
 								     +'<span class="square"><span class="gou"></span></span>'
 								     +'<h3>购买渠道</h3>'
 								     +'</dt>'
-								     +'<dd class="first" >'
+								     +'<dd class="first" name="radio">'
 								     +'<ul>'
 								     +'<li data-id="1" class="  ">'
 								     +'<span class="property_value">大陆国行</span>'
