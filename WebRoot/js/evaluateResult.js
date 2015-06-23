@@ -27,13 +27,13 @@ var evaluateResult = {
 					            + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
 					            + '<td class="subtotal">'+item.lastEvaluationPrice+'</td>'
 					            + '<td class="operation">'
-					            + '<span class="delete">删除</span>'
+					          //  + '<span class="delete">删除</span>'
 					            + '<span class="reprice">重新询价</span>'
 					            + '</td>'
 					            + '</tr>';
 							$('tbody').append($(str));
 						}
-						onloadCar();//❤重新加载购物车内容❤
+						//onloadCar();//❤重新加载购物车内容❤
 					}
 				}
 		}

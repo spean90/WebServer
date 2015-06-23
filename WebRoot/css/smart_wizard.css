@@ -19,7 +19,7 @@
   border:0px solid #CCC;    
   overflow:hidden;
   clear:both;
-  height:420px;
+  height:450px;
 }
 
 .swMain .stepContainer div.content {
@@ -32,7 +32,7 @@
   font:normal 12px Verdana, Arial, Helvetica, sans-serif; 
   color:#5A5655;   
 /*  background-color:#F8F8F8; */ 
-  height:420px;
+  height:210px;
   text-align:left;
   overflow:visible;    
   z-index:88; 
@@ -45,7 +45,9 @@
 .swMain div.actionBar {
 height: 36px;
 line-height: 36px;
-padding: 0px 8px
+padding: 0px 8px;
+position: relative;
+bottom: 0px;
 }
 
 .swMain .stepContainer .StepTitle {
@@ -64,15 +66,16 @@ padding: 0px 8px
   -moz-border-radius:5px;    
 }
 .swMain ul.anchor {
-  height: 40px;
+  height: 24px;
 background: #f0f0f0;
 width: 100%;
 
 }
 .swMain ul.anchor li{ 
-width: 24%;
+width: 12%;
 display: inline-block;
-text-align: center
+text-align: center;
+margin-right: 0.2%;
 }
 /* Anchor Element Style */
 .swMain ul.anchor li a {
@@ -83,8 +86,9 @@ text-align: center
   text-decoration:none;
   outline-style:none;
   z-index:99;
- padding: 10px 25px;
- width: 100%
+height: 20px;
+padding: 2px;
+width: 100%;
 }
 .swMain ul.anchor li a .stepNumber{
   position:relative;
@@ -107,25 +111,33 @@ text-align: center
 .swMain ul.anchor li a .stepDesc small{
   font:normal 12px Verdana, Arial, Helvetica, sans-serif;
 }
-.swMain ul.anchor li a.selected{
-  color:#F8F8F8;
-  background: #EA8511;
-}
-.swMain ul.anchor li a.selected:hover {
-  color:#F8F8F8;  
-  background:#EA8511;  
-}
+
 .swMain ul.anchor li.active a{ background:#8CC63F;}
+
 .swMain ul.anchor li a.done { 
   position:relative;
   color:#FFF;  
-  background:#8CC63F;    
+ 
+  background:#ccc;    
   z-index:99;
+}
+.swMain ul.anchor li a.do{
+  position:relative;
+  color:#FFF;
+background:#8CC63F!important;
+ z-index:99;
 }
 .swMain ul.anchor li a.done:hover {
   color:#fff;  
-  background:#EA8511;; 
-  
+ background: #FF5C26;
+}
+.swMain ul.anchor li a.selected{
+  color:#F8F8F8;
+  background: #FF5C26!important;
+}
+.swMain ul.anchor li a.selected:hover {
+  color:#F8F8F8;  
+  background: #FF5C26;
 }
 .swMain ul.anchor li a.disabled {
   color:#CCCCCC;  
@@ -149,14 +161,23 @@ text-align: center
 .swMain .buttonNext {
   display:block;
   float:right;
-  background-color: #CCCCCC;
   text-decoration:none;
   text-align:center;
-  color:#FFF;
-  width: 100px;
-  height: 32px;
-  line-height: 32px;
-  border: 1px solid #d3d3d3;   
+  color:#666;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0 15px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  background: #eee;
+  border: 1px solid #ddd;
+  margin-right: 20px; 
+}
+.swMain .buttonNext:hover{
+  color: #fff;
+background: #FF5C26;
+border: 1px solid #FF5C26;
 }
 .swMain .buttonDisabled {
   color:#F8F8F8  !important;
@@ -164,18 +185,30 @@ text-align: center
   border:1px solid #CCCCCC  !important;
   cursor:text;    
 }
+.swMain .buttonPrevious:hover{
+    color: #fff;
+background: #FF5C26;
+border: 1px solid #FF5C26;
+}
+
 .swMain .buttonPrevious {
   display:block;
   float:left;
   text-decoration:none;
   text-align:center;
-  width: 100px;
-  height: 32px;
-  line-height: 32px;
-  border: 1px solid #d3d3d3;
-  cursor: pointer;
-  color:#FFF;
-  background-color: #CCCCCC 
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0 15px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+}
+.swMain .buttonFinish:hover{
+  color: #fff;
+background: #FF5C26;
+border: 1px solid #FF5C26;
 }
 .swMain .buttonFinish {
   display:block;
@@ -185,7 +218,14 @@ text-align: center
  width: 100px;
   height: 32px;
   line-height: 32px;
-  border: 1px solid #d3d3d3;    
+  background: #eee;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0 10px;
+  height: 40px;
+  line-height: 40px ;
+  font-size:14px
 }
 
 /* Form Styles */
@@ -215,19 +255,21 @@ text-align: center
   z-index:998;
 }
 .swMain .msgBox {
-  position:relative;  
+  position:absolute;  
   display:none;
   float:left;
   margin:4px 0 0 5px;
   padding:5px;
-  border:1px solid #FFD700; 
-  background-color:#FFFFDD;  
+  border: 1px solid #FF0000;
+  background-color: #FFD8D8;  
   font:normal 12px Verdana, Arial, Helvetica, sans-serif; 
   color:#5A5655;         
   -moz-border-radius:5px;
   -webkit-border-radius:5px;
   z-index:999;
-  min-width:200px;  
+  min-width:200px;
+  right: 10px;
+  top: 50px;
 }
 .swMain .msgBox .content {
   font:normal 12px Verdana,Arial,Helvetica,sans-serif;
@@ -248,6 +290,6 @@ text-align: center
   text-decoration:none;
 }
 .swMain .msgBox .close:hover{
-  color:#EA8511;
-  border:1px solid #EA8511;  
+ border: 1px solid #FF0000;
+color: #F77878; 
 }

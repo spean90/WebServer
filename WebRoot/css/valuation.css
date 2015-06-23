@@ -32,7 +32,7 @@ color: #666;
 }
 
 .box dl {
-padding: 10px 0;
+padding: 20px 0px 30px 0px;
 }
 .box dl .property_title {
 display: block;
@@ -124,7 +124,7 @@ position: absolute;
 z-index: 10;
 bottom: 0;
 right: 0;
-background: url("http://www.aihuishou.com/Images/StaticPages/home/index_icon.min.png") -490px -137px;
+background: url(../images/index_icon.min.png) -490px -137px;
 width: 19px;
 height: 19px;
 }
@@ -133,13 +133,13 @@ position: absolute;
 z-index: 10;
 top: 8px;
 left: 5px;
-background: url("http://www.aihuishou.com/Images/StaticPages/home/index_icon.min.png") -493px -166px;
+background: url(../images/index_icon.min.png) -493px -166px;
 width: 13px;
 height: 10px;
 display: inline-block;
 }
 #wizard {border: 1px solid #eaeaea;
-border-top: 0px;font-size:12px;height:570px;margin:20px auto;width:1200px;overflow:hidden;position:relative;-moz-border-radius:5px;-webkit-border-radius:5px;}
+border-top: 0px;font-size:12px;margin:20px auto;width:1200px;overflow:hidden;position:relative;height: 635px;-moz-border-radius:5px;-webkit-border-radius:5px;}
 #wizard .items{width:20000px; clear:both; position:absolute;}
 #wizard .right{float:right;}
 #wizard #status{height:40px;background:#f0f0f0}
@@ -152,18 +152,17 @@ border-top: 0px;font-size:12px;height:570px;margin:20px auto;width:1200px;overfl
 .page p label{font-size:14px; display:block;}
 .btn_nav{height:36px; line-height:36px; margin:20px auto;}
 .prev,.next{width:100px; height:32px; line-height:32px; border:1px solid #d3d3d3; cursor:pointer}
-.box .filter dd,.box .filter dt{float:left;display: inline-block;padding:0px;}
+.box .filter dd,.box .filter dt{float:left;display: inline-block;padding:0px;margin-bottom: 5px;}
 .box .filter dt{padding: 0px 10px;font-weight: bold;line-height: 25px;}
 
 .box .filter dd a{
-color: #fff;
+color: #aaa;
 line-height: 22px;
 display: inline-block;
 height: 22px;
-width: 50px;
 border: 1px solid #4fabef;
 text-align: center;
-background: url(../images/close.gif) no-repeat right 8px #4fabef;
+background: url(../images/close.gif) no-repeat right 8px;
 padding: 0px 8px;
 padding-right: 20px;
 margin-right: 10px;

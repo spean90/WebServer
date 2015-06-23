@@ -1,5 +1,5 @@
 
-function onloadCar() {
+window.onload = function () {
     if (!document.getElementsByClassName) {
         document.getElementsByClassName = function (cls) {
             var ret = [];
@@ -34,18 +34,18 @@ function onloadCar() {
 			if (tr[i].getElementsByTagName('input')[0].checked) {
 				tr[i].className = 'on';
 				seleted += parseInt(tr[i].getElementsByTagName('input')[1].value);
-				price += parseFloat(tr[i].cells[5].innerHTML);
-				HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"><span class="del" index="' + i + '">取消选择</span></div>'
-			}
-			else {
-				tr[i].className = '';
-			}
-		}
-	
-		selectedTotal.innerHTML = seleted;
+                price += parseFloat($(tr[i]).children('.price').text());
+                HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"><span class="del" index="' + i + '">取消选择</span></div>'
+            }
+            else {
+                tr[i].className = '';
+            }
+        }
+
+        selectedTotal.innerHTML = seleted;
 		priceTotal.innerHTML = price.toFixed(2);
 		selectedViewList.innerHTML = HTMLstr;
-	
+
 		if (seleted == 0) {
 			foot.className = 'foot';
 		}
@@ -127,8 +127,7 @@ function onloadCar() {
                 case 'delete': //点击了删除
                     var conf = confirm('确定删除此商品吗？');
                     if (conf) {
-                    	myRetrieveCar.removeFromCar($(this).attr('id'));//❤删除选中的商品❤
-                        //this.parentNode.removeChild(this);
+                        this.parentNode.removeChild(this);
                     }
                     break;
             }
@@ -156,9 +155,7 @@ function onloadCar() {
                 for (var i = 0; i < tr.length; i++) {
                     // 如果被选中，就删除相应的行
                     if (tr[i].getElementsByTagName('input')[0].checked) {
-                    	//alert($(tr[i]).attr('id'));
-                    	myRetrieveCar.removeFromCar($(tr[i]).attr('id'));//❤删除选中的商品❤
-                        //tr[i].parentNode.removeChild(tr[i]); // 删除相应节点
+                        tr[i].parentNode.removeChild(tr[i]); // 删除相应节点
                         i--; //回退下标位置
                     }
                 }

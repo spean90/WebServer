@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
-<title>回收估价</title>
+<title>首页</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link rel="stylesheet" type="text/css" href="css/valuation.css" media="screen" />
@@ -19,6 +19,7 @@
 <body>
 <!--Str 公用顶部-->
 <#include "/common/html/body_include.html">
+<div id="modelsId" hidden>${mId}</div>
 <!--End 公用顶部--> 
 <!--Str 首页内容-->
 <div class="mt-15 clearfix"> 
@@ -52,7 +53,7 @@
 						</ul>				
 					</div>				
 				</div>
-    </div>
+    	</div>
     <div class="box">
         <div id="wizard" class="swMain">
                 <ul id="wizard_ul">
@@ -355,35 +356,36 @@
       </div>
 	</div>
 <!--End 首页内容--> 
+<!--Str 公用底部-->
 <!--End 公用底部-->
 <#include "/common/html/footer_include.html">
-<!--End 公用底部-->
 <script type="text/javascript" src="scripts/jquery.smartWizard-2.1.js"></script>
 <script type="text/javascript" src="scripts/jquery.scrollTo.min.js"></script>
 
 <script>
-
 $(document).ready(function() {
-
-  $('#wizard').smartWizard(
-  { transitionEffect: "slideUp",
-    enableAllSteps: true,
-    onFinish:test,  // triggers when Finish button is clicke
-    onPreviousStep:PreviouStepCallback,
-    onLeaveStep:null, // triggers when leaving a step
-    onShowStep:showStepCallback,  // triggers when showing a step
-    onNextStep:NextStepCallback//点击下一步时 触发回调函数
-  });
-
-  $('#wizard_ul [rel = 1]').removeClass().addClass('selected');
-  
-	 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
-	cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
-	cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
-	option_value();
-  phoneList();
-  scrollTop();
+	//pcInit();
 })
+	//把初始化内容放到一个全局方法、在获取服务端数据后再调用一次
+	function pcInit() {
+	 $('#wizard').smartWizard(
+			  { transitionEffect: "slideUp",
+			    enableAllSteps: true,
+			    onFinish:test,  // triggers when Finish button is clicke
+			    onPreviousStep:PreviouStepCallback,
+			    onLeaveStep:null, // triggers when leaving a step
+			    onShowStep:showStepCallback,  // triggers when showing a step
+			    onNextStep:NextStepCallback//点击下一步时 触发回调函数
+			  });
+
+			  $('#wizard_ul [rel = 1]').removeClass().addClass('selected');
+			  
+				 cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
+				cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
+				cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
+				option_value();
+			  phoneList();
+	}
   
     function PreviouStepCallback(obj){
    var step_num= obj.attr('rel'); 
@@ -457,7 +459,33 @@ $(document).ready(function() {
     }
   })
    if(flag){
-     $('#wizard').smartWizard('showMessage','必填项全都填写成功可以提交了');
+     //$('#wizard').smartWizard('showMessage','必填项全都填写成功可以提交了');
+     var selecteds = $('.filter.clearfix dd a');
+     var param = {};
+     param.modelsId = $('#modelsId').text();
+     for(var i=0;i<selecteds.length;i++){
+    	 var step = $(selecteds[i]).attr('step');
+    	 if(param[step]==null||param[step]=='undefind'){
+    		 param[step] = $(selecteds[i]).attr('id');
+    	 }else{
+    		 param[step] = param[step]+','+$(selecteds[i]).attr('id');
+    	 }
+    	 
+     }
+     console.log(param);
+     var config = {
+				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
+				callbackParameter: "callback",
+				data : param,
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						return;
+					}
+					var content = data.content;
+				}
+		}
+		Modal.jsonp(config);
+     
     }else
    {
       var unfinish_step = 0;
@@ -472,8 +500,8 @@ $(document).ready(function() {
    }
     $('.page dd li').map(function(){
       // 主项和子项编码
-      console.log($(this).parents('.content').attr('id'));
-      console.log($(this).index()+1);
+       // console.log($(this).parents('.content').attr('id'));
+       // console.log($(this).index()+1);
     })
    }
  
@@ -590,5 +618,6 @@ function del_tag(){
       return false;
 }
 </script>
+<script type="text/javascript" src="js/valuation.js"></script>
 </body>
 </html>

@@ -29,6 +29,19 @@ public class TransferController {
 		return modelAndView;
 	}
 	/**
+	 * 估价页
+	* @author Huangsp
+	* @date 2015年4月24日 
+	* @param mId  商品id
+	* @return
+	 */
+	@RequestMapping(value="/valuation_{mId}")
+	public ModelAndView valuation(@PathVariable(value="mId") String mId) {
+		ModelAndView modelAndView = new ModelAndView("valuation");
+		modelAndView.addObject("mId", mId); 
+		return modelAndView;
+	}
+	/**
 	 * 纯页面跳转
 	* @author Huangsp
 	 */

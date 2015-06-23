@@ -25,7 +25,8 @@ a.service-btn{ display:block; width:160px; height:45px; text-align:center; line-
 .service-con-1 em{line-height: 15px;}
 .service-con-2,.service-con-3{ padding:7px 9px;}
 .service-con-2 img,.service-con-3 img{ display:inline-block; width: 265px;height: 248px;}
-
+.notice-list li {margin-bottom: 10px}
+.notice-list li h1{font-size:16px;font-weight: bold}
 /*热门回收品牌和机型*/
 .tit-box-1{ width:100%; height:57px; background-color:#179ce7}
 .tit-1-h2{ width:266px; height:64px; text-align:center; line-height:64px; padding-right:54px; left:0; top:0; background-position: 0 0; font-size:26px; color:#fff;font-family:"Microsoft YaHei";}
@@ -79,7 +80,7 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 
 /*用户评价*/
 .index-box{ width:1198px;border:1px solid #ddd;}
-.index-con{ padding:10px 20px;}
+.index-con{ padding:10px 20px;height: 200px;}
 .tit-box-2{ width:100%; height:50px; background-color:#f0f0f0; border-bottom:1px solid #ddd; line-height:50px;}
 .tit-2-list{ left:0; top:-1px;}
 .tit-2-list li{ width:168px; height:50px;  float:left; text-align:center;border-right:1px solid #ddd; font-size:14px; position:relative; cursor:pointer }
@@ -93,7 +94,14 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .aps-pic{  width:70px;}
 .aps-pic img{ display:block; width:60px; height:60px; float:right}
 .aps-txt{ width:358px; padding:0 25px; line-height:20px; overflow:hidden }
-.index-news-list li{ float:left; width:259px; padding:10px 20px 0 300px; position:relative; height:185px;}
+.index-news-list dl{float: left;display: inline-block;width: 46%;margin: 0px 2%;}
+.index-news-list dl dt ul li{font-size: 18px;color: #0085d0;list-style-type: disc;cursor: pointer;}
+.index-news-list dl dt ul li:hover {color: #ff4000;}
+.index-news-list dl dt:hover a{color: #ff4000;}
+.index-news-list dl dd ul li{cursor: pointer;line-height: 35px;}
+
+.index-news-list dl dd ul li:hover{color: #000}
+.index-news-list li{position:relative; font-size: 14px;list-style-type: decimal;/*height:185px;padding:10px 20px 0 300px; */}
 .index-news-list li img{ display:block; width:280px; height:180px; position:absolute; left:0; top:10px}
 .index-news-list li h4 a{ display:block; margin-top:10px; height:30px; line-height:30px; color:#333; font-size:14px; overflow:hidden;text-overflow: ellipsis;white-space: nowrap;}
 .index-news-list li p{ height:96px; line-height:24px; margin-top:10px; overflow:hidden}
@@ -111,8 +119,8 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .suprty{ position:absolute; width:272px; height:97px; font-family:"Microsoft YaHei";color:#fff}
 .suprty dt{ height:42px; text-align:center; line-height:42px; font-size:18px;}
 .suprty dd{ font-size:14px; padding:5px 40px; line-height:20px;}
-.suprty-1,.suprty-2,.suprty-3{ background-position:0 -191px; padding-right:17px; left:108px;}
-.suprty-4,.suprty-5,.suprty-6{ background-position:0 -288px; padding-left:17px; right:108px;}
+.suprty-1,.suprty-2,.suprty-3{ background-position:0 -191px; padding-right:17px; left:90px;}
+.suprty-4,.suprty-5,.suprty-6{ background-position:0 -288px; padding-left:17px; right: 90px;}
 .suprty-2,.suprty-5{ top:117px;}
 .suprty-3,.suprty-6{ top:244px;}
 
@@ -130,12 +138,12 @@ a.tit-1-more:hover{ background-position:-125px -64px;-webkit-transition: none;	-
 .round-digit{ display: inline-block; border-radius: 9999px; width: 20px; height: 20px; line-height: 20px; text-align: center; background: #aaa; color: #fff; vertical-align: middle; margin: 0 10px; margin-top: -3px; font-weight: bold; }
 .flow-box.active .round-digit{ background: #fff; color: #ffb973; }
 i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; background-position: center; }
-.icon-item1{ background-image: url(../images/item1.png); width: 59px; height: 62px; }
-.icon-item2{ background-image: url(../images/item2.png); width: 63px; height: 62px; }
-.icon-item3{ background-image: url(../images/item3.png); width: 66px; height: 62px; }
-.icon-item4{ background-image: url(../images/item4.png); width: 33px; height: 62px; }
-.icon-item5{ background-image: url(../images/item5.png); width: 42px; height: 62px; }
-.icon-close{ background-image: url(../images/close.gif); width: 13px; height: 62px; }
+.icon-item1{ background-image: url(../images/item1.png); width: 59px; height: 60px; }
+.icon-item2{ background-image: url(../images/item2.png); width: 63px; height: 60px; }
+.icon-item3{ background-image: url(../images/item3.png); width: 66px; height: 60px; }
+.icon-item4{ background-image: url(../images/item4.png); width: 33px; height: 60px; }
+.icon-item5{ background-image: url(../images/item5.png); width: 42px; height: 60px; }
+.icon-close{ background-image: url(../images/close.gif); width: 13px; height: 13px; }
 .branch-recycle{ padding: 0 30px 30px; }
 .branch-recycle h1{ font-size: 28px; color: #aaa; }
 .branch-recycle .branch-title{ font-size: 20px; color: #000; height: 60px; line-height: 60px; border-bottom: 1px solid #ddd; }
@@ -148,7 +156,7 @@ i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; 
 .flip li:hover .front{ height: 0; opacity: 0; transition: all 0.1s ease-in; }
 .flip li .back{ height: 0; background: #2168CC; color: #fff; }
 .flip li:hover .back{ display: block; width: 140px; height: 140px; transition: all 0.1s ease-in; }
-.flip .front i{ margin: 20px 0 15px; }
+.flip .front i{ padding: 20px 0 15px; }
 .flip .back-title{ font-size: 20px; padding-top: 25px; }
 .flip li .back p{ color: #fff; font-size: 14px; }
 .map-wrapper{ height: 600px; overflow: hidden; }
@@ -164,3 +172,18 @@ i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; 
 .map-wrapper .map-area{ width: 950px; }
 .map-wrapper .store-photo{ width: 250px; height: 600px; overflow: hidden; display: none; position: relative; }
 .map-wrapper .store-photo .icon-close{ position: absolute; top: 10px; right: 10px; cursor: pointer; }
+.parea{padding:10px;font-size:14px;float: left;width: 930px;}
+.news-wrapper .store-list{float: left;}
+
+.news .title{text-align: center;font-size: 20px}
+.news .property{text-align: right}
+.news .property span{margin-right:10px;}
+.news .property span.icon{margin:0px;}
+.news h2{font-size: 18px;color: #000;height: 45px;line-height: 45px;margin-top: 20px;font-weight: bold;margin-bottom: 10px;}
+.news .about-left p{text-indent: 50px}
+.news .page .prev:hover,.news .page .next:hover{text-decoration: none;background: #d7d7d7;}
+.share .icon{width: 43px;height: 36px;display: inline-block;background: url(../images/share.png) no-repeat;vertical-align: middle;}
+.share .icon-sina{background-position: 0px 0px;}
+.share .icon-qq{background-position: -40px -0px;}
+.share .icon-tencent{background-position: -80px -0px;}
+.news .property .share{margin: 25px 0px;}

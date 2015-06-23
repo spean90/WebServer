@@ -157,7 +157,7 @@ var index = {
 							monthStr = monthStr.substring(1);
 							monthPrice = monthPrice.substring(1);
 							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'">'
-							            +'<a><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+							            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
 							            +'<div class="product-info">'
 							            +'<div class="fl">'
 							            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
