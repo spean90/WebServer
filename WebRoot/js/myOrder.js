@@ -1,7 +1,7 @@
 /**
  * 订单详情
  */
-OrderDetail = {
+myOrder = {
 		getOrders : function(page,orderType,divIndex){
 			var config = {
 					url : Sys.serviceDomain+"/listMyOrders?recordPerPage=2&currentPage="
@@ -26,6 +26,8 @@ OrderDetail = {
 							}else{
 								str = '<div class="catbox order-table mt-30">';
 							}
+							var sum = 0;
+							var count = 0;
 							str = str + '<table>'
 			                + '<thead>'
 			                + '<tr>'
@@ -55,14 +57,16 @@ OrderDetail = {
 				                + '<td><a href="javascript:;" class="underline">评估详情</a></td>'
 				                + '<td></td>'
 				                + '</tr>'
+				                sum = sum+ordersItemList[j].recyclePrice;
+				                count+=1;
 			                }
 			                str = str + '</tbody>'
 			                + '</table>'
 			                + '<div class="foot" id="foot">'
 			                + '<label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>'
 			                + '<a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>'
-			                + '<div class="fr total">合计：￥<span id="priceTotal">0.00</span></div>'
-			                + '<div class="fr selected" id="selected">共<span id="selectedTotal"></span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>'
+			                + '<div class="fr total">合计：￥<span id="priceTotal">'+sum+'</span></div>'
+			                + '<div class="fr selected" id="selected">共<span id="selectedTotal">'+count+'</span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>'
 			                + '<div class="selected-view none">'
 			                + '<div id="selectedViewList" class="clearfix">'
 			                + '<div><img src="images/1.jpg"><span>取消选择</span></div>'
@@ -96,7 +100,7 @@ OrderDetail = {
 					        cssStyle: 'light-theme',
 					        currentPage : page,
 					        onPageClick: function(pageNum,event){
-					        	OrderDetail.getOrders(pageNum,orderType,divIndex);
+					        	myOrder.getOrders(pageNum,orderType,divIndex);
 					        }
 					    });
 					}
@@ -114,13 +118,13 @@ function tabs(obj){
 		$(this).parents('.tabs-label').siblings('.tabs-content').children('div:eq(' + _index + ')').show().siblings().hide();
 		$(this).parents('.tabs-label').siblings('.tabs-content').children('div').empty();
 		if(_index==0){
-			OrderDetail.getOrders(1,1,_index);//'全部'
+			myOrder.getOrders(1,1,_index);//'全部'
 		}else if(_index==1){
-			OrderDetail.getOrders(1,1,_index);//'待处理'
+			myOrder.getOrders(1,2,_index);//'待处理'
 		}else if(_index==2){
-			OrderDetail.getOrders(1,1,_index);//'回收成功'
+			myOrder.getOrders(1,3,_index);//'回收成功'
 		}else if(_index==3){
-			OrderDetail.getOrders(1,1,_index);//'回收失败'
+			myOrder.getOrders(1,4,_index);//'回收失败'
 		}
 		
 	});
@@ -182,5 +186,5 @@ $(function(){
 	  }
 	  
 	  
-	  //OrderDetail.getOrders(1,1,1);//'待处理'
+	  myOrder.getOrders(1,1,1);//'待处理'
 });
