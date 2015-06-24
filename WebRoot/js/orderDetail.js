@@ -4,7 +4,7 @@
 OrderDetail = {
 		getOrders : function(page,orderType,divIndex){
 			var config = {
-					url : Sys.serviceDomain+"/listMyOrders?recordPerPage=5&currentPage="
+					url : Sys.serviceDomain+"/listMyOrders?recordPerPage=2&currentPage="
 						+ page + "&key=" + sessionStorage.token
 						+ "&ordersStatusId="+orderType, 
 					callbackParameter: "callback",
@@ -182,5 +182,5 @@ $(function(){
 	  }
 	  
 	  
-	  OrderDetail.getOrders(1,1,1);//'待处理'
+	  //OrderDetail.getOrders(1,1,1);//'待处理'
 });
