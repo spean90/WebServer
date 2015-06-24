@@ -41,7 +41,7 @@ myOrder = {
 			                + '<th>订单状态</th>'
 			                + '</tr>'
 			                + '<tr class="dark">'
-			                + '<th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">2015-04-26</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="javascript:;" class="underline">订单详情</a></th>'
+			                + '<th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">2015-04-26</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail.html" class="underline">订单详情</a></th>'
 			                + '<th class="c-red">待处理</th>'
 			                + '</tr>'
 			                + '</thead>'

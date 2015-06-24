@@ -40,6 +40,8 @@ var valuation = {
 					url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
 					callbackParameter: "callback",
 					success : function(data){ 
+						data = '{"msg":{"time":"2015-06-24 16:06:55.449","code":"0000","desc":"成功"},"content":{"list":[{"evaluationId":2,"name":"存储容量（单选)","type":1,"evaluationItemList":[{"evaluationId":2,"itemId":1,"name":"8G","sortOrder":1},{"evaluationId":2,"itemId":3,"name":"32G","sortOrder":2},{"evaluationId":2,"itemId":2,"name":"16G","sortOrder":3},{"evaluationId":2,"itemId":4,"name":"64G","sortOrder":4},{"evaluationId":2,"itemId":5,"name":"128G","sortOrder":5}]},{"evaluationId":3,"name":"颜色（单选)","type":1,"evaluationItemList":[{"evaluationId":3,"itemId":1,"name":"金","sortOrder":1},{"evaluationId":3,"itemId":2,"name":"白","sortOrder":2},{"evaluationId":3,"itemId":3,"name":"黑","sortOrder":3}]},{"evaluationId":4,"name":"保修情况（单选)","type":1,"evaluationItemList":[{"evaluationId":4,"itemId":1,"name":"一个月以上","sortOrder":1},{"evaluationId":4,"itemId":2,"name":"一个月以下或无保修期","sortOrder":2}]},{"evaluationId":6,"name":"维修机拆机史（单选)","type":1,"evaluationItemList":[{"evaluationId":6,"itemId":1,"name":"无拆修","sortOrder":1,"description":"没有维修过"},{"evaluationId":6,"itemId":2,"name":"小拆修","sortOrder":2,"description":"没有维修过主要部件，组装屏"},{"evaluationId":6,"itemId":3,"name":"大拆修","sortOrder":3,"description":"维修过主板、CPU，非原装部件"},{"evaluationId":6,"itemId":4,"name":"报废","sortOrder":4,"description":"内部缺损"}]},{"evaluationId":7,"name":"受潮状况（单选)","type":1,"evaluationItemList":[{"evaluationId":7,"itemId":1,"name":"机身无进水","sortOrder":1},{"evaluationId":7,"itemId":2,"name":"机身进水","sortOrder":2},{"evaluationId":7,"itemId":3,"name":"机身受潮","sortOrder":3}]},{"evaluationId":8,"name":"是否存在故障现象（可多选 ，若无问题，请直接评估下一步）","type":2,"evaluationItemList":[{"evaluationId":8,"itemId":1,"name":"通话不正常","sortOrder":1},{"evaluationId":8,"itemId":2,"name":"触屏不正常","sortOrder":2},{"evaluationId":8,"itemId":3,"name":"充电不正常","sortOrder":3},{"evaluationId":8,"itemId":4,"name":"WIFI不正常","sortOrder":4},{"evaluationId":8,"itemId":5,"name":"按键不正常","sortOrder":5},{"evaluationId":8,"itemId":6,"name":"蓝牙不正常","sortOrder":6},{"evaluationId":8,"itemId":7,"name":"GPS不正常","sortOrder":7},{"evaluationId":8,"itemId":8,"name":"无法开机","sortOrder":8},{"evaluationId":8,"itemId":9,"name":"iCloud已绑定并无法解除","sortOrder":9},{"evaluationId":8,"itemId":10,"name":"指纹功能不正常","sortOrder":10},{"evaluationId":8,"itemId":11,"name":"机身变形","sortOrder":11}]},{"evaluationId":9,"name":"屏幕显示（单选)","type":1,"evaluationItemList":[{"evaluationId":9,"itemId":1,"name":"显示正常","sortOrder":1,"description":"显示完好"},{"evaluationId":9,"itemId":2,"name":"有亮点/斑点/坏点","sortOrder":2,"description":"纯色背景下显示有小白斑或小黑斑"},{"evaluationId":9,"itemId":3,"name":"屏幕色差","sortOrder":3,"description":"在纯色背景下显示颜色有深浅"},{"evaluationId":9,"itemId":4,"name":"无法正常显示","sortOrder":4,"description":"液晶屏坏、无法显示、屏幕漏液"}]},{"evaluationId":10,"name":"屏幕外观（单选)","type":1,"evaluationItemList":[{"evaluationId":10,"itemId":1,"name":"屏幕无划痕","sortOrder":1,"description":"保护很好，一直贴膜"},{"evaluationId":10,"itemId":2,"name":"屏幕有划痕","sortOrder":2,"description":"有划痕"},{"evaluationId":10,"itemId":3,"name":"磕碰缺角","sortOrder":3,"description":"屏幕边缘有小缺口"},{"evaluationId":10,"itemId":4,"name":"碎裂/内屏破损","sortOrder":4,"description":"屏幕有裂痕/整块碎裂/大块缺角等"}]}]}}';
+						data = JSON.parse(data);
 						if (data.msg.code!="0000") {
 							return;
 						}
@@ -47,7 +49,7 @@ var valuation = {
 						$('#wizard_ul').empty();
 						var str = '';
 						var list = content.list;
-						for (var i = 1; i < 3; i++) {
+						for (var i = 1; i < list.length+1; i++) {
 							var stepStr = '一';
 							switch(i){
 							case 1:
@@ -84,19 +86,20 @@ var valuation = {
 								stepStr = i;
 							}
 							str = '<li>'
-								+'<a href="#step-'+i+'"><strong>'+i+'.</strong>第'+stepStr+'步</a>'
+								+'<a href="#step-'+list[i-1].evaluationId+'"><strong>'+i+'.</strong>第'+stepStr+'步</a>'
 								+'</li>';
 							$('#wizard_ul').append($(str));
 						}
 						$('.page').remove();
-						for (var j = 1; j < 3; j++) {
-							var str = '<div id="step-'+j+'" class="page">' 
+						
+						for (var j = 1; j <list.length+1; j++) {
+							var str = '<div id="step-'+list[j-1].evaluationId+'" class="page">' 
 								     +'<dl>'
-								     +'<dt class="property_title first">'
+								     +'<dt class="property_title">'
 								     +'<span class="square"><span class="gou"></span></span>'
-								     +'<h3>购买渠道</h3>'
+								     +'<h3>'+list[j-1].name+'</h3>'
 								     +'</dt>'
-								     +'<dd class="first" name="radio">'
+								     +'<dd name="radio">'
 								     +'<ul>'
 								     +'<li data-id="1" class="  ">'
 								     +'<span class="property_value">大陆国行</span>'

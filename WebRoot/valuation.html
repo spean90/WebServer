@@ -582,7 +582,11 @@ $(document).ready(function() {
            
           var val = $(this).find('.property_value').text();
           var dataid =$(this).attr('data-id');
-          var step = $(this).parent().parent().parent().parent().attr('id').substr(-1);
+          var step = $(this).parent().parent().parent().parent().attr('id').substr(-2);
+          step = parseInt(step);
+          if(step<0){
+        	  step = step*-1;
+          }
            html += '<dd><a id="'+dataid+'" step="'+step+'">'+val+'</a></dd>';
         }   
        })
