@@ -50,7 +50,8 @@ var register = {
 								Modal.alert('注册失败，请稍后再试！');
 								return;
 							}
-							Modal.alert('注册成功！');
+							//Modal.alert('注册成功！'); 
+							location.href = "login.html";
 						}
 				}
 				Modal.jsonp(config);
