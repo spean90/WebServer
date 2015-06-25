@@ -462,7 +462,6 @@ $(document).ready(function() {
      //$('#wizard').smartWizard('showMessage','必填项全都填写成功可以提交了');
      var selecteds = $('.filter.clearfix dd a');
      var param = {};
-     param.modelsId = $('#modelsId').text();
      for(var i=0;i<selecteds.length;i++){
     	 var step = $(selecteds[i]).attr('step');
     	 if(param[step]==null||param[step]=='undefind'){
@@ -473,10 +472,10 @@ $(document).ready(function() {
     	 
      }
      console.log(param);
+     param = JSON.stringify(param);
      var config = {
-				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17",
+				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17?evaluations="+param+"&modelsId="+ $('#modelsId').text(),
 				callbackParameter: "callback",
-				data : param,
 				success : function(data){ 
 					if (data.msg.code!="0000") {
 						return;
