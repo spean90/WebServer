@@ -92,36 +92,56 @@ var valuation = {
 						}
 						$('.page').remove();
 						
-						for (var j = 1; j <list.length+1; j++) {
-							var str = '<div id="step-'+list[j-1].evaluationId+'" class="page">' 
-								     +'<dl>'
-								     +'<dt class="property_title">'
-								     +'<span class="square"><span class="gou"></span></span>'
-								     +'<h3>'+list[j-1].name+'</h3>'
-								     +'</dt>'
-								     +'<dd name="radio">'
-								     +'<ul>'
-								     +'<li data-id="1" class="  ">'
-								     +'<span class="property_value">大陆国行</span>'
-								     +'<span class="property_detail">有“进网许可”标签</span>'
+						for (var j = 0; j <list.length; j++) {
+							
+							var str = '<div id="step-'+list[j].evaluationId+'" class="page">' 
+								     +'<dl>';
+							if(j==0){
+								str = str +'<dt class="property_title first">'
+								 +'<span class="square"><span class="gou"></span></span>'
+							     +'<h3>'+list[j].name+'</h3>'
+							     +'</dt>';
+							     if(list[j].type==1){
+							    	 str = str +'<dd name="radio" class="first">'
+							    	 +'<ul>';
+							     }else{
+							    	 str = str +'<dd class="first">'
+							    	 +'<ul>';
+							     }
+							     
+							    
+							}else{
+								str = str +'<dt class="property_title">'
+								 +'<span class="square"><span class="gou"></span></span>'
+							     +'<h3>'+list[j].name+'</h3>'
+							     +'</dt>'
+							     if(list[j].type==1){
+							    	 str = str +'<dd name="radio">'
+							    	 +'<ul>';
+							     }else{
+							    	 str = str +'<dd>'
+								     +'<ul>';
+							     }
+							    
+							}
+							var evaluationItemList = list[j].evaluationItemList;
+							for(var k=0;k<evaluationItemList.length;k++){
+								if((k+1)%4==0){
+									str = str +'<li data-id="'+evaluationItemList[k].itemId+'" class="oneline last">'
+								     +'<span class="property_value">'+evaluationItemList[k].name+'</span>'
+								    // +'<span class="property_detail">有“进网许可”标签</span>'
 								     +'<span class="gou"></span>'                
-								     +'</li>'
-								     +'<li data-id="2" class="  ">'
-								     +'<span class="property_value">香港行货</span>'
-								     +'<span class="property_detail">香港购买，全球联保</span>'
+								     +'</li>';
+								}else{
+									str = str +'<li data-id="'+evaluationItemList[k].itemId+'" class="oneline">'
+								     +'<span class="property_value">'+evaluationItemList[k].name+'</span>'
+								    // +'<span class="property_detail">有“进网许可”标签</span>'
 								     +'<span class="gou"></span>'                
-								     +'</li>'
-								     +'<li data-id="3" class="  ">'
-								     +'<span class="property_value">水货有锁</span>'
-								     +'<span class="property_detail">日/韩/美等非特殊机，需要“卡贴”解锁</span>'
-								     +'<span class="gou"></span>'                
-								     +'</li>'
-								     +'<li data-id="4" class="  ">'
-								     +'<span class="property_value">水货无锁</span>'
-								     +'<span class="property_detail">非国行/港行，其他国家</span>'
-								     +'<span class="gou"></span>'                
-								     +'</li>'
-								     +'</ul>'
+								     +'</li>';
+								}
+								
+							}
+							str = str +'</ul>'
 								     +'</dd>'
 								     +'</dl>'
 								     +'</div>';

@@ -3,6 +3,7 @@
  */
 myOrder = {
 		getOrders : function(page,orderType,divIndex){
+			$(".tabs-content>div:eq("+divIndex+")").empty();
 			var config = {
 					url : Sys.serviceDomain+"/listMyOrders?recordPerPage=2&currentPage="
 						+ page + "&key=" + sessionStorage.token

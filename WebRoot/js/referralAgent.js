@@ -9,6 +9,7 @@ var referralAgent = {
 				page=1;
 			}
 			var phone = $(".search-txt").val();
+			$(".agent-list>ul").empty();
 			var config = {
 					url : Sys.serviceDomain + "/listRecommendCustomers?key=" + sessionStorage.token + "&customersId="+phone+"&recordPerPage="+recordPerPage_set+"&currentPage="+page, 
 					callbackParameter : "callback",
