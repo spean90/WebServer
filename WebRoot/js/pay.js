@@ -4,6 +4,7 @@
 var pay = {
 	//初始化回收清单
 	initRetrieveList : function(){
+		$('table').empty();
 		var config = {
 				url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token, 
 				callbackParameter: "callback",
@@ -14,39 +15,60 @@ var pay = {
 					if (data.content.list==null||data.content.list.length==0) {
 						console.log('回收车中还没有商品呦，赶紧去看看吧！');
 					}else {
-						$('tbody').empty();
+						$('table').empty();
 						var list = data.content.list;
-						var str = '';
+						var str = '<tr>'
+							+ '<th>物品名称</th>'
+							+ '<th>回收商家</th>'
+							+ '<th>最高报价</th>'
+							+ '<th>数量</th>'
+							+ '<th>收款方式</th>'
+							+ '</tr>';
+						$('table').append($(str));
+						var sum = 0;
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
+							sum += item.lastEvaluationPrice;
 							str = '<tr id="'+item.customersBasketId+'">'
-								  + '<td class="checkbox"><input class="check-one check" type="checkbox"/></td>'
-								  + '<td class="goods"><img src="'+item.modelsImage+'" alt=""/><span>'+item.modelsName+'</span></td>'
-								  + '<td class="price">'+item.lastEvaluationPrice+'</td>'
-								  + '<td class="status">价格有效</td>'
-								  + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
-								  + '<td class="subtotal">'+item.lastEvaluationPrice+'</td>'
-								  + '<td class="operation">'
-								  + '<span class="delete")>删除</span>'
-								  + '<span class="reprice">重新询价</span>'
-								  + '</td>'
-								  + '</tr>';
-							$('tbody').append($(str));
+								+ '<td>'+item.modelsName+'</td>'
+								+ '<td></td>'
+								+ '<td>'+item.lastEvaluationPrice+'</td>'
+								+ '<td>1</td>'
+								+ '<td>'+item.lastEvaluationPrice+'</td>'
+								+ '</tr>';
+							$('table').append($(str));
 						}
+						$('.order-count.clearfix').empty();
+						var s = ' <span class="fl">商家报价</span>'
+							+'<span class="fr">共'+list.length+'件商品，合计￥'+sum+'</span>';
+						$('.order-count.clearfix').append($(s));
+						$('#sum').text('￥'+sum);
 					}
 				}
 		}
 		Modal.jsonp(config);
 	},
-	//获取图片验证码
-	getPicCheckCode : function(){
-		$(this).attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
-	}
 };
 
 $(function(){
-	//alert($("div[class='pay-page'] img").attr('src'));
-	$("div[class='pay-page'] img").click(pay.getPicCheckCode);
-	$("div[class='pay-page'] img").click();
 	pay.initRetrieveList();
+	 $('#online_bank').click(function(){
+		    $('.bank-area').show();
+		  });
+	  $('#pay_cash').click(function(){
+	    $('.bank-area').hide();
+	  });
+	  $('.captcha-btn').click(function(){
+	    $(this).addClass('disabled');
+	    var _second = 60;
+	    var _timer = setInterval(function(){
+	      _second -= 1;
+	      if (_second > 0) {
+	        $('.captcha-btn').text(_second + 's后可重发');
+	      }else{
+	        $('.captcha-btn').text('发送验证码').removeClass('disabled');
+	        clearInterval(_timer);
+	      }
+	    }, 1000);
+	  });
 });

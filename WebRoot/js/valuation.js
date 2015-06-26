@@ -158,4 +158,5 @@ var valuation = {
 
 $(function(){
 	valuation.init();
+	//pcInit();
 })
