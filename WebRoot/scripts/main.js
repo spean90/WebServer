@@ -13,8 +13,7 @@ $(function(){
 		$('body').append(_html);
 		$('#'+id).show('fast', function(){
 			var _height = -$('#'+id).children('.pop-box').height()/2;
-			var _width = -$('#'+id).children('.pop-box').width()/2;
-			$('#'+id).children('.pop-box').animate({'margin-top': _height, 'margin-left': _width}, 'fast');
+			$('#'+id).children('.pop-box').animate({'margin-top': _height}, 'fast');
 		});
 		$('#'+id).find('.close-pop, .dark-mask').click(function(e){
 			e.preventDefault();
@@ -34,12 +33,12 @@ $(function(){
 			$('#'+id).children('.pop-box').css({'width': _boxW, 'height': _boxH}).animate({'margin-top': _height, 'margin-left': _left}, 'fast');
 			$('#'+id).find('iframe').contents().find('.close-pop').click(function(e){
 				e.preventDefault();
-				$('#'+id).remove();
+				$('#'+id).hide('fase');
 			});
 		});
 		$('#'+id).find('.close-pop, .dark-mask').click(function(e){
 			e.preventDefault();
-			$('#'+id).remove();
+			$('#'+id).hide('fast');
 		});
 	}
 });
@@ -50,20 +49,27 @@ function helpNav(){
 	});
 }
 
-function noticeList(time){
-	var _time;
-	typeof(time) == 'undefined' ? _time = 3000 : _time = time;
-	var _circle = setInterval(noticeshow, _time);
-	function noticeshow(){
-		var _active = $('.notice-list').children('.active');
-		if (_active.next().length !== 0) {
-			_active.removeClass('active').hide(function(){
-				_active.next().addClass('active').show();
-			});
-		} else{
-			_active.removeClass('active').hide(function(){
-				$('.notice-list').children('li').first().addClass('active').show();
-			});
-		}
-	}
+function noticeList(time){ 
+var $this = $(".notice-list"); 
+var scrollTimer; 
+$this.hover(function(){ 
+clearInterval(scrollTimer); 
+},function(){ 
+scrollTimer = setInterval(function(){ 
+scrollNews( $this ); 
+}, 2000 ); 
+}).trigger("mouseout"); 
+ 
+} 
+
+function scrollNews(obj){ 
+var $self = obj.find("ul:first"); 
+var lineHeight = $self.find("li:first").height(); 
+$self.animate({ "margin-top" : -lineHeight +"px" },600 , function(){ 
+$self.css({"margin-top":"0px"}).find("li:first").appendTo($self); 
+}) 
+}
+
+function scroll(){
+        $('.notice-list li:last').hide().insertBefore( $('.notice-list li:first')).slideDown(1000);
 }

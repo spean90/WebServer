@@ -1,4 +1,26 @@
-
+.c-black{ color: #000; }
+.c-red{ color: #FF5C26; }
+.c-gray{ color: #999; }
+.tx-right{ text-align: right !important; }
+.tx-left{ text-align: left !important; }
+.oran-btn{ padding: 0 50px; display: inline-block; height: 32px; line-height: 32px; background: #FF5C26 !important; color: #fff; border: 0; }
+.oran-btn:hover{ color: #fff; }
+.tabs .tabs-label li{ float: left; }
+.tabs .tabs-label li a{ display: block; padding: 5px 20px; color: #333; margin-right: 20px; border-radius: 5px 5px 0 0; background: #fff; }
+.tabs .tabs-label li.active a{ background: #eee; color: #2168CC; }
+.tabs .tabs-content{ clear: both; }
+.btn-radius{ background: #eee; border: 1px solid #ddd; border-radius: 10px; display: inline-block; padding: 0 10px; height: 40px; line-height: 40px; }
+.btn-radius:hover{ color: #fff; background: #FF5C26; border: 1px solid #FF5C26; }
+.common-btn{ width: 160px; height: 50px; line-height: 50px !important; display: inline-block; color: #fff; font-size: 20px; text-align: center; color: #fff; }
+.common-btn:hover{ color: #fff; }
+.common-btn.oran{ background-color: #FF9326; }
+.common-btn.red{ background-color: #FF5C26; }
+.common-btn.gray{ background-color: #BFBFBF; }
+.common-btn.gray:hover{ background: #FF9326; }
+.count-input.disable{ border: 0; background: #fff; width: 100%; }
+textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
+.my-placeholder{ color: #999; }
+.mt-50{ margin-top: 50px; }
 /*购物车*/
 .shopCar{padding: 8px 15px;}
 .num{width: 134px;overflow: auto}
