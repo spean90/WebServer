@@ -473,13 +473,15 @@ $(document).ready(function() {
      console.log(param);
      param = JSON.stringify(param);
      var config = {
-				url : Sys.serviceDomain+"/listHotBrands?recordPerPage=17?evaluations="+param+"&modelsId="+ $('#modelsId').text(),
+				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+param+"&modelsId="+ $('#modelsId').text()
+						+"&key=" + sessionStorage.token+"&city=1",
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
 						return;
 					}
 					var content = data.content;
+					console.log(content);
 				}
 		}
 		Modal.jsonp(config);
