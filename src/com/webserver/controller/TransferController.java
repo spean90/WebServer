@@ -29,6 +29,19 @@ public class TransferController {
 		return modelAndView;
 	}
 	/**
+	 * 估价结果页
+	* @author Huangsp
+	* @date 2015年4月24日 
+	* @param key  sessionStory key
+	* @return
+	 */
+	@RequestMapping(value="/evaluateResult_{key}")
+	public ModelAndView evaluateResult(@PathVariable(value="key") String key) {
+		ModelAndView modelAndView = new ModelAndView("evaluateResult");
+		modelAndView.addObject("key", key); 
+		return modelAndView;
+	}
+	/**
 	 * 估价页
 	* @author Huangsp
 	* @date 2015年4月24日 

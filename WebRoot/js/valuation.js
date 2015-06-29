@@ -13,7 +13,7 @@ var valuation = {
 						$('.valuation').empty();
 						var str = '<div class="container clearfix">'
 								  +'<div class="left">'
-								  +'<img src="images/phone.png" alt="iPhone 4S" title="iPhone 4S">'
+								  +'<img id="pic" src="images/phone.png" alt="iPhone 4S" title="iPhone 4S">'
 								  +'<h2 class="product_name">'+content.modelsName+'</h2>'
 								  +'</div>'
 								  +'<div class="right">'

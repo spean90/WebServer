@@ -471,17 +471,26 @@ $(document).ready(function() {
     	 
      }
      console.log(param);
-     param = JSON.stringify(param);
+     var paramStr = JSON.stringify(param);
      var config = {
-				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+param+"&modelsId="+ $('#modelsId').text()
+				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+paramStr+"&modelsId="+ $('#modelsId').text()
 						+"&key=" + sessionStorage.token+"&city=1",
 				callbackParameter: "callback",
 				success : function(data){ 
-					if (data.msg.code!="0000") {
+					/* if (data.msg.code!="0000") {
 						return;
-					}
+					} */
 					var content = data.content;
-					console.log(content);
+					var obj = {};
+					obj.param = param;
+					obj.result = content;
+					obj.modelsId=$('#modelsId').text();
+					obj.modelsName = $('.product_name').text();
+					obj.pic = $('#pic').attr('src');
+					console.log(obj);
+					var key = parseInt(Math.random()*100000);
+					sessionStorage.setItem(key+"",JSON.stringify(obj));
+					window.location.href="/evaluateResult_"+key+".html"
 				}
 		}
 		Modal.jsonp(config);
