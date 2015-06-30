@@ -1,6 +1,8 @@
 /**
  * 个人资料
  */
+var user_province;
+var user_city;
 var UserInfo = {
 		//TODO 接口还没有
 		initUserInfo : function(){
@@ -49,8 +51,8 @@ var UserInfo = {
 								+ '</div>'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>所在城市：</span>'
-								+ '<select name="" id=""></select>'
-								+ '<select name="" id=""></select>'
+								+ '<select name="" id="province" onchange="UserInfo.listAllCity();"></select>'
+								+ '<select name="" id="city"></select>'
 								+ '</div>'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>详细地址：</span>'
@@ -68,12 +70,55 @@ var UserInfo = {
 				/*}
 			};
 			Modal.jsonp(config);*/
+		},
+		/*根据省份所有城市列表*/
+		listAllCity : function(){
+			var provienceId = $("#province").val();
+			$("#city").empty();
+			$("#city").append('<option value="">--请选择--</option>');	
+			if(provienceId==''){
+				return;
+			}
+			var config = {
+				url : Sys.serviceDomain + "/listAllCity?provienceId="+provienceId,
+				callbackParameter : "callback",
+				success : function(data) {
+					if (data.msg.code != "0000") {
+						return;
+					}
+					var list = data.content.list;
+					for(var i=0; i<list.length; i++){
+						$("#city").append('<option value="' + list[i].cityId + '">' + list[i].name + '</option>');	
+					}
+				}
+			}
+			Modal.jsonp(config);
+		},
+		/*获取所有的 省份*/
+		listAllProvience : function(){
+			$("#province").empty();
+			$("#province").append('<option value="">--请选择--</option>');	
+			var config = {
+				url : Sys.serviceDomain + "/listAllProvience?currentPage=0",
+				callbackParameter : "callback",
+				success : function(data) {
+					if (data.msg.code != "0000") {
+						return;
+					}
+					var list = data.content.list;
+					for(var i=0; i<list.length; i++){
+						$("#province").append('<option value="' + list[i].provinceId + '">' + list[i].provinceName + '</option>');	
+					}
+				}
+			}
+			Modal.jsonp(config);
 		}
 };
 
 $(function(){
 	  tabs($('.tabs'));
 	  UserInfo.initUserInfo();
+	  UserInfo.listAllProvience();
 	  $(".infomation a:eq(0)").click(function(){
 		 $(".tabs li:eq(1)>a").click(); 
 	  });
