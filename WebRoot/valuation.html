@@ -120,7 +120,7 @@
                  </dl>
                               
                 </div>
-                <div id="step-2" class="page">
+                <div id="step-2"  class="page">
                   <dl>
                           <dt class="property_title">
                             <span class="square"><span class="gou"></span></span>
@@ -462,7 +462,7 @@ $(document).ready(function() {
      var selecteds = $('.filter.clearfix dd a');
      var param = {};
      for(var i=0;i<selecteds.length;i++){
-    	 var step = $(selecteds[i]).attr('step');
+    	 var step = $(selecteds[i]).attr('stepId');
     	 if(param[step]==null||param[step]=='undefind'){
     		 param[step] = $(selecteds[i]).attr('id');
     	 }else{
@@ -470,11 +470,11 @@ $(document).ready(function() {
     	 }
     	 
      }
-     console.log(param);
      var paramStr = JSON.stringify(param);
+     paramStr = encodeURI(paramStr);
      var config = {
 				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+paramStr+"&modelsId="+ $('#modelsId').text()
-						+"&key=" + sessionStorage.token+"&city=1",
+						+"&city=1",
 				callbackParameter: "callback",
 				success : function(data){ 
 					/* if (data.msg.code!="0000") {
@@ -487,7 +487,6 @@ $(document).ready(function() {
 					obj.modelsId=$('#modelsId').text();
 					obj.modelsName = $('.product_name').text();
 					obj.pic = $('#pic').attr('src');
-					console.log(obj);
 					var key = parseInt(Math.random()*100000);
 					sessionStorage.setItem(key+"",JSON.stringify(obj));
 					window.location.href="/evaluateResult_"+key+".html"
@@ -591,12 +590,13 @@ $(document).ready(function() {
            
           var val = $(this).find('.property_value').text();
           var dataid =$(this).attr('data-id');
+          var stepId = $(this).parent().parent().parent().parent().attr('data-step');
           var step = $(this).parent().parent().parent().parent().attr('id').substr(-2);
           step = parseInt(step);
           if(step<0){
         	  step = step*-1;
           }
-           html += '<dd><a id="'+dataid+'" step="'+step+'">'+val+'</a></dd>';
+           html += '<dd><a id="'+dataid+'" step="'+step+'" stepId="'+stepId+'">'+val+'</a></dd>';
         }   
        })
       $('.filter').html(html);

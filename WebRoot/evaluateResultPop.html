@@ -17,10 +17,18 @@
 <div class="pop-eva">
 	<div class="eva-title"><i class="icon-check"></i>　亲，机器已成功加入回收车！</div>
 	<div class="tx-cen">
-		<a href="javascript:;" class="common-btn red">去回收车结算</a>　　<a href="javascript:;" class="common-btn gray">继续回收</a>
+		<a href="javascript:;" onclick="evaluateCar()" class="common-btn red">去回收车结算</a>　　<a href="javascript:;" class="common-btn gray" onclick="continueBuy()">继续回收</a>
 	</div>
 	<p class="mt-30 cor-gary">温馨提示：</p>
 	<p class="cor-gary">如果您有多部手机要回收，累计金额必须超过50元。</p>
 </div>
+<script>
+		var evaluateCar = function(){
+			window.parent.location.href = '/myRetrieveCar.html';
+		}
+		var continueBuy = function(){
+			window.parent.location.href = '/index.html';
+		}
+</script>
 </body>
 </html>

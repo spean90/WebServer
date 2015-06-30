@@ -3,6 +3,7 @@
  */
 var myRetrieveCar = {
 		initRetrieveCar : function(){
+			$('tbody').empty();
 			var config = {
 					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token, 
 					callbackParameter: "callback",

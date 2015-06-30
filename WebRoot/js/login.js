@@ -8,6 +8,7 @@ var login = {
 				Modal.alert("请输入用户名和密码！");
 				return;
 			}
+			
 			var config = {
 					url : Sys.serviceDomain+"/userlogin?userId="+userId+'&passwd='+passwd, 
 					callbackParameter: "callback",
@@ -17,9 +18,15 @@ var login = {
 							Modal.alert("登录失败！请稍后再试","错误");
 							return;
 						}
-						sessionStorage.token = data.key;
+						//sessionStorage.token = data.key;
+						sessionStorage.token = '1234';
 						sessionStorage.userId = userId;
-						window.location.href = '/index.html';
+						var query = window.location.search;
+						if(query!=''){
+							window.location.href = query.substring(1);
+						}else{
+							window.location.href = '/index.html';
+						}
 					}
 			}
 			Modal.jsonp(config);
@@ -27,5 +34,4 @@ var login = {
 		
 }
 $(function(){
-	
 })

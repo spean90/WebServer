@@ -4,14 +4,17 @@
 var evaluateResult = {
 	/*初始化回收车*/
 	initCar : function(){
+		var key = $('#key').text();
+		var obj = sessionStorage.getItem(key);
+		obj = JSON.parse(obj)
 		$('tbody').empty();
-		str = '<tr id="'+item.customersBasketId+'">'
+		str = '<tr id="'+obj.modelsId+'">'
         + '<td class="checkbox none"><input class="check-one check" type="checkbox"/></td>'
-        + '<td class="goods"><img src="'+item.modelsImage+'" alt=""/><span>'+item.modelsName+'</span></td>'
-        + '<td class="price">'+item.lastEvaluationPrice+'</td>'
+        + '<td class="goods"><img src="'+obj.pic+'" alt=""/><span>'+obj.modelsName+'</span></td>'
+        + '<td class="price">'+1111+'</td>'
         + '<td class="status">价格有效</td>'
         + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
-        + '<td class="subtotal">'+item.lastEvaluationPrice+'</td>'
+        + '<td class="subtotal">'+1111+'</td>'
         + '<td class="operation">'
       //  + '<span class="delete">删除</span>'
         + '<span class="reprice">重新询价</span>'
@@ -21,10 +24,30 @@ var evaluateResult = {
 	},
 	/*添加到回收车*/
 	addToCart : function(isPop){
-		if(isPop){//弹窗? 添加到回收车需要弹窗
-			$(this).modal('evaluateResultPop.html', 'evaluateResult_pop');
+		if(sessionStorage.userId==null){
+			var key = $('#key').text();
+			window.location.href = '/login.html?evaluateResult_'+key+'.html';
+			return;
 		}
-		
+		var key = $('#key').text();
+		var obj = sessionStorage.getItem(key);
+		obj = JSON.parse(obj);
+		var paramStr = JSON.stringify(obj.param);
+	     paramStr = encodeURI(paramStr);
+		 var config = {
+					url : Sys.serviceDomain+"/addNewCustomersBasket?evaluations="+paramStr+"&modelsId="+ obj.modelsId
+							+"&key=" + sessionStorage.token,
+					callbackParameter: "callback",
+					success : function(data){ 
+						/* if (data.msg.code!="0000") {
+							return;
+						} */
+						if(isPop){//弹窗? 添加到回收车需要弹窗
+							$(this).modal('evaluateResultPop.html', 'evaluateResult_pop');
+						}
+					}
+			}
+		 Modal.jsonp(config);
 	},
 	/*	去结算
 	 * 1、添加到回收车；
@@ -32,7 +55,6 @@ var evaluateResult = {
 	 */
 	goToCart : function(){
 		evaluateResult.addToCart(false);
-		alert("去结算");
 	}
 };
 
