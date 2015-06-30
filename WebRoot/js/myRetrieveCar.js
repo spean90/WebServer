@@ -5,7 +5,7 @@ var myRetrieveCar = {
 		initRetrieveCar : function(){
 			$('tbody').empty();
 			var config = {
-					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token, 
+					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token+"&customersBasketId="+$('#customersBasketId').text(), 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -27,7 +27,7 @@ var myRetrieveCar = {
 									  + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
 									  + '<td class="subtotal">'+item.lastEvaluationPrice+'</td>'
 									  + '<td class="operation">'
-									  + '<span class="delete")>删除</span>'
+									  + '<span class="delete" onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</span>'
 									  + '<span class="reprice">重新询价</span>'
 									  + '</td>'
 									  + '</tr>';

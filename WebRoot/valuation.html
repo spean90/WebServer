@@ -474,7 +474,7 @@ $(document).ready(function() {
      paramStr = encodeURI(paramStr);
      var config = {
 				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+paramStr+"&modelsId="+ $('#modelsId').text()
-						+"&city=1",
+						+"&cityId=1",
 				callbackParameter: "callback",
 				success : function(data){ 
 					/* if (data.msg.code!="0000") {

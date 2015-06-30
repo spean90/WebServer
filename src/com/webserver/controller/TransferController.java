@@ -55,6 +55,21 @@ public class TransferController {
 		return modelAndView;
 	}
 	/**
+	 * 回收车
+	* @author Huangsp
+	* @date 2015年6月30日 
+	*
+	* @param customersBasketIds
+	* @return
+	 */
+	@RequestMapping(value="/myRetrieveCar_{customersBasketId}")
+	public ModelAndView myRetrieveCar(@PathVariable(value="customersBasketId") String customersBasketId) {
+		ModelAndView modelAndView = new ModelAndView("myRetrieveCar");
+		modelAndView.addObject("customersBasketId", customersBasketId); 
+		return modelAndView;
+	}
+	
+	/**
 	 * 纯页面跳转
 	* @author Huangsp
 	 */

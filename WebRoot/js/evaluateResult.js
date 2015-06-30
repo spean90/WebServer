@@ -11,13 +11,13 @@ var evaluateResult = {
 		str = '<tr id="'+obj.modelsId+'">'
         + '<td class="checkbox none"><input class="check-one check" type="checkbox"/></td>'
         + '<td class="goods"><img src="'+obj.pic+'" alt=""/><span>'+obj.modelsName+'</span></td>'
-        + '<td class="price">'+1111+'</td>'
+        + '<td class="price">'+obj.result.lastEvaluationPrice+'</td>'
         + '<td class="status">价格有效</td>'
         + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
-        + '<td class="subtotal">'+1111+'</td>'
+        + '<td class="subtotal">'+obj.result.lastEvaluationPrice+'</td>'
         + '<td class="operation">'
       //  + '<span class="delete">删除</span>'
-        + '<span class="reprice">重新询价</span>'
+        + '<span class="reprice" onclick="history.go(-1)">重新询价</span>'
         + '</td>'
         + '</tr>';
 	$('tbody').append($(str));
@@ -39,12 +39,17 @@ var evaluateResult = {
 							+"&key=" + sessionStorage.token,
 					callbackParameter: "callback",
 					success : function(data){ 
-						/* if (data.msg.code!="0000") {
+						 if (data.msg.code!="0000") {
 							return;
-						} */
+						} 
+						var content = data.content;
 						if(isPop){//弹窗? 添加到回收车需要弹窗
 							$(this).modal('evaluateResultPop.html', 'evaluateResult_pop');
+						}else{
+							//去结算
+							window.location.href='/myRetrieveCar_'+content.customersBasketId+'.html'
 						}
+						sessionStorage.removeItem(key)
 					}
 			}
 		 Modal.jsonp(config);
