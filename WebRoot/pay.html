@@ -7,7 +7,9 @@
 <title>回收车结算</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-
+<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
+<link rel="stylesheet" href="css/index2.css" />
 <!--[if lte IE 8]>
  <script src="scripts/excanvas.min.js"></script>
  <![endif]-->
@@ -108,7 +110,7 @@
       <div class="tx-right">
         <span class="all-count">您总共可以获得：<span class="c-red" id="sum">￥550</span></span>
         <br /><br />
-        <label><input type="checkbox" id="clause" /> 我同意</label><a href="javascript:;">壹回收网服务条款</a>
+        <label><input type="checkbox" id="clause" /> 我同意</label><a href="javascript:;" onclick="pay.showClause()">壹回收网服务条款</a>
         <a href="javascript:;" class="oran-btn" onclick="pay.submitOrder()">确认订单</a>
       </div>
     </div>

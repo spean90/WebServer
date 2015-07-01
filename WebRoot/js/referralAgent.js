@@ -1,4 +1,4 @@
-var recordPerPage_set = 10;//每页多少条
+var recordPerPage_set = 8;//每页多少条
 var referralAgent = {
 		getRefferalAgent : function(page) {
 			/*if(sessionStorage.token==null){

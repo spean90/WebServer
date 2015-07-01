@@ -68,10 +68,25 @@ public class TransferController {
 		modelAndView.addObject("customersBasketId", customersBasketId); 
 		return modelAndView;
 	}
+	/**
+	 * 结算页面
+	* @author Huangsp
+	* @date 2015年7月1日 
+	*
+	* @param customersBasketIds
+	* @return
+	 */
 	@RequestMapping(value="/pay_{customersBasketIds}")
 	public ModelAndView pay(@PathVariable(value="customersBasketIds") String customersBasketIds) {
 		ModelAndView modelAndView = new ModelAndView("pay");
 		modelAndView.addObject("customersBasketIds", customersBasketIds); 
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/orderDetail_{orderId}")
+	public ModelAndView orderDetail(@PathVariable(value="orderId") String orderId) {
+		ModelAndView modelAndView = new ModelAndView("orderDetail");
+		modelAndView.addObject("orderId", orderId); 
 		return modelAndView;
 	}
 	

@@ -214,6 +214,9 @@ var pay = {
 			Modal.alert('请先同意壹回收网服务条款');
 		}
 	},
+	showClause : function() {
+		$(this).modal('clausePop.html', 'clausePop');
+	},
 	//初始化页面后。添加响应
 	initPage : function(){
 		 $('#online_bank').click(function(){

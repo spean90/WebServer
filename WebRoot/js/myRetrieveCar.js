@@ -5,7 +5,7 @@ var myRetrieveCar = {
 		initRetrieveCar : function(){
 			$('tbody').empty();
 			var config = {
-					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token+"&customersBasketId="+$('#customersBasketIds').text(), 
+					url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token+"&customersBasketId="+$('#customersBasketId').text(), 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
