@@ -17,6 +17,7 @@
 <body>
 <!--Str 公用顶部-->
 <#include "/common/html/body_include.html">
+<div id="customersBasketIds" hidden>${customersBasketIds!}</div>
 <!--End 公用顶部-->
 <!--Str 主体内容-->
 <div class="wrapper mt-15 clearfix">
@@ -30,32 +31,55 @@
   <div class="pay-page">
     <p class="c-black fb">填写联系人信息</p>
     <p>
-      姓名：<input type="text" class="gray-text" placeholder="请输入交易人姓名" />
-      手机号码：<input type="text" class="gray-text" placeholder="请输入手机号码" />
-      <a href="javascript:;" class="captcha-btn">发送验证码</a>　<input type="text" class="gray-text" placeholder="请输入验证码" />
+      姓名：<input type="text" class="gray-text" id="username" placeholder="请输入交易人姓名" />
+      手机号码：<input type="text" class="gray-text" id="phone" placeholder="请输入手机号码" />
+      <a href="javascript:;" onclick="pay.generateCheckCode()" class="captcha-btn">发送验证码</a>　<input type="text" id="code" class="gray-text" placeholder="请输入验证码" />
     </p>
     <p><span class="c-gray">*收款及交易方式</span>　<input type="text" style="width: 300px;" class="focus-text" placeholder="您所在的城市是福州，如有误请选择[选择城市]" /></p>
     <p>
-      <span class="c-black fb">选择收款方式</span>　<label><input type="radio" name="trade-way" id="online_bank" checked /> 网银转账：<span class="c-red">550元</span></label>　　<label><input type="radio" name="trade-way" id="pay_cash" /> 现金交易：<span class="c-red">550元</span></label>
+      <span class="c-black fb">选择收款方式</span>
+      	<span id="payType">
+	      	<label><input type="radio" name="trade-way" id="online_bank" checked /> 网银转账：<span class="c-red">550元</span></label>　
+	      　		<label><input type="radio" name="trade-way" id="pay_cash" /> 现金交易：<span class="c-red">550元</span></label>
+      	</span>　
     </p>
     <div class="bank-area">
       支持五大银行及大部分主流银行　<a href="javascript:;">查看支持的银行</a>
-      <p>开户银行：<select><option>请选择</option></select>　姓名：<input type="text" style="width: 150px;" /></p>
+      <p>开户银行：<select id="bank">
+        <option value="0">请选择</option>
+        <option value="1">中国银行</option>
+		<option value="2">中国农业银行</option>
+		<option value="3">中国建设银行</option>
+		<option value="4">招商银行</option>
+		<option value="5">中国工商银行</option>
+		<option value="6">上海浦东发展银行</option>
+		<option value="7">中国邮政储蓄银行</option>
+		<option value="2083">交通银行</option>
+		<option value="2084">中信银行</option>
+		<option value="2085">中国光大银行</option>
+		<option value="2086">华夏银行</option>
+		<option value="2090">兴业银行</option>
+      
+      </select>　
+      	姓名：<input type="text" style="width: 150px;" /></p>
       <p>详细卡号：<input type="text" style="width: 376px;" placeholder="目前不支持信用卡，请填写借记卡卡号" /></p>
     </div>
     <p class="depart-line"><span>收款方式决定了交易方式</span></p>
-    <p><label><input type="radio" name="trade-way1" checked /> 线下门店</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-map"></i>　周边网点</span></p>
-    <p><label><input type="radio" name="trade-way1" /> 当面交易</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-engineer"></i>　周边工程师</span></p>
-    <div class="pay-address">
-      <p class="cor-gary">我的地址：</p>
-      <p>
-        <select name="" id=""><option>请选择省份</option></select>　　<select name="" id=""><option>请选择城市</option></select>
-      </p>
-      <p><input type="text" placeholder="请输入详细地址" /></p>
-      <p><label><input type="radio" /> 顺丰快递/EMS</label>　　　　<span class="cor-gary">自己快递要回收的物品给我们，快递费我们承担　<a href="javascript:;">查看运费补贴详情</a></span></p>
-      <p>快递到：福州市鼓楼区湖东路88号壹回收</p>
-    </div>
-
+    <div id="dealType">
+	   <p id="shop" hidden><label><input type="radio" name="trade-way1" checked /> 线下门店</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-map"></i>　周边网点</span></p>
+	   <div id="faceToFace" hidden class="pay-address">
+	   	 <p><label><input type="radio" name="trade-way1" checked /> 当面交易</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-engineer"></i>　周边工程师</span></p>
+	     <p class="cor-gary">我的地址：</p>
+	     <p>
+	       <select name="" id="province" onchange="pay.changeProvincer(this.value);"><option>请选择省份</option></select>　　<select name="" id="city"><option>请选择城市</option></select>
+	     </p>
+	     <p><input type="text" placeholder="请输入详细地址" /></p>
+	   </div>
+	   <div id="send" hidden>
+		   <p><label><input type="radio" name="trade-way1" checked/> 顺丰快递/EMS</label>　　　　<span class="cor-gary">自己快递要回收的物品给我们，快递费我们承担　<a href="javascript:;">查看运费补贴详情</a></span></p>
+		   <p>快递到：福州市鼓楼区湖东路88号壹回收</p>
+	   </div>
+	</div>
     <br />
     <p class="clearfix"><span class="fl c-black fb">回收清单</span><a href="javascript:;" class="fr">返回回收车</a></p>
     <div class="order-table">
@@ -84,8 +108,8 @@
       <div class="tx-right">
         <span class="all-count">您总共可以获得：<span class="c-red" id="sum">￥550</span></span>
         <br /><br />
-        <label><input type="checkbox" /> 我同意</label><a href="javascript:;">壹回收网服务条款</a>
-        <a href="javascript:;" class="oran-btn">确认订单</a>
+        <label><input type="checkbox" id="clause" /> 我同意</label><a href="javascript:;">壹回收网服务条款</a>
+        <a href="javascript:;" class="oran-btn" onclick="pay.submitOrder()">确认订单</a>
       </div>
     </div>
   </div>

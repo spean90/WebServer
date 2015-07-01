@@ -68,6 +68,12 @@ public class TransferController {
 		modelAndView.addObject("customersBasketId", customersBasketId); 
 		return modelAndView;
 	}
+	@RequestMapping(value="/pay_{customersBasketIds}")
+	public ModelAndView pay(@PathVariable(value="customersBasketIds") String customersBasketIds) {
+		ModelAndView modelAndView = new ModelAndView("pay");
+		modelAndView.addObject("customersBasketIds", customersBasketIds); 
+		return modelAndView;
+	}
 	
 	/**
 	 * 纯页面跳转

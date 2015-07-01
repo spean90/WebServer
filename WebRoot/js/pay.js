@@ -6,7 +6,7 @@ var pay = {
 	initRetrieveList : function(){
 		$('table').empty();
 		var config = {
-				url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token, 
+				url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token+"&customersBasketId="+$('#customersBasketIds').text(), 
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
@@ -26,6 +26,7 @@ var pay = {
 							+ '</tr>';
 						$('table').append($(str));
 						var sum = 0;
+						var currency = '￥';
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
 							sum += item.lastEvaluationPrice;
@@ -37,38 +38,209 @@ var pay = {
 								+ '<td>'+item.lastEvaluationPrice+'</td>'
 								+ '</tr>';
 							$('table').append($(str));
+							currency = item.currency;
 						}
 						$('.order-count.clearfix').empty();
 						var s = ' <span class="fl">商家报价</span>'
-							+'<span class="fr">共'+list.length+'件商品，合计￥'+sum+'</span>';
+							+'<span class="fr">共'+list.length+'件商品，合计'+currency+sum+'</span>';
 						$('.order-count.clearfix').append($(s));
-						$('#sum').text('￥'+sum);
+						$('#sum').text(currency+sum);
+						$('.c-red').text(currency+sum);
 					}
 				}
 		}
 		Modal.jsonp(config);
 	},
+	//获取短信验证码
+	generateCheckCode : function() {
+		var tel = $("#phone").val();
+		if(tel==''){
+			Modal.alert('请输入联系电话！');
+			return false;
+		}
+		var config = {
+				url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						Modal.alert('短信发送失败，请稍后再试！');
+						return;
+					}
+					Modal.alert('短信发送成功！');
+				}
+		}
+		Modal.jsonp(config);
+	},
+	initProvince : function() {
+		var config = {
+				url : Sys.serviceDomain+"/listAllProvince?currentPage=0",
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						//Modal.alert('短信发送失败，请稍后再试！');
+						return;
+					}
+					var content = data.content;
+					if (content.list!=null&&content.list.length!=0) {
+						var list = content.list;
+						for(var i=0;i<list.length;i++){
+							var str = '<option value="'+list[i].provinceId+'">'+list[i].provinceName+'</option>'
+							$('#province').append($(str));
+						}
+					}
+				}
+		}
+		Modal.jsonp(config);
+	},
+	changeProvincer : function(val) {
+		$('#city').empty();
+		var config = {
+				url : Sys.serviceDomain+"/listAllCity?provienceId="+val,
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						//Modal.alert('短信发送失败，请稍后再试！');
+						return;
+					}
+					var content = data.content;
+					if (content.list!=null&&content.list.length!=0) {
+						var list = content.list;
+						for(var i=0;i<list.length;i++){
+							var str = '<option value="'+list[i].cityId+'">'+list[i].name+'</option>'
+							$('#city').append($(str));
+						}
+					}
+				}
+		}
+		Modal.jsonp(config);
+	},
+	initPayType : function() {
+		$('#payType').empty();
+		var config = {
+				url : Sys.serviceDomain+"/listOneCityRecycleMethod?cityId="+1,
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						return;
+					}
+					var content = data.content;
+					if (content.list!=null&&content.list.length!=0) {
+						var list = content.list;
+						for(var i=0;i<list.length;i++){
+							if(list[i].methodType==1){
+								if (list[i].recycleMethodId==1) {
+									var str = '<label><input type="radio" name="trade-way" id="online_bank" checked value="1" /> 网银转账：<span class="c-red"></span></label>';
+									$('#payType').append($(str));
+								}else if (list[i].recycleMethodId==2){
+									var str = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="2" /> 现金交易：<span class="c-red"></span></label>';
+									$('#payType').append($(str));
+								}
+							}else{
+								if(list[i].methodType==2) {
+									if (list[i].recycleMethodId==1) {
+										$('#shop').show();
+									}else if (list[i].recycleMethodId==2){
+										$('#faceToFace').show();
+									}
+									else if (list[i].recycleMethodId==3){
+										$('#send').show();
+									}
+								}
+							}
+						}
+						pay.initPage();
+					}
+				}
+		}
+		Modal.jsonp(config);
+	},
+	submitOrder : function() {
+		if($('#clause').is(':checked')){
+			var customersBasketIds = $('#customersBasketIds').text();
+			var username = $('username').val();
+			var phone = $('#phone').val();
+			var code = $('#code').val();
+			var payType = $("input[name='trade-way']:checked").val();
+			var dealType = $("input[name='trade-way1']:checked").val();
+			var bank = '';
+			var bank_user = '';
+			var bank_account = '';
+			if(username==''){
+				Modal.alert('请输入姓名');
+				return ;
+			}
+			if(phone==''){
+				Modal.alert('请输入电话');
+				return ;
+			}
+			if(code==''){
+				Modal.alert('请输入短信验证码');
+				return ;
+			}
+			if(payType=='' || payTpye=='undefind'){
+				Modal.alert('请选择收款方式');
+				return ;
+			}
+			if(payType==1){
+				bank = $('#bank').val();
+				bank_user = $('#bank_user').val();
+				bank_account = $('#bank_account').val();
+				if(bank==''||bank_user==''||bank_account==''){
+					Modal.alert('请输入银行卡信息');
+					return ;
+				}
+			}
+//			var config = {
+//					url : Sys.serviceDomain+"/listAllCity?provienceId="+val,
+//					callbackParameter: "callback",
+//					success : function(data){ 
+//						if (data.msg.code!="0000") {
+//							//Modal.alert('短信发送失败，请稍后再试！');
+//							return;
+//						}
+//						var content = data.content;
+//						if (content.list!=null&&content.list.length!=0) {
+//							var list = content.list;
+//							for(var i=0;i<list.length;i++){
+//								var str = '<option value="'+list[i].cityId+'">'+list[i].name+'</option>'
+//								$('#city').append($(str));
+//							}
+//						}
+//					}
+//			}
+//			Modal.jsonp(config);
+			
+		}else{
+			Modal.alert('请先同意壹回收网服务条款');
+		}
+	},
+	//初始化页面后。添加响应
+	initPage : function(){
+		 $('#online_bank').click(function(){
+			    $('.bank-area').show();
+			  });
+		  $('#pay_cash').click(function(){
+		    $('.bank-area').hide();
+		  });
+		  $('.captcha-btn').click(function(){
+		    $(this).addClass('disabled');
+		    var _second = 60;
+		    var _timer = setInterval(function(){
+		      _second -= 1;
+		      if (_second > 0) {
+		        $('.captcha-btn').text(_second + 's后可重发');
+		      }else{
+		        $('.captcha-btn').text('发送验证码').removeClass('disabled');
+		        clearInterval(_timer);
+		      }
+		    }, 1000);
+		  });
+	}
+	
 };
 
 $(function(){
 	pay.initRetrieveList();
-	 $('#online_bank').click(function(){
-		    $('.bank-area').show();
-		  });
-	  $('#pay_cash').click(function(){
-	    $('.bank-area').hide();
-	  });
-	  $('.captcha-btn').click(function(){
-	    $(this).addClass('disabled');
-	    var _second = 60;
-	    var _timer = setInterval(function(){
-	      _second -= 1;
-	      if (_second > 0) {
-	        $('.captcha-btn').text(_second + 's后可重发');
-	      }else{
-	        $('.captcha-btn').text('发送验证码').removeClass('disabled');
-	        clearInterval(_timer);
-	      }
-	    }, 1000);
-	  });
+	pay.initProvince();
+	pay.initPayType();
 });
