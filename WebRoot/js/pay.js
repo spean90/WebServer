@@ -33,19 +33,19 @@ var pay = {
 							str = '<tr id="'+item.customersBasketId+'">'
 								+ '<td>'+item.modelsName+'</td>'
 								+ '<td></td>'
-								+ '<td>'+item.lastEvaluationPrice+'</td>'
+								+ '<td>'+item.lastEvaluationPrice.toFixed(2)+'</td>'
 								+ '<td>1</td>'
-								+ '<td>'+item.lastEvaluationPrice+'</td>'
+								+ '<td>'+item.lastEvaluationPrice.toFixed(2)+'</td>'
 								+ '</tr>';
 							$('table').append($(str));
 							currency = item.currency;
 						}
 						$('.order-count.clearfix').empty();
 						var s = ' <span class="fl">商家报价</span>'
-							+'<span class="fr">共'+list.length+'件商品，合计'+currency+sum+'</span>';
+							+'<span class="fr">共'+list.length+'件商品，合计'+currency+sum.toFixed(2)+'</span>';
 						$('.order-count.clearfix').append($(s));
-						$('#sum').text(currency+sum);
-						$('.c-red').text(currency+sum);
+						$('#sum').text(currency+sum.toFixed(2));
+						$('.c-red').text(currency+sum.toFixed(2));
 					}
 				}
 		}
