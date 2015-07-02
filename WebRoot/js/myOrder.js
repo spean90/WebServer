@@ -21,6 +21,7 @@ myOrder = {
 						var ordersItemList;
 						for(var i=0;i<list.length;i++) {
 							item = list[i];
+							console.log(">>"+JSON.stringify(item));
 							ordersItemList = list[i].ordersItemList;
 							if(i==0){
 								str = '<div class="catbox order-table">';
@@ -55,7 +56,7 @@ myOrder = {
 				                + '<td class="status">价格有效</td>'
 				                + '<td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="'+ordersItemList[j].quantity+'"/><span class="add none"></span></td>'
 				                + '<td class="subtotal">'+item.currency+ordersItemList[j].recyclePrice+'</td>'
-				                + '<td><a href="javascript:;" class="underline">评估详情</a></td>'
+				                + '<td><a href="javascript:;" onclick="myOrder.showAssessDetail()" class="underline">评估详情</a></td>'
 				                + '<td></td>'
 				                + '</tr>'
 				                sum = sum+ordersItemList[j].recyclePrice;
@@ -76,11 +77,19 @@ myOrder = {
 			                + '</div>'
 			                + '<table class="order-table" style="margin-top: -10px;">'
 			                + '<tr class="item">'
-			                + '<td colspan="6" class="tx-right">'
-			                + '<a href="#" class="btn-radius">客户发货</a> &nbsp;'
-			                + '<a href="#" class="btn-radius">　取消　</a> &nbsp;'
-			                + '<a href="#" class="btn-radius">　评价　</a> &nbsp;'
-			                + '</td>'
+			                + '<td colspan="6" class="tx-right">';
+			                if(item.ordersStatusId=="1"){
+			                	//未处理
+			                	str = str + '<a href="#" onclick="myOrder.showOrderOper();" class="btn-radius">客户发货</a> &nbsp;'
+				                + '<a href="#" class="btn-radius">　取消　</a> &nbsp;';
+			                }else if(item.ordersStratusId=="5"){
+			                	//已回寄
+			                	str = str  + '<a href="#" onclick="myOrder.showOrderOper();" class="btn-radius">完成回退</a> &nbsp;';
+			                }else if(item.ordersStratusId=="6" || item.ordersStratusId=="7"){
+			                	//已回寄
+			                	str = str  + '<a href="#" onclick="myOrder.showAssessment();" class="btn-radius">评价</a> &nbsp;';
+			                }
+			               str = str + '</td>'
 			                + '</tr>'
 			                + '</table>'
 			                + '</div>';
@@ -107,6 +116,15 @@ myOrder = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		showAssessment : function(){
+			$(this).modal('/assessmentPop.html', '评价')
+		},
+		showOrderOper : function(){
+			$(this).modal('/orderOperPop.html', '订单操作')
+		},
+		showAssessDetail : function() {
+			$(this).modal('/assessDetails.html', '评估详情')
 		}
 		
 };

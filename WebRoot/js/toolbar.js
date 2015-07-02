@@ -40,7 +40,7 @@ var toolBar = {
 			                          +'<span>'
 			                          +' <ul>'
 			                          +' <li>'+item.modelsName+'</li>'
-			                          +' <li>回收价：<span>￥'+item.lastEvaluationPrice+'</span><a onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</a></li>'
+			                          +' <li>回收价：<span>'+item.currency+item.lastEvaluationPrice.toFixed(2)+'</span><a onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</a></li>'
 			                          +'   <li>12306人回收</li>'
 			                          +' </ul>'
 			                          +' </span>'
@@ -49,7 +49,7 @@ var toolBar = {
 								$('.hs-box-js>ul').append(retrieve);
 							}
 							$('.total span:first').text('共'+list.length+'件商品');
-							$('.total span em').text('￥'+totalMoney)
+							$('.total span em').text(item.currency+totalMoney.toFixed(2))
 						}
 					}
 			}

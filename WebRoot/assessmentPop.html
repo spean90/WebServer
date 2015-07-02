@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>弹窗-评价</title>
+	<link rel="stylesheet" href="css/public.css" />
+	<link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+	<div class="operate-pop" style="margin: 0 auto;">
+		<div class="pop-header">
+			<i class="icon-close close-pop"></i>
+			评价订单
+		</div>
+		<div class="pop-body">
+			<div class="green-radio">
+				<label><input type="radio" name="satisty" /> <span>非常满意</span></label> &nbsp;
+				<label><input type="radio" name="satisty" /> <span>满意</span></label> &nbsp;
+				<label><input type="radio" name="satisty" /> <span>一般</span></label> &nbsp;
+				<label><input type="radio" name="satisty" /> <span>不满意</span></label>
+			</div>
+			<p class="tx-left">评价说明</p>
+			<textarea placeholder="请在此输入评价内容"></textarea>
+		</div>
+		<div class="pop-footer">
+			<input type="button" class="close-pop btn-green" value="确 定" />　　 &nbsp;
+			<input type="button" class="close-pop btn-gray" value="取 消" />
+		</div>
+	</div>
+
+<script src="scripts/jquery-1.9.1.min.js"></script>
+<script src="scripts/jquery.placeholder.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('input, textarea').placeholder({customClass:'my-placeholder'});
+	$('.green-radio label').click(function(){
+		$(this).addClass('on').siblings().removeClass('on');
+	});
+});
+</script>
+</body>
+</html>
