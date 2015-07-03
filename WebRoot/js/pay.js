@@ -71,9 +71,9 @@ var pay = {
 		}
 		Modal.jsonp(config);
 	},
-	initProvince : function() {
+	initCityRegion : function() {
 		var config = {
-				url : Sys.serviceDomain+"/listAllProvince?currentPage=0",
+				url : Sys.serviceDomain+"/listOneCityRegion?currentPage=0&cityId="+1,
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
@@ -84,8 +84,8 @@ var pay = {
 					if (content.list!=null&&content.list.length!=0) {
 						var list = content.list;
 						for(var i=0;i<list.length;i++){
-							var str = '<option value="'+list[i].provinceId+'">'+list[i].provinceName+'</option>'
-							$('#province').append($(str));
+							var str = '<option value="'+list[i].regionId+'">'+list[i].name+'</option>'
+							$('#cityRegion').append($(str));
 						}
 					}
 				}
@@ -139,10 +139,16 @@ var pay = {
 								if(list[i].methodType==2) {
 									if (list[i].recycleMethodId==1) {
 										$('#shop').show();
-									}else if (list[i].recycleMethodId==2){
 										$('#faceToFace').show();
+										$('#send').show();
+									}else if (list[i].recycleMethodId==2){
+										$('#shop').show();
+										$('#faceToFace').show();
+										$('#send').show();
 									}
 									else if (list[i].recycleMethodId==3){
+										$('#shop').show();
+										$('#faceToFace').show();
 										$('#send').show();
 									}
 								}
@@ -244,6 +250,6 @@ var pay = {
 
 $(function(){
 	pay.initRetrieveList();
-	pay.initProvince();
+	pay.initCityRegion();
 	pay.initPayType();
 });

@@ -66,35 +66,39 @@ var outlets = {
 					        	outlets.initOutletsData(pageNum);
 					        }
 					    });
+					    outlets.initPc(); 
 					}
 			}
 			Modal.jsonp(config);
+		},
+		initPc : function() {
+			 // 门店切换  美工写的  s
+		    $('.store-list > ul > li').click(function(){
+		      $(this).addClass('active').siblings().removeClass('active');
+		      $(this).parents('.store-list').siblings('.map-area').animate({'width': '700px'}, 300);
+		      $(this).parents('.store-list').siblings('.store-photo').show(300);
+		    });
+		    $('.store-photo').hover(function(){
+		      $(this).animate({'width': '500px'}, 300);
+		      $(this).siblings('.map-area').animate({'width': '450px'}, 300);
+		    }, function(){
+		      $(this).animate({'width': '250px'}, 'fast', function(){
+		        if ($(this).css('display') == 'block') {
+		          $(this).siblings('.map-area').animate({'width': '700px'}, 'fast');
+		        }
+		      });
+		    });
+		    $('.store-photo i.icon-close').click(function(){
+		      $(this).parent().hide(300);
+		      $(this).parent().siblings('.map-area').animate({'width': '950px'}, 300);
+		    });
+		 // 门店切换  美工写的  e
 		}
 		
 }
 
 $(function(){
-	 // 门店切换  美工写的  s
-    $('.store-list > ul > li').click(function(){
-      $(this).addClass('active').siblings().removeClass('active');
-      $(this).parents('.store-list').siblings('.map-area').animate({'width': '700px'}, 300);
-      $(this).parents('.store-list').siblings('.store-photo').show(300);
-    });
-    $('.store-photo').hover(function(){
-      $(this).animate({'width': '500px'}, 300);
-      $(this).siblings('.map-area').animate({'width': '450px'}, 300);
-    }, function(){
-      $(this).animate({'width': '250px'}, 'fast', function(){
-        if ($(this).css('display') == 'block') {
-          $(this).siblings('.map-area').animate({'width': '700px'}, 'fast');
-        }
-      });
-    });
-    $('.store-photo i.icon-close').click(function(){
-      $(this).parent().hide(300);
-      $(this).parent().siblings('.map-area').animate({'width': '950px'}, 300);
-    });
- // 门店切换  美工写的  e
+	
     //初始化分页控件
     $('#pagination').pagination({
         items: 10,

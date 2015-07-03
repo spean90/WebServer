@@ -28,35 +28,39 @@
 		</div>
 	</div>
 	<p>壹回收真诚欢迎您的反馈，以更好的为您服务！</p>
-	<div class="cor-gary">
-		<table width="100%">
-			<tr>
-				<td width="70" class="tx-right">*反馈类型</td>
-				<td>
-					<select><option>咨询类</option><option>建议类</option><option>投诉类</option></select>
-				</td>
-			</tr>
-			<tr>
-				<td class="tx-right">*标题</td>
-				<td><input type="text" /></td>
-			</tr>
-			<tr>
-				<td class="tx-right">内容</td>
-				<td><textarea class="gray-textarea" placeholder="请输入您的意见或建议(必填)"></textarea></td>
-			</tr>
-			<tr>
-				<td class="tx-right">附件</td>
-				<td>
-					<a href="javascript:;" class="attachment-btn">上传附件</a>
-					<span class="attchment-label"></span>
-					<input type="file" class="none" />
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div class="form-submit">
-		<a href="javascript:;" class="oran-btn">确认提交</a>
-	</div>
+	<form id="form" enctype="multipart/form-data">
+		<div class="cor-gary">
+		
+			<table width="100%">
+				<tr>
+					<td width="70" class="tx-right">*反馈类型</td>
+					<td>
+						<select name="type"><option value="1">咨询类</option><option value="2">建议类</option><option value="3">投诉类</option></select>
+					</td>
+				</tr>
+				<tr>
+					<td class="tx-right">*标题</td>
+					<td><input type="text" name="title" /></td>
+				</tr>
+				<tr>
+					<td class="tx-right">内容</td>
+					<td><textarea class="gray-textarea" name="askText" placeholder="请输入您的意见或建议(必填)"></textarea></td>
+				</tr>
+				<tr>
+					<td class="tx-right">附件</td>
+					<td>
+						<a href="javascript:;" class="attachment-btn">上传附件</a>
+						<span class="attchment-label"></span>
+						<input type="file" name="file" class="none" />
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+		<div class="form-submit">
+			<a href="javascript:;" class="oran-btn">确认提交</a>
+		</div>
+	</form>
 </div>
 
 <script src="scripts/jquery-1.9.1.min.js"></script>
@@ -65,8 +69,13 @@
 <script src="common/jquery/jquery.jsonp-2.4.0.min.js"></script>
 <script src="common/js/modal.js"></script>
 <script src="common/js/sys.js"></script>
+<script src="common/js/jquery.easyui.min.js"></script>
 <script type="text/javascript">
 $(function(){
+	if(sessionStorage.token==null || sessionStorage.token=='undefined'){
+		window.parent.location.href = '/login.html';
+		return;
+	}
 	$('input, textarea').placeholder({customClass:'my-placeholder'});
 	$('.attachment-btn').click(function(){
 		$(this).siblings('input[type="file"]').trigger('click');
