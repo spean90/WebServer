@@ -10,7 +10,8 @@ var toolBar = {
 				return;
 			}else{
 				historyRecord = JSON.parse(historyRecord);
-				for(var i=0;i<historyRecord.length;i++){
+				var length = historyRecord.length>4?4:historyRecord.length;
+				for(var i=0;i<length;i++){
 					var record = historyRecord[i];
 					var str = '<li><a href="/valuation_'+record.modelsId+'.html"><img src="'+record.src+'" alt="" /></a></li>';
 					$('#historyRecord').append($(str));

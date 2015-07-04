@@ -39,13 +39,20 @@ var valuation = {
 						var record ={};
 						record.src = content.modelsName;
 						record.modelsId = $('#modelsId').text();
+						var isIn = false;
 						for(var i=0;i<historyRecord.length;i++) {
 							if(historyRecord[i].modelsId=record.modelsId){
+								isIn = true;
 								return;
 							}
 						}
-						if(historyRecord.length<4){
-							
+						if(!isIn){
+							if(historyRecord.length<=4){
+								historyRecord.push(record);
+							}else{
+								historyRecord.shift();
+								historyRecord[i].push(record);
+							}
 						}
 						historyRecord.push(record);
 						historyRecord = JSON.stringify(historyRecord);
