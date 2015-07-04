@@ -16,7 +16,7 @@ var City = {
 				var str = '<dt>  热门城市</dt>';
 				$(".city-list-1.clearfix").append(str);	
 				for(var i=0; i<list.length; i++){
-					str = '<dd><a onclick="City.checkCity(' + list[i].cityId + ',\'' + list[i].name + '\');">' + list[i].name + '</a></dd>';
+					str = '<dd><a id="'+list[i].cityId+'" onclick="City.checkCity(' + list[i].cityId + ',\'' + list[i].name + '\');">' + list[i].name + '</a></dd>';
 					$(".city-list-1.clearfix").append(str);	
 				}
 			}
@@ -24,11 +24,11 @@ var City = {
 		Modal.jsonp(config);
 	},
 	/*根据首字母获取所有城市列表*/
-	listAllCity : function(provienceId){
+	listCityByFirstLetter : function(letter){
 		$(".city-list-result.clearfix").empty();
 		$(".city-list-result.clearfix").append('<em style="font-style:normal;color:#FF2F2F">&nbsp;&nbsp;&nbsp;加载中...</em>');	
 		var config = {
-			url : Sys.serviceDomain + "/listAllCity?provienceId=3",
+			url : Sys.serviceDomain + "/listCityByFirstLetter?letter="+letter,
 			callbackParameter : "callback",
 			success : function(data) {
 				if (data.msg.code != "0000") {
@@ -48,11 +48,21 @@ var City = {
 	/*选中城市*/
 	checkCity : function(id,name){
 		$("#address").html(name);
-		$("#address").click();
+		localStorage.cityId = id;
+		localStorage.cityName = name;
 	}
 };
 
 $(function(){
+	if(localStorage.cityId != null && localStorage.cityName!=null){
+		$("#address").html(localStorage.cityName);
+	}else{//默认选中热么城市第一个
+		var hot_01 = $(".city-list-1.clearfix a:eq(0)");
+		if(hot_01){
+			localStorage.cityId = $(hot_01).attr('id');
+			localStorage.cityName = $(hot_01).html();
+		}
+	}
 	City.listHotCity();
 	$(".city-list-3.clearfix a").click(function(){
 		var value = $(this).html();
@@ -61,7 +71,7 @@ $(function(){
 			$(list[i]).removeAttr('class');
 		}
 		$(this).attr("class","active");
-		City.listAllCity(value);
+		City.listCityByFirstLetter(value);
 	});
 	$(".city-list-3.clearfix a:eq(0)").click();
 });
