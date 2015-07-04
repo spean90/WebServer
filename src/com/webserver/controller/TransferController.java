@@ -28,6 +28,12 @@ public class TransferController {
 		modelAndView.addObject("bid", bid); 
 		return modelAndView;
 	}
+	@RequestMapping(value="/search_{keyword}")
+	public ModelAndView search(@PathVariable(value="keyword") String keyword) {
+		ModelAndView modelAndView = new ModelAndView("search");
+		modelAndView.addObject("keyword", keyword); 
+		return modelAndView;
+	}
 	/**
 	 * 估价结果页
 	* @author Huangsp

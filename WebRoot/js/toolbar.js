@@ -91,6 +91,10 @@ var toolBar = {
 			}else{
 				window.location.href = '/login.html';
 			}
+		},
+		doSearch : function(){
+			var keyword = $('#search-bar').val();
+			window.location.href = '/search_'+keyword+".html";
 		}
 		
 }
@@ -111,10 +115,14 @@ $(function(){
 	//右侧帮助按钮弹窗
 	$(".btn.btn-help").click(function(){
 		window.open("/help.html");
-	})
+	});
 	//右侧意见反馈按钮弹窗
 	$(".btn.btn-edit").click(function(){
 		$(this).modal('/feedback.html', '反馈')
+	});
+
+	$(".search-button").click(function(){
+		toolBar.doSearch();
 	})
 });
 
