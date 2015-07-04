@@ -16,12 +16,14 @@ var mypoints = {
 		getMyPointsByPage : function(page,type) {
 			var t = 'all';
 			if (type==1) {
-				t = 'increase';
+				t = 'all';
 			}else if(type == 2){
+				t = 'increase';
+			}else if(type==3){
 				t = 'reduce';
 			}
 			var config = {
-					url : Sys.serviceDomain+"/listHotModels?recordPerPage=4&currentPage="+page, 
+					url : Sys.serviceDomain+"/listUserIntegralDetail?recordPerPage=4&currentPage="+page+"&detailType="+type+"&key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -32,10 +34,10 @@ var mypoints = {
 						$('#'+t+' tr:gt(0)').remove();
 						var str = '';
 						for(var i=0;i<list.length;i++) {
-							str = '<tr><td width="250">2015-04-13　18:20:58</td>'
-				                +'<td>壹回收主站签到</td>'
-				                +'<td>连续签到1天</td>'
-				                +'<td class="c-red">'+list[i].modelsId+'</td></tr>';
+							str = '<tr><td width="250">'+list[i].updateTime+'</td>'
+				                +'<td>'+list[i].operate+'</td>'
+				                +'<td>'+list[i].detailDesc+'</td>'
+				                +'<td class="c-red">'+list[i].integral+'</td></tr>';
 							$('#'+t).append($(str));
 						}
 						var recordPerPage = content.recordPerPage;
@@ -66,7 +68,7 @@ $(function(){
         cssStyle: 'light-theme'
     });
     mypoints.initMyPoints();
-    mypoints.getMyPointsByPage(1,'');
     mypoints.getMyPointsByPage(1,1);
     mypoints.getMyPointsByPage(1,2);
+    mypoints.getMyPointsByPage(1,3);
 })

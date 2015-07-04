@@ -1,7 +1,7 @@
 var mywallet = {
 		initMyWallet : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listOwnRecommendInvoice?recordPerPage=4&key="+sessionStorage.token, 
+					url : Sys.serviceDomain+"/listOwnRecommendInvoice?currentPage=0&key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -9,7 +9,21 @@ var mywallet = {
 						}
 						var content = data.content;
 						var list = content.list;
-						$('.wallet-title .c-red').html('12345');
+						var sum_payed=0;
+						var sum_unpayed=0;
+						for(var i=0; i<list.length;i++){
+							var item = list[i];
+							var isSettled = item.isSettled;
+							if(isSettled=='0'){
+								sum_unpayed += item.totalAmount
+							}else{
+								sum_payed += item.totalAmount
+							}
+						}
+						var sum = sum_unpayed+sum_payed;
+						$('#sum').html(sum);
+						$('#sum_payed').html(sum_payed);
+						$('#sum_unpayed').html(sum_unpayed);
 					}
 			}
 			Modal.jsonp(config);
