@@ -3,6 +3,20 @@
  * huangsp
  */
 var toolBar = {
+		initHistoryRecord : function() {
+			$('#historyRecord').empty();
+			var historyRecord = localStorage.historyRecord;
+			if(historyRecord =='undefined' || historyRecord==null){
+				return;
+			}else{
+				historyRecord = JSON.parse(historyRecord);
+				for(var i=0;i<historyRecord.length;i++){
+					var record = historyRecord[i];
+					var str = '<li><a href="/valuation_'+record.modelsId+'.html"><img src="'+record.src+'" alt="" /></a></li>';
+					$('#historyRecord').append($(str));
+				}
+			}
+		},
 		initRetrieveCar : function() {
 			//sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKjd2b7gp6QimDNo0gAUjsKEH0ld9fLeCsaynC9T091K4';
 			if(sessionStorage.token==null||sessionStorage.token=='undefined'){
@@ -81,6 +95,7 @@ var toolBar = {
 }
 
 $(function(){
+	toolBar.initHistoryRecord();//初始化浏览记录
 	toolBar.initRetrieveCar()//初始化购物车；
 	//判断是否已经登录
 	if(sessionStorage.userId!=null){

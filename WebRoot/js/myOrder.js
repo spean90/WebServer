@@ -81,7 +81,7 @@ myOrder = {
 			                if(item.ordersStatusId=="1"){
 			                	//未处理
 			                	str = str + '<a href="#" onclick="myOrder.showOrderOper();" class="btn-radius">客户发货</a> &nbsp;'
-				                + '<a href="#" class="btn-radius">　取消　</a> &nbsp;';
+				                + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper();">　取消　</a> &nbsp;';
 			                }else if(item.ordersStratusId=="5"){
 			                	//已回寄
 			                	str = str  + '<a href="#" onclick="myOrder.showOrderOper();" class="btn-radius">完成回退</a> &nbsp;';

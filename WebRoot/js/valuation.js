@@ -30,6 +30,26 @@ var valuation = {
 								  +'</div>'				
 								  +'</div>';
 						$('.valuation').append($(str));
+						var historyRecord = localStorage.historyRecord;
+						if(historyRecord =='undefined' || historyRecord==null){
+							historyRecord = [];
+						}else{
+							historyRecord = JSON.parse(historyRecord);
+						}
+						var record ={};
+						record.src = content.modelsName;
+						record.modelsId = $('#modelsId').text();
+						for(var i=0;i<historyRecord.length;i++) {
+							if(historyRecord[i].modelsId=record.modelsId){
+								return;
+							}
+						}
+						if(historyRecord.length<4){
+							
+						}
+						historyRecord.push(record);
+						historyRecord = JSON.stringify(historyRecord);
+						localStorage.historyRecord = historyRecord;
 					}
 			}
 			Modal.jsonp(config);
