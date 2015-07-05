@@ -50,6 +50,10 @@ var City = {
 		$("#address").html(name);
 		localStorage.cityId = id;
 		localStorage.cityName = name;
+		$('.drop-down.drop-down-s.more-city').removeClass('hover');
+		if(window.location.href.indexOf('pay_')!=-1){
+			pay.reValuation();
+		}
 	}
 };
 

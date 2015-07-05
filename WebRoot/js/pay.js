@@ -223,6 +223,31 @@ var pay = {
 	showClause : function() {
 		$(this).modal('clausePop.html', 'clausePop');
 	},
+	changeCity : function() {
+		$('.drop-down.drop-down-s.more-city').addClass('hover');
+	},
+	reValuation : function() {
+		alert(111);
+//		var config = {
+//		url : Sys.serviceDomain+"/listAllCity?provienceId="+val,
+//		callbackParameter: "callback",
+//		success : function(data){ 
+//			if (data.msg.code!="0000") {
+//				//Modal.alert('短信发送失败，请稍后再试！');
+//				return;
+//			}
+//			var content = data.content;
+//			if (content.list!=null&&content.list.length!=0) {
+//				var list = content.list;
+//				for(var i=0;i<list.length;i++){
+//					var str = '<option value="'+list[i].cityId+'">'+list[i].name+'</option>'
+//					$('#city').append($(str));
+//				}
+//			}
+//		}
+//}
+//Modal.jsonp(config);
+	},
 	//初始化页面后。添加响应
 	initPage : function(){
 		 $('#online_bank').click(function(){

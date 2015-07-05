@@ -225,7 +225,7 @@ var index = {
 		},
 		initNewsList : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listNewsOrder?recordPerPage=2", 
+					url : Sys.serviceDomain+"/listNewsOrder?recordPerPage=12", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
