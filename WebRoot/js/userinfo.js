@@ -6,20 +6,18 @@ var user_city;
 var UserInfo = {
 		//TODO 接口还没有
 		initUserInfo : function(){
-			/*var config = {
-					url : Sys.serviceDomain+"/listAllFaqCategories", 
+			var config = {
+					url : Sys.serviceDomain+"/detailOwnCustomers?key="+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
 							return;
-						}*/
-						var data = {"msg":{"time":"2015-04-24 18:03:04.595","code":"0000","desc":"成功"},"content":{"recordPerPage":2,"list":[{"modelsId":1,"brandsId":1,"brandsTagsId":1,"modelsName":"机型1","modelsNickname":"苹果","modelsImage":"http://120.26.48.53:8080/ehuishou/img/models/1/a.png","color":"","recyclePrice":1000.0,"recycleCount":100,"metaTite":"","metaKeywords":"","metaDescription":"","modelsMonthPricesList":[{"priceMonth":"201504","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201503","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201502","customerRecycleCount":0,"customerAvgPrice":0.0}]},{"modelsId":3,"brandsId":1,"brandsTagsId":2,"modelsName":"机型3","modelsNickname":"苹果","modelsImage":"http://120.26.48.53:8080/ehuishou/img/models/1/a.png","color":"","recyclePrice":100.0,"recycleCount":1,"metaTite":"","metaKeywords":"","metaDescription":"","modelsMonthPricesList":[{"priceMonth":"201504","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201503","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201502","customerRecycleCount":0,"customerAvgPrice":0.0}]}],"currentPage":1,"totalPage":1}};
+						}
+						//var data = {"msg":{"time":"2015-04-24 18:03:04.595","code":"0000","desc":"成功"},"content":{"recordPerPage":2,"list":[{"modelsId":1,"brandsId":1,"brandsTagsId":1,"modelsName":"机型1","modelsNickname":"苹果","modelsImage":"http://120.26.48.53:8080/ehuishou/img/models/1/a.png","color":"","recyclePrice":1000.0,"recycleCount":100,"metaTite":"","metaKeywords":"","metaDescription":"","modelsMonthPricesList":[{"priceMonth":"201504","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201503","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201502","customerRecycleCount":0,"customerAvgPrice":0.0}]},{"modelsId":3,"brandsId":1,"brandsTagsId":2,"modelsName":"机型3","modelsNickname":"苹果","modelsImage":"http://120.26.48.53:8080/ehuishou/img/models/1/a.png","color":"","recyclePrice":100.0,"recycleCount":1,"metaTite":"","metaKeywords":"","metaDescription":"","modelsMonthPricesList":[{"priceMonth":"201504","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201503","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201502","customerRecycleCount":0,"customerAvgPrice":0.0}]}],"currentPage":1,"totalPage":1}};
 						var content = data.content;
-						var list = content.list;
-						
 						$(".infomation").empty();
 						var str = '<div class="fl left">'
-								+ '<img src="'+list[0].modelsImage+'" alt="" />'
+								+ '<img src="'+content.image+'" alt="" />'
 								+ '<a href="javascript:void(0)"><span>修改头像</span></a>'
 								+ '</div>'
 								+ '<div class="fl right">'
@@ -28,48 +26,55 @@ var UserInfo = {
 								+ '<form action="">'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>昵称：</span>'
-								+ '<input type="text" class="input" value='+list[0].modelsName+'/>'
+								+ '<input type="text" class="input" value='+content.name+'/>'
 								+ '</div>'
-								+ '<div class="line raido">'
-								+ '<span class="label"><em>*</em>性别：</span>'
-								+ '<input  type="radio" name="sex" value="男" checked="checked"/>'
-								+ '<label for="ss1">先生</label>'
-								+ '<input  type="radio" name="sex" value="女"/>'
-								+ '<label for="ss1">女士</label>'
-								+ '</div>'
+//								+ '<div class="line raido">'
+//								+ '<span class="label"><em>*</em>性别：</span>'
+//								+ '<input  type="radio" name="sex" value="男" checked="checked"/>'
+//								+ '<label for="ss1">先生</label>'
+//								+ '<input  type="radio" name="sex" value="女"/>'
+//								+ '<label for="ss1">女士</label>'
+//								+ '</div>'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>手机号码：</span>'
-								+ '<span>'+list[0].modelsId+'</span><span class="isvalid">已经验证</span>'
+								+ '<span>'+content.customersId+'</span><span class="isvalid">已经验证</span>'
 								+ '</div>'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>邮箱：</span>'
-								+ '<span>'+list[0].modelsId+'</span><span class="isvalid">已经验证</span>'
+								+ '<span>'+content.email+'</span><span class="isvalid">已经验证</span>'
 								+ '</div>'
-								+ '<div class="line">'
-								+ '<span class="label"><em>*</em>真实姓名：</span>'
-								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
-								+ '</div>'
+//								+ '<div class="line">'
+//								+ '<span class="label"><em>*</em>真实姓名：</span>'
+//								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
+//								+ '</div>'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>所在城市：</span>'
 								+ '<select name="" id="province" onchange="UserInfo.listAllCity();"></select>'
 								+ '<select name="" id="city"></select>'
 								+ '</div>'
+//								+ '<div class="line">'
+//								+ '<span class="label"><em>*</em>详细地址：</span>'
+//								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
+//								+ '</div>'
+//								+ '<div class="line">'
+//								+ '<span class="label"><em>*</em>邮政编码：</span>'
+//								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
+//								+ '</div>'
 								+ '<div class="line">'
-								+ '<span class="label"><em>*</em>详细地址：</span>'
-								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
+								+ '<span class="label"><em>*</em>星级</span><span>';
+								for(var i=0;i<content.starLevel;i++){
+									str = str+ '<span class="star"></span>';
+								}
+								str = str+ '</span>'
 								+ '</div>'
 								+ '<div class="line">'
-								+ '<span class="label"><em>*</em>邮政编码：</span>'
-								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
-								+ '</div>'
-								+ '<div class="line">'
-								+ '<span class="label"><em>*</em>星级</span>'
-								+ '<span><span class="star"></span><span class="star"></span><span class="star"></span></span>'
+								+ '<a class="btnsave" onclick="UserInfo.update()">保存</a>'
 								+ '</div></form></div></div>';
 						$(".infomation").append(str);
-				/*}
+						$('#update_img').attr('src',content.image);
+				}
 			};
-			Modal.jsonp(config);*/
+			Modal.jsonp(config);
 		},
 		/*根据省份所有城市列表*/
 		listAllCity : function(){
@@ -99,7 +104,7 @@ var UserInfo = {
 			$("#province").empty();
 			$("#province").append('<option value="">--请选择--</option>');	
 			var config = {
-				url : Sys.serviceDomain + "/listAllProvience?currentPage=0",
+				url : Sys.serviceDomain + "/listAllProvince?currentPage=0",
 				callbackParameter : "callback",
 				success : function(data) {
 					if (data.msg.code != "0000") {
@@ -107,11 +112,14 @@ var UserInfo = {
 					}
 					var list = data.content.list;
 					for(var i=0; i<list.length; i++){
-						$("#province").append('<option value="' + list[i].provinceId + '">' + list[i].provinceName + '</option>');	
+						$("#province").append($('<option value="' + list[i].provinceId + '">' + list[i].provinceName + '</option>'));	
 					}
 				}
 			}
 			Modal.jsonp(config);
+		},
+		update : function() {
+			alert(1);
 		}
 };
 
@@ -122,4 +130,10 @@ $(function(){
 	  $(".infomation a:eq(0)").click(function(){
 		 $(".tabs li:eq(1)>a").click(); 
 	  });
+	  $('.attachment-btn').click(function(){
+			$(this).siblings('input[type="file"]').trigger('click');
+			$(this).siblings('input[type="file"]').change(function(){
+				$('.attchment-label').html($('input[type="file"]')[0].files[0].name);
+			});
+		});
 });

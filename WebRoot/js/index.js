@@ -289,6 +289,20 @@ var index = {
 		
 		doDetail : function(id) {
 			window.open('detail-'+id+'.html', "_blank");
+		},
+		initUserInfo : function() {
+			var config = {
+					url : Sys.serviceDomain+"/detailOwnCustomers?key="+sessionStorage.token, 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						sessionStorage.personImg = content.image;
+					}
+			}
+			Modal.jsonp(config);
 		}
 		
 }
@@ -305,6 +319,7 @@ index.initPhoneList(); //初始化热门手机
 index.initComments(); //初始化客户评价
 index.initNewsList(); //初始化最新咨询
 index.initRetrieveList();  //初始化最新回收单
+index.initUserInfo();
 $(function(){
 });
 

@@ -96,12 +96,12 @@ var toolBar = {
 			var keyword = $('#search-bar').val();
 			window.location.href = '/search_'+keyword+".html";
 		}
-		
 }
 
 $(function(){
 	toolBar.initHistoryRecord();//初始化浏览记录
 	toolBar.initRetrieveCar()//初始化购物车；
+	
 	//判断是否已经登录
 	if(sessionStorage.userId!=null){
 		$(".top-bar-rt-1>a>span").html(sessionStorage.userId);
@@ -109,7 +109,7 @@ $(function(){
 		
 		$(".link-login").html("欢迎您，"+sessionStorage.userId);
 		$(".link-login").attr('href','userinfo.html');
-		$(".u-pic img").attr('src','pic/2.jpg');
+		$(".u-pic img").attr('src',sessionStorage.personImg);
 		$(".u-pic a").attr('href','userinfo.html');
 	}
 	//右侧帮助按钮弹窗

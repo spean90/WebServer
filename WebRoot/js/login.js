@@ -19,7 +19,7 @@ var login = {
 							return;
 						}
 						//sessionStorage.token = data.key;
-						sessionStorage.token = '1234';
+						sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKvZhww8MtD/UtoRzlrCBwSkfZ0PHWe2Shq0Q3KCrTgmi';
 						sessionStorage.userId = userId;
 						var query = window.location.search;
 						if(query!=''){

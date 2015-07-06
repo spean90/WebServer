@@ -20,6 +20,7 @@
 <body>
 <!--Str 公用顶部-->
 <#include "/common/html/body_include.html">
+<div id="orderId" hidden>${orderId!}</div>
 <!--End 公用顶部-->
 <!--Str 主体内容-->
 <div class="wrapper mt-15 clearfix">
@@ -27,7 +28,7 @@
     <ul>
       <li><i class="icon-home"></i><a href="#">首页</a><span>&gt;</span></li>
       <li><a href="#">我的壹回收</a><span>&gt;</span></li>
-      <li><a href="#">估价结果</a></li>
+      <li><a href="#">订单详情</a></li>
     </ul>
   </div>
   <div id="wizard2" class="swMain">
@@ -144,7 +145,7 @@
                   <td colspan="3" style="border-bottom:1px solid #eee"><span>订单信息:</span></td>
                 </tr>
   
-                <tr>
+                <tr id="orderInfo">
                   <td><span>订单编号：</span>ehs2353464</td>
                   <td><span>联系人：</span>18695792919</td>
                   <td><span>发货时间：</span>2015-04-26 12:30:35</td>
@@ -162,7 +163,7 @@
                      <th class="t_c table_l_line">实际回收金额</th>
                    </tr>
                  </thead>
-                 <tbody>
+                 <tbody id="itemList">
                    <tr>
                      <td class="checkbox none"><input class="check-one check" type="checkbox"></td>
                      <td class="goods"><img src="images/phone.png" alt=""><span>iphone4s</span></td>
@@ -177,7 +178,7 @@
                <div class="foot" id="foot">
                  <label class="fl select-all none"><input type="checkbox" class="check-all check">&nbsp;全选</label>
                  <a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>
-                 <div class="fr total">合计：￥<span id="priceTotal">550</span></div>
+                 <div class="fr total">合计：<span id="priceTotal">550</span></div>
                  <div class="fr selected" id="selected">共<span>1</span>件商品<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>
                  <div class="selected-view none">
                    <div id="selectedViewList" class="clearfix">
@@ -254,10 +255,8 @@ $(document).ready(function () {
   $('#wizard').smartWizard('showMessage','Finish Clicked');
 
   }
- 
-
-
 });
 </script>
+<script type="text/javascript" src="js/orderDetail.js"></script>
 </body>
 </html>
