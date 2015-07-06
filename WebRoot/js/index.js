@@ -234,29 +234,35 @@ var index = {
 						var content = data.content;
 						var list = content.list;
 						$('.index-news-list').empty();
+						var str = '';
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
-							var str = '<dl>'
-					            +'<dt><ul><li>[组图] 苹果以旧换新折价是多少   iPhone手机以旧换新</li></ul></dt>'
-					            +'<dd>'
-					            +'<ul>'
-					            +'<li>[组图] 2014双十一网购狂欢节购物攻略</li>'
-					            +'<li>[图文] 手机APP开发者实行实名制介绍</li>'
-					            +'<li>[组图] 怎么找到谷歌可用hosts快速找到谷歌可用hosts的方法</li>'
-					            +'<li>[图文] 微信公众平台关于清理集赞活动的通知</li>'
-					            +'<li>[组图] 苹果以旧换新折价是多少 iPhone4 iPhone5s以旧换新条件是什么</li>'
+							if(i==0||i==6){
+								str += '<dl>'
+						            +'<dt><ul><li>[组图] 苹果以旧换新折价是多少   iPhone手机以旧换新</li></ul></dt>'
+						            +'<dd>'
+						            +'<ul>';
+							}else if(i==5){
+								str += '<li>[组图] 苹果以旧换新折价是多少 iPhone4 iPhone5s以旧换新条件是什么</li>'
 					            +'</ul>'
-					            +'</li>'
 					            +'</dd>'
 					            +'</dl>';
+							}else{
+								str += '<li>[组图] 2014双十一网购狂欢节购物攻略</li>';
+							}
 							/*var str = '<li><a><img src="'+item.newsImage+'" alt="'+item.newsTitle+'" width="280" height="180" /></a>'
 					            +'<h4><a>'+item.newsTitle+'</a></h4>'
 					            +'<span>'+item.addedDate+'</span>'
 					            +'<p>'+item.newsDescription+'</p>'
 					            +'</li>';*/
-							var news = $(str);
-							$('.index-news-list').append(news);
 						}
+						if(list.length>6 || list.length<6){
+							str += '</ul>'
+				            +'</dd>'
+				            +'</dl>';
+						}
+						var news = $(str);
+						$('.index-news-list').append(news);
 					}
 			}
 			Modal.jsonp(config);
