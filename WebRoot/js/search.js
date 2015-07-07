@@ -1,21 +1,21 @@
 $(document).ready(function () {
 	$('input, textarea').placeholder({customClass:'my-placeholder'});
     var $terms = [
-            'search',
-            'test',
-            'css',
-            'apple',
-            'bear',
-            'cat',
-            'crabapple',
-            'creep',
-            'czar',
-            'danger',
-            'dominant',
-            'doppler',
-            'everclear',
-            'evangelism',
-            'frodo'
+//            'search',
+//            'test',
+//            'css',
+//            'apple',
+//            'bear',
+//            'cat',
+//            'crabapple',
+//            'creep',
+//            'czar',
+//            'danger',
+//            'dominant',
+//            'doppler',
+//            'everclear',
+//            'evangelism',
+//            'frodo'
         ].sort(), $return = [];
     function strInArray(str, strArray) {
         for (var j = 0; j < strArray.length; j++) {

@@ -15,7 +15,7 @@ var login = {
 					success : function(data){
 						console.log(data);
 						if (data.msg.code!="0000") {
-							Modal.alert("登录失败！请稍后再试","错误");
+							Modal.alert(data.msg.desc);
 							return;
 						}
 						//sessionStorage.token = data.key;

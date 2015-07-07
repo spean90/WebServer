@@ -239,16 +239,16 @@ var index = {
 							var item = list[i];
 							if(i==0||i==6){
 								str += '<dl>'
-						            +'<dt><ul><li>[组图] 苹果以旧换新折价是多少   iPhone手机以旧换新</li></ul></dt>'
+						            +'<dt><ul><li onclick=index.go>'+item.newsTitle+'</li></ul></dt>'
 						            +'<dd>'
 						            +'<ul>';
 							}else if(i==5){
-								str += '<li>[组图] 苹果以旧换新折价是多少 iPhone4 iPhone5s以旧换新条件是什么</li>'
+								str += '<li>'+item.newsTitle+'</li>'
 					            +'</ul>'
 					            +'</dd>'
 					            +'</dl>';
 							}else{
-								str += '<li>[组图] 2014双十一网购狂欢节购物攻略</li>';
+								str += '<li>'+item.newsTitle+'</li>';
 							}
 							/*var str = '<li><a><img src="'+item.newsImage+'" alt="'+item.newsTitle+'" width="280" height="180" /></a>'
 					            +'<h4><a>'+item.newsTitle+'</a></h4>'
@@ -306,6 +306,28 @@ var index = {
 						}
 						var content = data.content;
 						sessionStorage.personImg = content.image;
+						sessionStorage.userType = content.userType;
+					}
+			}
+			Modal.jsonp(config);
+		},
+		initNotice : function() {
+			var config = {
+					url : Sys.serviceDomain+"/detailOneAnnounce?announceId=1", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						$('#noticeList').empty();
+						var list = data.content.list;
+						for(var i=0;i<list.length;i++){
+							var s = '<li>'
+					               	+'<h1>公告标题1</h1>'
+					               	+'<p>公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容1</p>'
+					               	+'</li>';
+							$('#noticeList').append($(s));
+						}
 					}
 			}
 			Modal.jsonp(config);
@@ -326,6 +348,7 @@ index.initComments(); //初始化客户评价
 index.initNewsList(); //初始化最新咨询
 index.initRetrieveList();  //初始化最新回收单
 index.initUserInfo();
+index.initNotice();
 $(function(){
 });
 

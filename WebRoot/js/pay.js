@@ -6,7 +6,7 @@ var pay = {
 	initRetrieveList : function(){
 		$('table').empty();
 		var config = {
-				url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token+"&customersBasketId="+$('#customersBasketIds').text(), 
+				url : Sys.serviceDomain+"/listUserOwnBasket?key="+sessionStorage.token+"&customersBasketIds="+$('#customersBasketIds').text(), 
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
@@ -166,7 +166,7 @@ var pay = {
 			var username = $('username').val();
 			var phone = $('#phone').val();
 			var code = $('#code').val();
-			var payType = $("input[name='trade-way']:checked").val();
+			var tradeWay = $("input[name='trade-way']:checked").val();
 			var dealType = $("input[name='trade-way1']:checked").val();
 			var bank = '';
 			var bank_user = '';
@@ -179,42 +179,52 @@ var pay = {
 				Modal.alert('请输入电话');
 				return ;
 			}
-			if(code==''){
+			if(code==''&&sessionStorage.userType!=1){
 				Modal.alert('请输入短信验证码');
 				return ;
 			}
-			if(payType=='' || payTpye=='undefind'){
+			if(tradeWay=='' || tradeWay==undefined){
 				Modal.alert('请选择收款方式');
 				return ;
 			}
-			if(payType==1){
+			
+			var data = {
+					customersBasketIds : $('#customersBasketIds').text(),
+					userId : sessionStorage.userId,
+					ordersSource : sessionStorage.userType,
+					customerName : username,
+					paymentType : tradeWay,
+					cityId : sessionStorage.cityId
+			};
+			
+			if(tradeWay==1){
 				bank = $('#bank').val();
 				bank_user = $('#bank_user').val();
 				bank_account = $('#bank_account').val();
-				if(bank==''||bank_user==''||bank_account==''){
+				if(bank=='0'||bank_user==''||bank_account==''){
 					Modal.alert('请输入银行卡信息');
 					return ;
 				}
+				data.accountBank = bank;
+				data.paymentAccount = bank_account;
+				data.accountName = bank_user;
 			}
-//			var config = {
-//					url : Sys.serviceDomain+"/listAllCity?provienceId="+val,
-//					callbackParameter: "callback",
-//					success : function(data){ 
-//						if (data.msg.code!="0000") {
-//							//Modal.alert('短信发送失败，请稍后再试！');
-//							return;
-//						}
-//						var content = data.content;
-//						if (content.list!=null&&content.list.length!=0) {
-//							var list = content.list;
-//							for(var i=0;i<list.length;i++){
-//								var str = '<option value="'+list[i].cityId+'">'+list[i].name+'</option>'
-//								$('#city').append($(str));
-//							}
-//						}
-//					}
-//			}
-//			Modal.jsonp(config);
+			
+			
+			var config = {
+					url : Sys.serviceDomain+"/addOrdersDirect?key="+sessionStorage.token,
+					callbackParameter: "callback",
+					data : data,
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							//Modal.alert('短信发送失败，请稍后再试！');
+							return;
+						}
+						var content = data.content;
+						console.log(data);
+					}
+			}
+			Modal.jsonp(config);
 			
 		}else{
 			Modal.alert('请先同意壹回收网服务条款');
@@ -274,6 +284,10 @@ var pay = {
 };
 
 $(function(){
+	if(sessionStorage.userType==1){
+		$('.captcha-btn').hide();
+		$('#code').hide();
+	}
 	pay.initRetrieveList();
 	pay.initCityRegion();
 	pay.initPayType();

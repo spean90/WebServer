@@ -56,7 +56,7 @@ var toolBar = {
 			                          +' <ul>'
 			                          +' <li>'+item.modelsName+'</li>'
 			                          +' <li>回收价：<span>'+item.currency+item.lastEvaluationPrice.toFixed(2)+'</span><a onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</a></li>'
-			                          +'   <li>12306人回收</li>'
+			                         // +'   <li>12306人回收</li>'
 			                          +' </ul>'
 			                          +' </span>'
 			                          +' </div>';
@@ -95,12 +95,51 @@ var toolBar = {
 		doSearch : function(){
 			var keyword = $('#search-bar').val();
 			window.location.href = '/search_'+keyword+".html";
+		},
+		initSignIntegral : function(){
+			if(sessionStorage.token==undefined){
+				return;
+			}
+			var config = {
+					url : Sys.serviceDomain+'/detailTodaySignIntegral?&key='+sessionStorage.token, 
+					callbackParameter: "callback",
+					success : function(data){
+						if (data.msg.code!="0000") {
+							return;
+						}
+						if(data.content.isSignToday==1){
+							$('.qiandao').html('已签到');
+						}else{
+							$('#element').html('+'+data.content.integral);
+						}
+						
+					}
+			}
+			Modal.jsonp(config);
+		},
+		signIntegral : function() {
+			if(sessionStorage.token==undefined){
+				window.location.href='/login.html';
+				return;
+			}
+			var config = {
+					url : Sys.serviceDomain+'/signIntegralDetail?&key='+sessionStorage.token, 
+					callbackParameter: "callback",
+					success : function(data){
+						//console.log(data);
+						Modal.alert(data.msg.desc);
+					}
+			}
+			Modal.jsonp(config);
 		}
 }
 
 $(function(){
 	toolBar.initHistoryRecord();//初始化浏览记录
-	toolBar.initRetrieveCar()//初始化购物车；
+	toolBar.initRetrieveCar();//初始化购物车；
+	toolBar.initSignIntegral();//初始化签到按钮；
+	$('.qiandao').click(toolBar.signIntegral);//签到
+	
 	
 	//判断是否已经登录
 	if(sessionStorage.userId!=null){
