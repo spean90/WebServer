@@ -19,9 +19,9 @@ var category = {
 					for(var i=0; i<list.length; i++){
 						var str = '';
 						if(bId==list[i].brandsId){
-							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+');" attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');" attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}else{
-							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+');" attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');" attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}
 						if(i<list.length-1){
 							str = str + " <span>|</span>";
@@ -47,9 +47,9 @@ var category = {
 					for(var i=0; i<list.length; i++){
 						var str = '';
 						if(bId==list[i].brandsId){
-							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'" onclick="category.focusOnBrand(this,'+list[i].brandsId+');"  attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'" onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');"  attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}else{
-							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'" onclick="category.focusOnBrand(this,'+list[i].brandsId+');"  attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
+							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'" onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');"  attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}
 						if(i<list.length-1){
 							str = str + " <span>|</span>";
@@ -60,7 +60,7 @@ var category = {
 			});
 		},
 		/*获取具体品牌下TAG*/
-		getTagList : function(bId){
+		getTagList : function(bId,bName){
 			//alert('/*获取具体品牌下TAG*/'+bId);
 			$.jsonp({
 				url : Sys.serviceDomain+"/listOneBrandsAllTags?brandsId="+bId+"&currentPage=0",
@@ -71,7 +71,7 @@ var category = {
 					}
 					var content = data.content;
 					var list = content.list;
-					var brandName = $("#" + bId).attr("attrval");
+					var brandName = bName;
 					$(".resultList> .select").text(brandName+'：');
 					var dd = $('.resultList>dd');
 					dd.empty();
@@ -207,13 +207,13 @@ var category = {
 			phoneList();
 		},
 		//点击了品牌，使其获取焦点，并获取TAG及手机信息
-		focusOnBrand : function(obj,bId){
+		focusOnBrand : function(obj,bId,bName){
 			var selected = $('.listIndex .selected');
 			if(selected!=null){
 				selected.removeClass('selected');
 			}
 			$(obj).addClass('selected');
-			category.getTagList(bId);
+			category.getTagList(bId,bName);
 			category.getPhoneList(bId,null);
 		},
 		//点击了TAG，使其获取焦点,并获取手机信息
@@ -289,6 +289,8 @@ var category = {
 }
 
 $(function(){
+	var keyword = $("#keyword").html();
+	$("#search-bar").val(keyword);
 	$('[href="/brands_0.html"]').parent().addClass('on');
 	var bid = $('#brandId').text();
 	var keyword = $('#keyword').text();
