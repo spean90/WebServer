@@ -95,6 +95,12 @@ public class TransferController {
 		modelAndView.addObject("orderId", orderId); 
 		return modelAndView;
 	}
+	@RequestMapping(value="/orderSuccess_{orderId}")
+	public ModelAndView orderSuccess(@PathVariable(value="orderId") String orderId) {
+		ModelAndView modelAndView = new ModelAndView("orderSuccess");
+		modelAndView.addObject("orderId", orderId); 
+		return modelAndView;
+	}
 	
 	/**
 	 * 纯页面跳转

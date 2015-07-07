@@ -14,6 +14,7 @@ var pay = {
 					}
 					if (data.content.list==null||data.content.list.length==0) {
 						console.log('回收车中还没有商品呦，赶紧去看看吧！');
+						window.location.href='/index.html';
 					}else {
 						$('table').empty();
 						var list = data.content.list;
@@ -221,7 +222,7 @@ var pay = {
 							return;
 						}
 						var content = data.content;
-						console.log(data);
+						window.location.href = '/orderSuccess_'+content.ordersId+'.html';
 					}
 			}
 			Modal.jsonp(config);
