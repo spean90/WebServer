@@ -62,7 +62,7 @@ var mypoints = {
 tabs($('.tabs'));
 $(function(){
 	//初始化分页条
-    $("#pagination, #pagination1, #pagination2").pagination({
+    $("#pagination1, #pagination2, #pagination3").pagination({
         items: 40,
         itemsOnPage: 10,
         cssStyle: 'light-theme'
