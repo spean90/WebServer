@@ -3,6 +3,7 @@
  */
 var user_province;
 var user_city;
+var user_region;
 var UserInfo = {
 		//TODO 接口还没有
 		initUserInfo : function(){
@@ -50,7 +51,8 @@ var UserInfo = {
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>所在城市：</span>'
 								+ '<select name="" id="province" onchange="UserInfo.listAllCity();"></select>'
-								+ '<select name="" id="city"></select>'
+								+ '<select name="" id="city" onchange="UserInfo.listAllRegion();"></select>'
+								+ '<select name="" id="region"></select>'
 								+ '</div>'
 //								+ '<div class="line">'
 //								+ '<span class="label"><em>*</em>详细地址：</span>'
@@ -72,6 +74,11 @@ var UserInfo = {
 								+ '</div></form></div></div>';
 						$(".infomation").append(str);
 						$('#update_img').attr('src',content.image);
+						user_province = content.cityId;
+						user_city = content.cityId;
+						user_region = content.regionId;
+						UserInfo.listAllProvience();
+						 
 				}
 			};
 			Modal.jsonp(config);
@@ -95,6 +102,10 @@ var UserInfo = {
 					for(var i=0; i<list.length; i++){
 						$("#city").append('<option value="' + list[i].cityId + '">' + list[i].name + '</option>');	
 					}
+					if($('#province').val()==user_province){
+						$("#city").val(user_city);
+					}
+					UserInfo.listAllRegion();
 				}
 			}
 			Modal.jsonp(config);
@@ -114,6 +125,32 @@ var UserInfo = {
 					for(var i=0; i<list.length; i++){
 						$("#province").append($('<option value="' + list[i].provinceId + '">' + list[i].provinceName + '</option>'));	
 					}
+					$("#province").val(1);
+					UserInfo.listAllCity();
+				}
+			}
+			Modal.jsonp(config);
+		},
+		/*获取所有的区*/
+		listAllRegion : function(){
+			var city = $("#city").val();
+			if(city==''){
+				return;
+			}
+			$("#region").empty();
+			$("#region").append('<option value="">--请选择--</option>');	
+			var config = {
+				url : Sys.serviceDomain + "/listOneCityRegion?cityId="+city,
+				callbackParameter : "callback",
+				success : function(data) {
+					if (data.msg.code != "0000") {
+						return;
+					}
+					var list = data.content.list;
+					for(var i=0; i<list.length; i++){
+						$("#region").append($('<option value="' + list[i].regionId + '">' + list[i].name + '</option>'));	
+					}
+					$("#region").val(user_region);
 				}
 			}
 			Modal.jsonp(config);
@@ -126,7 +163,6 @@ var UserInfo = {
 $(function(){
 	  tabs($('.tabs'));
 	  UserInfo.initUserInfo();
-	  UserInfo.listAllProvience();
 	  $(".infomation a:eq(0)").click(function(){
 		 $(".tabs li:eq(1)>a").click(); 
 	  });

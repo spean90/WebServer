@@ -101,6 +101,12 @@ public class TransferController {
 		modelAndView.addObject("orderId", orderId); 
 		return modelAndView;
 	}
+	@RequestMapping(value="/detailNews_{newsId}")
+	public ModelAndView detailNews(@PathVariable(value="newsId") String newsId) {
+		ModelAndView modelAndView = new ModelAndView("detailNews");
+		modelAndView.addObject("newsId", newsId); 
+		return modelAndView;
+	}
 	
 	/**
 	 * 纯页面跳转

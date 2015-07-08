@@ -239,16 +239,16 @@ var index = {
 							var item = list[i];
 							if(i==0||i==6){
 								str += '<dl>'
-						            +'<dt><ul><li onclick=index.go>'+item.newsTitle+'</li></ul></dt>'
+						            +'<dt><ul><li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li></ul></dt>'
 						            +'<dd>'
 						            +'<ul>';
 							}else if(i==5){
-								str += '<li>'+item.newsTitle+'</li>'
+								str += '<li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li>'
 					            +'</ul>'
 					            +'</dd>'
 					            +'</dl>';
 							}else{
-								str += '<li>'+item.newsTitle+'</li>';
+								str += '<li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li>';
 							}
 							/*var str = '<li><a><img src="'+item.newsImage+'" alt="'+item.newsTitle+'" width="280" height="180" /></a>'
 					            +'<h4><a>'+item.newsTitle+'</a></h4>'
@@ -331,6 +331,9 @@ var index = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		detailNews : function(newsId) {
+			window.open('/detailNews_'+newsId+".html");
 		}
 		
 }
