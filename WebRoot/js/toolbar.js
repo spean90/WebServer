@@ -128,6 +128,7 @@ var toolBar = {
 					success : function(data){
 						//console.log(data);
 						Modal.alert(data.msg.desc);
+						toolBar.initSignIntegral();//初始化签到按钮；
 					}
 			}
 			Modal.jsonp(config);
