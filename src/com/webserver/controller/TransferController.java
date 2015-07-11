@@ -107,6 +107,12 @@ public class TransferController {
 		modelAndView.addObject("newsId", newsId); 
 		return modelAndView;
 	}
+	@RequestMapping(value="/assessDetails_{customersBasketId}")
+	public ModelAndView assessDetails(@PathVariable(value="customersBasketId") String customersBasketId) {
+		ModelAndView modelAndView = new ModelAndView("assessDetails");
+		modelAndView.addObject("customersBasketId", customersBasketId); 
+		return modelAndView;
+	}
 	
 	/**
 	 * 纯页面跳转

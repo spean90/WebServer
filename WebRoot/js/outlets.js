@@ -21,7 +21,7 @@ var outlets = {
 		//初始化网点信息
 		initOutletsData : function(page) {
 			var config = {
-					url : Sys.serviceDomain+"/listStoreOneCity?recordPerPage=3&currentPage="+page+"&cityId=1", 
+					url : Sys.serviceDomain+"/listStoreOneCity?recordPerPage=10&currentPage="+page+"&cityId=1", 
 					callbackParameter: "callback",
 					success : function(data){
 						console.log(data);
@@ -59,7 +59,7 @@ var outlets = {
 						//初始化分页条
 					    $("#pagination").pagination({
 					        items: recordPerPage*totalPage,
-					        itemsOnPage: 3,
+					        itemsOnPage: 10,
 					        cssStyle: 'light-theme',
 					        currentPage : page,
 					        onPageClick: function(pageNum,event){

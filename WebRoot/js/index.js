@@ -313,7 +313,7 @@ var index = {
 		},
 		initNotice : function() {
 			var config = {
-					url : Sys.serviceDomain+"/detailOneAnnounce?announceId=1", 
+					url : Sys.serviceDomain+"/listAllAnnounce", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -323,8 +323,8 @@ var index = {
 						var list = data.content.list;
 						for(var i=0;i<list.length;i++){
 							var s = '<li>'
-					               	+'<h1>公告标题1</h1>'
-					               	+'<p>公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容1</p>'
+					               	+'<h1>'+list[i].announceTitle+'</h1>'
+					               	+'<p>'+list[i].announceContent+'</p>'
 					               	+'</li>';
 							$('#noticeList').append($(s));
 						}

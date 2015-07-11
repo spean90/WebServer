@@ -33,9 +33,35 @@ var orderDetail = {
 				}
 		}
 		Modal.jsonp(config);
+	},
+	initOrderStatus : function(){
+		$('#steps').empty();
+		var config = {
+				url : Sys.serviceDomain+"/listOneOrdersHistory?ordersId="+$('#orderId').text(), 
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						return;
+					}
+					var content = data.content;
+					console.log(content);
+					var ordersItemList = content.ordersItemList;
+					for(var i=0;i<ordersItemList.length;i++){
+						var s = '<li class="flow-box first">'
+			                  	+'<a href="#step-1"><span class="round-digit">1</span>未处理</a>'
+			                  	+'</li>';
+						$('#steps').append($(s));
+					}
+				}
+		}
+		Modal.jsonp(config);
 	}
 }
 
 $(function(){
 	orderDetail.initModelsList();
+	orderDetail.initOrderStatus();
+	
+	
+	
 });

@@ -15,6 +15,7 @@
 </head>
 <body>
 <div class="pop-deal">
+<div id="customersBasketId" hidden>${customersBasketId!}</div>
 	<div class="deal-title">
 		<p>评估详情</p>
 		<p class="c-gray">Assessment details</p>
@@ -69,7 +70,7 @@
 <script src="common/js/sys.js"></script>
 <script src="common/js/modal.js"></script>
 <script type="text/javascript">
-	var ctx = document.getElementById("myChart").getContext("2d");
+/* 	var ctx = document.getElementById("myChart").getContext("2d");
 	var data = {
 	    labels: ["", "一月", "二月", "三月"],
 	    datasets: [{
@@ -80,7 +81,7 @@
 	            data: [0, 0, 0, 40]
 	    }]
 	};
-	var myLineChart = new Chart(ctx).Line(data);
+	var myLineChart = new Chart(ctx).Line(data); */
 </script>
 <script src="js/assessDetails.js"></script>
 </body>

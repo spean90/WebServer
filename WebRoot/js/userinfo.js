@@ -27,7 +27,7 @@ var UserInfo = {
 								+ '<form action="">'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>昵称：</span>'
-								+ '<input type="text" class="input" value='+content.name+'/>'
+								+ '<input type="text" class="input" id="name" value='+content.name+'/>'
 								+ '</div>'
 //								+ '<div class="line raido">'
 //								+ '<span class="label"><em>*</em>性别：</span>'
@@ -74,7 +74,7 @@ var UserInfo = {
 								+ '</div></form></div></div>';
 						$(".infomation").append(str);
 						$('#update_img').attr('src',content.image);
-						user_province = content.cityId;
+						user_province = content.provinceId;
 						user_city = content.cityId;
 						user_region = content.regionId;
 						UserInfo.listAllProvience();
@@ -125,7 +125,7 @@ var UserInfo = {
 					for(var i=0; i<list.length; i++){
 						$("#province").append($('<option value="' + list[i].provinceId + '">' + list[i].provinceName + '</option>'));	
 					}
-					$("#province").val(1);
+					$("#province").val(user_province);
 					UserInfo.listAllCity();
 				}
 			}
@@ -156,7 +156,22 @@ var UserInfo = {
 			Modal.jsonp(config);
 		},
 		update : function() {
-			alert(1);
+			var name = $('#name').val();
+			var config = {
+					url : Sys.serviceDomain + "/listOneCityRegion?cityId="+city,
+					callbackParameter : "callback",
+					success : function(data) {
+						if (data.msg.code != "0000") {
+							return;
+						}
+						var list = data.content.list;
+						for(var i=0; i<list.length; i++){
+							$("#region").append($('<option value="' + list[i].regionId + '">' + list[i].name + '</option>'));	
+						}
+						$("#region").val(user_region);
+					}
+				}
+				Modal.jsonp(config);
 		}
 };
 

@@ -132,9 +132,13 @@ var pay = {
 								if (list[i].recycleMethodId==1) {
 									var str = '<label><input type="radio" name="trade-way" id="online_bank" checked value="1" /> 网银转账：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
+									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="2" /> 现金交易：<span class="c-red"></span></label>';
+									$('#payType').append($(strs));
+									$('.bank-area').hide();
 								}else if (list[i].recycleMethodId==2){
 									var str = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="2" /> 现金交易：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
+									$('.bank-area').hide();
 								}
 							}else{
 								if(list[i].methodType==2) {

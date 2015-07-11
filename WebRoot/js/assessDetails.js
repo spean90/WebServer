@@ -5,7 +5,7 @@
 AssessDetails = {
 	initAssessDetail : function(){
 		var config = {
-		url : Sys.serviceDomain + "/detailUserOwnCustomersBasket?customersBasketId="+17,
+		url : Sys.serviceDomain + "/detailUserOwnCustomersBasket?customersBasketId="+$('#customersBasketId').text(),
 		callbackParameter : "callback",
 		success : function(data) {
 			if (data.msg.code != "0000") {
@@ -18,7 +18,7 @@ AssessDetails = {
 			$('.fl').empty();
 			var evaluationList = content.evaluationList;
 			var flStr = '<tr><td class="c-gray">手机型号：</td><td>'+content.modelsName+'</td></tr>'
-				+ '<tr><td class="c-gray">回收报价：</td><td class="c-red">'+content.currency+content.lastEvaluationPrice+'</td></tr>';
+				+ '<tr><td class="c-gray">回收报价：</td><td class="c-red">'+content.currency+content.lastEvaluationPrice.toFixed(2)+'</td></tr>';
 			for(var i=0;i<evaluationList.length;i++){
 				var values = '';
 				var evaluationItemList = evaluationList[i].evaluationItemList;
@@ -39,7 +39,7 @@ AssessDetails = {
 			var prices=[];
 			for(var k=0;k<modelsMonthPricesList.length;k++){
 				labels.push(modelsMonthPricesList[k].priceMonth.substring(4));
-				prices.push(modelsMonthPricesList[k].customerAvgPrice)
+				prices.push(modelsMonthPricesList[k].customerAvgPrice.toFixed(2))
 			}
 
 			var ctx = document.getElementById("myChart").getContext("2d");

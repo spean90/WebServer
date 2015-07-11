@@ -13,7 +13,7 @@ var valuation = {
 						$('.valuation').empty();
 						var str = '<div class="container clearfix">'
 								  +'<div class="left">'
-								  +'<img id="pic" src="images/phone.png" alt="iPhone 4S" title="iPhone 4S">'
+								  +'<img id="pic" src="'+content.modelsImage+'" alt="iPhone 4S" title="iPhone 4S">'
 								  +'<h2 class="product_name">'+content.modelsName+'</h2>'
 								  +'</div>'
 								  +'<div class="right">'
@@ -37,7 +37,7 @@ var valuation = {
 							historyRecord = JSON.parse(historyRecord);
 						}
 						var record ={};
-						record.src = content.modelsName;
+						record.src = content.modelsImage;
 						record.modelsId = $('#modelsId').text();
 						var isIn = false;
 						for(var i=0;i<historyRecord.length;i++) {

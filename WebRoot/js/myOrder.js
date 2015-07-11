@@ -43,23 +43,47 @@ myOrder = {
 			                + '<th>订单状态</th>'
 			                + '</tr>'
 			                + '<tr class="dark">'
-			                + '<th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">2015-04-26</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail_'+item.ordersId+'.html" class="underline">订单详情</a></th>'
-			                + '<th class="c-red">待处理</th>'
-			                + '</tr>'
+			                + '<th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">'+item.ordersDate+'</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail_'+item.ordersId+'.html" class="underline">订单详情</a></th>';
+							if(item.ordersStatusId==1){
+								str = str + '<th class="c-red">待处理</th>';
+							}else if(item.ordersStatusId==2){
+								str = str + '<th class="c-red">已发货</th>';
+							}else if(item.ordersStatusId==3){
+								str = str + '<th class="c-red">待检测</th>';
+							}else if(item.ordersStatusId==4){
+								str = str + '<th class="c-red">完成检测</th>';
+							}else if(item.ordersStatusId==5){
+								str = str + '<th class="c-red">已回寄 </th>';
+							}else if(item.ordersStatusId==6){
+								str = str + '<th class="c-red">已退回</th>';
+							}else if(item.ordersStatusId==7){
+								str = str + '<th class="c-red">已取消</th>';
+							}else if(item.ordersStatusId==8){
+								str = str + '<th class="c-red">已收单</th>';
+							}else if(item.ordersStatusId==9){
+								str = str + '<th class="c-red">已回收</th>';
+							}else if(item.ordersStatusId==10){
+								str = str + '<th class="c-red">已评价</th>';
+							}else if(item.ordersStatusId==11){
+								str = str + '<th class="c-red">已结算</th>';
+							}else{
+								str = str + '<th class="c-red">'+item.ordersStatusId+'</th>';
+							}
+							str = str + '</tr>'
 			                + '</thead>'
 			                + '<tbody>';
 			                for(var j=0; j<ordersItemList.length; j++){
 				               str = str + '<tr>'
 				                + '<td class="checkbox none"><input class="check-one check" type="checkbox"/></td>'
 				                + '<td class="goods"><img src="'+ordersItemList[j].modelsImage+'" alt=""/><span>'+ordersItemList[j].modelsName+'</span></td>'
-				                + '<td class="price">'+item.currency+item.currencyValue+'</td>'
+				                + '<td class="price">'+item.currency+ordersItemList[j].recyclePrice+'</td>'
 				                + '<td class="status">价格有效</td>'
 				                + '<td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="'+ordersItemList[j].quantity+'"/><span class="add none"></span></td>'
-				                + '<td class="subtotal">'+item.currency+ordersItemList[j].recyclePrice+'</td>'
-				                + '<td><a href="javascript:;" onclick="myOrder.showAssessDetail()" class="underline">评估详情</a></td>'
+				                + '<td class="subtotal">'+item.currency+ordersItemList[j].customersPrice+'</td>'
+				                + '<td><a href="javascript:;" onclick="myOrder.showAssessDetail('+ordersItemList[j].customersBasketId+')" class="underline">评估详情</a></td>'
 				                + '<td></td>'
 				                + '</tr>'
-				                sum = sum+ordersItemList[j].recyclePrice;
+				                sum = sum+ordersItemList[j].customersPrice;
 				                count+=1;
 			                }
 			                str = str + '</tbody>'
@@ -67,7 +91,7 @@ myOrder = {
 			                + '<div class="foot" id="foot">'
 			                + '<label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>'
 			                + '<a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>'
-			                + '<div class="fr total">合计：￥<span id="priceTotal">'+sum+'</span></div>'
+			                + '<div class="fr total">合计：'+item.currency+'<span id="priceTotal">'+sum+'</span></div>'
 			                + '<div class="fr selected" id="selected">共<span id="selectedTotal">'+count+'</span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>'
 			                + '<div class="selected-view none">'
 			                + '<div id="selectedViewList" class="clearfix">'
@@ -123,8 +147,8 @@ myOrder = {
 		showOrderOper : function(){
 			$(this).modal('/orderOperPop.html', '订单操作')
 		},
-		showAssessDetail : function() {
-			$(this).modal('/assessDetails.html', '评估详情')
+		showAssessDetail : function(customersBasketId) {
+			$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
 		}
 		
 };
