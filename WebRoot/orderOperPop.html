@@ -8,7 +8,8 @@
 </head>
 <body>
 	<div class="operate-pop" style="margin: 0 auto;">
-	<div id="orderId">${orderId!}</div>
+	<div id="orderId" hidden>${orderId!}</div>
+	<div id="status" hidden>${status!}</div>
 		<div class="pop-header">
 			<i class="icon-close close-pop"></i>
 			订单操作提示
@@ -30,6 +31,33 @@
 <script type="text/javascript">
 	$(function() {
 		$('input, textarea').placeholder({customClass:'my-placeholder'});
+		var status = $('#status').text();
+		if(status==2){
+			$('textarea').attr('placeholder','请输入发货的物流公司及物流单号相关信息');
+		}else if(status==7){
+			$('textarea').attr('placeholder','请输入取消订单的原因');
+		}
+		else if(status==6){
+			$('textarea').attr('placeholder','请输入需要补充反馈的信息');
+		}
+		else if(status==10){
+			$('textarea').attr('placeholder','请输入评价相关信息，以便我们进一笔改进服务 ');
+		}
+		var orderId = $('#orderId').text();
+		var text = $('textarea').val();
+		var config = {
+				url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						Modal.alert('短信发送失败，请稍后再试！');
+						return;
+					}
+					Modal.alert('短信发送成功！');
+				}
+		}
+		Modal.jsonp(config);
+		
 	});
 </script>
 </body>

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="operate-pop" style="margin: 0 auto;">
-	<div id="orderId" >${orderId!}</div>
+	<div id="orderId" hidden>${orderId!}</div>
 		<div class="pop-header">
 			<i class="icon-close close-pop"></i>
 			评价订单
@@ -24,7 +24,7 @@
 			<textarea placeholder="请在此输入评价内容"></textarea>
 		</div>
 		<div class="pop-footer">
-			<input type="button" class="close-pop btn-green" value="确 定" />　　 &nbsp;
+			<input type="button" class="close-pop btn-green" onclick="commitAssessment()" value="确 定" />　　 &nbsp;
 			<input type="button" class="close-pop btn-gray" value="取 消" />
 		</div>
 	</div>
@@ -32,6 +32,25 @@
 <script src="scripts/jquery-1.9.1.min.js"></script>
 <script src="scripts/jquery.placeholder.min.js"></script>
 <script type="text/javascript">
+var commitAssessment = function(){
+	var orderId = $('#orderId').text();
+	var status = 10;
+	var content = $('textarea').val();
+	var level = $('.on span').html();
+	alert(level+">>"+content);
+	var config = {
+			url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+			callbackParameter: "callback",
+			success : function(data){ 
+				if (data.msg.code!="0000") {
+					Modal.alert('短信发送失败，请稍后再试！');
+					return;
+				}
+				Modal.alert('短信发送成功！');
+			}
+	}
+	//Modal.jsonp(config);
+}
 $(function() {
 	$('input, textarea').placeholder({customClass:'my-placeholder'});
 	$('.green-radio label').click(function(){

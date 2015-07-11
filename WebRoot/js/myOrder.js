@@ -104,8 +104,8 @@ myOrder = {
 			                + '<td colspan="6" class="tx-right">';
 			                if(item.ordersStatusId=="1"){
 			                	//未处理
-			                	str = str + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+');" class="btn-radius">客户发货</a> &nbsp;'
-				                + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper('+item.ordersId+');">　取消　</a> &nbsp;';
+			                	str = str + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+',2);" class="btn-radius">客户发货</a> &nbsp;'
+				                + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper('+item.ordersId+',7);">　取消　</a> &nbsp;';
 			                }else if(item.ordersStratusId=="5"){
 			                	//已回寄
 			                	str = str  + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+');" class="btn-radius">完成回退</a> &nbsp;';
@@ -113,6 +113,7 @@ myOrder = {
 			                	//已回寄
 			                	str = str  + '<a href="#" onclick="myOrder.showAssessment('+item.ordersId+');" class="btn-radius">评价</a> &nbsp;';
 			                }
+			                str = str  + '<a href="#" onclick="myOrder.showAssessment('+item.ordersId+');" class="btn-radius">评价</a> &nbsp;';
 			               str = str + '</td>'
 			                + '</tr>'
 			                + '</table>'
@@ -144,8 +145,8 @@ myOrder = {
 		showAssessment : function(ordersId){
 			$(this).modal('/assessmentPop_'+ordersId+'.html', '评价')
 		},
-		showOrderOper : function(ordersId){
-			$(this).modal('/orderOperPop_'+ordersId+'html', '订单操作')
+		showOrderOper : function(ordersId,status){
+			$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', '订单操作')
 		},
 		showAssessDetail : function(customersBasketId) {
 			$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')

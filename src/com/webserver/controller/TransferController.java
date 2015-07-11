@@ -136,7 +136,9 @@ public class TransferController {
 	@RequestMapping(value="/orderOperPop_{orderId}")
 	public ModelAndView orderOperPop(@PathVariable(value="orderId") String orderId) {
 		ModelAndView modelAndView = new ModelAndView("orderOperPop");
-		modelAndView.addObject("orderId", orderId); 
+		String[] arr = orderId.split("_");
+		modelAndView.addObject("orderId", arr[0]); 
+		modelAndView.addObject("status", arr[1]); 
 		return modelAndView;
 	}
 	/**

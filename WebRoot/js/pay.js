@@ -74,7 +74,7 @@ var pay = {
 	},
 	initCityRegion : function() {
 		var config = {
-				url : Sys.serviceDomain+"/listOneCityRegion?currentPage=0&cityId="+1,
+				url : Sys.serviceDomain+"/listOneCityRegion?currentPage=0&cityId="+localStorage.cityId,
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
@@ -132,11 +132,11 @@ var pay = {
 								if (list[i].recycleMethodId==1) {
 									var str = '<label><input type="radio" name="trade-way" id="online_bank" checked value="1" /> 网银转账：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
-									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="2" /> 现金交易：<span class="c-red"></span></label>';
+									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
 									$('#payType').append($(strs));
 									$('.bank-area').hide();
 								}else if (list[i].recycleMethodId==2){
-									var str = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="2" /> 现金交易：<span class="c-red"></span></label>';
+									var str = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
 									$('.bank-area').hide();
 								}
@@ -192,16 +192,17 @@ var pay = {
 				Modal.alert('请选择收款方式');
 				return ;
 			}
-			
 			var data = {
 					customersBasketIds : $('#customersBasketIds').text(),
 					userId : sessionStorage.userId,
 					ordersSource : sessionStorage.userType,
 					customerName : username,
 					paymentType : tradeWay,
-					cityId : sessionStorage.cityId
+					cityId : localStorage.cityId,
+					transactionType : dealType
 			};
-			
+			alert(tradeWay);
+			//如果是网银转账
 			if(tradeWay==1){
 				bank = $('#bank').val();
 				bank_user = $('#bank_user').val();
@@ -213,6 +214,18 @@ var pay = {
 				data.accountBank = bank;
 				data.paymentAccount = bank_account;
 				data.accountName = bank_user;
+			}
+			alert(dealType);
+			//如果当面交易
+			if(dealType==3){
+				var regionId = $('#cityRegion').val();
+				var addr = $('#detailAddr').val();
+				if(regionId==''||addr==''){
+					Modal.alert('请输入您的地址信息');
+					return ;
+				}
+				data.regionId = regionId;
+				data.address = addr;
 			}
 			
 			
@@ -226,7 +239,7 @@ var pay = {
 							return;
 						}
 						var content = data.content;
-						window.location.href = '/orderSuccess_'+content.ordersId+'.html';
+						//window.location.href = '/orderSuccess_'+content.ordersId+'.html';
 					}
 			}
 			Modal.jsonp(config);
@@ -242,7 +255,7 @@ var pay = {
 		$('.drop-down.drop-down-s.more-city').addClass('hover');
 	},
 	reValuation : function() {
-		alert(111);
+		//alert(111);
 //		var config = {
 //		url : Sys.serviceDomain+"/listAllCity?provienceId="+val,
 //		callbackParameter: "callback",
