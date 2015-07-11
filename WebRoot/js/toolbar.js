@@ -94,6 +94,22 @@ var toolBar = {
 		},
 		doSearch : function(){
 			var keyword = $('#search-bar').val();
+			var bId = "0";
+			var tagId = "0";
+			var bIdObj = $('.listIndex .selected');
+			if(bIdObj){
+				bId = bIdObj.attr('id')
+			}
+			var tagIdObj = $('.resultList .selected');
+			if(tagIdObj){
+				tagId = tagIdObj.attr('id');
+				if(tagId){
+					
+				}else{
+					tagId = "0";
+				}
+			}
+			alert("bid="+bId+",tagid="+tagId);
 			window.location.href = '/search_'+keyword+".html";
 		},
 		initSignIntegral : function(){

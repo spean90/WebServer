@@ -85,18 +85,19 @@ var category = {
 			});
 		},
 		/*获取手机列表*/
-		getPhoneList : function(bId,tagId){
+		getPhoneList : function(bId,tagId,keyword){
 			
 			var url = '';
-			if(bId==0){//获取热门手机
-				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage=1";
+			if(bId==0){
+				url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&currentPage=1&keywords="+keyword;
 			}else{
 				if (tagId==null) {
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0";
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0&keywords="+keyword;
 				}else{
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0&tagIds="+tagId;
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0&tagIds="+tagId+"&keywords="+keyword;
 				}
 			}
+			//console.log(url);
 			$.jsonp({
 				url : url,
 				callbackParameter : "callback",
@@ -124,6 +125,7 @@ var category = {
 		},
 		/*获取手机列表--按分页*/
 		getPhoneListByPage : function(page){
+			var keyword = $("#keyword").html();
 			var bId = $('.listIndex .selected').attr('id');
 			var tagId = null;
 			var tag = $('.resultList .selected');
@@ -132,12 +134,12 @@ var category = {
 			}
 			var url = '';
 			if(bId==null){//没有选中品牌
-				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage="+page;
+				url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&currentPage="+page+"&keywords="+keyword;
 			}else{
 				if(tagId==null||tagId=='undefined'){
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage="+page;
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage="+page+"&keywords="+keyword;
 				}else{
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage="+page+"&tagIds="+tagId;
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage="+page+"&tagIds="+tagId+"&keywords="+keyword;
 				}
 			}
 			$.jsonp({
@@ -214,7 +216,8 @@ var category = {
 			}
 			$(obj).addClass('selected');
 			category.getTagList(bId,bName);
-			category.getPhoneList(bId,null);
+			var keyword = $("#keyword").html();
+			category.getPhoneList(bId,null,keyword);
 		},
 		//点击了TAG，使其获取焦点,并获取手机信息
 		focusOnTAG : function(obj,tagId){
@@ -224,7 +227,8 @@ var category = {
 				selected.removeClass('selected');
 			}
 			$(obj).addClass('selected');
-			category.getPhoneList(bId,tagId);
+			var keyword = $("#keyword").html();
+			category.getPhoneList(bId,tagId,keyword);
 		},
 		//点击分页，重新获取数据
 		onPageClick:function(pageNumber, event){
@@ -257,7 +261,7 @@ var category = {
 		    }else{
 		    	$("#filter_pager_next").attr("class","");
 		    }
-		},
+		}/*,
 		getPhoneListBySearch : function(keyword){
 
 			var url = Sys.serviceDomain+"/searchModels?recordPerPage=10&currentPage=1&keywords="+keyword;
@@ -285,7 +289,7 @@ var category = {
 					category.setButtonClass(1);
 				}
 			});
-		}
+		}*/
 }
 
 $(function(){
@@ -302,8 +306,8 @@ $(function(){
 		$(".resultList> .select").empty();
 		$(".resultList> dd").empty();
 	}
-	//category.getPhoneList(bid,null);
-	category.getPhoneListBySearch(keyword);
+	category.getPhoneList(bid,null,keyword);
+	//category.getPhoneListBySearch(keyword);
 	
 /*	 $("#pagination").pagination({
 	        items: 100,
