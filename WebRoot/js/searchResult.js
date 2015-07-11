@@ -297,6 +297,7 @@ $(function(){
 	$("#search-bar").val(keyword);
 	$('[href="/brands_0.html"]').parent().addClass('on');
 	var bid = $('#brandId').text();
+	var tagId = $("#tagId").text();
 	var keyword = $('#keyword').text();
 	category.getHotBrands(bid);
 	category.getOtherBrands(bid);
@@ -306,7 +307,11 @@ $(function(){
 		$(".resultList> .select").empty();
 		$(".resultList> dd").empty();
 	}
-	category.getPhoneList(bid,null,keyword);
+	if(tagId=="0"){
+		category.getPhoneList(bid,null,keyword);
+	}else{
+		category.getPhoneList(bid,tagId,keyword);
+	}
 	//category.getPhoneListBySearch(keyword);
 	
 /*	 $("#pagination").pagination({

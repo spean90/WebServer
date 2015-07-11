@@ -28,11 +28,16 @@ public class TransferController {
 		modelAndView.addObject("bid", bid); 
 		return modelAndView;
 	}
-	@RequestMapping(value="/search_{keyword}_{bid}_{tagid}")
-	public ModelAndView search(@PathVariable(value="keyword") String keyword,
-			@PathVariable(value="bid") String bid,
-			@PathVariable(value="tagid") String tagid) {
+	@RequestMapping(value="/search_{keyword}")
+	public ModelAndView search(@PathVariable(value="keyword") String keyword) {
 		ModelAndView modelAndView = new ModelAndView("search");
+		String[] attr = keyword.split("-");
+		String bid = attr[0];
+		String tagid = attr[1];
+		keyword = "";
+		for(int i=2; i<attr.length; i++){
+			keyword = keyword + attr[i];
+		}
 		modelAndView.addObject("keyword", keyword); 
 		modelAndView.addObject("bid", bid); 
 		modelAndView.addObject("tagid", tagid); 

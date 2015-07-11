@@ -98,7 +98,12 @@ var toolBar = {
 			var tagId = "0";
 			var bIdObj = $('.listIndex .selected');
 			if(bIdObj){
-				bId = bIdObj.attr('id')
+				bId = bIdObj.attr('id');
+				if(bId){
+					
+				}else{
+					bId = "0";
+				}
 			}
 			var tagIdObj = $('.resultList .selected');
 			if(tagIdObj){
@@ -109,8 +114,7 @@ var toolBar = {
 					tagId = "0";
 				}
 			}
-			alert("bid="+bId+",tagid="+tagId);
-			window.location.href = '/search_'+keyword+".html";
+			window.location.href = '/search_'+bId+'-'+tagId+'-'+keyword+'.html';
 		},
 		initSignIntegral : function(){
 			if(sessionStorage.token==undefined){
