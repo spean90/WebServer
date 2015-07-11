@@ -118,7 +118,7 @@ var pay = {
 	initPayType : function() {
 		$('#payType').empty();
 		var config = {
-				url : Sys.serviceDomain+"/listOneCityRecycleMethod?cityId="+1,
+				url : Sys.serviceDomain+"/listOneCityRecycleMethod?cityId="+localStorage.cityId,
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
@@ -201,7 +201,6 @@ var pay = {
 					cityId : localStorage.cityId,
 					transactionType : dealType
 			};
-			alert(tradeWay);
 			//如果是网银转账
 			if(tradeWay==1){
 				bank = $('#bank').val();
@@ -215,7 +214,6 @@ var pay = {
 				data.paymentAccount = bank_account;
 				data.accountName = bank_user;
 			}
-			alert(dealType);
 			//如果当面交易
 			if(dealType==3){
 				var regionId = $('#cityRegion').val();
@@ -239,7 +237,7 @@ var pay = {
 							return;
 						}
 						var content = data.content;
-						//window.location.href = '/orderSuccess_'+content.ordersId+'.html';
+						window.location.href = '/orderSuccess_'+content.ordersId+'.html';
 					}
 			}
 			Modal.jsonp(config);
