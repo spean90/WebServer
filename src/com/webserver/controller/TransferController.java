@@ -116,10 +116,38 @@ public class TransferController {
 		modelAndView.addObject("newsId", newsId); 
 		return modelAndView;
 	}
+	/**
+	 * 评估详情
+	 * @param customersBasketId
+	 * @return
+	 */
 	@RequestMapping(value="/assessDetails_{customersBasketId}")
 	public ModelAndView assessDetails(@PathVariable(value="customersBasketId") String customersBasketId) {
 		ModelAndView modelAndView = new ModelAndView("assessDetails");
 		modelAndView.addObject("customersBasketId", customersBasketId); 
+		return modelAndView;
+	}
+	@RequestMapping(value="/dealOrder_{orderId}")
+	public ModelAndView dealOrder(@PathVariable(value="orderId") String orderId) {
+		ModelAndView modelAndView = new ModelAndView("dealOrderPop");
+		modelAndView.addObject("orderId", orderId); 
+		return modelAndView;
+	}
+	@RequestMapping(value="/orderOperPop_{orderId}")
+	public ModelAndView orderOperPop(@PathVariable(value="orderId") String orderId) {
+		ModelAndView modelAndView = new ModelAndView("orderOperPop");
+		modelAndView.addObject("orderId", orderId); 
+		return modelAndView;
+	}
+	/**
+	 * 评价订单
+	 * @param orderId
+	 * @return
+	 */
+	@RequestMapping(value="/assessmentPop_{orderId}")
+	public ModelAndView assessmentPop(@PathVariable(value="orderId") String orderId) {
+		ModelAndView modelAndView = new ModelAndView("assessmentPop");
+		modelAndView.addObject("orderId", orderId); 
 		return modelAndView;
 	}
 	

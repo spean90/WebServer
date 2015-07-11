@@ -150,25 +150,35 @@ var UserInfo = {
 					for(var i=0; i<list.length; i++){
 						$("#region").append($('<option value="' + list[i].regionId + '">' + list[i].name + '</option>'));	
 					}
-					$("#region").val(user_region);
+					if($('#city').val()==user_city){
+						alert(user_region);
+						$("#region").val(user_region);
+					}
 				}
 			}
 			Modal.jsonp(config);
 		},
 		update : function() {
 			var name = $('#name').val();
+			var privinceId = $('#province').val();
+			var cityId = $('#city').val();
+			var reginId = $('#region').val();
+			var data={
+					privinceId : privinceId,
+					cityId : cityId,
+					reginId : reginId,
+					name : name
+			}
 			var config = {
-					url : Sys.serviceDomain + "/listOneCityRegion?cityId="+city,
+					url : Sys.serviceDomain + "/updateOwnCustomers",
+					data : data,
 					callbackParameter : "callback",
 					success : function(data) {
 						if (data.msg.code != "0000") {
 							return;
 						}
-						var list = data.content.list;
-						for(var i=0; i<list.length; i++){
-							$("#region").append($('<option value="' + list[i].regionId + '">' + list[i].name + '</option>'));	
-						}
-						$("#region").val(user_region);
+						Modal.alert('修改成功');
+						window.location.href='/userinfo.html';
 					}
 				}
 				Modal.jsonp(config);

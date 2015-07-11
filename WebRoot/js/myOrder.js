@@ -104,14 +104,14 @@ myOrder = {
 			                + '<td colspan="6" class="tx-right">';
 			                if(item.ordersStatusId=="1"){
 			                	//未处理
-			                	str = str + '<a href="#" onclick="myOrder.showOrderOper();" class="btn-radius">客户发货</a> &nbsp;'
-				                + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper();">　取消　</a> &nbsp;';
+			                	str = str + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+');" class="btn-radius">客户发货</a> &nbsp;'
+				                + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper('+item.ordersId+');">　取消　</a> &nbsp;';
 			                }else if(item.ordersStratusId=="5"){
 			                	//已回寄
-			                	str = str  + '<a href="#" onclick="myOrder.showOrderOper();" class="btn-radius">完成回退</a> &nbsp;';
+			                	str = str  + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+');" class="btn-radius">完成回退</a> &nbsp;';
 			                }else if(item.ordersStratusId=="6" || item.ordersStratusId=="7"){
 			                	//已回寄
-			                	str = str  + '<a href="#" onclick="myOrder.showAssessment();" class="btn-radius">评价</a> &nbsp;';
+			                	str = str  + '<a href="#" onclick="myOrder.showAssessment('+item.ordersId+');" class="btn-radius">评价</a> &nbsp;';
 			                }
 			               str = str + '</td>'
 			                + '</tr>'
@@ -141,11 +141,11 @@ myOrder = {
 			}
 			Modal.jsonp(config);
 		},
-		showAssessment : function(){
-			$(this).modal('/assessmentPop.html', '评价')
+		showAssessment : function(ordersId){
+			$(this).modal('/assessmentPop_'+ordersId+'.html', '评价')
 		},
-		showOrderOper : function(){
-			$(this).modal('/orderOperPop.html', '订单操作')
+		showOrderOper : function(ordersId){
+			$(this).modal('/orderOperPop_'+ordersId+'html', '订单操作')
 		},
 		showAssessDetail : function(customersBasketId) {
 			$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
