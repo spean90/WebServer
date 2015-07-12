@@ -51,7 +51,7 @@ var orderDetail = {
 						var str = ''; //导航条
 						var s='';  //总的订单历史现实
 						//每步订单详情
-						var strDept = '<div id="step-'+(i+1)+'" class="page">'
+						var strDept = '<div id="step-'+(i+2)+'" class="page" style="display: none;">'
 			                   +'<div class="tipbox">'
 			                   +'<i class="arrow-top"></i>'
 			                   +'<table width="100%">'
@@ -138,7 +138,8 @@ var orderDetail = {
                             	s = s+'<td>'+item.comment+'</td>';
                             	strDept = strDept+'</tr><td>'+item.comment+'</td>';
                             }else{
-                            	s = s+'</tr><td>无</td>';
+                            	//s = s+'</tr><td>无</td>';
+                            	s = s+'<td>无</td>';
                             	strDept = strDept+'<td>无</td>';
                             }
                             s = s+'</tr>'
