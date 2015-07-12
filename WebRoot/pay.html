@@ -37,7 +37,7 @@
       手机号码：<input type="text" class="gray-text" id="phone" placeholder="请输入手机号码" />
       <a href="javascript:;" onclick="pay.generateCheckCode()" class="captcha-btn">发送验证码</a>　<input type="text" id="code" class="gray-text" placeholder="请输入验证码" />
     </p>
-    <p><span class="c-gray">*收款及交易方式</span>　<span style="width: 300px;" class="focus-text">您所在的城市是<span style="color: blue;">福州</span>，如有误请选择<a href="javascript:;" onclick="pay.changeCity()">[选择城市]</a></span></p>
+    <p><span class="c-gray">*收款及交易方式</span>　<span style="width: 300px;" class="focus-text">您所在的城市是<span style="color: blue;" id="currentCity">福州</span>，如有误请选择<a href="javascript:;" onclick="pay.changeCity()">[选择城市]</a></span></p>
     <p>
       <span class="c-black fb">选择收款方式</span>
       	<span id="payType">

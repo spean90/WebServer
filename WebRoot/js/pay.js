@@ -304,6 +304,7 @@ $(function(){
 		$('.captcha-btn').hide();
 		$('#code').hide();
 	}
+	$('#currentCity').text(localStorage.cityName);
 	pay.initRetrieveList();
 	pay.initCityRegion();
 	pay.initPayType();

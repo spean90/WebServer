@@ -17,10 +17,13 @@ var myRetrieveCar = {
 							$('tbody').empty();
 							var list = data.content.list;
 							var str = '';
+							var sum=0;
+							var currency = '';
 							for (var i = 0; i < list.length; i++) {
 								var item = list[i];
+								currency = item.currency;
 								str = '<tr id="'+item.customersBasketId+'">'
-									  + '<td class="checkbox"><input class="check-one check" type="checkbox" value="'+item.customersBasketId+'"/></td>'
+									  + '<td class="checkbox"><input class="check-one check" checked type="checkbox" value="'+item.customersBasketId+'"/></td>'
 									  + '<td class="goods"><img src="'+item.modelsImage+'" alt=""/><span>'+item.modelsName+'</span></td>'
 									  + '<td class="price">'+item.lastEvaluationPrice.toFixed(2)+'</td>'
 									  + '<td class="status">价格有效</td>'
@@ -32,8 +35,12 @@ var myRetrieveCar = {
 									  + '</td>'
 									  + '</tr>';
 								$('tbody').append($(str));
+								sum += parseFloat(item.lastEvaluationPrice.toFixed(2));
 							}
-							onloadCar();//❤重新加载购物车内容❤
+							$('#priceTotal').text(sum);
+							$('#currency').text(currency);
+							$('#selectedTotal').text(list.length);
+							//onloadCar();//❤重新加载购物车内容❤
 						}
 					}
 			}

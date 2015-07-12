@@ -21,6 +21,8 @@ var evaluateResult = {
         + '</td>'
         + '</tr>';
 	$('tbody').append($(str));
+	$('#priceTotal').text(obj.result.lastEvaluationPrice.toFixed(2));
+	$('#currency').text(obj.result.currency);
 	},
 	/*添加到回收车*/
 	addToCart : function(isPop){

@@ -151,7 +151,6 @@ var UserInfo = {
 						$("#region").append($('<option value="' + list[i].regionId + '">' + list[i].name + '</option>'));	
 					}
 					if($('#city').val()==user_city){
-						alert(user_region);
 						$("#region").val(user_region);
 					}
 				}
