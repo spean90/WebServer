@@ -3,6 +3,7 @@
  */
 myOrder = {
 		getOrders : function(page,orderType,divIndex){
+			$('#reflash').text(page+'_'+orderType+'_'+divIndex);
 			$(".tabs-content>div:eq("+divIndex+")").empty();
 			var config = {
 					url : Sys.serviceDomain+"/listMyOrders?recordPerPage=2&currentPage="
@@ -146,10 +147,15 @@ myOrder = {
 			$(this).modal('/assessmentPop_'+ordersId+'.html', '评价')
 		},
 		showOrderOper : function(ordersId,status){
-			$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', '订单操作')
+			$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', 'orderOperPopId')
 		},
 		showAssessDetail : function(customersBasketId) {
 			$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
+		},
+		reflash : function(){
+			var reflashText = $('#reflash').text();
+			var arr = reflashText.split('_');
+			myOrder.getOrders(arr[0],arr[1],arr[2]);
 		}
 		
 };
