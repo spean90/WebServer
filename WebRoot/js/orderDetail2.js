@@ -47,7 +47,7 @@ var orderDetail = {
 					var content = data.content;
 					var list = content.list;
 					var str = '<li class="flow-box first">'
-		                   +'<a href="#step-1">订单状态历史</a>'
+		                   +'<a href="#step-1">订单历史</a>'
 		                   +'</li>'; //导航条
 					for(var i=0;i<list.length;i++){
 						var item = list[i];
@@ -59,15 +59,11 @@ var orderDetail = {
 			                   +'<table width="100%">'
 			                   +'<tbody>'
 			                   +'<tr class="first">'
-			                   +'<td class="first">当前选中状态：</td>';
-						if(i==list.length-1){
-							s= '<tr class="first">'
-								+'<td class="first">当前订单状态：</td>';
-						}else{
-							s= '<tr>'
-								+'<td >历史订单状态：</td>';
-						}
+			                   +'<td class="first">当前订单状态：</td>';
+
 						str = str + '<li class="flow-box">';
+						s= '<tr>'
+							+'<td >历史订单状态：</td>';
 						str = str +'<a href="#step-'+(i+2)+'"><span class="round-digit">'+(i+1);
 						if(item.ordersStatusId==1){
 							str = str + '</span>待处理</a></li>';
