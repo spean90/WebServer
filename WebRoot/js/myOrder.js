@@ -144,7 +144,7 @@ myOrder = {
 			Modal.jsonp(config);
 		},
 		showAssessment : function(ordersId){
-			$(this).modal('/assessmentPop_'+ordersId+'.html', '评价')
+			$(this).modal('/assessmentPop_'+ordersId+'.html', 'assessmentPopId')
 		},
 		showOrderOper : function(ordersId,status){
 			$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', 'orderOperPopId')

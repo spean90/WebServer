@@ -23,6 +23,10 @@ var feedback = {
 				url : action=Sys.serviceDomain+"/addMyAsk?key=" + sessionStorage.token,
 				success : function(data){
 					Modal.alert("提交成功!");
+					setTimeout(function(){
+						$('#feedbackPopId',window.top.document).remove();
+					}, 2000)
+					
 					//window.parent.location.href = '/index.html';
 				}
 			});

@@ -42,7 +42,7 @@ var myissue = {
 						      '</div>'+
 						      '<p>' + list[i].askText + '</p>' +
 						      '<div class="consult-attach">'+
-						      '<span class="cor-gary">附件</span>　 <img src="pic/pic1.png" height="120" width="120" />　 <a href="javascript:;" class="btn-gray"><i class="icon-download"></i> 下载</a>'+
+						      '<span class="cor-gary">附件</span>　 <img src="'+list[i].attachment+'" height="120" width="120" />　 <a href="'+list[i].attachment+'" class="btn-gray"><i class="icon-download"></i> 下载</a>'+
 						      '</div>'+
 						      '<div class="consult-box" id="cb_'+list[i].askId+'">';
 							var replyList = list[i].replyList;

@@ -178,7 +178,7 @@ $(function(){
 	});
 	//右侧意见反馈按钮弹窗
 	$(".btn.btn-edit").click(function(){
-		$(this).modal('/feedback.html', '反馈')
+		$(this).modal('/feedback.html', 'feedbackPopId')
 	});
 
 	$(".search-button").click(function(){

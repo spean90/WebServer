@@ -181,6 +181,15 @@ var UserInfo = {
 					}
 				}
 				Modal.jsonp(config);
+		},
+		updateImg : function() {
+			$("#imageForm").form('submit',{
+				url : Sys.serviceDomain + "/updateOwnCustomersHeadImg?key="+sessionStorage.token,
+				success : function(data){
+					console.log(data);
+					alert(data);
+				}
+			});
 		}
 };
 

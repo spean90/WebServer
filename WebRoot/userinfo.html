@@ -100,14 +100,15 @@
                 <a href=""><span>修改头像</span></a>
               </div>
               <div class="fl right">
+              <form id="imageForm"></form>
                <img src="images/avatar1.jpg" alt="" />
                 <div class="uploadbtn">
-                  <input type="file"/>
+                  <input type="file" name="file"/>
                 </div>
                 <div class="bottomtext">
                   <p>请选择电脑中的一张图片,然后点击保存</p>
                   <p>支持JPG、PNG、GIF图片类型,不能大于200KB.</p>
-                  <button class="btnsave">保存</button>
+                  <button class="btnsave" onclick="UserInfo.updateImg()">保存</button>
                 </div>
               </div>
                 
@@ -132,6 +133,7 @@
 <!--End 主体内容-->
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
+<script src="common/js/jquery.easyui.min.js"></script>
 <!--End 公用底部-->
 <script src="js/userinfo.js"></script>
 </body>

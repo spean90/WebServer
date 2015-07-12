@@ -5,6 +5,7 @@
 	<title>弹窗-评价</title>
 	<link rel="stylesheet" href="css/public.css" />
 	<link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="css/index2.css" />
 </head>
 <body>
 	<div class="operate-pop" style="margin: 0 auto;">
@@ -15,41 +16,55 @@
 		</div>
 		<div class="pop-body">
 			<div class="green-radio">
-				<label><input type="radio" name="satisty" /> <span>非常满意</span></label> &nbsp;
-				<label><input type="radio" name="satisty" /> <span>满意</span></label> &nbsp;
-				<label><input type="radio" name="satisty" /> <span>一般</span></label> &nbsp;
-				<label><input type="radio" name="satisty" /> <span>不满意</span></label>
+				<label><input type="radio" name="satisty" value="3" /> <span>非常满意</span></label> &nbsp;
+				<label><input type="radio" name="satisty" value="2"/> <span>满意</span></label> &nbsp;
+				<label><input type="radio" name="satisty" value="1"/> <span>一般</span></label> &nbsp;
+				<label><input type="radio" name="satisty" value="0"/> <span>不满意</span></label>
 			</div>
 			<p class="tx-left">评价说明</p>
 			<textarea placeholder="请在此输入评价内容"></textarea>
 		</div>
 		<div class="pop-footer">
-			<input type="button" class="close-pop btn-green" onclick="commitAssessment()" value="确 定" />　　 &nbsp;
+			<input type="button" class="btn-green" onclick="commitAssessment()" value="确 定" />　　 &nbsp;
 			<input type="button" class="close-pop btn-gray" value="取 消" />
 		</div>
 	</div>
 
 <script src="scripts/jquery-1.9.1.min.js"></script>
 <script src="scripts/jquery.placeholder.min.js"></script>
+<script src="scripts/main.js"></script>
+<script src="common/jquery/jquery.jsonp-2.4.0.min.js"></script>
+<script src="common/js/sys.js"></script>
+<script src="common/js/modal.js"></script>
 <script type="text/javascript">
 var commitAssessment = function(){
 	var orderId = $('#orderId').text();
 	var status = 10;
 	var content = $('textarea').val();
-	var level = $('.on span').html();
+	var level = $('.on input').val();
 	alert(level+">>"+content);
+	var data = {
+			ordersId : orderId,
+			ordersStatusId : status,
+			customersReviews : content,
+			reviewsLevel : level
+	}
 	var config = {
-			url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+			url : Sys.serviceDomain+"/addOneCustomersReviews",
 			callbackParameter: "callback",
 			success : function(data){ 
 				if (data.msg.code!="0000") {
-					Modal.alert('短信发送失败，请稍后再试！');
+					Modal.alert('提交操作失败!');
 					return;
 				}
-				Modal.alert('短信发送成功！');
+				Modal.alert('操作成功！');
+				$('#reflash', window.top.document).click();
+				setTimeout(function(){
+					$('#assessmentPopId', window.top.document).remove();
+				}, 2000);
 			}
 	}
-	//Modal.jsonp(config);
+	Modal.jsonp(config);
 }
 $(function() {
 	$('input, textarea').placeholder({customClass:'my-placeholder'});
