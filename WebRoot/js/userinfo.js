@@ -177,7 +177,10 @@ var UserInfo = {
 							return;
 						}
 						Modal.alert('修改成功');
-						window.location.href='/userinfo.html';
+						setTimeout(function(){
+							window.location.href='/userinfo.html';
+						}, 2000);
+						
 					}
 				}
 				Modal.jsonp(config);
@@ -186,8 +189,10 @@ var UserInfo = {
 			$("#imageForm").form('submit',{
 				url : Sys.serviceDomain + "/updateOwnCustomersHeadImg?key="+sessionStorage.token,
 				success : function(data){
-					console.log(data);
-					alert(data);
+					Modal.alert('修改成功');
+					setTimeout(function(){
+						window.location.href='/userinfo.html';
+					}, 2000);
 				}
 			});
 		}

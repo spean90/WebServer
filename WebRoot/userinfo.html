@@ -100,7 +100,7 @@
                 <a href=""><span>修改头像</span></a>
               </div>
               <div class="fl right">
-              <form id="imageForm"></form>
+              <form id="imageForm" enctype="multipart/form-data" method="post" >
                <img src="images/avatar1.jpg" alt="" />
                 <div class="uploadbtn">
                   <input type="file" name="file"/>
@@ -108,10 +108,10 @@
                 <div class="bottomtext">
                   <p>请选择电脑中的一张图片,然后点击保存</p>
                   <p>支持JPG、PNG、GIF图片类型,不能大于200KB.</p>
-                  <button class="btnsave" onclick="UserInfo.updateImg()">保存</button>
+                  <a class="btnsave" onclick="UserInfo.updateImg()">保存</a>
                 </div>
+              </form> 
               </div>
-                
               </div>
             </div>
             </div>

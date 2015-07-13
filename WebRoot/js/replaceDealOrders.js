@@ -64,7 +64,7 @@ var replaceDealOrders = {
 								               str = str + '<tr>'
 								                + '<td class="checkbox none"><input class="check-one check" type="checkbox"/></td>'
 								                + '<td class="goods"><img src="'+ordersItemList[j].modelsImage+'" alt=""/><span>'+ordersItemList[j].modelsName+'</span></td>'
-								                + '<td>'+item.customersPhone+'</td>'
+								                + '<td>'+item.userId+'</td>'
 								                + '<td class="price">'+item.currency+ordersItemList[j].recyclePrice+'</td>'
 								                + '<td class="status">价格有效</td>'
 								                + '<td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="'+ordersItemList[j].quantity+'"/><span class="add none"></span></td>'

@@ -62,7 +62,7 @@ var myissue = {
 						        	'</p>';
 							}
 							str = str + '</div>';
-							if(list[i].isClosed==1){//是否已经关闭回复，若已经关闭，则不可再回复
+							if(list[i].askType==1){//是否已经关闭回复，若已经关闭，则不可再回复list[i].isClosed==1 && 
 							    str = str + '<div class="consult-comment">' +
 							      '<span class="c-black">我：</span>' +
 							      '<textarea id="rc_'+list[i].askId+'" placeholder="您可以在此给我们留言，我们会在第一时间为您解答！"></textarea>' +
