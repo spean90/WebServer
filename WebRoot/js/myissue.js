@@ -41,9 +41,11 @@ var myissue = {
 						      '<span class="date-time">' + list[i].askTime + '</span>' +
 						      '</div>'+
 						      '<p>' + list[i].askText + '</p>' +
-						      '<div class="consult-attach">'+
-						      '<span class="cor-gary">附件</span>　 <img src="'+list[i].attachment+'" height="120" width="120" />　 <a href="'+list[i].attachment+'" class="btn-gray"><i class="icon-download"></i> 下载</a>'+
-						      '</div>'+
+						      '<div class="consult-attach">';
+						if(list[i].attachment!=undefined){
+							str += '<span class="cor-gary">附件</span>　 <img src="'+list[i].attachment+'" height="120" width="120" />　 <a href="'+list[i].attachment+'" class="btn-gray"><i class="icon-download"></i> 下载</a>';
+						}     
+						str += '</div>'+
 						      '<div class="consult-box" id="cb_'+list[i].askId+'">';
 							var replyList = list[i].replyList;
 							if(replyList.length==0){

@@ -103,7 +103,6 @@ $(document).ready(function () {
             e.preventDefault();
             $text = $('.focus').find('span').text();
             $('.output').slideUp();
-            
             $('#search-bar').val($text);
             $('input').blur();
         });
@@ -114,8 +113,10 @@ $(document).ready(function () {
         if ($('.prediction-item').length > 0) {
             $('.output').slideUp();
         }
-        $('.icon-so').show();
-        $(this).val('');
+        if($(this).val==''){
+        	 $('.icon-so').show();
+        }
+        //$(this).val('');
       // $('.search-input').css('paddingLeft',40);
     });
 });
