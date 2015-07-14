@@ -152,10 +152,31 @@ var toolBar = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		initHeatWord : function(){
+			$('.search-label').empty();
+			$('.search-label').append('热门搜索：');
+			var config = {
+					url : Sys.serviceDomain+"/listAllAnnounce", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var list = data.content.list;
+						for(var i=0;i<list.length;i++){
+							var s = '<a href="/search_0-0-'+1+'.html">iphone'
+								+'（D820mu/双4G）（黑/白）</a>';
+							$('.search-label').append($(s));
+						}
+					}
+			}
+			Modal.jsonp(config);
 		}
 }
 
 $(function(){
+	toolBar.initHeatWord();//初始化热搜词
 	toolBar.initHistoryRecord();//初始化浏览记录
 	toolBar.initRetrieveCar();//初始化购物车；
 	toolBar.initSignIntegral();//初始化签到按钮；
