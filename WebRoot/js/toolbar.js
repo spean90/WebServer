@@ -154,19 +154,18 @@ var toolBar = {
 			Modal.jsonp(config);
 		},
 		initHeatWord : function(){
-			$('.search-label').empty();
-			$('.search-label').append('热门搜索：');
 			var config = {
-					url : Sys.serviceDomain+"/listAllAnnounce", 
+					url : Sys.serviceDomain+"/listHotSearchKeywords", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
 							return;
 						}
+						$('.search-label').empty();
+						$('.search-label').append('热门搜索：');
 						var list = data.content.list;
 						for(var i=0;i<list.length;i++){
-							var s = '<a href="/search_0-0-'+1+'.html">iphone'
-								+'（D820mu/双4G）（黑/白）</a>';
+							var s = '<a href="/search_0-0-'+list[i].keywords+'.html">'+list[i].keywords+'</a>';
 							$('.search-label').append($(s));
 						}
 					}
