@@ -5,9 +5,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
-<link rel="stylesheet" href="css/index2.css" />
+<script src="/common/js/sys.js"></script>
+<script>
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/index.css" media="screen" />');
+document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+</script>
+
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <!--[if lte IE 8]>
