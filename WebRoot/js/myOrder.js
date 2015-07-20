@@ -114,7 +114,7 @@ myOrder = {
 			                	//已回寄
 			                	str = str  + '<a href="#" onclick="myOrder.showAssessment('+item.ordersId+');" class="btn-radius">评价</a> &nbsp;';
 			                }
-			                str = str  + '<a href="#" onclick="myOrder.showAssessment('+item.ordersId+');" class="btn-radius">评价</a> &nbsp;';
+			                //str = str  + '<a href="#" onclick="myOrder.showAssessment('+item.ordersId+');" class="btn-radius">评价</a> &nbsp;';
 			               str = str + '</td>'
 			                + '</tr>'
 			                + '</table>'

@@ -144,7 +144,7 @@ $(document).ready(function() {
 	
 
     function scrollTop(){
-      var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a href=\"tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes\" class=\"btn btn-qq\"><div class=\"kefu\">在线客服<i class=\"arrow-right\"></i></div></a><div class=\"btn btn-edit\"><div class=\"edit\">意见反馈<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-help\"></div><div class=\"btn btn-top\"><div class=\"gotop\">返回顶部<i class=\"arrow-right\"></i></div></div></div>";
+      var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a href=\"tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes\" class=\"btn btn-qq\"><div class=\"kefu\">在线客服<i class=\"arrow-right\"></i></div></a><div class=\"btn btn-edit\"><div class=\"edit\">意见反馈<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-help\"><div class=\"edit\">帮助中心<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-top\"><div class=\"gotop\">返回顶部<i class=\"arrow-right\"></i></div></div></div>";
         $("#top").html(tophtml);
         $("#izl_rmenu").each(function(){
           // $(this).find(".btn-edit").mouseenter(function(){

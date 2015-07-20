@@ -17,9 +17,10 @@ var UserInfo = {
 						//var data = {"msg":{"time":"2015-04-24 18:03:04.595","code":"0000","desc":"成功"},"content":{"recordPerPage":2,"list":[{"modelsId":1,"brandsId":1,"brandsTagsId":1,"modelsName":"机型1","modelsNickname":"苹果","modelsImage":"http://120.26.48.53:8080/ehuishou/img/models/1/a.png","color":"","recyclePrice":1000.0,"recycleCount":100,"metaTite":"","metaKeywords":"","metaDescription":"","modelsMonthPricesList":[{"priceMonth":"201504","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201503","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201502","customerRecycleCount":0,"customerAvgPrice":0.0}]},{"modelsId":3,"brandsId":1,"brandsTagsId":2,"modelsName":"机型3","modelsNickname":"苹果","modelsImage":"http://120.26.48.53:8080/ehuishou/img/models/1/a.png","color":"","recyclePrice":100.0,"recycleCount":1,"metaTite":"","metaKeywords":"","metaDescription":"","modelsMonthPricesList":[{"priceMonth":"201504","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201503","customerRecycleCount":0,"customerAvgPrice":0.0},{"priceMonth":"201502","customerRecycleCount":0,"customerAvgPrice":0.0}]}],"currentPage":1,"totalPage":1}};
 						var content = data.content;
 						$(".infomation").empty();
+						sessionStorage.personImg = content.image;
 						var str = '<div class="fl left">'
 								+ '<img src="'+content.image+'" alt="" />'
-								+ '<a href="javascript:void(0)"><span>修改头像</span></a>'
+								+ '<a href="javascript:void(0)" onclick="UserInfo.changeImg()"><span>修改头像</span></a>'
 								+ '</div>'
 								+ '<div class="fl right">'
 								+ '<p><i class="icon icon-warn"></i>为了更好保护你的利益,请如实填写个人资料！</p>'
@@ -92,7 +93,7 @@ var UserInfo = {
 				return;
 			}
 			var config = {
-				url : Sys.serviceDomain + "/listAllCity?provienceId="+provienceId,
+				url : Sys.serviceDomain + "/listAllCity?provinceId="+provienceId,
 				callbackParameter : "callback",
 				success : function(data) {
 					if (data.msg.code != "0000") {
@@ -169,7 +170,7 @@ var UserInfo = {
 					name : name
 			}
 			var config = {
-					url : Sys.serviceDomain + "/updateOwnCustomers",
+					url : Sys.serviceDomain + "/updateOwnCustomers?key="+sessionStorage.token,
 					data : data,
 					callbackParameter : "callback",
 					success : function(data) {
@@ -195,11 +196,15 @@ var UserInfo = {
 					}, 2000);
 				}
 			});
+		},
+		changeImg : function(){
+			 $(".tabs li:eq(1)>a").click(); 
 		}
 };
 
 $(function(){
 	  tabs($('.tabs'));
+	  $('#user_info').addClass('active');
 	  UserInfo.initUserInfo();
 	  $(".infomation a:eq(0)").click(function(){
 		 $(".tabs li:eq(1)>a").click(); 

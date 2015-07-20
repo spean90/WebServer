@@ -173,7 +173,7 @@ var valuation = {
 							$('#wizard').append($(str));
 						}
 						
-						pcInit();
+						pcValuationInit();
 					}
 			}
 			Modal.jsonp(config2);
@@ -183,5 +183,5 @@ var valuation = {
 
 $(function(){
 	valuation.init();
-	//pcInit();
+	//pcValuationInit();
 })

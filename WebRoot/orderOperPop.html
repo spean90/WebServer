@@ -43,7 +43,7 @@
 				comments : text
 		}
 		var config = {
-				url : Sys.serviceDomain+'/updateOwnOrdersStatus',
+				url : Sys.serviceDomain+'/updateOwnOrdersStatus?key='+sessionStorage.token,
 				callbackParameter: "callback",
 				data : data,
 				success : function(data){ 
