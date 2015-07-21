@@ -7,14 +7,17 @@
 <title>首页</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link rel="stylesheet" type="text/css" href="css/valuation.css" media="screen" />
-<link href="css/smart_wizard.css" rel="stylesheet" type="text/css">
 <!--[if lte IE 8]>
  <script src="scripts/excanvas.min.js"></script>
  <![endif]-->
-<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
-<link rel="stylesheet" href="css/index2.css" />
+<script src="/common/js/sys.js"></script>
+<script>
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/valuation.css" media="screen" />');
+document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/smart_wizard.css" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/index.css" media="screen" />');
+document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+</script>
 </head>
 
 <body>
@@ -360,8 +363,11 @@
 <!--Str 公用底部-->
 <!--End 公用底部-->
 <#include "/common/html/footer_include.html">
-<script type="text/javascript" src="scripts/jquery.smartWizard-2.1.js"></script>
-<script type="text/javascript" src="scripts/jquery.scrollTo.min.js"></script>
+
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.smartWizard-2.1.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.scrollTo.min.js"><\/script>'); 
+</script>
 
 <script>
 $(document).ready(function() {
@@ -633,6 +639,8 @@ function del_tag(){
       return false;
 }
 </script>
-<script type="text/javascript" src="js/valuation.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'js/valuation.js"><\/script>'); 
+</script>
 </body>
 </html>

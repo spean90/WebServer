@@ -66,13 +66,16 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 	</form>
 </div>
 
-<script src="scripts/jquery-1.9.1.min.js"></script>
-<script src="scripts/jquery.placeholder.min.js"></script>
-<script src="scripts/main.js"></script>
-<script src="common/jquery/jquery.jsonp-2.4.0.min.js"></script>
-<script src="common/js/modal.js"></script>
-<script src="common/js/sys.js"></script>
-<script src="common/js/jquery.easyui.min.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.placeholder.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/main.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>');
+document.write('<script src="'+Sys.staticDomain+'common/js/modal.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'common/js/jquery.easyui.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/feedback.js"><\/script>'); 
+</script>
+
 <script type="text/javascript">
 $(function(){
 	if(sessionStorage.token==null || sessionStorage.token=='undefined'){
@@ -88,6 +91,5 @@ $(function(){
 	});
 });
 </script>
-<script type="text/javascript" src="js/feedback.js"></script>
 </body>
 </html>

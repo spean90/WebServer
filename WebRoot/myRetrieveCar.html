@@ -105,7 +105,9 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
 <!--End 公用底部-->
-<script type="text/javascript" src="js/myRetrieveCar.js"></script>
-<script type="text/javascript" src="scripts/buycar.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'js/myRetrieveCar.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/buycar.js"><\/script>'); 
+</script>
 </body>
 </html>

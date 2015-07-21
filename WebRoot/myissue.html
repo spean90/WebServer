@@ -226,7 +226,9 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <!--End 主体内容-->
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
-<script type="text/javascript" src="js/myissue.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'js/myissue.js"><\/script>'); 
+</script>
 <!--End 公用底部-->
 </body>
 </html>

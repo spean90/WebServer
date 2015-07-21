@@ -173,8 +173,11 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
 <!--End 公用底部-->
-<script src="scripts/buycar.js"></script>
-<script type="text/javascript" src="scripts/jquery.smartWizard-2.1.js"></script>
-<script type="text/javascript" src="js/myOrder.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/buycar.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.smartWizard-2.1.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/myOrder.js"><\/script>'); 
+</script>
+
 </body>
 </html>

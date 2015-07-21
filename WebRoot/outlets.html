@@ -7,9 +7,12 @@
 <title>周边网点</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/index.css" media="screen" />
-<link rel="stylesheet" href="css/index2.css" />
+<script src="/common/js/sys.js"></script>
+<script>
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/index.css" media="screen" />');
+document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+</script>
 <!--[if lte IE 8]>
  <script src="scripts/excanvas.min.js"></script>
  <![endif]-->
@@ -116,6 +119,8 @@
 <!--End 首页内容-->
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
-<script src="js/outlets.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'js/outlets.js"><\/script>'); 
+</script>
 </body>
 </html>

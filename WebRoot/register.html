@@ -7,6 +7,7 @@
 <title>壹回收-用户注册</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
+<script src="/common/js/sys.js"></script>
 <script>
 document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/reg.css" media="screen" />');
 document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
@@ -119,7 +120,8 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
 <!--End 公用底部-->
-<script type="text/javascript" src="js/register.js"></script>
-
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'js/register.js"><\/script>'); 
+</script>
 </body>
 </html>

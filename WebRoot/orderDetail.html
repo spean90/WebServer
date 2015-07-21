@@ -7,10 +7,13 @@
 <title>我的订单</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link rel="stylesheet" href="css/buycar.css" />
-<link rel="stylesheet" type="text/css" href="css/public.css" media="screen" />
-<link href="css/smart_wizard.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="css/index2.css" media="screen" />
+<script src="/common/js/sys.js"></script>
+<script>
+document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/buycar.css" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/smart_wizard.css" media="screen" />');
+document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+</script>
 <!--[if lte IE 8]>
  <script src="scripts/excanvas.min.js"></script>
  <![endif]-->
@@ -193,15 +196,10 @@
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
 <!--End 公用底部-->
-<script src="scripts/buycar.js"></script>
-<script type="text/javascript" src="scripts/jquery.smartWizard-2.1.js"></script>
-<script>
-
-$(document).ready(function () {
-	
-  
-});
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/buycar.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.smartWizard-2.1.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/orderDetail.js"><\/script>'); 
 </script>
-<script type="text/javascript" src="js/orderDetail.js"></script>
 </body>
 </html>

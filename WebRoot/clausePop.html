@@ -44,8 +44,10 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 		</div>
 	</div>
 
-<script src="scripts/jquery-1.9.1.min.js"></script>
-<script src="scripts/jquery.placeholder.min.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.placeholder.min.js"><\/script>'); 
+</script>
 <script type="text/javascript">
 	$(function() {
 		$('input, textarea').placeholder({customClass:'my-placeholder'});

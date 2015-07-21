@@ -86,9 +86,11 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <!--Str 公用底部-->
 <#include "/common/html/footer_include.html">
 <!--End 公用底部-->
-<script src="scripts/jquery.placeholder.min.js"></script>
-<script src="scripts/main.js"></script>
-<script type="text/javascript" src="scripts/buycar.js"></script>
-<script type="text/javascript" src="js/evaluateResult.js"></script>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.placeholder.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/main.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/buycar.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/evaluateResult.js"><\/script>'); 
+</script>
 </body>
 </html>
