@@ -303,6 +303,10 @@ $(function(){
 	if(sessionStorage.userType==1){
 		$('.captcha-btn').hide();
 		$('#code').hide();
+		$('#username').val(sessionStorage.account);
+		$('#username').attr('readonly',"readonly");
+		$('#phone').val(sessionStorage.userId);
+		$('#phone').attr('readonly',"readonly");
 	}
 	$('#currentCity').text(localStorage.cityName);
 	pay.initRetrieveList();

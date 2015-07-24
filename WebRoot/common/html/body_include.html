@@ -30,11 +30,13 @@
                         <ul class="clearfix">
                          <li><a onclick="toolBar.goTo('/myOrder.html');" href="#">我的订单</a></li>
                          <li><a onclick="toolBar.goTo('/mypoints.html');" href="#">我的积分</a></li> 
-                         <li><a onclick="toolBar.goTo('/replaceDealOrders.html');" href="#">代处理订单</a></li>
-                         <li><a onclick="toolBar.goTo('/referralAgent.html');" href="#">下线代理商</a></li>
+                         <li><a onclick="toolBar.goTo('/myissue.html');" href="#">我的咨询</a></li>
                          <li><a onclick="toolBar.goTo('');" href="#">推荐壹回收</a></li>
                          <li><a onclick="toolBar.goTo('/about.html');" href="#">关于壹回收</a></li>
-                         <li><a onclick="toolBar.goTo('/mywallet.html');" href="#">我的抽成</a></li>
+                         <li><a onclick="toolBar.goTo('/replaceDealOrders.html');" href="#" class="role">代处理订单</a></li>
+                         <li><a onclick="toolBar.goTo('/referralAgent.html');" href="#" class="role">下线代理商</a></li>
+                         <li><a onclick="toolBar.goTo('/mywallet.html');" href="#" class="role">我的抽成</a></li>
+                         
                         </ul>       
                      </div>   
                    </div>
@@ -193,7 +195,7 @@
           <div class="tb tb-2">
             <div class="h-list"> 
             	<a href="help.html" target="_blank">帮助中心</a> 
-            	<a href="myissue.html" target="_blank" >咨询与建议</a> 
+            	<a href="#" onclick="$(this).modal('/feedback.html', 'feedbackPopId')" >咨询与建议</a> 
             	<a href="tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes">在线客服</a> 
             	<a href="help.html" target="_blank" class="last">常见问题</a> 
             </div>

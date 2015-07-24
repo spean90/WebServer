@@ -171,6 +171,22 @@ var toolBar = {
 					}
 			}
 			Modal.jsonp(config);
+		},
+		initUserInfo : function() {
+			var config = {
+					url : Sys.serviceDomain+"/detailOwnCustomers?key="+sessionStorage.token, 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						sessionStorage.personImg = content.image;
+						sessionStorage.userType = content.userType;
+						sessionStorage.account = content.name
+					}
+			}
+			Modal.jsonp(config);
 		}
 }
 
@@ -179,6 +195,7 @@ $(function(){
 	toolBar.initHistoryRecord();//初始化浏览记录
 	toolBar.initRetrieveCar();//初始化购物车；
 	toolBar.initSignIntegral();//初始化签到按钮；
+	toolBar.initUserInfo();//初始化用户信息
 	$('.qiandao').click(toolBar.signIntegral);//签到
 	
 	
@@ -191,6 +208,9 @@ $(function(){
 		$(".link-login").attr('href','userinfo.html');
 		$(".u-pic img").attr('src',sessionStorage.personImg);
 		$(".u-pic a").attr('href','userinfo.html');
+		if(sessionStorage.userType=="1"){
+			$('.role').hide();
+		}
 	}
 	//右侧帮助按钮弹窗
 	$(".btn.btn-help").click(function(){

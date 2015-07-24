@@ -9,6 +9,7 @@ var orderSuccess = {
 							return;
 						}
 						content = data.content;
+						//当面交易
 						if(content.transactionType==3){
 							//当面交易显示
 							var str = '<div class="status status1">'
@@ -44,6 +45,79 @@ var orderSuccess = {
 						          	+'</div>'
 						          	+'</div>';
 							$('.successpanel.fl').append($(str));
+						}else if(content.transactionType==1){ //快递 
+							var str = '<div class="status status2">'
+									+'<div class="tips">'
+									+'<p><i class="icon icon-success"></i>订请在XX小时内将订单物品寄大壹回收！</p>'
+									+'</div>'
+									+'<div class="info">'
+									+'<ul>'
+									+'<li>'
+									+'<label for="">订单号：</label>'
+									+'<span>'
+									+'<span>'+content.ordersId+'</span>'
+									+'<a class="view-detail" href="/orderDetail_'+content.ordersId+'.html">查看订单详情</a>'
+						          	+'</span>'
+									+'</li>'
+									+'<li>'
+									+'<label for="">交易方式：</label>'
+									+'<span>'+content.ordersType+'</span>'
+						          	+'</li>'
+									+'<li>'
+									+'<label for="">邮寄地址：</label>'
+									+'<span>'
+									+' <ul>'
+									+'<li><label for="">联系人：</label><span>'+content.customerName+'</span></li>'
+									+'<li><label for="">联系电话：</label><span>'+content.customersPhone+'</span></li>'
+									+'<li><label for="">联系地址：</label><span>xx</span></li>'
+									+'<li><label for="">邮编：</label><span>xx</span></li>'
+									+' </ul>'
+									+'</span>'
+									+'</li>'
+									+'<li>'
+									+'<label for="">交易金额：</label>'
+									+'<span class="money">'+content.currency+content.ordersTotal.toFixed(2)+'</span>'
+						          	+'</li>'
+									+'<li>'
+									+'<label for="">接下里你可以：</label>'
+									+'<span class="next"><a href="/index.html">继续回收</a> |<a class="notice">注意事项</a></span>'
+						          	+'</li>'
+									+'</ul>'
+									+'</div>'
+									+'</div>';
+							
+							$('.successpanel.fl').append($(str));	
+						}else if(content.transactionType==2){  //门店
+							var str = '<div class="status status3">'
+										+'<div class="tips">'
+										+'<p><i class="icon icon-success"></i>订单提交成功！请在XX小时内去就近门店进行交易!</p>'
+										+'</div>'
+										+'<div class="info">'
+										+' <ul>'
+										+'<li>'
+										+'<label for="">订单号：</label>'
+										+'<span style="color:#ccc">'
+										+'<span>'+content.ordersId+'</span>'
+										+'<a class="view-detail" href="/orderDetail_'+content.ordersId+'.html">查看订单详情</a>'
+							          	+'<a class="around" href="/outlets.html"><i class="icon-map"></i>周边网点</a>'
+										+' </span>'
+										+'</li>'
+										+'<li>'
+										+'<label for="">交易方式：</label>'
+										+'<span>'+content.ordersType+'</span>'
+										+'</li>'
+										+'<li>'
+										+'<label for="">交易金额：</label>'
+										+'<span class="money">'+content.currency+content.ordersTotal.toFixed(2)+'</span>'
+							          	+'</li>'
+										+'<li>'
+										+'<label for="">接下里你可以：</label>'
+										+'<span class="next"><a href="/index.html">继续回收</a> |<a class="notice">注意事项</a></span>'
+							          	+'</li>'
+										+'</ul>'
+										+'</div>'
+										+'</div>';
+							$('.successpanel.fl').append($(str));	
 						}
 						
 					}

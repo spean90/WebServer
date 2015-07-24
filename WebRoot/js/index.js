@@ -307,6 +307,7 @@ var index = {
 						var content = data.content;
 						sessionStorage.personImg = content.image;
 						sessionStorage.userType = content.userType;
+						sessionStorage.account = content.name
 					}
 			}
 			Modal.jsonp(config);
@@ -350,7 +351,7 @@ index.initPhoneList(); //初始化热门手机
 index.initComments(); //初始化客户评价
 index.initNewsList(); //初始化最新咨询
 index.initRetrieveList();  //初始化最新回收单
-index.initUserInfo();
+//index.initUserInfo();
 index.initNotice();
 $(function(){
 });
