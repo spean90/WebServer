@@ -162,11 +162,11 @@ var UserInfo = {
 			var name = $('#name').val();
 			var privinceId = $('#province').val();
 			var cityId = $('#city').val();
-			var reginId = $('#region').val();
+			var region = $('#region').val();
 			var data={
 					privinceId : privinceId,
 					cityId : cityId,
-					reginId : reginId,
+					regionId : region,
 					name : name
 			}
 			var config = {

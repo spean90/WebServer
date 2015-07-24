@@ -39,11 +39,12 @@ var register = {
 		submitRegister_person : function(){
 			//TODO 提交注册信息
 			if($('form:eq(0) i[class="blank succeed"]').length==4){
-				var phone = $("input[name='username']:eq(0)").val();
+				var username = $("input[name='username']:eq(0)").val();
 				var passwd = $("input[name='password']:eq(0)").val();
 				var randomCode = $('#volidCoder_register_ps').val();
+				var tel = $("input[name='tel']").val();
 				var config = {
-						url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+phone+"&randomCode="+randomCode,
+						url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+tel+"&randomCode="+randomCode+"&name="+username,
 						callbackParameter: "callback",
 						success : function(data){ 
 							if (data.msg.code!="0000") {

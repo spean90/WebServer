@@ -38,7 +38,7 @@ var orderDetail = {
 		$('#stepDiv').empty();
 		$("#step-1 tbody").empty();
 		var config = {
-				url : Sys.serviceDomain+"/listOneOrdersHistory?ordersId="+$('#orderId').text(), 
+				url : Sys.serviceDomain+"/listOneOrdersHistory?key="+sessionStorage.token+"&ordersId="+$('#orderId').text(), 
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
