@@ -352,7 +352,7 @@ index.initComments(); //初始化客户评价
 index.initNewsList(); //初始化最新咨询
 index.initRetrieveList();  //初始化最新回收单
 //index.initUserInfo();
-index.initNotice();
+index.initNotice();  //公告
 $(function(){
 });
 
