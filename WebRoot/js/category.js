@@ -3,6 +3,7 @@
  */
 
 var category = {
+		initBandName:"",
 		/*获取热门品牌*/
 		getHotBrands:function (bId){
 			$.jsonp({
@@ -20,6 +21,7 @@ var category = {
 						var str = '';
 						if(bId==list[i].brandsId){
 							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');" attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
+							initBandName = list[i].brandsName;
 						}else{
 							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');" attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}
@@ -72,6 +74,9 @@ var category = {
 					var content = data.content;
 					var list = content.list;
 					var brandName = bName;
+					if(brandName==null){
+						brandName = $('.listIndex[attr="terminal_brand_s"]>dd a.selected').attr("attrval");
+					}
 					$(".resultList> .select").text(brandName+'：');
 					var dd = $('.resultList>dd');
 					dd.empty();
@@ -264,7 +269,7 @@ $(function(){
 	category.getHotBrands(bid);
 	category.getOtherBrands(bid);
 	if(bid!='0'){
-		category.getTagList(bid);
+		category.getTagList(bid,null);
 	}else{
 		$(".resultList> .select").empty();
 		$(".resultList> dd").empty();

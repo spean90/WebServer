@@ -1,5 +1,5 @@
 /*公用样式*/
-html, body{ font-family: '微软雅黑'; font-size: 14px; }
+html, body{ font-family: "\5FAE\8F6F\96C5\9ED1"; font-size: 14px; }
 i{ vertical-align: middle; display: inline-block; background-repeat: no-repeat; background-position: center; }
 *:focus { outline: 0; }
 .c-black{ color: #000; }
@@ -32,9 +32,9 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 .feedback-title .cn-title{ font-size: 20px; line-height: 18px; }
 .feedback-title .en-title{ font-size: 18px; color: #999; }
 .pop-feedback p{ clear: both; line-height: 50px; }
-.pop-feedback select, .pop-feedback input{ background: #eee; min-width: 180px; height: 26px; line-height: 26px; text-indent: 10px; border: 1px solid #aaa; vertical-align: middle; }
+.pop-feedback select, .pop-feedback input{ background: #FdFAFd; min-width: 180px; height: 26px; line-height: 26px; text-indent: 10px; border: 1px solid #aaa; vertical-align: middle; }
 .pop-feedback select{ text-indent: 0; }
-.pop-feedback textarea{ width: 700px; height: 100px; background: #eee; text-indent: 10px; }
+.pop-feedback textarea{ width: 700px; height: 100px; background: #FdFAFd; text-indent: 10px; }
 .pop-feedback img{ vertical-align: middle; }
 .pop-feedback .form-submit{ width: 800px; margin-left: -40px; height: 90px; text-align: center; padding-top: 20px; border-top: 1px solid #aaa; margin-top: 30px; }
 .pop-feedback .feedback-email::-webkit-input-placeholder{ line-height: 26px; }
@@ -148,7 +148,7 @@ textarea{ background: #eee; border: 1px solid #ddd; resize: none; }
 /*关于我们*/
 .about-left{ float: left; width: 900px; }
 .about-right{ float: right; width: 280px; border: 1px solid #ddd; border-top: 3px solid #2168CC; font-size: 18px; }
-.about-left p{ line-height: 35px; font-size: 18px; }
+.about-left p{ line-height: 35px; font-size: 14px; }
 .about-title{ font-size: 18px; color: #000; height: 45px; line-height: 45px; margin-top: 20px; border-bottom: 1px solid #ddd; font-weight: bold; margin-bottom: 10px; }
 .about-right p{ padding: 0 20px; line-height: 30px; }
 .about-title2{ margin: 15px 0; font-weight: bold; color: #000; }

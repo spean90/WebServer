@@ -194,14 +194,15 @@ i{ display: inline-block; vertical-align: middle; background-repeat: no-repeat; 
 .pop-feedback{ width: 720px; margin: 0 auto; padding: 40px; background: #fff; }
 .feedback-title{ width: 135px; }
 .icon-chat{ background-image: url(../images/icon_chat.png); width: 41px; height: 42px; display: inline-block; }
-.feedback-title .cn-title, .advice-title .cn-title{ font-size: 20px; line-height: 18px; }
+.feedback-title .cn-title, .advice-title .cn-title{ font-size: 20px; line-height: 42px;margin-left:20px; }
 .feedback-title .en-title, .advice-title .en-title{ font-size: 18px; color: #999; }
 .pop-feedback p{ clear: both; line-height: 50px; }
 .pop-feedback select, .pop-feedback input{ background: #eee; min-width: 180px; height: 26px; line-height: 26px; text-indent: 10px; border: 1px solid #aaa; vertical-align: middle; }
 .pop-feedback select{ text-indent: 0; }
 .pop-feedback textarea{ width: 700px; height: 100px; background: #eee; text-indent: 10px; }
 .pop-feedback img{ vertical-align: middle; }
-.pop-feedback .form-submit{ width: 800px; margin-left: -40px; height: 30px; text-align: center; padding-top: 20px; border-top: 1px solid #aaa; margin-top: 30px; }
+.pop-feedback .form-submit{ width: 800px; margin-left: -40px; height: 30px; text-align: center; padding-top: 20px; border-top: 1px solid rgba(170, 170, 170, 0.23);
+  margin-top: 30px;; margin-top: 30px; }
 .pop-feedback .feedback-email::-webkit-input-placeholder{ line-height: 26px; }
 
 /*下线代理商*/
@@ -451,7 +452,7 @@ footer p{ text-align: center; font-size: 14px; }
 .member-left, .tabs{width: 900px;}
 .tabs-label li{float:left;}
 .tabs-label li a{padding: 0px 20px;}
-.tabs-label{border-bottom: 2px solid #2168CC;margin-bottom:10px}
+.tabs-label{/*border-bottom: 2px solid #2168CC;*/margin-bottom:10px}
 .member-left .left{padding-right: 20%;margin-top: 10%;}
 .member-left .tabs-content{padding-top: 50px;}
 .member-left .right{width: 60%}
