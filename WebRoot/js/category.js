@@ -183,7 +183,7 @@ var category = {
 				            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
 				            +'<div class="product-info">'
 				            +'<div class="fl">'
-				            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
+				            +'<span class="phone-name">'+list[i].modelsName+'</span>'
 				            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
 				            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
 				            +'</div>'
