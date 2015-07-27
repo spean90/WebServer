@@ -220,10 +220,16 @@ $(function(){
 	$(".btn.btn-edit").click(function(){
 		$(this).modal('/feedback.html', 'feedbackPopId')
 	});
-
+	//搜索按钮
 	$(".search-button").click(function(){
 		toolBar.doSearch();
 	})
+	//搜索回车
+	$('#search-bar').bind('keypress',function(event){
+        if(event.keyCode == "13"){
+        	toolBar.doSearch();
+        }
+    });
 });
 
 
