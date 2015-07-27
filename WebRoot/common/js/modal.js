@@ -64,7 +64,7 @@ var Modal = {
 	},
 	
 	alert : function(content,title) {
-		var mytitle = title?title:'友情提示';
+		var mytitle = title?title:'提示';
 		$('#modal').remove();
 		//$(this).modal('modal',mytitle,content);
 		$(this).hint('modal', mytitle, content);

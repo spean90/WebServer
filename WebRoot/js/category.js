@@ -258,6 +258,7 @@ var category = {
 }
 
 $(function(){
+	$('.nav.wrapper.clearfix li.on').removeClass('on');
 	$('[href="/brands_0.html"]').parent().addClass('on');
 	var bid = $('#brandId').text();
 	category.getHotBrands(bid);

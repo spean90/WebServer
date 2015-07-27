@@ -1,4 +1,4 @@
-var login = {
+﻿var login = {
 		
 		login : function() {
 			var userId = $('#username').val();
@@ -23,7 +23,10 @@ var login = {
 						sessionStorage.userId = userId;
 						var query = window.location.search;
 						if(query!=''){
-							window.location.href = query.substring(1);
+							alert(query);
+							var arr = query.split('=');
+							alert(arr);
+							window.location.href = '/'+arr[1];
 						}else{
 							window.location.href = '/index.html';
 						}

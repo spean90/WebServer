@@ -64,7 +64,7 @@ var valuation = {
 			//获取步骤信息
 			var config2 = {
 					//url : Sys.serviceDomain+"/detailModel?modelsId="+$('#modelsId').text(),
-					url : Sys.serviceDomain+"/listAllEvaluation?modelsId="+$('#modelsId').text()+"&cityId=1",
+					url : Sys.serviceDomain+"/listAllEvaluation?modelsId="+$('#modelsId').text()+"&cityId="+localStorage.cityId,
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {

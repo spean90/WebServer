@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 顶部工具栏js-----
  * huangsp
  */
@@ -201,10 +201,10 @@ $(function(){
 	
 	//判断是否已经登录
 	if(sessionStorage.userId!=null){
-		$(".top-bar-rt-1>a>span").html(sessionStorage.userId);
+		$(".top-bar-rt-1>a>span").html('欢迎您，'+sessionStorage.userId);
 		$(".top-bar-rt-1>a").attr('href','userinfo.html');
-		
-		$(".link-login").html("欢迎您，"+sessionStorage.userId);
+		$(".top-bar-rt-1>a:eq(1)").hide();
+		$(".link-login").html(sessionStorage.userId);
 		$(".link-login").attr('href','userinfo.html');
 		$(".u-pic img").attr('src',sessionStorage.personImg);
 		$(".u-pic a").attr('href','userinfo.html');

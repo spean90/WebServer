@@ -1,4 +1,4 @@
-/**
+﻿/**
  * 估计结果页
  */
 var evaluateResult = {
@@ -28,7 +28,7 @@ var evaluateResult = {
 	addToCart : function(isPop){
 		if(sessionStorage.userId==null){
 			var key = $('#key').text();
-			window.location.href = '/login.html?evaluateResult_'+key+'.html';
+			window.location.href = '/login.html?ReturnUrl=evaluateResult_'+key+'.html';
 			return;
 		}
 		var key = $('#key').text();

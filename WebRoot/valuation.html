@@ -482,12 +482,13 @@ $(document).ready(function() {
      paramStr = encodeURI(paramStr);
      var config = {
 				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+paramStr+"&modelsId="+ $('#modelsId').text()
-						+"&cityId=1",
+						+"&cityId="+localStorage.cityId,
 				callbackParameter: "callback",
 				success : function(data){ 
-					/* if (data.msg.code!="0000") {
+					if (data.msg.code!="0000") {
+						Modal.alert('服务器异常');
 						return;
-					} */
+					} 
 					var content = data.content;
 					var obj = {};
 					obj.param = param;

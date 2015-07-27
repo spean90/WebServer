@@ -38,5 +38,7 @@ var about = {
 };
 
 $(function() {
+	$('.nav.wrapper.clearfix li.on').removeClass('on');
+	$('[href="about.html"]').parent().addClass('on');
 	about.initAbout();
 });

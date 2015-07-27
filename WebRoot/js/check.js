@@ -103,6 +103,7 @@ var check = {
 
 
 $(function(){
+	$('.nav.wrapper.clearfix li.on').removeClass('on');
 	var li = $('[href="check.html"]').parent();
 	li.addClass('on');
 	$('.big-btn.mt-30').click(check.check);

@@ -1,12 +1,10 @@
-
-
 <!--Str 公用顶部-->
 <div class="header clearfix"> 
   <!--Str TopBar-->
   <div class="top-bar clearfix" id="TopBar">
     <div class="wrapper clearfix">
       <ul class="top-bar-rt fr">
-        <li class="top-bar-rt-1"><em>Hi,欢迎来壹回收!</em><a href="/login.html"><span class="red">请登录</span></a></li>
+        <li class="top-bar-rt-1"><a href="/login.html"><span class="red">您好，请登录</span></a>&nbsp;<a href="/register.html">免费注册</a></li>
          <!-- 2015-04-15 修改开始 -->
          <li class="drop-down">
             <a class="myaccount">
@@ -18,11 +16,11 @@
                   <div class="userinfo">
                     <div class="clearfix">
                       <div class="u-pic">
-                      <a href="#"> <img src="images/avatar.png" width="60" height="60"></a>
+                      <a href=""> <img src="images/avatar.png" width="60" height="60"></a>
                       </div>
                       <div class="u-name u-login">
-                        <a href="/login.html" class="link-login">你好，请登录</a>
-                        <a href="/index.html">壹回收欢迎你！</a>
+                      	壹回收欢迎你！
+                        <a href="/login.html" class="link-login">您好，请登录</a>                        
                       </div>
                     </div>
                              
@@ -57,55 +55,6 @@
               </div>
             </a>
          </li>
-         
-          <!-- 新增样式部分 -->
-          <style>
-          .tb-5{margin-top:8px;}
-          .tb-5 .tb-dbox{padding:10px 5px 10px 5px;width: 200px;}
-          .tb-5 .tb-dbox:before{width: 210px;height: 20px;top:-9px;left:32px;position: absolute;display: inline-block;content: '';background: url(images/arrow-up.png) no-repeat;}
-          .tb-5 .userinfo{ border-bottom: 1px solid #ddd; padding: 10px 0px 10px 0px;font-size: 12px;}
-          .tb-5 .u-pic img {
-          border-radius: 50%;
-          -moz-border-radius: 50%;
-          -webkit-border-radius: 50%;
-          position: relative;
-          left:5px;
-          top:0px;
-          width: 50px;
-          height: 50px;
-          border: 1px solid #ddd;
-          }
-          .tb-5 .u-pic{float: left; margin-right: 10px;}
-          .tb-5 .link-login{color: #f60}
-          .tb-5 .u-name{float:left;margin-left: 15px;}
-          .tb-5 .u-name a{display: block;line-height: 25px;}
-         .tb-5 .u-extra {border-top: 1px solid #ccc;margin-top: 15px;text-align: left;padding: 0px 10px;}
-         .tb-5 .u-extra ul{padding: 10px 0px 0px 0px;}
-         .tb-5 .u-extra li{background: none;width: 43%;padding: 0px 5px; }
-          .viewlast .tit{padding:5px}
-          .viewlast .content{padding: 5px 0px;}
-          .viewlast .content li{height: 50px;background: none;padding: 0px;margin-bottom:10px;}
-          .viewlast .content li img{width: 50px;height: 50px;position: relative;top:0px;left:0px;}
-
-          .hs-box-js ul li{height: 100%;background: none;line-height: 21px;padding: 0px;width: 100%;color:#666;}
-          .hs-box-js .item {margin: 10px;border-bottom: 1px solid #ddd;padding-bottom: 15px;margin-bottom: 0px;}
-
-
-         .hs-box-js .item img{
-            float:left;
-            width: 60px
-          }
-          .hs-box-js .item>span{float:left;width: 160px;}
-          .hs-box-js .item>span li a{float:right;}
-          .hs-box-js .item>span li a:hover{color: #f60}
-          .hs-box-js .item>span li span{color: #f60}
-          
-          .hs-box-js .total{padding: 10px 15px 0px 15px;}
-          .hs-box-js .total span{color:#666;}
-          .hs-box-js .total em{color: #f60}
-          .hs-box-js a.entercar{height: 32px;line-height: 32px;width: 70px;display: inline-block;background: #f60;text-align: center;color: #fff;float: right;}
-          </style>
-          <!-- 新增样式部分 end-->
           <li>
             <div id="sBtn">
               <i class="icon icon-car"></i>
@@ -181,8 +130,7 @@
                 <h4>壹回收客户端</h4>
                   <a href=""><i class="tspr t-dbtn-1"></i> <span>iphone</span></a>
                     
-                  <a href=""> <i class="tspr t-dbtn-2"></i> <span>android</span></a>
-              
+                  <a href=""> <i class="tspr t-dbtn-2"></i> <span>android</span></a>          
                    
              
                 
@@ -196,15 +144,19 @@
             <div class="h-list"> 
             	<a href="help.html" target="_blank">帮助中心</a> 
             	<a href="#" onclick="$(this).modal('/feedback.html', 'feedbackPopId')" >咨询与建议</a> 
-            	<a href="tencent://Message/?Uin=349614193&websiteName=sc.chinaz.com=&Menu=yes">在线客服</a> 
+            	<a href="tencent://Message/?Uin=2965968813&websiteName=sc.chinaz.com=&Menu=yes">在线客服</a> 
             	<a href="help.html" target="_blank" class="last">常见问题</a> 
             </div>
           </div>
         </li>
       <!-- 修改 end-->
-
-        <li class="collect"><a href="javascript:void(0)" class="bookmark"><i class="icon icon-start"></i>收藏壹回收</a></li>
-        <li id="fristHover"><a><i class="icon icon-code"></i>关注壹回收<i class="header-code p-a"></i></a></li>
+        <li id="fristHover" class="drop-down drop-down-s"><a><i class="icon icon-code"></i>关注壹回收</a>
+        <div class="tb tb-6">
+            <div class="h-list"> 
+              <img src="images/qrcode.jpg" alt="">
+            </div>
+          </div>
+        </li>
         <li class="drop-down drop-down-s"><a><span>网站导航</span><i class="r-srw"></i></a>
         <span class="outline"></span> <span class="blank"></span>
         <div class="tb tb-3">
@@ -329,11 +281,11 @@
   <!--Str 导航-->
   <div class="nav-box clearfix">
     <ul class="nav wrapper clearfix">
-      <li class="on"><a href="index.html" target="_blank">首页</a></li>
-      <li><a href="/brands_0.html" target="_blank">回收类别</a></li>
-      <li><a href="help.html" target="_blank">帮助中心</a></li>
-      <li><a href="check.html" target="_blank">真伪查询</a></li>
-      <li><a href="about.html" target="_blank">关于我们</a></li>
+      <li class="on"><a href="index.html" >首页</a></li>
+      <li><a href="/brands_0.html" >回收类别</a></li>
+      <li><a href="help.html" >帮助中心</a></li>
+      <li><a href="check.html">真伪查询</a></li>
+      <li><a href="about.html" >关于我们</a></li>
     </ul>
   </div>
   <!--End 导航--> 

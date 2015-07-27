@@ -4,7 +4,7 @@
 var help = {
 		initFaqCategories : function(){
 			var config = {
-					url : Sys.serviceDomain+"/listAllFaqCategories", 
+					url : Sys.serviceDomain+"/listAllFaqCategories?currentPage=0", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -64,5 +64,7 @@ var help = {
 };
 
 $(function(){
+	$('.nav.wrapper.clearfix li.on').removeClass('on');
+	$('[href="help.html"]').parent().addClass('on');
 	  help.initFaqCategories();
 });
