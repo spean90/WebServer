@@ -51,9 +51,12 @@ var City = {
 		localStorage.cityId = id;
 		localStorage.cityName = name;
 		$('.drop-down.drop-down-s.more-city').removeClass('hover');
+		//如果是支付页面、改变城市要重新计价、、、暂时不用
 		if(window.location.href.indexOf('pay_')!=-1){
 			pay.reValuation();
 		}
+		//修改城市。reload页面
+		window.location.reload();
 	}
 };
 

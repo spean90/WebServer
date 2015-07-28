@@ -146,9 +146,21 @@ var toolBar = {
 					url : Sys.serviceDomain+'/signIntegralDetail?&key='+sessionStorage.token, 
 					callbackParameter: "callback",
 					success : function(data){
-						//console.log(data);
 						Modal.alert(data.msg.desc);
-						toolBar.initSignIntegral();//初始化签到按钮；
+						if(data.msg.code=='0000'){
+							//签到动画
+							  /* 元素 */
+							var element = document.getElementById("element"), 
+							target = document.getElementById("target"),
+							qiandao = document.getElementById("qiandao");
+
+							var parabola = funParabola(element, target);
+							// 抛物线运动的触发
+							element.style.marginLeft = "0px";
+							element.style.marginTop = "0px";
+							parabola.init();
+							toolBar.initSignIntegral();//初始化签到按钮；
+						}
 					}
 			}
 			Modal.jsonp(config);
@@ -165,14 +177,24 @@ var toolBar = {
 						$('.search-label').append('热门搜索：');
 						var list = data.content.list;
 						for(var i=0;i<list.length;i++){
-							var s = '<a href="/search_0-0-'+list[i].keywords+'.html">'+list[i].keywords+'</a>';
-							$('.search-label').append($(s));
+							if(list[i].hotLevel==2){
+								var s = '<a class="cor-org" href="/search_0-0-'+list[i].keywords+'.html">'+list[i].keywords+'</a>';
+								$('.search-label').append($(s));
+							}else{
+								var s = '<a href="/search_0-0-'+list[i].keywords+'.html">'+list[i].keywords+'</a>';
+								$('.search-label').append($(s));
+							}
+							
+							
 						}
 					}
 			}
 			Modal.jsonp(config);
 		},
 		initUserInfo : function() {
+			if(sessionStorage.userType!=null||sessionStorage.userType!=undefined){
+				return;
+			}
 			var config = {
 					url : Sys.serviceDomain+"/detailOwnCustomers?key="+sessionStorage.token, 
 					callbackParameter: "callback",
@@ -181,6 +203,9 @@ var toolBar = {
 							return;
 						}
 						var content = data.content;
+						localStorage.cityId = content.cityId;
+						localStorage.cityName = content.cityName;
+						$("#address").html(content.cityName);
 						sessionStorage.personImg = content.image;
 						sessionStorage.userType = content.userType;
 						sessionStorage.account = content.name

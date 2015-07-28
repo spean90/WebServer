@@ -23,9 +23,7 @@
 						sessionStorage.userId = userId;
 						var query = window.location.search;
 						if(query!=''){
-							alert(query);
 							var arr = query.split('=');
-							alert(arr);
 							window.location.href = '/'+arr[1];
 						}else{
 							window.location.href = '/index.html';

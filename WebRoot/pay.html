@@ -30,7 +30,7 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
     <ul>
       <li><i class="icon-home"></i><a href="#">首页</a><span>></span></li>
       <li><a href="#">回收估价</a><span>&gt;</span></li>
-      <li><a href="#">去回收车估价</a></li>
+      <li><a href="#">回收车结算</a></li>
     </ul>
   </div>
   <div class="pay-page">
@@ -40,7 +40,7 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
       手机号码：<input type="text" class="gray-text" id="phone"  placeholder="请输入手机号码" />
       <a href="javascript:;" onclick="pay.generateCheckCode()" class="captcha-btn">发送验证码</a>　<input type="text" id="code" class="gray-text" placeholder="请输入验证码" />
     </p>
-    <p><span class="c-gray">*收款及交易方式</span>　<span style="width: 300px;" class="focus-text">您所在的城市是<span style="color: blue;" id="currentCity">福州</span>，如有误请选择<a href="javascript:;" onclick="pay.changeCity()">[选择城市]</a></span></p>
+    <p><span class="c-gray">*收款及交易方式</span>　<span style="width: 300px;" class="focus-text">您所在的城市是<span style="color: blue;" id="currentCity">福州</span>，如有误请重新选择</span></p>
     <p>
       <span class="c-black fb">选择收款方式</span>
       	<span id="payType">
@@ -72,17 +72,21 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
     <div id="dealType">
 	   <p id="shop" hidden><label><input type="radio" name="trade-way1" value="2" checked /> 线下门店</label>　　　　　　　　　　　　　　<a href="/outlets.html" class="cor-gary"><i class="icon-map"></i>　周边网点</a></p>
 	   <div id="faceToFace" hidden class="pay-address">
-	   	 <p><label><input type="radio" name="trade-way1" value="3" checked /> 当面交易</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-engineer"></i>　周边工程师</span></p>
-	     <p class="cor-gary">我的地址：</p>
+	   	 <p><label><input type="radio" name="trade-way1" value="3"/> 当面交易</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-engineer"></i>　周边工程师</span></p>
+	     <div id="dealAddr" hidden>
+	     <span class="cor-gary">我的地址：</span>
 	     <p>
-	       <select name="" id="cityRegion"><option>请选择区(县)</option></select>
+	     	<select name="" id="city"></select>
+	       <select name="" id="cityRegion"><option>请选择区域</option></select>
 	     </p>
 	     <p><input type="text" id="detailAddr" placeholder="请输入详细地址" /></p>
 	   </div>
+	    </div>
 	   <div id="send" hidden>
-		   <p><label><input type="radio" name="trade-way1" value="1" checked/> 顺丰快递/EMS</label>　　　　<span class="cor-gary">自己快递要回收的物品给我们，快递费我们承担　<a href="javascript:;">查看运费补贴详情</a></span></p>
+		   <p><label><input type="radio" name="trade-way1" value="1"/> 顺丰快递/EMS</label>　　　　<span class="cor-gary">自己快递要回收的物品给我们，快递费我们承担　<a href="javascript:;">查看运费补贴详情</a></span></p>
 		   <p>快递到：福州市鼓楼区湖东路88号壹回收</p>
 	   </div>
+	  
 	</div>
     <br />
     <p class="clearfix"><span class="fl c-black fb">回收清单</span><a href="javascript:;" class="fr">返回回收车</a></p>
@@ -104,15 +108,15 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
         </tr>
       </table>
       <br />
-      <p class="fb c-black">订单结算</p>
+     <!--  <p class="fb c-black">订单结算</p>
       <p class="order-count clearfix">
         <span class="fl">商家报价</span>
         <span class="fr">共1件商品，合计￥550</span>
-      </p>
+      </p> -->
       <div class="tx-right">
         <span class="all-count">您总共可以获得：<span class="c-red" id="sum">￥550</span></span>
         <br /><br />
-        <label><input type="checkbox" id="clause" /> 我同意</label><a href="javascript:;" onclick="pay.showClause()">壹回收网服务条款</a>
+        <label><input type="checkbox" id="clause" checked="checked" /> 我同意</label><a href="javascript:;" onclick="pay.showClause()">壹回收网服务条款</a>
         <a href="javascript:;" class="oran-btn" onclick="pay.submitOrder()">确认订单</a>
       </div>
     </div>

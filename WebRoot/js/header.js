@@ -1,20 +1,20 @@
 $(function() {
-	//签到动画
-	  /* 元素 */
-	var element = document.getElementById("element"), 
-	target = document.getElementById("target"),
-	qiandao = document.getElementById("qiandao");
-
-	var parabola = funParabola(element, target);
-	// 抛物线元素的的位置标记
-
-
-	// 抛物线运动的触发
-	qiandao.onclick = function() {
-	    element.style.marginLeft = "0px";
-	  element.style.marginTop = "0px";
-	  parabola.init();
-	};
+//	//签到动画
+//	  /* 元素 */
+//	var element = document.getElementById("element"), 
+//	target = document.getElementById("target"),
+//	qiandao = document.getElementById("qiandao");
+//
+//	var parabola = funParabola(element, target);
+//	// 抛物线元素的的位置标记
+//
+//
+//	// 抛物线运动的触发
+//	qiandao.onclick = function() {
+//	    element.style.marginLeft = "0px";
+//	  element.style.marginTop = "0px";
+//	  parabola.init();
+//	};
 	
 	$(".bookmark").on("click",function(){
 	    //通过判断按钮btn有没有active这个class名判断是否已经点击过

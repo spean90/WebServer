@@ -70,10 +70,14 @@ var valuation = {
 						if (data.msg.code!="0000") {
 							return;
 						}
+						 var div = document.getElementById('wizard');
+						var width = div.style.width || div.clientWidth || div.offsetWidth || div.scrollWidth;
+						width=width-30;
 						var content = data.content;
 						$('#wizard_ul').empty();
 						var str = '';
 						var list = content.list;
+						var perWidth = width/list.length;
 						for (var i = 1; i < list.length+1; i++) {
 							var stepStr = '一';
 							switch(i){
@@ -110,7 +114,7 @@ var valuation = {
 							default :
 								stepStr = i;
 							}
-							str = '<li>'
+							str = '<li style="width:'+perWidth+'px;">'
 								+'<a href="#step-'+i+'"><strong>'+i+'.</strong>第'+stepStr+'步</a>'
 								+'</li>';
 							$('#wizard_ul').append($(str));

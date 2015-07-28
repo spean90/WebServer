@@ -2,6 +2,8 @@
  * 结算页面
  */
 var pay = {
+	paySum : 0,	
+		
 	//初始化回收清单
 	initRetrieveList : function(){
 		$('table').empty();
@@ -47,6 +49,7 @@ var pay = {
 						$('.order-count.clearfix').append($(s));
 						$('#sum').text(currency+sum.toFixed(2));
 						$('.c-red').text(currency+sum.toFixed(2));
+						pay.paySum = currency+sum.toFixed(2);
 					}
 				}
 		}
@@ -73,6 +76,8 @@ var pay = {
 		Modal.jsonp(config);
 	},
 	initCityRegion : function() {
+		var str = '<option>'+localStorage.cityName+'</option>'
+		$('#city').append($(str));
 		var config = {
 				url : Sys.serviceDomain+"/listOneCityRegion?currentPage=0&cityId="+localStorage.cityId,
 				callbackParameter: "callback",
@@ -127,16 +132,17 @@ var pay = {
 					var content = data.content;
 					if (content.list!=null&&content.list.length!=0) {
 						var list = content.list;
+						var isFirst=1;
 						for(var i=0;i<list.length;i++){
 							if(list[i].methodType==1){
 								if (list[i].recycleMethodId==1) {
-									var str = '<label><input type="radio" name="trade-way" id="online_bank" checked value="1" /> 网银转账：<span class="c-red"></span></label>';
+									var str = '<label><input type="radio" name="trade-way" id="online_bank" value="1" /> 网银转账：<span class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 									$('#payType').append($(str));
-									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
-									$('#payType').append($(strs));
-									$('.bank-area').hide();
+//									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
+//									$('#payType').append($(strs));
+//									$('.bank-area').hide();
 								}else if (list[i].recycleMethodId==2){
-									var str = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
+									var str = '<label><input type="radio" name="trade-way" id="pay_cash" value="3" /> 现金交易：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
 									$('.bank-area').hide();
 								}
@@ -144,23 +150,31 @@ var pay = {
 								if(list[i].methodType==2) {
 									if (list[i].recycleMethodId==1) {
 										$('#shop').show();
-										$('#faceToFace').show();
-										$('#send').show();
+										if(isFirst==1){
+											$('#shop>input').attr("checked","checked");
+										}
+										isFirst++;
 									}else if (list[i].recycleMethodId==2){
-										$('#shop').show();
 										$('#faceToFace').show();
-										$('#send').show();
+										if(isFirst==1){
+											$('#faceToFace input').attr("checked","checked");
+										}
+										isFirst++;
 									}
 									else if (list[i].recycleMethodId==3){
-										$('#shop').show();
-										$('#faceToFace').show();
 										$('#send').show();
+										if(isFirst==1){
+											$('#send input').attr("checked","checked");
+										}
+										isFirst++;
 									}
 								}
 							}
 						}
+						$('#payType input').eq(0).attr("checked","checked");
 						pay.initPage();
 					}
+					$('.c-red').text(pay.paySum);
 				}
 		}
 		Modal.jsonp(config);
@@ -276,9 +290,22 @@ var pay = {
 	},
 	//初始化页面后。添加响应
 	initPage : function(){
-		 $('#online_bank').click(function(){
-			    $('.bank-area').show();
-			  });
+		pay.showAddrDetail();
+		var val = $('[name=trade-way]:checked').val();
+		if(val==1){
+			$('.bank-area').show();
+		}else{
+			$('.bank-area').hide();
+		}
+		//如果选择网银。显示输入银行卡信息
+		$("[name=trade-way]").change(function() { 
+			var val = $('[name=trade-way]:checked').val();
+			if(val==1){
+				$('.bank-area').show();
+			}else{
+				$('.bank-area').hide();
+			}
+			}); 
 		  $('#pay_cash').click(function(){
 		    $('.bank-area').hide();
 		  });
@@ -295,6 +322,15 @@ var pay = {
 		      }
 		    }, 1000);
 		  });
+	},
+	showAddrDetail : function(){
+		var val = $('[name=trade-way1]:checked').val();
+		if(val==3){
+			$('#dealAddr').show();
+		}else{
+			$('#dealAddr').hide();
+		}
+		
 	}
 	
 };
@@ -312,4 +348,8 @@ $(function(){
 	pay.initRetrieveList();
 	pay.initCityRegion();
 	pay.initPayType();
+	//如果选择当面交易。显示输入交易地址
+	$("[name=trade-way1]").change(function() { 
+		pay.showAddrDetail();
+		}); 
 });
