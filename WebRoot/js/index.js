@@ -335,6 +335,34 @@ var index = {
 		},
 		detailNews : function(newsId) {
 			window.open('/detailNews_'+newsId+".html");
+		},
+		initBanners : function(){
+			var config = {
+					url : Sys.serviceDomain+"/listAllBanners", 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						$("#tabMain").empty();
+						$('#tabHandle').empty();
+						var list = data.content.list;
+						for(var i=0;i<list.length;i++){
+							var s = '<li><a><img src="'+list[i].image+'" width="832" height="300" alt="'+list[i].name+'" /></a></li>';
+							$('#tabMain').append($(s));
+							var str = "<a></a>";
+							$('#tabHandle').append($(str));
+							
+						}
+						$('#tabHandle a').eq(0).addClass('on');
+						cTab({ tabHandleList: "#tabHandle > a", tabBodyList: "#tabMain > li", isAutoPlay: { time: 3000 }, bind: "mouseover", tabOnCssList: "#tabHandle > a", tabOnCssName: "on" });
+						cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
+						cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
+						
+					}
+			}
+			Modal.jsonp(config);
+			
 		}
 		
 }
@@ -353,6 +381,7 @@ index.initNewsList(); //初始化最新咨询
 index.initRetrieveList();  //初始化最新回收单
 //index.initUserInfo();
 index.initNotice();  //公告
+index.initBanners();//banners
 $(function(){
 });
 

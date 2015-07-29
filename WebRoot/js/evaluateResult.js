@@ -49,7 +49,8 @@ var evaluateResult = {
 							$(this).modal('evaluateResultPop.html', 'evaluateResult_pop');
 						}else{
 							//去结算
-							window.location.href='/myRetrieveCar_'+content.customersBasketId+'.html'
+							//window.location.href='/myRetrieveCar_'+content.customersBasketId+'.html'
+							window.location.href='/pay_'+content.customersBasketId+'.html'
 						}
 						sessionStorage.removeItem(key)
 					}

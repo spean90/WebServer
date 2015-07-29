@@ -64,14 +64,15 @@ $(document).ready(function () {
     					url : Sys.serviceDomain+"/searchModels?recordPerPage=5&keywords="+$search, 
     					callbackParameter: "callback",
     					success : function(data){ 
-    						if (data.msg.code!="0000") {
-    							return;
-    						}
+//    						if (data.msg.code!="0000" && data.msg.code!="0024" ) {
+//    							return;
+//    						}
     						var content = data.content;
     						var list = content.list;
     						$terms = list;
     						strInArray($search, $terms);
     						 if ($search == '' || !$('input').val) {
+    							 alert($search);
     			                    $('.output').html('').slideUp();
     			                     $('.icon-so').show();
     			                    //$('.search-input').css('paddingLeft',40);
@@ -113,7 +114,7 @@ $(document).ready(function () {
         if ($('.prediction-item').length > 0) {
             $('.output').slideUp();
         }
-        if($(this).val==''){
+        if($('#search-bar').val()==''){
         	 $('.icon-so').show();
         }
         //$(this).val('');
