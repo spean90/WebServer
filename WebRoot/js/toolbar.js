@@ -89,7 +89,10 @@ var toolBar = {
 			if(sessionStorage.userId!=null){
 				window.location.href = href;
 			}else{
-				window.location.href = '/login.html';
+				if(href.substring(0,1)=='/'){
+					href = href.substring(1);
+				}
+				window.location.href = '/login.html?ReturnUrl='+href;
 			}
 		},
 		doSearch : function(){
@@ -159,8 +162,8 @@ var toolBar = {
 							element.style.marginLeft = "0px";
 							element.style.marginTop = "0px";
 							parabola.init();
-							toolBar.initSignIntegral();//初始化签到按钮；
 						}
+						toolBar.initSignIntegral();//初始化签到按钮；
 					}
 			}
 			Modal.jsonp(config);
@@ -195,6 +198,14 @@ var toolBar = {
 			if(sessionStorage.userType!=null||sessionStorage.userType!=undefined){
 				return;
 			}
+			var aa = localStorage.aa;
+			if(aa!=undefined){
+				var arr = aa.split('-');
+				var now = new Date().getTime();
+				if(now-arr[0]<1000*60*60){
+					sessionStorage.token = arr[1];
+				}
+			}
 			var config = {
 					url : Sys.serviceDomain+"/detailOwnCustomers?key="+sessionStorage.token, 
 					callbackParameter: "callback",
@@ -208,7 +219,30 @@ var toolBar = {
 						$("#address").html(content.cityName);
 						sessionStorage.personImg = content.image;
 						sessionStorage.userType = content.userType;
-						sessionStorage.account = content.name
+						sessionStorage.account = content.name;
+						sessionStorage.userId = content.customersId;
+						if(sessionStorage.userType=="1"){
+							$('.role').hide();
+						}
+						//判断是否已经登录
+						if(sessionStorage.userId!=null){
+							$(".top-bar-rt-1>a>span").html('欢迎您，'+sessionStorage.userId);
+							$(".top-bar-rt-1>a").attr('href','userinfo.html');
+							$(".top-bar-rt-1>a:eq(1)").html('退出');
+							$(".top-bar-rt-1>a:eq(1)").attr('href',"#");
+							$(".top-bar-rt-1>a:eq(1)").click(function(){
+								sessionStorage.clear();
+								localStorage.removeItem('aa');
+								window.location.href='/login.html'
+							});
+							$(".link-login").html(sessionStorage.userId);
+							$(".link-login").attr('href','userinfo.html');
+							$(".u-pic img").attr('src',sessionStorage.personImg);
+							$(".u-pic a").attr('href','userinfo.html');
+							if(sessionStorage.userType=="1"){
+								$('.role').hide();
+							}
+						}
 					}
 			}
 			Modal.jsonp(config);
@@ -228,7 +262,13 @@ $(function(){
 	if(sessionStorage.userId!=null){
 		$(".top-bar-rt-1>a>span").html('欢迎您，'+sessionStorage.userId);
 		$(".top-bar-rt-1>a").attr('href','userinfo.html');
-		$(".top-bar-rt-1>a:eq(1)").hide();
+		$(".top-bar-rt-1>a:eq(1)").html('退出');
+		$(".top-bar-rt-1>a:eq(1)").attr('href',"#");
+		$(".top-bar-rt-1>a:eq(1)").click(function(){
+			sessionStorage.clear();
+			localStorage.removeItem('aa');
+			window.location.href='/login.html'
+		});
 		$(".link-login").html(sessionStorage.userId);
 		$(".link-login").attr('href','userinfo.html');
 		$(".u-pic img").attr('src',sessionStorage.personImg);

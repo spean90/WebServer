@@ -97,9 +97,9 @@ var category = {
 				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage=1";
 			}else{
 				if (tagId==null) {
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0";
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=1";
 				}else{
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0&tagIds="+tagId;
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=1&tagIds="+tagId;
 				}
 			}
 			$.jsonp({

@@ -18,6 +18,7 @@
 							Modal.alert(data.msg.desc);
 							return;
 						}
+						localStorage.aa=new Date().getTime()+"-"+data.key;  //判断是否有登录过
 						sessionStorage.token = data.key;
 						//sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKvZhww8MtD/UtoRzlrCBwSkfZ0PHWe2Shq0Q3KCrTgmi';
 						sessionStorage.userId = userId;

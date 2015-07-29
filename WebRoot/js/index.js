@@ -239,8 +239,8 @@ var index = {
 							var item = list[i];
 							if(i==0||i==6){
 								str += '<dl>'
-						            +'<dt><ul><li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li></ul></dt>'
-						            +'<dd>'
+									+'<dd>'
+						            +'<ul><li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li></ul>'
 						            +'<ul>';
 							}else if(i==5){
 								str += '<li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li>'
