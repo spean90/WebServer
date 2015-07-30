@@ -46,9 +46,9 @@ var orderDetail = {
 					}
 					var content = data.content;
 					var list = content.list;
-					var str = '<li class="flow-box first">'
-		                   +'<a href="#step-1">订单状态历史</a>'
-		                   +'</li>'; //导航条
+					//var list = [{"ordersStatusHistoryId":71,"ordersId":96,"ordersStatusId":1,"addedDate":"2015-07-30 10:46:03","customerNotified":0,"ordersStatusName":"未处理"},{"ordersStatusHistoryId":71,"ordersId":97,"ordersStatusId":2,"addedDate":"2015-07-30 10:46:03","customerNotified":0,"ordersStatusName":"未处理2"}];
+					//var str = '<li class="flow-box first">' +'<a href="#step-1">订单状态历史</a>' +'</li>'; //导航条
+					var str = '';
 					for(var i=0;i<list.length;i++){
 						var item = list[i];
 						var s='';  //总的订单历史现实
@@ -158,7 +158,7 @@ var orderDetail = {
 			                   +'</div>'
 						$('#steps').append($(str));
 						$("#step-1 tbody").prepend($(s));
-						$('#stepDiv').append($(strDept));
+						//$('#stepDiv').append($(strDept));
 						str = '';
 						console.log(s);
 					}
@@ -172,12 +172,12 @@ var orderDetail = {
 				  { transitionEffect: "",
 				    enableAllSteps: true,
 				    enableFinishButtonOnlyLastStep: true,
-				    onFinish:test,  // triggers when Finish button is clicke
-				    onPreviousStep:PreviouStepCallback,
-				    onLeaveStep:leaveAStepCallback, // triggers when leaving a step
+				   // onFinish:test,  // triggers when Finish button is clicke
+				    //onPreviousStep:PreviouStepCallback,
+				    //onLeaveStep:leaveAStepCallback, // triggers when leaving a step
 				    onShowStep:showStepCallback,  // triggers when showing a step
-				    onFinish: null,  // triggers when Finish button is clicked
-				    onNextStep:NextStepCallback//点击下一步时 触发回调函数
+				   // onFinish: null,  // triggers when Finish button is clicked
+				   // onNextStep:NextStepCallback//点击下一步时 触发回调函数
 				  });
 				  function PreviouStepCallback(obj){
 				   var step_num= obj.attr('rel'); 
@@ -213,8 +213,8 @@ var orderDetail = {
 				        return true;
 				  }
 				  function showStepCallback(obj){
-				     var step_num= obj.attr('rel')-1;
-				      $('.actionBar').hide();
+				     //var step_num= obj.attr('rel')-1;
+				     $('.actionBar').hide();
 				  }
 				  
 

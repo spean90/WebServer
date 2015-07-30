@@ -1,5 +1,6 @@
 var replaceDealOrders = {
 		 initOrderList : function(pageNum){
+			 $('#reflash').text(pageNum);
 			 $('#orderList').empty();
 			 var config = {
 						url : Sys.serviceDomain+"/listMyInsteadOrders?recordPerPage=4&currentPage="+pageNum+"&userId="+$('.search-txt').val()+"&key="+sessionStorage.token, 
@@ -118,16 +119,21 @@ var replaceDealOrders = {
 			 Modal.jsonp(config);
 		 },
 		dealOrder : function(orderId){
-			$(this).modal('/dealOrder_'+orderId+'.html', '完成收单')
+			$(this).modal('/dealOrder_'+orderId+'.html', 'dealOrderPopId')
 		},
 		cancelOrder : function(orderId){
-			$(this).modal('/orderOperPop_'+orderId+'.html', '订单操作')
+			//取消订单  状态为7
+			$(this).modal('/orderOperPop_'+orderId+'_7.html', 'orderOperPopId')
 		},
 		showAssessDetail : function(customersBasketId) {
 			$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
 		},
 		search : function(){
 			replaceDealOrders.initOrderList(1);
+		},
+		reflash : function() {
+			var reflashText = $('#reflash').text();
+			replaceDealOrders.initOrderList(reflashText);
 		}
 }
 
