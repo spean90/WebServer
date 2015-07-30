@@ -306,6 +306,9 @@ var category = {
 $(function(){
 	var keyword = $("#keyword").html();
 	$("#search-bar").val(keyword);
+	if(keyword!=''){
+		 $('.icon-so').hide();
+	}
 	$('[href="/brands_0.html"]').parent().addClass('on');
 	var bid = $('#brandId').text();
 	var tagId = $("#tagId").text();

@@ -1,4 +1,8 @@
 var orderSuccess = {
+		shipReceiver : '',
+		shipAddress : '',
+		shipZipcode : '',
+		shipReceiverPhone : '',
 		initPage : function(){
 			$('.successpanel.fl').empty();
 			var config = {
@@ -67,10 +71,10 @@ var orderSuccess = {
 									+'<label for="">邮寄地址：</label>'
 									+'<span>'
 									+' <ul>'
-									+'<li><label for="">联系人：</label><span>'+content.customerName+'</span></li>'
-									+'<li><label for="">联系电话：</label><span>'+content.customersPhone+'</span></li>'
-									+'<li><label for="">联系地址：</label><span>xx</span></li>'
-									+'<li><label for="">邮编：</label><span>xx</span></li>'
+									+'<li><label for="">联系人：</label><span>'+orderSuccess.shipReceiver+'</span></li>'
+									+'<li><label for="">联系电话：</label><span>'+orderSuccess.shipReceiverPhone+'</span></li>'
+									+'<li><label for="">联系地址：</label><span>'+orderSuccess.shipAddress+'</span></li>'
+									+'<li><label for="">邮编：</label><span>'+orderSuccess.shipZipcode+'</span></li>'
 									+' </ul>'
 									+'</span>'
 									+'</li>'
@@ -123,9 +127,27 @@ var orderSuccess = {
 					}
 			}
 			Modal.jsonp(config);
-		}
+		},
+		detailCityShip : function(){
+			var config = {
+					url : Sys.serviceDomain+"/detailCityShip?cityId="+localStorage.cityId, 
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							return;
+						}
+						var content = data.content;
+						orderSuccess.shipReceiver = content.shipReceiver;
+						orderSuccess.shipAddress = content.shipAddress;
+						orderSuccess.shipZipcode = content.shipZipcode;
+						orderSuccess.shipReceiverPhone = content.shipReceiverPhone;
+					}
+			};
+			Modal.jsonp(config);
+		},
 }
 
 $(function(){
+	orderSuccess.detailCityShip();
 	orderSuccess.initPage();
 })
