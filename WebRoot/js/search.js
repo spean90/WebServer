@@ -60,6 +60,11 @@ $(document).ready(function () {
             setTimeout(function () {
                 var $search = $('#search-bar').val();
                 $return = [];
+                if ($search == '' || !$('input').val) {
+                     $('.icon-so').show();
+                } else {
+                    $('.icon-so').hide();
+                }
                 var config = {
     					url : Sys.serviceDomain+"/searchModels?recordPerPage=5&keywords="+$search, 
     					callbackParameter: "callback",
@@ -72,14 +77,9 @@ $(document).ready(function () {
     						$terms = list;
     						strInArray($search, $terms);
     						 if ($search == '' || !$('input').val) {
-    							 alert($search);
     			                    $('.output').html('').slideUp();
-    			                     $('.icon-so').show();
-    			                    //$('.search-input').css('paddingLeft',40);
     			                } else {
     			                    $('.output').html($return).slideDown();
-    			                    $('.icon-so').hide();
-    			                   // $('.search-input').css('paddingLeft',10);
     			                }
     			                $('.prediction-item').on('click', function () {
     			                	$text = $(this).find('span.prediction-text').text();

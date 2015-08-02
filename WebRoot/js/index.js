@@ -225,7 +225,7 @@ var index = {
 		},
 		initNewsList : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listNewsOrder?recordPerPage=12", 
+					url : Sys.serviceDomain+"/listNewsOrder?recordPerPage=12&currentPage=1", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -269,7 +269,7 @@ var index = {
 		},
 		initRetrieveList : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listNewestOrders?recordPerPage=18", 
+					url : Sys.serviceDomain+"/listNewestOrders?recordPerPage=18&currentPage=1", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {

@@ -97,6 +97,7 @@ var toolBar = {
 		},
 		doSearch : function(){
 			var keyword = $('#search-bar').val();
+			keyword = keyword.replace(/\//g,' ');
 			var bId = "0";
 			var tagId = "0";
 			var bIdObj = $('.listIndex .selected');
@@ -169,6 +170,8 @@ var toolBar = {
 			Modal.jsonp(config);
 		},
 		initHeatWord : function(){
+			$('.search-label').empty();
+			$('.search-label').append('热门搜索：');
 			var config = {
 					url : Sys.serviceDomain+"/listHotSearchKeywords", 
 					callbackParameter: "callback",
@@ -176,8 +179,6 @@ var toolBar = {
 						if (data.msg.code!="0000") {
 							return;
 						}
-						$('.search-label').empty();
-						$('.search-label').append('热门搜索：');
 						var list = data.content.list;
 						for(var i=0;i<list.length;i++){
 							if(list[i].hotLevel==2){

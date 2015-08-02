@@ -34,7 +34,7 @@ myOrder = {
 							str = str + '<table>'
 			                + '<thead>'
 			                + '<tr>'
-			                + '<th class="w_96 t_c table_l_line none"><label><input class="check-all check" type="checkbox"/>&nbsp;全选</label></th>'
+			                + '<th class="w_96 t_c table_l_line none"></th>'
 			                + '<th class="w_456">手机型号</th>'
 			                + '<th>商家最高价</th>'
 			                + '<th>价格状态</th>'
@@ -44,7 +44,7 @@ myOrder = {
 			                + '<th>订单状态</th>'
 			                + '</tr>'
 			                + '<tr class="dark">'
-			                + '<th class="tx-left" colspan="6"><label><input type="checkbox" /> <span class="fb">'+item.ordersDate+'</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail_'+item.ordersId+'.html" class="underline">订单详情</a></th>';
+			                + '<th class="tx-left" colspan="6"><label> <span class="fb">'+item.ordersDate+'</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail_'+item.ordersId+'.html" class="underline">订单详情</a></th>';
 							if(item.ordersStatusId==1){
 								str = str + '<th class="c-red">待处理</th>';
 							}else if(item.ordersStatusId==2){
@@ -90,7 +90,7 @@ myOrder = {
 			                str = str + '</tbody>'
 			                + '</table>'
 			                + '<div class="foot" id="foot">'
-			                + '<label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>'
+			                //+ '<label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>'
 			                + '<a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>'
 			                + '<div class="fr total">合计：'+item.currency+'<span id="priceTotal">'+sum+'</span></div>'
 			                + '<div class="fr selected" id="selected">共<span id="selectedTotal">'+count+'</span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>'
@@ -123,7 +123,7 @@ myOrder = {
 							str = null;
 						}
 						str = '<div class="mt-30">'
-			                + '<label><input type="checkbox" /> 全选</label>'
+			                //+ '<label><input type="checkbox" /> 全选</label>'
 			                + '<div id="pagination" class="page mt-30 fr"></div>'
 			                + '</div>';
 						$(".tabs-content>div:eq("+divIndex+")").append($(str));
