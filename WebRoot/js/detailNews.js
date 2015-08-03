@@ -10,7 +10,7 @@ var detailNews = {
 						var content = data.content;
 						$('.title').html(content.newsTitle);
 						$('#time').html(content.addedDate);
-						$('#content').html(content.newsText);
+						$('#content').html('<p>'+content.newsText+'</p>');
 					}
 			}
 			Modal.jsonp(config);

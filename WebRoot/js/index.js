@@ -234,33 +234,12 @@ var index = {
 						var content = data.content;
 						var list = content.list;
 						$('.index-news-list').empty();
-						var str = '';
+						var str = '<ul>';
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
-							if(i==0||i==6){
-								str += '<dl>'
-									+'<dd>'
-						            +'<ul><li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li></ul>'
-						            +'<ul>';
-							}else if(i==5){
-								str += '<li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li>'
-					            +'</ul>'
-					            +'</dd>'
-					            +'</dl>';
-							}else{
-								str += '<li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li>';
-							}
-							/*var str = '<li><a><img src="'+item.newsImage+'" alt="'+item.newsTitle+'" width="280" height="180" /></a>'
-					            +'<h4><a>'+item.newsTitle+'</a></h4>'
-					            +'<span>'+item.addedDate+'</span>'
-					            +'<p>'+item.newsDescription+'</p>'
-					            +'</li>';*/
+							str +='<li onclick=index.detailNews("'+item.newsId+'")>'+item.newsTitle+'</li>';
 						}
-						if(list.length>6 || list.length<6){
-							str += '</ul>'
-				            +'</dd>'
-				            +'</dl>';
-						}
+						str += '</ul>';
 						var news = $(str);
 						$('.index-news-list').append(news);
 					}

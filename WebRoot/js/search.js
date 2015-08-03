@@ -22,10 +22,11 @@ $(document).ready(function () {
             if (window.CP.shouldStopExecution(1)) {
                 break;
             }
-            if ((strArray[j].modelsName.match(str)||strArray[j].modelsNickname.match(str)) && $return.length < 5) {
-                var $h = strArray[j].modelsName.replace(str, '<strong>' + str + '</strong>');
-                if (strArray[j].modelsNickname.match(str)) {
-                	$h = strArray[j].modelsNickname.replace(str, '<strong>' + str + '</strong>');
+            var patt1=new RegExp(str,"i")
+            if ((strArray[j].modelsName.match(patt1)||strArray[j].modelsNickname.match(patt1)) && $return.length < 5) {
+                var $h = strArray[j].modelsName.replace(patt1, '<strong>' + str + '</strong>');
+                if (strArray[j].modelsNickname.match(patt1)) {
+                	$h = strArray[j].modelsNickname.replace(patt1, '<strong>' + str + '</strong>');
 				}
                 $return.push('<li class="prediction-item"><span class="prediction-text">' + $h + '</span><span class="prediction-num">'+strArray[j].recycleCount+'人回收</span></li>');
             }

@@ -159,9 +159,9 @@ var category = {
 			$('.phone-list').empty();
 			if (list==null||list.length==0) {
 				var s = '<div class="tips">'
-						+'<p>很抱歉，手机里没有找到与" <span class="keyword">'+$("#keyword").html()+'</span> "相关的信息</p>'
-						+'<p>小收收建议您：</p>'
-						+'<p>1.尽量减少关键词数量，扩大搜索范围，如“诺基亚 2012”去掉“诺基亚”</p>'
+						+'<p>很抱歉，手机里没有找到与" <span class="red">'+$("#keyword").html()+'</span> "相关的信息</p>'
+						+'<p>壹回收建议您：</p>'
+						+'<p>1.尽量减少关键词数量，扩大搜索范围，如“iPhone 2015”改为“iPhone”</p>'
 						+'<p>2.如重新搜索还是没有，并且型号较新，请联系在线客服添加型号&emsp;</p>'
 						+'<p>3.如机器型号较老，说明他的价值很低，请进行环保回收！&emsp;</p>'
 						+'</div>';
@@ -304,6 +304,7 @@ var category = {
 }
 
 $(function(){
+	$('.resultList').empty();
 	var keyword = $("#keyword").html();
 	$("#search-bar").val(keyword);
 	if(keyword!=''){
