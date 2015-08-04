@@ -14,7 +14,7 @@ var help = {
 						var list = content.list;
 						//var list = [{"faqCategoriesId":1,"faqCategoriesName":"问题目录1"},{"faqCategoriesId":2,"faqCategoriesName":"问题目录2"},{"faqCategoriesId":3,"faqCategoriesName":"问题目录3"},{"faqCategoriesId":4,"faqCategoriesName":"问题目录4"},{"faqCategoriesId":5,"faqCategoriesName":"问题目录5"}];
 						$('.help-left.clearfix').empty();
-						var str = ' <dl class="on"><dt onclick="help.listFaqOfCategories()"><i class="icon-help"></i>常见问题</dt> </dl>';
+						var str = ' <dl class="on"><dt onclick="help.listFaqOfCategories(1)"><i class="icon-help"></i>常见问题</dt> </dl>';
 						$('.help-left.clearfix').append(str);
 						for(var i=0; i<list.length; i++){
 							var item = list[i];
@@ -33,7 +33,7 @@ var help = {
 			};
 			Modal.jsonp(config);
 		},
-		listFaqOfCategories : function(obj,id){
+		listFaqOfCategories : function(id){
 			var config = {
 					url : Sys.serviceDomain+"/listFaqOfCategories?faqId="+id, 
 					callbackParameter: "callback",
@@ -42,20 +42,9 @@ var help = {
 							return;
 						}
 						var content = data.content;
-						var list = content.list;
-						$(obj).parent('dl').children('dd').remove();
 						$(".help-right").empty();
-						//var list = [{"faqId":9,"faqCategoriesId":2,"addedDate":"2015-05-11","faqName":"问题9"+"-"+id,"faqDescription":"问题描述9"},{"faqId":10,"faqCategoriesId":2,"addedDate":"2015-05-11","faqName":"问题10","faqDescription":"问题描述10"},{"faqId":8,"faqCategoriesId":2,"addedDate":"2015-05-11","faqName":"问题8","faqDescription":"问题描述8"},{"faqId":7,"faqCategoriesId":2,"addedDate":"2015-05-11","faqName":"问题7","faqDescription":"问题描述7"}];
-						var str = '';
-						for(var i=0; i<list.length; i++){
-							str = '<dd><a href="javascript:;">'+list[i].faqName+'</a></dd>';
-							$(obj).parent('dl').append(str);
-							str = '<div class="help-title">'+list[i].faqName+'</div>' 
-								+ '<p class="c-black">'+list[i].faqName+'</p>' 
-								+ '<p>'+list[i].faqDescription+'</p>' 
-								+ '<br />';
-							$(".help-right").append(str);
-						}
+						var str=content.desc;
+						$(".help-right").append(str);
 					}
 			};
 			Modal.jsonp(config);
