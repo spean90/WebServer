@@ -14,11 +14,16 @@ var help = {
 						var list = content.list;
 						//var list = [{"faqCategoriesId":1,"faqCategoriesName":"问题目录1"},{"faqCategoriesId":2,"faqCategoriesName":"问题目录2"},{"faqCategoriesId":3,"faqCategoriesName":"问题目录3"},{"faqCategoriesId":4,"faqCategoriesName":"问题目录4"},{"faqCategoriesId":5,"faqCategoriesName":"问题目录5"}];
 						$('.help-left.clearfix').empty();
-						var str = '';
+						var str = ' <dl class="on"><dt onclick="help.listFaqOfCategories()"><i class="icon-help"></i>常见问题</dt> </dl>';
+						$('.help-left.clearfix').append(str);
 						for(var i=0; i<list.length; i++){
+							var item = list[i];
 							str = '<dl id="'+list[i].faqCategoriesId+'">' 
-								+ '<dt><i class="icon-help"></i>'+list[i].faqCategoriesName+'</dt>'
-								+ '</dl>';
+							+ '<dt><i class="icon-help"></i>'+list[i].faqCategoriesName+'</dt>'; 
+							for(var j=0;j<item.faqList.length;j++){
+								str+='<dd><a href="javascript:;">'+item.faqList[j].faqName+'</a></dd>';
+							}
+							str += '</dl>';
 							$('.help-left.clearfix').append(str);
 						}
 
@@ -30,7 +35,7 @@ var help = {
 		},
 		listFaqOfCategories : function(obj,id){
 			var config = {
-					url : Sys.serviceDomain+"/listFaqOfCategories?faqCategoriesId="+id, 
+					url : Sys.serviceDomain+"/listFaqOfCategories?faqId="+id, 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -58,7 +63,7 @@ var help = {
 		helpNav : function(){
 			$('.help-left dt').click(function(){
 				$(this).parent('dl').toggleClass('on');
-				help.listFaqOfCategories($(this),$(this).parent('dl').attr('id'));
+				//help.listFaqOfCategories($(this),$(this).parent('dl').attr('id'));
 			});
 		}
 };
