@@ -68,6 +68,7 @@ $(function(){
         cssStyle: 'light-theme'
     });
     mypoints.initMyPoints();
+    $('.tabs-label li').eq(0).addClass('active');
     mypoints.getMyPointsByPage(1,1);
     mypoints.getMyPointsByPage(1,2);
     mypoints.getMyPointsByPage(1,3);

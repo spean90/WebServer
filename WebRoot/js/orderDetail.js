@@ -134,9 +134,9 @@ var orderDetail = {
                             +'<td>操作备注：</td>';
 						strDept = strDept +'<tr>'
                         +'<td>操作备注：</td>';
-                            if(item.comment!=undefined){
-                            	s = s+'<td>'+item.comment+'</td>';
-                            	strDept = strDept+'</tr><td>'+item.comment+'</td>';
+                            if(item.comments!=undefined){
+                            	s = s+'<td>'+item.comments+'</td>';
+                            	strDept = strDept+'</tr><td>'+item.comments+'</td>';
                             }else{
                             	s = s+'<td>无</td>';
                             	strDept = strDept+'<td>无</td>';

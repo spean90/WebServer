@@ -331,7 +331,27 @@ var pay = {
 			$('#dealAddr').hide();
 		}
 		
-	}
+	},
+	detailCityShip : function(){
+		var config = {
+				url : Sys.serviceDomain+"/detailCityShip?cityId="+localStorage.cityId, 
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						return;
+					}
+					var content = data.content;
+					var addr = $('#send p').eq(1);
+					var s = '快递到：'+content.shipAddress;
+					addr.html(s);
+//					orderSuccess.shipReceiver = content.shipReceiver;
+//					orderSuccess.shipAddress = content.shipAddress;
+//					orderSuccess.shipZipcode = content.shipZipcode;
+//					orderSuccess.shipReceiverPhone = content.shipReceiverPhone;
+				}
+		};
+		Modal.jsonp(config);
+	},
 	
 };
 
@@ -345,6 +365,7 @@ $(function(){
 		$('#phone').attr('readonly',"readonly");
 	}
 	$('#currentCity').text(localStorage.cityName);
+	pay.detailCityShip();
 	pay.initRetrieveList();
 	pay.initCityRegion();
 	pay.initPayType();
