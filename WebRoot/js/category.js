@@ -86,6 +86,9 @@ var category = {
 									+ 'attrval="'+list[i].tagsName+'">'+list[i].tagsName+'</a> ';
 						dd.append(str);
 					}
+					if(list.length==0){
+						$('.resultList').empty();
+					}
 				}
 			});
 		},

@@ -47,10 +47,20 @@ var myRetrieveCar = {
 			Modal.jsonp(config);
 			//settlement.initRetrieveCar();
 		},
-		//直接调用toolbar里的js方法
-//		removeFromCar : function(id) {
+		//批量删除
+		removeAllFromCar : function() {
+//			 var table = document.getElementById('cartTable');
+//			 var tr = table.children[1].rows; //行
+//			 var id = '';
+//			 for (var i = 0; i < tr.length; i++) {
+//                 // 如果被选中，就删除相应的行
+//                 if (tr[i].getElementsByTagName('input')[0].checked) {
+//                    id = ','+tr[i].attr('id');
+//                 }
+//             }
+//			alert(id);
 //			var config = {
-//					url : Sys.serviceDomain+"/deleteUserOwnBasket?customersBasketId="+id+'&key='+sessionStorage.token, 
+//					url : Sys.serviceDomain+"/deleteUserOwnBaskets?customersBasketIds="+id+'&key='+sessionStorage.token, 
 //					callbackParameter: "callback",
 //					success : function(data){
 //						if (data.msg.code!="0000") {
@@ -60,8 +70,8 @@ var myRetrieveCar = {
 //						myRetrieveCar.initRetrieveCar();
 //					}
 //			}
-//			Modal.jsonp(config);
-//		},
+//			//Modal.jsonp(config);
+		},
 		goToPay : function() {
 			var arr= $('.check-one.check');
 			var ids = '';
@@ -81,4 +91,8 @@ var myRetrieveCar = {
 
 $(function(){
 	myRetrieveCar.initRetrieveCar();
+	$('#deleteAll').hide();
+	$('#deleteAll').click(function(){
+		//myRetrieveCar.removeAllFromCar();
+	})
 });

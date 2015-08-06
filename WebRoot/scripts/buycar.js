@@ -125,10 +125,11 @@ window.onload = function () {
                     }
                     break;
                 case 'delete': //点击了删除
-                    var conf = confirm('确定删除此商品吗？');
-                    if (conf) {
-                        this.parentNode.removeChild(this);
-                    }
+//                    var conf = confirm('确定删除此商品吗？');
+//                    if (conf) {
+//                        this.parentNode.removeChild(this);
+//                    }
+                	this.parentNode.removeChild(this);
                     break;
             }
             getTotal();
@@ -161,7 +162,7 @@ window.onload = function () {
                 }
             }
         } else {
-            alert('请选择商品！');
+            Modal.alert('请选择商品！');
         }
         getTotal(); //更新总数
     }
