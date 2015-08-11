@@ -158,13 +158,13 @@ var valuation = {
 								if((k+1)%4==0){
 									str = str +'<li data-id="'+evaluationItemList[k].itemId+'" class="oneline last">'
 								     +'<span class="property_value">'+evaluationItemList[k].name+'</span>'
-								    // +'<span class="property_detail">有“进网许可”标签</span>'
+								     +'<span class="property_detail">'+evaluationItemList[k].description+'</span>'
 								     +'<span class="gou"></span>'                
 								     +'</li>';
 								}else{
 									str = str +'<li data-id="'+evaluationItemList[k].itemId+'" class="oneline">'
 								     +'<span class="property_value">'+evaluationItemList[k].name+'</span>'
-								    // +'<span class="property_detail">有“进网许可”标签</span>'
+								     +'<span class="property_detail">'+evaluationItemList[k].description+'</span>'
 								     +'<span class="gou"></span>'                
 								     +'</li>';
 								}

@@ -10,10 +10,10 @@ var outlets = {
 			var point = new BMap.Point(li.attr('data-x'), li.attr('data-y')); 
 			var marker = new BMap.Marker(point);        // 创建标注    
 			map.addOverlay(marker);  
-			map.centerAndZoom(point, 13);
+			map.centerAndZoom(point, 11);
 			marker.addEventListener('click',function(event){  
-				var content = '<b class="iw_poi_title" title="国瑞店">国瑞店'+li.attr('data-x')+'</b><br />'
-					+'<dl class="iw_poi_content"><dt>地址：</dt><dd>东城区崇外大街18号LG层</dd><dt>电话：</dt><dd>01059432680</dd></dl>';
+				var content = '<b class="iw_poi_title" title="'+li.attr('data-name')+'">'+li.attr('data-name')+'</b><br />'
+					+'<dl class="iw_poi_content"><dt>地址：</dt><dd>'+li.attr('data-addr')+'</dd><dt>电话：</dt><dd>'+li.attr('data-phone')+'</dd></dl>';
                 var info=new BMap.InfoWindow(content);  
                 marker.openInfoWindow(info);  
 			});
@@ -21,7 +21,7 @@ var outlets = {
 		//初始化网点信息
 		initOutletsData : function(page) {
 			var config = {
-					url : Sys.serviceDomain+"/listStoreOneCity?recordPerPage=10&currentPage="+page+"&cityId=1", 
+					url : Sys.serviceDomain+"/listStoreOneCity?recordPerPage=10&currentPage="+page+"&cityId="+localStorage.cityId, 
 					callbackParameter: "callback",
 					success : function(data){
 						console.log(data);
@@ -44,7 +44,7 @@ var outlets = {
 								item.longitude=y;
 							}
 							//alert(item.latitude+","+tem.longitude);
-							str = '<li id="'+item.customersId+'" onclick="outlets.createMarker(this)" data-id="28" data-name="'+item.name+'" '
+							str = '<li id="'+item.customersId+'" onclick="outlets.createMarker(this)" data-id="'+item.customersId+'" data-name="'+item.name+'" '
 								+ 'data-addr="'+item.address+'" data-phone="'+item.telephone+'" data-desc="" '
 								+ 'data-x="'+item.latitude+'" data-y="'+item.longitude+'" '
 								+ 'data-image="'+item.image+'" >'
@@ -111,7 +111,7 @@ $(function(){
 	map = new BMap.Map("map-area");            // 创建Map实例
 	map.addControl(new BMap.NavigationControl());
 	map.enableScrollWheelZoom();
-	map.centerAndZoom('北京', 13);
+	map.centerAndZoom(localStorage.cityName, 13);
     outlets.initOutletsData(1);
 });
 

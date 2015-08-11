@@ -215,8 +215,10 @@ var toolBar = {
 							return;
 						}
 						var content = data.content;
-						localStorage.cityId = content.cityId;
-						localStorage.cityName = content.cityName;
+						if(content.cityId!=undefined){
+							localStorage.cityId = content.cityId;
+							localStorage.cityName = content.cityName;
+						}
 						$("#address").html(content.cityName);
 						sessionStorage.personImg = content.image;
 						sessionStorage.userType = content.userType;
