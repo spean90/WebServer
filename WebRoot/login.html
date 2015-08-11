@@ -4,10 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="/common/js/sys.js"></script>
 <script>
-document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/login.css" />');
 document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
-document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/index.css" media="screen" />');
-document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/style.css" media="screen" />');
 </script>
 </head>
 <body>
@@ -25,14 +23,21 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
               <div class="login pt20">
                 <form action="">
                 <div class="line_div">
-                <label for="username">账号：</label>
-                <input type="text" name="username" id="username" class="form_text commonInput" value="15155445597" maxlength="20"  autocomplete="off" placeholder="邮箱/用户名/已验证手机"/>
+                <label for="username">账&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
+                <input type="text" name="username" id="username" class="commom-input" value="15155445597" maxlength="20"  autocomplete="off" placeholder="邮箱/用户名/已验证手机"/>
                 <i class="i-name"></i>
                 </div>
                 <div class="line_div">
-                  <label for="password">密码：</label>
-                  <input type="password" name="password" id="password" class="form_text commonInput" maxlength="38"  autocomplete="off" placeholder="密码"/>
+                  <label for="password">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                  <input type="password" name="password" id="password" class="commom-input" maxlength="38"  autocomplete="off" placeholder="密码"/>
                   <i class="i-pass"></i>
+                </div>
+
+                <div class="line_div">
+                              
+                  <label for="volidCoder_register_ps">验证码：</label>
+                  <input type="text" class="commom-input"  id="volidCoder_register_ps" style="width:75px">
+                  <a class="btn-get-verify"><img src="images/verifycode.png">换一换</a>
                 </div>
                 <div class="line_div">
                   <a href="#" onclick="login.login()" class="btn_login">登录</a>
@@ -46,15 +51,14 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
             </div>
           </div>
     </div>
-    <div class="login-banner" style="background-color: #070960;">                  <div class="w">              <div id="banner-bg"  class="i-inner" style="background: url(images/552cd0d3Nd72cae08.jpg) 0px 0px no-repeat;background-color: #070960;"></div>                 </div>               </div>
+    <div class="login-banner" style="background-color: #20AFEC;">                  <div class="w">              <div id="banner-bg"  class="i-inner">
+      <a href=""><img src="images/552cd0d3Nd72cae08.png"></a>
+    </div>                 </div>               </div>
   </div>
   
      <!--Str 公用底部-->
-<div class="footer mt-30 clearfix">
-  <div class="footer-b clearfix">
-    <div class="footer-link-pic tx-cen"> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> </div>
-    <p class="tx-cen">Copyright 2014-2015 壹回收网  闽ICP备88888888号-2</p>
-  </div>
+<div class="footer clearfix">
+  <#include "/common/html/footercopyright.html">
 </div>
 <script type="text/javascript">
 document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 

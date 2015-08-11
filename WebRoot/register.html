@@ -9,15 +9,18 @@
 <meta name="description" content="" />
 <script src="/common/js/sys.js"></script>
 <script>
-document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/reg.css" media="screen" />');
 document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
-document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/index.css" media="screen" />');
-document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/style.css" media="screen" />');
 </script>
 <!--[if lte IE 8]>
  <script src="scripts/excanvas.min.js"></script>
  <![endif]-->
+<style type="text/css">
+  body {
+  background: #f2f2f2;
+}
 
+</style>
 </head>
 
 <body>
@@ -25,9 +28,9 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <#include "/common/html/body_include.html">
 <!--End 公用顶部--> 
 <!--Str 首页内容-->
-<div class="mt-15 clearfix"> 
-<div class="w" id="logo">
-    <div><a href="#"><img src="images/logo.png" alt="壹回收" width="170" height="60"></a> <b></b>
+<div class="mt-15 clearfix register"> 
+<div class="w">
+    <div class="logo"><a href="#"><img src="images/logo.png" alt="壹回收" width="170" height="60"></a> <b></b>
     </div>
 </div>
    <div class="mod_reg">
@@ -45,7 +48,7 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
            <div class="line_div">
                <label for="login_name"><span style="display: inline;width:2px;color:red;">*</span>用户名：</label>
                <div class="item-info">
-                 <input type="text" class="form_text commonInput" name="username">
+                 <input type="text" class="commom-input" name="username">
                  <i class="blank i-name"></i>
                  <!-- <i  class="blank succeed"></i> -->
                  <div class="tip_div">用户名长度只能在4-20位字符之间</div>
@@ -55,9 +58,9 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 
            <div class="line_div">
                
-               <label for="password"><span style="display: inline;width:2px;color:red;">*</span>请设置密码：</label>
+               <label for="password"><span style="display: inline;width:2px;color:red;">*</span>密码：</label>
                 <div class="item-info">
-                  <input type="password" class="form_text commonInput"  name="password">
+                  <input type="password" class="commom-input"  name="password">
                   <i class="blank i-pass"></i>
                   <div class="tip_div">密码长度只能在4-20位字符之间</div>
                 </div>
@@ -65,30 +68,36 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
            </div>
            <div class="line_div">
              
-              <label for="rpassword"><span style="display: inline;width:2px;color:red;">*</span>请确认密码：</label>
+              <label for="rpassword"><span style="display: inline;width:2px;color:red;">*</span>确认密码：</label>
                <div class="item-info">
-                 <input type="password" class="form_text commonInput"  name="rpassword">
+                 <input type="password" class="commom-input"  name="rpassword">
                  <i class="blank i-pass"></i>
                  <div class="tip_div">与密码不一致</div>
                </div>
               
            </div>
   
-           <div class="line_div">
+         <!--   <div class="line_div">
           
               <label for="tel"><span style="display: inline;width:2px;color:red;">*</span>验证手机：</label>
                <div class="item-info">
-                 <input type="text" class="form_text commonInput" style="width:230" name="tel">
+                 <input type="text" class="commom-input" style="width:230" name="tel">
                   <i class="blank i-mobile"></i>
                   <div class="tip_div">请输入有效的手机号码</div>
                </div>
               
-           </div>
-           <div class="line_div">
+           </div> -->
+       <!--     <div class="line_div">
               
               <label for="volidCoder_register_ps"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
-              <input type="text" class="form_text commonInput" style="width:160px" id="volidCoder_register_ps">
+              <input type="text" class="commom-input" style="width:160px" id="volidCoder_register_ps">
                <a class="btn-get-verify"><span class="msgs">获取短信验证码</span></a>
+           </div> -->
+            <div class="line_div">
+              
+              <label for="volidCoder_register_ps"><span style="display: inline;width:2px;color:red;">*</span>验证码：</label>
+              <input type="text" class="commom-input" style="width:100px" id="volidCoder_register_ps">
+              <a class="verifycode"><img src="images/verifycode.png">换一换</a>
            </div>
            <div class="line_div">
            
@@ -96,7 +105,7 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
            </div>
            <div class="line_div">
              <label></label>
-             <input type="button" class="btn-submit" style="border:0px;" id="sumbt"> 
+             <a href="" class="btn-submit" style="border:0px;" id="sumbt">注册</a>
            </div>
          </form>
          <div class="duan">
@@ -118,7 +127,9 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <!--End 首页内容--> 
 <!--End 首页内容--> 
 <!--Str 公用底部-->
-<#include "/common/html/footer_include.html">
+<div class="footer mt-30 clearfix">
+  <#include "/common/html/footercopyright.html">
+</div>
 <!--End 公用底部-->
 <script type="text/javascript">
 document.write('<script src="'+Sys.staticDomain+'js/register.js"><\/script>'); 

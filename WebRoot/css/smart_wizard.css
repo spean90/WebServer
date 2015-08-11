@@ -27,7 +27,7 @@
   position:absolute;  
   float:left;
   margin:0;
-  padding:5px;    
+  padding:0px;    
 /*  border:1px solid #CCC; */
   font:normal 12px Verdana, Arial, Helvetica, sans-serif; 
   color:#5A5655;   
@@ -38,7 +38,7 @@
   z-index:88; 
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
-  width:1180px;
+  width:100%;
   clear:both;
 }
 

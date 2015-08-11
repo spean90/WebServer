@@ -9,10 +9,8 @@
 <meta name="description" content="" />
 <script src="/common/js/sys.js"></script>
 <script>
-document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/hotmobile.css" media="screen" />');
 document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
-document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/index.css" media="screen" />');
-document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/style.css" media="screen" />');
 </script>
 <!--[if lte IE 8]>
  <script src="scripts/excanvas.min.js"></script>
@@ -29,85 +27,16 @@ document.write('<link rel="stylesheet" href="'+Sys.staticDomain+'css/index2.css"
 <div class="wrapper mt-15 clearfix"> 
     <div class="breadcrumb">
         <ul>
-           <li><i class="icon-home"></i><a href="#">首页</a><span>></span></li>
-        <li><a href="#">品牌分类</a></li>
-        </ul>
-     
+          <li><i class="icon-home"></i><a href="#">首页</a><span>></span></li>
+          <li><a href="#">搜索</a></li>
+          <li id="sKeywords"></li>
+        </ul>     
  </div>
   <div class="selectNumberScreen">
-
-    <div id="selectList" class="screenBox screenBackground">
-    
-      <dl class="listIndex" attr="terminal_brand_s">
-        <dt>热门品牌</dt>
-        <dd>
-          <a href="javascript:void(0)"  attrval="apple"><span>苹果</span>(5)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="小米"><span>小米</span>(10)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="华为" class="selected"><span>华为</span>(5)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="lenovo"><span>联想</span>(15)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="zte中兴"><span>中兴</span>(5)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="酷派"><span>酷派</span>(8)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="htc"><span>htc</span>(2)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="三星"><span>三星</span>(25)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>诺基亚</span>(15)</a><span>|</span>
-           <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-           <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a>
-        </dd>
-      </dl>
-      
-      <dl class="listIndex" attr="其他品牌">
-        <dt>其他品牌</dt>
-         <dd>
-          <a href="javascript:void(0)"  attrval="apple"><span>苹果</span>(11)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="小米"><span>小米</span>(50)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="华为"><span>华为</span>(35)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="lenovo"><span>联想</span>(35)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="zte中兴"><span>中兴</span>(35)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="酷派"><span>酷派</span>(35)</a> <span>|</span>
-          <a href="javascript:void(0)"  attrval="htc"><span>htc</span>(35)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="三星"><span>三星</span>(35)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>诺基亚</span>(15)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>|</span>
-          <a href="javascript:void(0)"  attrval="诺基亚"><span>品牌</span>(5)</a><span>
-        </dd>
-      </dl>
-      
-      <dl class="resultList">
-        <dt class="select">三星：</dt>
-        <dd>
-         <a  href="javascript:void(0)"  attrval="华为">全部</a> 
-          <a href="javascript:void(0)"  attrval="lenovo">三星GALAXY S3</a> 
-          <a href="javascript:void(0)"  attrval="zte中兴">三星GALAXY S4</a> 
-          <a href="javascript:void(0)"  attrval="酷派">三星GALAXY Note3</a> 
-        </dd>
-      </dl>
-
-      
-      
-    </div>
-    
     <div class="hasBeenSelected clearfix">
       <div class="warning">如果你的机型有点老，在回收列表找不到，说明他的价值很低请进行环保回收！ <a href="">点击回收</a></div>
-      <ul id="filter_pager">
-                <li id="filter_pager_prev" class="disabled">上一页</li>
-                <li id="filter_pager_next" class="">下一页</li>
-      </ul>
-    </div>
-    
+      <div class="warning" style="float:right;"><span class="red" id="sKeywords2">iPhone</span>&nbsp;&nbsp;搜索到<span class="red" id="resultnumber">111</span>件</div>
+    </div>    
   </div>
 
   <!--Str 热门回收品牌和机型-->
