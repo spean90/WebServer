@@ -6,63 +6,81 @@ var register = {
 		generateCheckCode : function() {
 			var tel = $("input[name='tel']").val();
 			if(tel==''){
-				Modal.alert('请输入联系电话！');
+				alert('请输入联系电话！');
+				return false;
+			}
+			var picCode =  $("#volidCoder_register_ps").val();
+			console.log($("#volidCoder_register_ps"));
+			if(picCode==''||picCode==undefined){
+				alert('请输入图片验证码！');
 				return false;
 			}
 			var config = {
-					url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+					url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel+"&picCheckCode="+picCode,
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							Modal.alert('短信发送失败，请稍后再试！');
+							alert('短信发送失败，请稍后再试！');
 							return;
 						}
-						Modal.alert('短信发送成功！');
+						alert('短信发送成功！');
+						var time = 30;
+						var validCode = true;
+						var code = $('.msgs');
+						if (validCode) {
+							validCode = false;
+							code.parent().attr("disabled", "true");
+							code.parent().addClass("msgs1");
+							var t = setInterval(function() {
+								time--;
+								code.html(time + "秒");
+								if (time == 0) {
+									clearInterval(t);
+									code.html("重新获取");
+									validCode = true;
+									code.parent().removeAttr("disabled");
+									code.parent().removeClass("msgs1");
+								}
+							}, 1000);
+						}
 					}
 			}
 			Modal.jsonp(config);
 		},
-		getCheckCode : function(){
-			var tel = $("input[name='tel']").val();
-			if(tel==''){
-				Modal.alert('请输入联系电话！');
-				return false;
-			}else{
-				if(Modal.checkMobile(tel)==1){
-					Modal.alert("手机号码格式错误，请输入11位有效号码！");
-					return false;
-				}
-			}
-			//TODO 获取验证码
-		},
+//		getCheckCode : function(){
+//			var tel = $("input[name='tel']").val();
+//			if(tel==''){
+//				Modal.alert('请输入联系电话！');
+//				return false;
+//			}else{
+//				if(Modal.checkMobile(tel)==1){
+//					Modal.alert("手机号码格式错误，请输入11位有效号码！");
+//					return false;
+//				}
+//			}
+//			//TODO 获取验证码
+//		},
 		//提交注册信息_个人
 		submitRegister_person : function(){
 			//TODO 提交注册信息
-			if($('form:eq(0) i[class="blank succeed"]').length==4){
-				var username = $("input[name='username']:eq(0)").val();
-				var passwd = $("input[name='password']:eq(0)").val();
-				var randomCode = $('#volidCoder_register_ps').val();
-				var tel = $("input[name='tel']").val();
-				var config = {
-						url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+tel+"&randomCode="+randomCode+"&name="+username,
-						callbackParameter: "callback",
-						success : function(data){ 
-							if (data.msg.code!="0000") {
-								Modal.alert('注册失败，请稍后再试！');
-								return;
-							}
-							//Modal.alert('注册成功！'); 
-							location.href = "login.html";
+			var username = $("input[name='username']:eq(0)").val();
+			var passwd = $("input[name='password']:eq(0)").val();
+			var randomCode = $('#volidCoder_register').val();
+			var tel = $("input[name='tel']").val();
+			var config = {
+					url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+tel+"&randomCode="+randomCode+"&userName="+username,
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							alert(data.msg.desc);
+							return;
 						}
-				}
-				Modal.jsonp(config);
-			}else{
-				register.checkUsername($("input[name='username']:eq(0)"));
-				register.checkPassword($("input[name='password']:eq(0)"));
-				register.checkRePassword($("input[name='password']:eq(0)").val(),$("input[name='rpassword']:eq(0)"));
-				register.checkTel($("input[name='tel']:eq(0)"));
-				return false;
+						alert('注册成功！'); 
+						//location.href = "login.html";
+					}
 			}
+			Modal.jsonp(config);
+			
 		},
 		//用户名验证
 		checkUsername : function(obj){
@@ -164,7 +182,6 @@ var register = {
 
 
 $(function(){
-	$('.header.clearfix').hide();
 	$('.verifycode img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
 	$(".verifycode img").click(register.changeVerifyCode);
 	$('.verifycode').click(register.changeVerifyCode);
@@ -224,27 +241,7 @@ $(function(){
 
 	// 获取短信验证码
 	var validCode = true;
-	$(".msgs").click(function() {
-		var time = 30;
-		var code = $(this);
-		if (validCode) {
-			validCode = false;
-			code.parent().attr("disabled", "true");
-			code.parent().addClass("msgs1");
-			var t = setInterval(function() {
-				time--;
-				code.html(time + "秒");
-				if (time == 0) {
-					clearInterval(t);
-					code.html("重新获取");
-					validCode = true;
-					code.parent().removeAttr("disabled");
-					code.parent().removeClass("msgs1");
-				}
-			}, 1000);
-			register.generateCheckCode();
-		}
-	});
+	$(".msgs").click(register.generateCheckCode);
 
 	// x注册切换
 	$(".tab li").click(function() {
@@ -267,6 +264,6 @@ $(function(){
 	$('.header.clearfix').removeClass('header');
 	$('.footer-t').hide();
 	$('.footer-m').hide();
-	$("#codeImg_regist").click(register.getCheckCode);
+//	$("#codeImg_regist").click(register.getCheckCode);
 	$(".btn-submit:eq(0)").click(register.submitRegister_person);
 });

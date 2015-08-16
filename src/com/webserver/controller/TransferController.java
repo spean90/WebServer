@@ -141,6 +141,12 @@ public class TransferController {
 		modelAndView.addObject("status", arr[1]); 
 		return modelAndView;
 	}
+	@RequestMapping(value="/faq_f{faqId}")
+	public ModelAndView detailFaq(@PathVariable(value="faqId") String faqId) {
+		ModelAndView modelAndView = new ModelAndView("help");
+		modelAndView.addObject("faqId", faqId); 
+		return modelAndView;
+	}
 	/**
 	 * 评价订单
 	 * @param orderId

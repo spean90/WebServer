@@ -17,21 +17,25 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
  <![endif]-->
 <style type="text/css">
   body {
-  background: #f2f2f2;
+  background: #fff;
 }
 
 </style>
 </head>
 
 <body>
-<!--Str 公用顶部-->
-<#include "/common/html/body_include.html">
-<!--End 公用顶部--> 
+
 <!--Str 首页内容-->
 <div class="mt-15 clearfix register"> 
-<div class="w">
-    <div class="logo"><a href="#"><img src="images/logo.png" alt="壹回收" width="170" height="60"></a> <b></b>
-    </div>
+<div class="w clearfix">
+  <a class="t_logo fl" href="/">
+     <img src="images/logo_01.png">
+      <span class="logo_text">
+          <h1>最专业手机回收平台</h1>
+       <small>ehuishou.com</small>
+      </span>
+      <em>欢迎注册</em>
+  </a>
 </div>
    <div class="mod_reg">
      <div class="reg_top pt10 pb10">
@@ -77,7 +81,7 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
               
            </div>
   
-         <!--   <div class="line_div">
+           <div class="line_div">
           
               <label for="tel"><span style="display: inline;width:2px;color:red;">*</span>验证手机：</label>
                <div class="item-info">
@@ -86,13 +90,13 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
                   <div class="tip_div">请输入有效的手机号码</div>
                </div>
               
-           </div> -->
-       <!--     <div class="line_div">
+           </div>
+           <div class="line_div">
               
-              <label for="volidCoder_register_ps"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
-              <input type="text" class="commom-input" style="width:160px" id="volidCoder_register_ps">
+              <label for="volidCoder_register"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
+              <input type="text" class="commom-input" style="width:160px" id="volidCoder_register">
                <a class="btn-get-verify"><span class="msgs">获取短信验证码</span></a>
-           </div> -->
+           </div>
             <div class="line_div">
               
               <label for="volidCoder_register_ps"><span style="display: inline;width:2px;color:red;">*</span>验证码：</label>
@@ -101,11 +105,11 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
            </div>
            <div class="line_div">
            
-            <div style="margin-bottom:10px;"><label></label><input type="checkbox" id="isCheck">同意<a href="/iptp/public/interpreter.jsp">《壹回收平台网络服务协议》</a></div>
+            <div style="margin-bottom:10px;" class="protocol"><label></label><input checked="checked" type="checkbox" id="isCheck">同意<a href="/iptp/public/interpreter.jsp" class="text-main">《壹回收平台网络服务协议》</a></div>
            </div>
            <div class="line_div">
              <label></label>
-             <a href="" class="btn-submit" style="border:0px;" id="sumbt">注册</a>
+             <div href="" class="btn-submit" style="border:0px;" id="sumbt">注册</div>
            </div>
          </form>
          <div class="duan">
@@ -132,6 +136,10 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 </div>
 <!--End 公用底部-->
 <script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.placeholder.min.js"><\/script>');
+document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'common/js/modal.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'js/register.js"><\/script>'); 
 </script>
 </body>

@@ -282,7 +282,7 @@ $(function(){
 	}
 	//右侧帮助按钮弹窗
 	$(".btn.btn-help").click(function(){
-		window.open("/help.html");
+		window.open("/faq_f1.html");
 	});
 	//右侧意见反馈按钮弹窗
 	$(".btn.btn-edit").click(function(){
