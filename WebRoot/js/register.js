@@ -156,11 +156,19 @@ var register = {
 				$(obj).siblings("div").hide();
 				$(obj).siblings("i").attr('class','blank succeed');
 			}
+		},
+		changeVerifyCode : function() {
+			$('.verifycode img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
 		}
 }
 
 
 $(function(){
+	$('.header.clearfix').hide();
+	$('.verifycode img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
+	$(".verifycode img").click(register.changeVerifyCode);
+	$('.verifycode').click(register.changeVerifyCode);
+	
 	$("div[class='tip_div']").hide();
 	/*绑定事件，校验输入-个人用户注册*/
 	$("input[name='username']").focus(function(){

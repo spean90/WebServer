@@ -3,6 +3,7 @@
 		login : function() {
 			var userId = $('#username').val();
 			var passwd = $('#password').val();
+			var checkCode = $('#volidCoder_register_ps').val();
 			if (userId==''||passwd=='') {
 				//初始化弹窗功能
 				Modal.alert("请输入用户名和密码！");
@@ -10,7 +11,7 @@
 			}
 			
 			var config = {
-					url : Sys.serviceDomain+"/userlogin?userId="+userId+'&passwd='+passwd, 
+					url : Sys.serviceDomain+"/userlogin?userId="+userId+'&passwd='+passwd+"&checkCode="+checkCode, 
 					callbackParameter: "callback",
 					success : function(data){
 						console.log(data);
@@ -32,8 +33,14 @@
 					}
 			}
 			Modal.jsonp(config);
+		},
+		changeVerifyCode : function() {
+			$('.btn-get-verify img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
 		}
 		
 }
 $(function(){
+	$('.btn-get-verify img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
+	$(".btn-get-verify img").click(login.changeVerifyCode);
+	$('.btn-get-verify').click(login.changeVerifyCode);
 })

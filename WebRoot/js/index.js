@@ -157,10 +157,10 @@ var index = {
 							monthStr = monthStr.substring(1);
 							monthPrice = monthPrice.substring(1);
 							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'">'
-							            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+							            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsName+'" width="160" height="160" /></a>'
 							            +'<div class="product-info">'
 							            +'<div class="fl">'
-							            +'<span class="phone-name">'+list[i].modelsName+'</span>'
+							            +'<span class="phone-name" title="'+list[i].modelsName+'">'+list[i].modelsName+'</span>'
 							            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
 							            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
 							            +'</div>'
@@ -169,10 +169,10 @@ var index = {
 							            +'</li>';
 							if ((i+1)%5==0) {
 								str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" class="last">'
-						            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
+						            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsName+'" width="160" height="160" /></a>'
 						            +'<div class="product-info">'
 						            +'<div class="fl">'
-						            +'<span class="phone-name">'+list[i].modelsName+'</span>'
+						            +'<span class="phone-name" title="'+list[i].modelsName+'">'+list[i].modelsName+'</span>'
 						            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
 						            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
 						            +'</div>'
