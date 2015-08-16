@@ -3,7 +3,6 @@
  */
 
 var category = {
-		initBandName:"",
 		/*获取热门品牌*/
 		getHotBrands:function (bId){
 			$.jsonp({
@@ -21,7 +20,6 @@ var category = {
 						var str = '';
 						if(bId==list[i].brandsId){
 							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');" attrval="'+list[i].brandsName+'" class="selected"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
-							initBandName = list[i].brandsName;
 						}else{
 							str = str + '<a href="javascript:void(0)" id="'+list[i].brandsId+'"  onclick="category.focusOnBrand(this,'+list[i].brandsId+',\''+list[i].brandsName+'\');" attrval="'+list[i].brandsName+'"><span>'+list[i].brandsName+'</span>('+list[i].modelsCount+')</a>';
 						}
@@ -74,9 +72,6 @@ var category = {
 					var content = data.content;
 					var list = content.list;
 					var brandName = bName;
-					if(brandName==null){
-						brandName = $('.listIndex[attr="terminal_brand_s"]>dd a.selected').attr("attrval");
-					}
 					$(".resultList> .select").text(brandName+'：');
 					var dd = $('.resultList>dd');
 					dd.empty();
@@ -85,9 +80,6 @@ var category = {
 						var str = '<a href="javascript:void(0)" id='+list[i].brandsTagsId+' onclick="category.focusOnTAG(this,'+list[i].brandsTagsId+');"'
 									+ 'attrval="'+list[i].tagsName+'">'+list[i].tagsName+'</a> ';
 						dd.append(str);
-					}
-					if(list.length==0){
-						$('.resultList').empty();
 					}
 				}
 			});
@@ -100,9 +92,9 @@ var category = {
 				url = Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage=1";
 			}else{
 				if (tagId==null) {
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=1";
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0";
 				}else{
-					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=1&tagIds="+tagId;
+					url = Sys.serviceDomain+"/listModelsByTag?recordPerPage=10&brandsId="+bId+"&currentPage=0&tagIds="+tagId;
 				}
 			}
 			$.jsonp({
@@ -183,10 +175,10 @@ var category = {
 				monthStr = monthStr.substring(1);
 				monthPrice = monthPrice.substring(1);
 				var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'">'
-				            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsName+'" width="160" height="160" /></a>'
+				            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
 				            +'<div class="product-info">'
 				            +'<div class="fl">'
-				            +'<span class="phone-name" title="'+list[i].modelsName+'">'+list[i].modelsName+'</span>'
+				            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
 				            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
 				            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
 				            +'</div>'
@@ -195,10 +187,10 @@ var category = {
 				            +'</li>';
 				if ((i+1)%5==0) {
 					str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" class="last">'
-			            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsName+'" width="160" height="160" /></a>'
+			            +'<a href="/valuation_'+list[i].modelsId+'.html"><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
 			            +'<div class="product-info">'
 			            +'<div class="fl">'
-			            +'<span class="phone-name" title="'+list[i].modelsName+'">'+ list[i].modelsName+'</span>'
+			            +'<span class="phone-name">'+list[i].modelsNickname+'</span>'
 			            +'<span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
 			            +'<span class="badge">'+list[i].recycleCount+'人回收</span>'
 			            +'</div>'
@@ -266,13 +258,12 @@ var category = {
 }
 
 $(function(){
-	$('.nav.wrapper.clearfix li.on').removeClass('on');
 	$('[href="/brands_0.html"]').parent().addClass('on');
 	var bid = $('#brandId').text();
 	category.getHotBrands(bid);
 	category.getOtherBrands(bid);
 	if(bid!='0'){
-		category.getTagList(bid,null);
+		category.getTagList(bid);
 	}else{
 		$(".resultList> .select").empty();
 		$(".resultList> dd").empty();

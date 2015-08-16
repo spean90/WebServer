@@ -19,6 +19,14 @@ var City = {
 					str = '<dd><a id="'+list[i].cityId+'" onclick="City.checkCity(' + list[i].cityId + ',\'' + list[i].name + '\');">' + list[i].name + '</a></dd>';
 					$(".city-list-1.clearfix").append(str);	
 				}
+				if(localStorage.cityId == null || localStorage.cityName==null){
+					var hot_01 = $(".city-list-1.clearfix a").eq(0);
+					if(hot_01){
+						localStorage.cityId = $(hot_01).attr('id');
+						localStorage.cityName = $(hot_01).html();
+						$("#address").html(localStorage.cityName);
+					}
+				}
 			}
 		}
 		Modal.jsonp(config);
@@ -61,14 +69,8 @@ var City = {
 };
 
 $(function(){
-	if(localStorage.cityId != null && localStorage.cityName!=null){
+	if(localStorage.cityId == null || localStorage.cityName!=null){
 		$("#address").html(localStorage.cityName);
-	}else{//默认选中热么城市第一个
-		var hot_01 = $(".city-list-1.clearfix a:eq(0)");
-		if(hot_01){
-			localStorage.cityId = $(hot_01).attr('id');
-			localStorage.cityName = $(hot_01).html();
-		}
 	}
 	City.listHotCity();
 	$(".city-list-3.clearfix a").click(function(){
