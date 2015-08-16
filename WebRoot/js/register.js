@@ -328,4 +328,21 @@ $(function(){
 
 	$("#codeImg_regist").click(register.getCheckCode);
 	$(".btn-submit:eq(0)").click(register.submitRegister_person);
+	$("input[name='username']").blur(function(){
+		var userName = $("input[name='username']").val();
+		var config = {
+				url : Sys.serviceDomain+"/verifyUserName?userName="+userName,
+				callbackParameter: "callback",
+				success : function(data){ 
+					if (data.msg.code!="0000") {
+						$("input[name='username']").parent().children('div.tip_div').html(data.content.verfiyDesc);
+						$("input[name='username']").parent().children('div.tip_div').removeClass('defaulttip');
+						$("input[name='username']").parent().children('div.tip_div').addClass('successtip');
+						$("input[name='username']").parent().children('div.tip_div').show();
+						return;
+					}
+				}
+		}
+		Modal.jsonp(config);
+	});
 });
