@@ -65,7 +65,7 @@ var register = {
 			
 			var username = $("input[name='username']:eq(0)").val();
 			var passwd = $("input[name='password']:eq(0)").val();
-			var randomCode = $('#volidCoder_register_ps').val();
+			var randomCode = $('#volidCoder_register').val();
 			var tel = $("input[name='tel']").val();
 			var config = {
 					url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+tel+"&randomCode="+randomCode+"&userName="+username,
@@ -153,7 +153,7 @@ var register = {
 				$(obj).siblings("div").attr('class','tip_div defaulttip');
 				$(obj).siblings("div").hide();
 				$(obj).siblings("i").attr('class','blank succeed');
-				$("input[name='tel']").parent().children('i').show();
+				//$("input[name='tel']").parent().children('i').show();
 			}
 		},
 		//验证邮箱
@@ -197,6 +197,34 @@ var register = {
 							return;
 						}else{
 							$("input[name='username']").parent().children('i').show();
+						}
+						
+					}
+			}
+			Modal.jsonp(config);
+		},
+		checkUniqueTel : function() {
+			var tel = $("input[name='tel']:eq(0)").val();
+			var config = {
+					url : Sys.serviceDomain+"/verifyUserId?userId="+tel,
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							$("input[name='tel']").parent().children('div').html(data.content.verfiyDesc);
+							$("input[name='tel']").parent().children('i').hide();
+							return;
+						}else{
+							var content = data.content;
+							if(content.verfiyResult=='0'){
+								$("input[name='tel']").parent().children('i').show();
+								$("input[name='tel']").parent().children('div').hiden();
+							}else{
+								$("input[name='tel']").parent().children('div').html(content.verfiyDesc);
+								$("input[name='tel']").parent().children('div').removeClass('defaulttip');
+								$("input[name='tel']").parent().children('div').addClass('errtip');
+								$("input[name='tel']").parent().children('div').show();
+							}
+							
 						}
 						
 					}
@@ -254,6 +282,7 @@ $(function(){
 	});
 	$("input[name='tel']").blur(function(){
 		register.checkTel(this);
+		register.checkUniqueTel();
 	});
 	
 
