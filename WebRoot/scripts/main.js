@@ -64,8 +64,7 @@ scrollNews( $this );
 
 function scrollNews(obj){ 
 var $self = obj.find("ul:first"); 
-var lineHeight = $self.find("li:first").height(); 
-$self.animate({ "margin-top" : -lineHeight +"px" },600 , function(){ 
+$self.animate({ "margin-top" : -35 +"px" },600 , function(){ 
 $self.css({"margin-top":"0px"}).find("li:first").appendTo($self); 
 }) 
 }

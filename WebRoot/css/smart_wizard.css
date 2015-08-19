@@ -19,7 +19,7 @@
   border:0px solid #CCC;    
   overflow:hidden;
   clear:both;
-  height:450px;
+  height:480px;
 }
 
 .swMain .stepContainer div.content {
@@ -27,7 +27,7 @@
   position:absolute;  
   float:left;
   margin:0;
-  padding:0px;    
+  padding:20px;    
 /*  border:1px solid #CCC; */
   font:normal 12px Verdana, Arial, Helvetica, sans-serif; 
   color:#5A5655;   
@@ -48,6 +48,7 @@ line-height: 36px;
 padding: 0px 8px;
 position: relative;
 bottom: 0px;
+top:10px;
 }
 
 .swMain .stepContainer .StepTitle {

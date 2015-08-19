@@ -48,7 +48,16 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
         <tbody>
           <tr>
             <td class="checkbox none"><input class="check-one check" type="checkbox"/></td>
-            <td class="goods"><img src="images/phone.png" alt=""/><span>iphone4s</span></td>
+            <td class="goods evaluateResult">
+            <img src="images/phone.png" class="drop-down drop-down-f" alt=""/><span>iphone4s</span>
+              <div class="tb tb1">
+                <div class="tb-dbox"> 
+                  <strong>此商品可获得的回收抽成费：</strong>
+                 
+                  <em>￥550</em>
+              </div>
+            </div>
+            </td>
             <td class="price">599.00</td>
              <td class="status">价格有效</td>
             <td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>
@@ -59,20 +68,27 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
             </td>
           </tr>
         </tbody>
-      </table>
-      <div class="foot" id="foot">
-        <label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
-        <a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>
+        <tfoot>
+          <tr>
+            <td colspan="6">
+                    <div class="foot" id="foot">
+                  <label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
+                  <a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>
 
-        <div class="fr total">合计：<span id="currency">￥</span><span id="priceTotal">0.00</span></div>
-        <div class="fr selected none" id="selected">已选<span>0</span>件</div>
-        <div class="selected-view none">
-          <div id="selectedViewList" class="clearfix">
-            <div><img src="images/1.jpg"><span>取消选择</span></div>
-          </div>
-        </div>
-      </div>
-      <p class="tx-right mt-10">
+                  <div class="fr total">合计：<span id="currency">￥</span><span id="priceTotal">0.00</span></div>
+                  <div class="fr selected none" id="selected">已选<span>0</span>件</div>
+                  <div class="selected-view none">
+                    <div id="selectedViewList" class="clearfix">
+                      <div><img src="images/1.jpg"><span>取消选择</span></div>
+                    </div>
+                  </div>
+                </div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="tx-right mt-30">
         <a href="javascript:;" class="common-btn oran" id="add_to_cart">添加到回收车</a>　　
         <a href="javascript:;" class="common-btn red">去结算</a>　&nbsp;
       </p>

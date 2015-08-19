@@ -5,7 +5,7 @@
 AssessDetails = {
 	initAssessDetail : function(){
 		var config = {
-		url : Sys.serviceDomain + "/detailUserOwnCustomersBasket?key="+sessionStorage.token+"&customersBasketId="+$('#customersBasketId').text(),
+		url : Sys.serviceDomain + "/detailUserOwnCustomersBasket?customersBasketId="+$('#customersBasketId').text(),
 		callbackParameter : "callback",
 		success : function(data) {
 			if (data.msg.code != "0000") {

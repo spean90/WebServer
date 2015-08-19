@@ -53,9 +53,9 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
                <label for="login_name"><span style="display: inline;width:2px;color:red;">*</span>用户名：</label>
                <div class="item-info">
                  <input type="text" class="commom-input" name="username">
-                 <i class="blank i-name"></i>
-                 <!-- <i  class="blank succeed"></i> -->
-                 <div class="tip_div">用户名长度只能在4-20位字符之间</div>
+                
+                 <i  class="blank succeed"></i>
+                 <div class="tip_div defaulttip">用户名长度只能在4-20位字符之间 </div>
                </div>
                
            </div>
@@ -65,8 +65,8 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
                <label for="password"><span style="display: inline;width:2px;color:red;">*</span>密码：</label>
                 <div class="item-info">
                   <input type="password" class="commom-input"  name="password">
-                  <i class="blank i-pass"></i>
-                  <div class="tip_div">密码长度只能在4-20位字符之间</div>
+                 <i  class="blank succeed"></i>
+                  <div class="tip_div errtip">密码长度只能在4-20位字符之间 </div>
                 </div>
                
            </div>
@@ -75,8 +75,8 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
               <label for="rpassword"><span style="display: inline;width:2px;color:red;">*</span>确认密码：</label>
                <div class="item-info">
                  <input type="password" class="commom-input"  name="rpassword">
-                 <i class="blank i-pass"></i>
-                 <div class="tip_div">与密码不一致</div>
+                 <i  class="blank succeed"></i>
+                 <div class="tip_div">密码不一致</div>
                </div>
               
            </div>
@@ -86,7 +86,7 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
               <label for="tel"><span style="display: inline;width:2px;color:red;">*</span>验证手机：</label>
                <div class="item-info">
                  <input type="text" class="commom-input" style="width:230" name="tel">
-                  <i class="blank i-mobile"></i>
+                  <i  class="blank succeed"></i>
                   <div class="tip_div">请输入有效的手机号码</div>
                </div>
               
@@ -137,7 +137,6 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 <!--End 公用底部-->
 <script type="text/javascript">
 document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
-document.write('<script src="'+Sys.staticDomain+'scripts/jquery.placeholder.min.js"><\/script>');
 document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'common/js/modal.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'js/register.js"><\/script>'); 

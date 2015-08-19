@@ -63,8 +63,10 @@ $(document).ready(function () {
                 $return = [];
                 if ($search == '' || !$('input').val) {
                      $('.icon-so').show();
+                      $('.search-input').css('paddingLeft',35);
                 } else {
                     $('.icon-so').hide();
+                    $('.search-input').css('paddingLeft',10);
                 }
                 var config = {
     					url : Sys.serviceDomain+"/searchModels?recordPerPage=5&keywords="+$search, 
@@ -73,6 +75,7 @@ $(document).ready(function () {
 //    						if (data.msg.code!="0000" && data.msg.code!="0024" ) {
 //    							return;
 //    						}
+                            
     						var content = data.content;
     						var list = content.list;
     						$terms = list;
@@ -101,6 +104,7 @@ $(document).ready(function () {
             $('.output').slideDown();
 
         }
+
         $('#searchform').submit(function (e) {
             e.preventDefault();
             $text = $('.focus').find('span').text();
@@ -117,8 +121,9 @@ $(document).ready(function () {
         }
         if($('#search-bar').val()==''){
         	 $('.icon-so').show();
+
         }
         //$(this).val('');
-      // $('.search-input').css('paddingLeft',40);
+       $('.search-input').css('paddingLeft',35);
     });
 });

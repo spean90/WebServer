@@ -63,7 +63,7 @@ var pay = {
 			return false;
 		}
 		var config = {
-				url : Sys.serviceDomain+"/generateCheckCode?codeType=4&phone="+tel,
+				url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
@@ -136,10 +136,13 @@ var pay = {
 						for(var i=0;i<list.length;i++){
 							if(list[i].methodType==1){
 								if (list[i].recycleMethodId==1) {
-									var str = '<label><input type="radio" name="trade-way" id="online_bank" value="1" /> ' + list[i].recycleMethodName +'：<span class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+									var str = '<label><input type="radio" name="trade-way" id="online_bank" value="1" /> 网银转账：<span class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 									$('#payType').append($(str));
+//									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
+//									$('#payType').append($(strs));
+//									$('.bank-area').hide();
 								}else if (list[i].recycleMethodId==2){
-									var str = '<label><input type="radio" name="trade-way" id="pay_cash" value="3" /> ' + list[i].recycleMethodName +'：<span class="c-red"></span></label>';
+									var str = '<label><input type="radio" name="trade-way" id="pay_cash" value="3" /> 现金交易：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
 									$('.bank-area').hide();
 								}
@@ -339,7 +342,7 @@ var pay = {
 					}
 					var content = data.content;
 					var addr = $('#send p').eq(1);
-					var s = '快递到：'+content.shipAddress+' ' + content.shipZipcode + ' ' + content.shipReceiver + '收  电话：' + content.shipReceiverPhone;
+					var s = '快递到：'+content.shipAddress;
 					addr.html(s);
 //					orderSuccess.shipReceiver = content.shipReceiver;
 //					orderSuccess.shipAddress = content.shipAddress;

@@ -42,7 +42,7 @@ window.onload = function () {
             }
         }
 
-        selectedTotal.innerHTML = seleted;
+    //selectedTotal.innerHTML = seleted; 不存在了，报错，屏蔽
 		priceTotal.innerHTML = price.toFixed(2);
 		selectedViewList.innerHTML = HTMLstr;
 

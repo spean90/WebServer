@@ -6,77 +6,77 @@ var register = {
 		generateCheckCode : function() {
 			var tel = $("input[name='tel']").val();
 			if(tel==''){
-				alert('请输入联系电话！');
-				return false;
-			}
-			var picCode =  $("#volidCoder_register_ps").val();
-			console.log($("#volidCoder_register_ps"));
-			if(picCode==''||picCode==undefined){
-				alert('请输入图片验证码！');
+				Modal.alert('请输入联系电话！');
 				return false;
 			}
 			var config = {
-					url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel+"&picCheckCode="+picCode,
+					url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel+"&picCheckCode="+$("#volidCoder_register_ps").val(),
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							alert('短信发送失败，请稍后再试！');
+							Modal.alert('短信发送失败，请稍后再试！');
 							return;
 						}
-						alert('短信发送成功！');
-						var time = 30;
-						var validCode = true;
-						var code = $('.msgs');
-						if (validCode) {
-							validCode = false;
-							code.parent().attr("disabled", "true");
-							code.parent().addClass("msgs1");
-							var t = setInterval(function() {
-								time--;
-								code.html(time + "秒");
-								if (time == 0) {
-									clearInterval(t);
-									code.html("重新获取");
-									validCode = true;
-									code.parent().removeAttr("disabled");
-									code.parent().removeClass("msgs1");
-								}
-							}, 1000);
-						}
+						Modal.alert('短信发送成功！');
 					}
 			}
 			Modal.jsonp(config);
 		},
-//		getCheckCode : function(){
-//			var tel = $("input[name='tel']").val();
-//			if(tel==''){
-//				Modal.alert('请输入联系电话！');
-//				return false;
-//			}else{
-//				if(Modal.checkMobile(tel)==1){
-//					Modal.alert("手机号码格式错误，请输入11位有效号码！");
-//					return false;
-//				}
-//			}
-//			//TODO 获取验证码
-//		},
+		getCheckCode : function(){
+			var tel = $("input[name='tel']").val();
+			if(tel==''){
+				Modal.alert('请输入联系电话！');
+				return false;
+			}else{
+				if(Modal.checkMobile(tel)==1){
+					Modal.alert("手机号码格式错误，请输入11位有效号码！");
+					return false;
+				}
+			}
+			//TODO 获取验证码
+		},
 		//提交注册信息_个人
 		submitRegister_person : function(){
 			//TODO 提交注册信息
+			if($("input[name='username']").parent().children('i').is(':hidden')){
+				$("input[name='username']").focus();
+				return;
+			}
+			if($("input[name='password']").parent().children('i').is(':hidden')){
+				$("input[name='password']").focus();
+				return;
+			}
+			if($("input[name='rpassword']").parent().children('i').is(':hidden')){
+				$("input[name='rpassword']").focus();
+				return;
+			}
+			if($("input[name='tel']").parent().children('i').is(':hidden')){
+				$("input[name='tel']").focus();
+				return;
+			}
+			if($('#volidCoder_register').val()==''){
+				$('#volidCoder_register').focus();
+				return;
+			}
+			if($('#volidCoder_register_ps').val()==''){
+				$('#volidCoder_register_ps').focus();
+				return;
+			}
+			
 			var username = $("input[name='username']:eq(0)").val();
 			var passwd = $("input[name='password']:eq(0)").val();
-			var randomCode = $('#volidCoder_register').val();
+			var randomCode = $('#volidCoder_register_ps').val();
 			var tel = $("input[name='tel']").val();
 			var config = {
 					url : Sys.serviceDomain+"/registerUser?passwd="+passwd+"&phone="+tel+"&randomCode="+randomCode+"&userName="+username,
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							alert(data.msg.desc);
+							Modal.alert('注册失败，请稍后再试！');
 							return;
 						}
-						alert('注册成功！'); 
-						//location.href = "login.html";
+						//Modal.alert('注册成功！'); 
+						location.href = "login.html";
 					}
 			}
 			Modal.jsonp(config);
@@ -93,6 +93,7 @@ var register = {
 				$(obj).siblings("div").attr('class','tip_div errtip');
 				$(obj).siblings("div").show();
 				$(obj).siblings("i").attr('class','blank i-name');
+				$("input[name='username']").parent().children('i').hide();
 			}else{
 				$(obj).siblings("div").attr('class','tip_div defaulttip');
 				$(obj).siblings("div").hide();
@@ -110,10 +111,12 @@ var register = {
 				$(obj).siblings("div").attr('class','tip_div errtip');
 				$(obj).siblings("div").show();
 				$(obj).siblings("i").attr('class','blank i-pass');
+				$("input[name='password']").parent().children('i').hide();
 			}else{
 				$(obj).siblings("div").attr('class','tip_div defaulttip');
 				$(obj).siblings("div").hide();
 				$(obj).siblings("i").attr('class','blank succeed');
+				$("input[name='password']").parent().children('i').show();
 			}
 		},
 		//确认密码校验
@@ -127,10 +130,12 @@ var register = {
 				$(obj).siblings("div").attr('class','tip_div errtip');
 				$(obj).siblings("div").show();
 				$(obj).siblings("i").attr('class','blank i-pass');
+				$("input[name='rpassword']").parent().children('i').hide();
 			}else{
 				$(obj).siblings("div").attr('class','tip_div defaulttip');
 				$(obj).siblings("div").hide();
 				$(obj).siblings("i").attr('class','blank succeed');
+				$("input[name='rpassword']").parent().children('i').show();
 			}
 		},
 		//验证手机号码
@@ -143,10 +148,12 @@ var register = {
 				$(obj).siblings("div").attr('class','tip_div errtip');
 				$(obj).siblings("div").show();
 				$(obj).siblings("i").attr('class','blank i-mobile');
+				$("input[name='tel']").parent().children('i').hide();
 			}else{
 				$(obj).siblings("div").attr('class','tip_div defaulttip');
 				$(obj).siblings("div").hide();
 				$(obj).siblings("i").attr('class','blank succeed');
+				$("input[name='tel']").parent().children('i').show();
 			}
 		},
 		//验证邮箱
@@ -177,16 +184,36 @@ var register = {
 		},
 		changeVerifyCode : function() {
 			$('.verifycode img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
+		},
+		ckeckUserName : function() {
+			var username = $("input[name='username']:eq(0)").val();
+			var config = {
+					url : Sys.serviceDomain+"/verifyUserName?userName="+username,
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							$("input[name='username']").parent().children('div').html(data.content.verfiyDesc);
+							$("input[name='username']").parent().children('i').hide();
+							return;
+						}else{
+							$("input[name='username']").parent().children('i').show();
+						}
+						
+					}
+			}
+			Modal.jsonp(config);
 		}
 }
 
 
 $(function(){
+	$('.header.clearfix').hide();
 	$('.verifycode img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
 	$(".verifycode img").click(register.changeVerifyCode);
 	$('.verifycode').click(register.changeVerifyCode);
 	
-	$("div[class='tip_div']").hide();
+	$(".tip_div").hide();
+	$('.blank.succeed').hide();
 	/*绑定事件，校验输入-个人用户注册*/
 	$("input[name='username']").focus(function(){
 		register.checkUsername(this);
@@ -194,10 +221,17 @@ $(function(){
 	$("input[name='username']").keyup(function(){
 		register.checkUsername(this);
 	});
+	$("input[name='username']").blur(function(){
+		register.checkUsername(this);
+		register.ckeckUserName();
+	});
 	$("input[name='password']").focus(function(){
 		register.checkPassword(this);
 	});
 	$("input[name='password']").keyup(function(){
+		register.checkPassword(this);
+	});
+	$("input[name='password']").blur(function(){
 		register.checkPassword(this);
 	});
 	$("input[name='rpassword']:eq(0)").focus(function(){
@@ -208,62 +242,53 @@ $(function(){
 		var password = $("input[name='password']:eq(0)").val();
 		register.checkRePassword(password,this);
 	});
+	$("input[name='rpassword']:eq(0)").blur(function(){
+		var password = $("input[name='password']:eq(0)").val();
+		register.checkRePassword(password,this);
+	});
 	$("input[name='tel']").focus(function(){
 		register.checkTel(this);
 	});
 	$("input[name='tel']").keyup(function(){
 		register.checkTel(this);
 	});
+	$("input[name='tel']").blur(function(){
+		register.checkTel(this);
+	});
 	
-
-	/*绑定事件，校验输入-企业用户注册*/
-	$("input[name='rpassword']:eq(1)").focus(function(){
-		var password = $("input[name='password']:eq(1)").val();
-		register.checkRePassword(password,this);
-	});
-	$("input[name='rpassword']:eq(1)").keyup(function(){
-		var password = $("input[name='password']:eq(1)").val();
-		register.checkRePassword(password,this);
-	});
-
-	$("input[name='email']").focus(function(){
-		register.checkEmail(this);
-	});
-	$("input[name='email']").keyup(function(){
-		register.checkEmail(this);
-	});
-	$("input[name='companyName']").focus(function(){
-		register.checkOther(this);
-	});
-	$("input[name='companyName']").keyup(function(){
-		register.checkOther(this);
-	});
 
 	// 获取短信验证码
 	var validCode = true;
-	$(".msgs").click(register.generateCheckCode);
-
-	// x注册切换
-	$(".tab li").click(function() {
-		$(this).siblings().removeClass('curr');
-		$(this).addClass('curr');
-		var index = $(this).index();
-		if (index == 0) {
-			$(".reg_content .person").show();
-			$(".reg_content .company").hide();
+	$(".msgs").click(function() {
+		if($("input[name='tel']").parent().children('i').is(':hidden')){
+			$("input[name='tel']").focus();
+			return;
 		}
-		if (index == 1) {
-			$(".reg_content .person").hide();
-			$(".reg_content .company").show();
+		if($("#volidCoder_register_ps").val()==''){
+			$("#volidCoder_register_ps").focus();
+			return;
+		}
+		var time = 30;
+		var code = $(this);
+		if (validCode) {
+			validCode = false;
+			code.parent().attr("disabled", "true");
+			code.parent().addClass("msgs1");
+			var t = setInterval(function() {
+				time--;
+				code.html(time + "秒");
+				if (time == 0) {
+					clearInterval(t);
+					code.html("重新获取");
+					validCode = true;
+					code.parent().removeAttr("disabled");
+					code.parent().removeClass("msgs1");
+				}
+			}, 1000);
+			register.generateCheckCode();
 		}
 	});
-	
-	
-	$('.header-con.clearfix').hide();
-	$('.nav-box.clearfix').hide();
-	$('.header.clearfix').removeClass('header');
-	$('.footer-t').hide();
-	$('.footer-m').hide();
-//	$("#codeImg_regist").click(register.getCheckCode);
+
+	$("#codeImg_regist").click(register.getCheckCode);
 	$(".btn-submit:eq(0)").click(register.submitRegister_person);
 });
