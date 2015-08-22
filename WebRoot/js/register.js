@@ -196,7 +196,15 @@ var register = {
 							$("input[name='username']").parent().children('i').hide();
 							return;
 						}else{
-							$("input[name='username']").parent().children('i').show();
+							if(data.content.verfiyResult=='0'){
+								$("input[name='username']").parent().children('i').show();
+							}else{
+								$("input[name='username']").parent().children('div').html(data.content.verfiyDesc);
+								$("input[name='username']").parent().children('div').removeClass('defaulttip');
+								$("input[name='username']").parent().children('div').addClass('errtip');
+								$("input[name='username']").parent().children('div').show();
+								$("input[name='username']").parent().children('i').hide();
+							}
 						}
 						
 					}
