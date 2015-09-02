@@ -49,26 +49,130 @@ function helpNav(){
 	});
 }
 
-function noticeList(time){ 
-var $this = $(".notice-list"); 
-var scrollTimer; 
-$this.hover(function(){ 
-clearInterval(scrollTimer); 
-},function(){ 
-scrollTimer = setInterval(function(){ 
-scrollNews( $this ); 
-}, 2000 ); 
-}).trigger("mouseout"); 
- 
-} 
-
-function scrollNews(obj){ 
-var $self = obj.find("ul:first"); 
-$self.animate({ "margin-top" : -35 +"px" },600 , function(){ 
-$self.css({"margin-top":"0px"}).find("li:first").appendTo($self); 
-}) 
+function ScrollText(content,btnPrevious,btnNext,autoStart,timeout,isSmoothScroll)
+{
+    this.Speed = 5;
+    this.Timeout = timeout;
+	  this.stopscroll =false;
+	  this.isSmoothScroll= isSmoothScroll;
+    this.LineHeight = 20;
+    this.NextButton = this.$(btnNext);
+    this.PreviousButton = this.$(btnPrevious);
+    this.ScrollContent = this.$(content);
+    this.ScrollContent.innerHTML += this.ScrollContent.innerHTML;
+    
+    if(autoStart)
+    {
+        this.Start();
+    }
 }
 
-function scroll(){
-        $('.notice-list li:last').hide().insertBefore( $('.notice-list li:first')).slideDown(1000);
+ScrollText.prototype = {
+	$:function(element)
+	{
+		return document.getElementById(element);
+	},
+	Previous:function()
+	{
+		this.stopscroll = true;
+		this.Scroll("up");
+	},
+	Next:function()
+	{
+		this.stopscroll = true;
+		this.Scroll("down");
+	},
+	Start:function()
+	{
+		if(this.isSmoothScroll)
+		{
+			this.AutoScrollTimer = setInterval(this.GetFunction(this,"SmoothScroll"), this.Timeout);
+		}
+		else
+		{		
+			this.AutoScrollTimer = setInterval(this.GetFunction(this,"AutoScroll"), this.Timeout);
+		}
+	},
+	Stop:function()
+	{
+		clearTimeout(this.AutoScrollTimer);
+		this.DelayTimerStop = 0;
+	},
+	MouseOver:function()
+	{	
+		this.stopscroll = true;
+	},
+	MouseOut:function()
+	{
+		this.stopscroll = false;
+	},
+	AutoScroll:function()
+	{
+		if(this.stopscroll) 
+		{
+			return;
+		}
+		this.ScrollContent.scrollTop++;
+		if(parseInt(this.ScrollContent.scrollTop) % this.LineHeight != 0)
+		{
+			this.ScrollTimer = setTimeout(this.GetFunction(this,"AutoScroll"), this.Speed);
+		}
+		else
+		{
+			if(parseInt(this.ScrollContent.scrollTop) >= parseInt(this.ScrollContent.scrollHeight) / 2)
+			{
+				this.ScrollContent.scrollTop = 0;
+			}
+			clearTimeout(this.ScrollTimer);
+		}
+	},
+	SmoothScroll:function()
+	{
+		if(this.stopscroll) 
+		{
+			return;
+		}
+		this.ScrollContent.scrollTop++;
+		if(parseInt(this.ScrollContent.scrollTop) >= parseInt(this.ScrollContent.scrollHeight) / 2)
+		{
+			this.ScrollContent.scrollTop = 0;
+		}
+	},
+	Scroll:function(direction)
+	{
+
+		if(direction=="up")
+		{
+			this.ScrollContent.scrollTop--;
+		}
+		else
+		{
+			this.ScrollContent.scrollTop++;
+		}
+		if(parseInt(this.ScrollContent.scrollTop) >= parseInt(this.ScrollContent.scrollHeight) / 2)
+		{
+			this.ScrollContent.scrollTop = 0;
+		}
+		else if(parseInt(this.ScrollContent.scrollTop)<=0)
+		{
+			this.ScrollContent.scrollTop = parseInt(this.ScrollContent.scrollHeight) / 2;
+		}
+		
+		if(parseInt(this.ScrollContent.scrollTop) % this.LineHeight != 0)
+		{
+			this.ScrollTimer = setTimeout(this.GetFunction(this,"Scroll",direction), this.Speed);
+		}
+	},
+	GetFunction:function(variable,method,param)
+	{
+		return function()
+		{
+			variable[method](param);
+		}
+	}
+}
+
+function noticeList(){
+   var scroll2 = new ScrollText("notice-list","","",true,50,true);
+	scroll2.LineHeight = 63;
 }

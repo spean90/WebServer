@@ -29,12 +29,13 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
                           <h1>壹回收会员</h1>
 
            </div>
-            <div class="login_panel fl">
+           
+            <div class="login_panel">
               <div class="login pt20">
                 <form action="">
                 <div class="line_div">
                 <label for="username">账&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
-                <input type="text" name="username" id="username" class="commom-input" value="15155445597" maxlength="20"  autocomplete="off" placeholder="邮箱/用户名/已验证手机"/>
+                <input type="text" name="username" id="username" class="commom-input" value="" maxlength="20"  autocomplete="off" placeholder="手机号码/用户名"/>
               
                 </div>
                 <div class="line_div">
@@ -52,12 +53,15 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
                 <div class="line_div">
                   <a href="#" onclick="login.login()" class="btn_login">登录</a>
                   <div class="extra clearfix">
-                    <a href=""><span class="forget fl">忘记密码</span></a>
+                    <a href="/forgetPwd.html"><span class="forget fl">忘记密码</span></a>
                     <a href="/register.html"><span class="regist fr">免费注册</span></a>
                   </div>
                 </div>
                 </form>
               </div>
+            </div>
+            <div class="msg-wrap hide">
+           	  <div class="msg-error">账户名与密码不匹配，请重新输入</div>
             </div>
           </div>
     </div>

@@ -14,10 +14,9 @@ var orderDetail = {
 					for(var i=0;i<ordersItemList.length;i++){
 						var s = '<tr>'
 								+'<td class="checkbox none"><input class="check-one check" type="checkbox"></td>'
-								+'<td class="goods"><img src="'+ordersItemList[i].modelsImage+'" alt=""><span>'+ordersItemList[i].modelsName+'</span></td>'
-								+'<td class="customer">'+content.customersPhone+'</td>'
+							    +'<td class="goods"><img src="'+ordersItemList[i].modelsImage+'" alt=""></td>'
+								+'<td class="customer">'+ordersItemList[i].modelsName+'</td>'
 								+'<td class="price">'+ordersItemList[i].recyclePrice+'</td>'
-								+'<td class="status">价格有效</td>'
 								+'<td class="num m_l32">'+ordersItemList[i].quantity+'</td>'
 								+'<td class="subtotal">'+content.currency+ordersItemList[i].customersPrice+'</td>'
 								+'</tr>';

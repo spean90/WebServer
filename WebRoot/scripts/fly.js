@@ -12,6 +12,7 @@ var funParabola = function(element, target, options) {
 		curvature: 0.2,  // 实际指焦点到准线的距离，你可以抽象成曲率，这里模拟扔物体的抛物线，因此是开口向下的
 		progress: function() {},
 		complete: function() {
+			if($('.element') == null) return;
 			var ele =  parseInt($('.element').html().substr(-1))+1;
 			$('.element').removeAttr("style");
 			$('.element').html('+'+ele);

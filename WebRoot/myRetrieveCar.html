@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="renderer" content="webkit">
-<title>首页</title>
+<title>我的回收车</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <script src="/common/js/sys.js"></script>
@@ -29,16 +29,14 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
         <ul>
            <li><i class="icon-home"></i><a href="#">首页</a><span>></span></li>
         <li><a href="#">回收估价</a><span>></span></li>
-        <li class="active"><a href="#">我的购物车</a></li>
+        <li class="active"><a href="#">我的回收车</a></li>
         </ul>
 </div>
 
 <div class="shopCar">
       <div class="line"></div>
       <div class="myCar">
-        <h1>我的购物车</h1>
         <div class="catbox">
-
         <table id="cartTable">
           <thead>
             <tr>
@@ -53,28 +51,8 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
           </thead>
           <tbody>
             <tr>
-              <td class="checkbox"><input class="check-one check" type="checkbox"/></td>
-              <td class="goods"><img src="images/phone.png" alt=""/><span>iphone4s</span></td>
-              <td class="price">599.00</td>
-               <td class="status">价格有效</td>
-              <td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>
-              <td class="subtotal">599.00</td>
-              <td class="operation">
-              <span class="delete">删除</span>
-              <span class="reprice">重新询价</span>
-              </td>
             </tr>
             <tr>
-              <td class="checkbox"><input class="check-one check" type="checkbox"/></td>
-              <td class="goods"><img src="images/phone.png" alt=""/><span>iphone5</span></td>
-              <td class="price">600</td>
-              <td class="status">价格有效</td>
-              <td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>
-              <td class="subtotal">600</td>
-              <td class="operation">
-              <span class="delete">删除</span>
-               <span class="reprice">重新询价</span>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -82,16 +60,14 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
           <label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>
           <a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
           <a class="fr closing" onclick="myRetrieveCar.goToPay()">去结算</a>
-
           <div class="fr total">合计：<span id="currency">￥</span><span id="priceTotal">0.00</span></div>
-          <div class="fr selected" id="selected">已选<span id="selectedTotal">0</span>件
-          </div>
-          <div class="selected-view">
+       <!--    <div class="fr selected" id="selected">已选<span id="selectedTotal">0</span>件
+          </div> -->
+       <!--    <div class="selected-view">
             <div id="selectedViewList" class="clearfix">
-              <div><img src="images/1.jpg"><span>取消选择</span></div>
+              <div><span>取消选择</span></div>
             </div>
-
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

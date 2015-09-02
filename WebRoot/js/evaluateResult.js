@@ -10,19 +10,29 @@ var evaluateResult = {
 		$('tbody').empty();
 		str = '<tr id="'+obj.modelsId+'">'
         + '<td class="checkbox none"><input class="check-one check" type="checkbox"/></td>'
-        + '<td class="goods"><img src="'+obj.pic+'" alt=""/><span>'+obj.modelsName+'</span></td>'
-        + '<td class="price">'+obj.result.lastEvaluationPrice.toFixed(2)+'</td>'
+        + '<td class="goods evaluateResult"><img src="'+obj.pic+'" class="drop-down drop-down-f" /><span>'+obj.modelsName+'</span>';
+    if( (sessionStorage.userType != null)&& (sessionStorage.userType != 'undefined') &&( (sessionStorage.userType == 2) || (sessionStorage.userType == 3)) ){
+    	str = str + '<div class="tb tb1"><div class="tb-dbox"><strong>您可获得的回收抽成费：</strong><em>' + obj.result.currency + obj.result.agentCommission + '</em></div></div>';
+    }
+     str = str + '</td><td class="price">'+obj.result.currency + obj.result.lastEvaluationPrice.toFixed(2)+'</td>'
         + '<td class="status">价格有效</td>'
         + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
-        + '<td class="subtotal">'+obj.result.lastEvaluationPrice.toFixed(2)+'</td>'
+        + '<td class="subtotal">'+obj.result.currency + obj.result.lastEvaluationPrice.toFixed(2)+'</td>'
         + '<td class="operation">'
-      //  + '<span class="delete">删除</span>'
         + '<span class="reprice" onclick="history.go(-1)">重新询价</span>'
         + '</td>'
         + '</tr>';
 	$('tbody').append($(str));
 	$('#priceTotal').text(obj.result.lastEvaluationPrice.toFixed(2));
 	$('#currency').text(obj.result.currency);
+		var $ss = $('.evaluateResult').find('.drop-down');
+		  $ss.hover(function() {
+		  var $this = $(this);
+		  $this.parent().addClass("hover")
+		}, function() {
+		  var $this = $(this);
+		  $this.parent().removeClass("hover")
+		});
 	},
 	/*添加到回收车*/
 	addToCart : function(isPop){
@@ -78,6 +88,6 @@ $('.common-btn.red').click(function(){
 
 
 $(function(){
-	
+
 	evaluateResult.initCar();
 });

@@ -35,23 +35,24 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
   <div class="pay-page">
     <p class="c-black fb">填写联系人信息</p>
 
-    <p>
-      姓名：<input type="text" class="gray-text" id="username" placeholder="请输入交易人姓名" />
-      手机号码：<input type="text" class="gray-text" id="phone"  placeholder="请输入手机号码" />
-      <a href="javascript:;" onclick="pay.generateCheckCode()" class="captcha-btn">发送验证码</a>　<input type="text" id="code" class="gray-text" placeholder="请输入验证码" />
-    </p>
+    <div class="line">
+      姓名：<input type="text" class="commom-input" id="username" placeholder="请输入交易人姓名" style="width:150px" />
+      手机号码：<input type="text" class="commom-input" id="phone"  placeholder="请输入手机号码" style="width:150px"/>
+      <a href="javascript:;" onclick="pay.generateCheckCode()" class="captcha-btn">发送验证码</a>　<input type="text" id="code" class="commom-input" placeholder="请输入验证码" style="width:100px"/>
+      <div class="tip_div errtip" style="display: block;">用户名长度只能在4-20位字符之间 </div>
+    </div>
      <hr>
-    <p><span class="c-gray">*收款及交易方式</span>　<span class="trade focus-text">您所在的城市是<span style="color:#20AFEC;" id="currentCity">福州</span>，如有误请 <em>[选择城市]</em></span></p>
-    <p>
+    <div class="line mt-30"><span class="c-gray">*收款及交易方式</span>　<span class="trade focus-text">您所在的城市是<span style="color:#20AFEC;" id="currentCity">福州</span>，如有误请 重新选择</span></div>
+    <div class="line">
       <span class="c-black fb">收款方式</span>
       	<span id="payType">
-	      	<label><input type="radio" name="trade-way" id="online_bank" checked /> 网银转账：<span class="c-red">550元</span></label>　
-	      　		<label><input type="radio" name="trade-way" id="pay_cash" /> 现金交易：<span class="c-red">550元</span></label>
+	      	<label class="radio-box" ><input type="radio" name="trade-way" id="online_bank" checked /> 网银转账：<span class="c-red"></span></label>　
+	      　		<label class="radio-box" ><input type="radio" name="trade-way" id="pay_cash" /> 现金交易：<span class="c-red"></span></label>
       	</span>　
-    </p>
+    </div>
     <div class="bank-area">
-      支持五大银行及大部分主流银行　<a href="javascript:;">查看支持的银行</a>
-      <p class="mt-10">开户银行：<select id="bank">
+      支持五大银行及大部分主流银行
+      <p class="mt-20">开户银行：<select id="bank">
         <option value="0">请选择</option>
         <option value="中国银行">中国银行</option>
 		<option value="中国农业银行">中国农业银行</option>
@@ -66,27 +67,29 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 		<option value="兴业银行">兴业银行</option>
       
       </select>　
-      	姓名：<input id="bank_user" type="text" class="commom-input" /></p>
-      <p>详细卡号：<input id="bank_account" type="text" class="commom-input" placeholder="目前不支持信用卡，请填写借记卡卡号" style="width: 360px;"/></p>
+      	姓名：<input id="bank_user" type="text" class="commom-input" style="width: 224px;"/></p>
+      <p class="mt-20">详细卡号：<input id="bank_account" type="text" class="commom-input" placeholder="目前不支持信用卡，请填写借记卡卡号" style="width: 509px;"/></p>
+      <div class="tip_div errtip">用户名长度只能在4-20位字符之间 </div>
     </div>
     <p class="depart-line"><span>收款方式决定了交易方式</span></p>
     <div id="dealType">
-    <p class="c-black fb">交易方式</p>
-    <hr>
-	   <p id="shop" hidden><label><input type="radio" name="trade-way1" value="2" checked />线下门店</label>　　　　　　　　　　　　　　<a href="/outlets.html" class="cor-gary"><i class="icon-map"></i>　周边网点</a></p>
-	   <div id="faceToFace" hidden class="pay-address">
-	   	 <p><label><input type="radio" name="trade-way1" value="3"/>当面交易</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-engineer"></i>　周边工程师</span></p>
-	     <div id="dealAddr" hidden>
-	     <span class="cor-gary">我的地址：</span>
-	     <p>
-	     	<select name="" id="city"><option>请选择城市</option></select>
-	       <select name="" id="cityRegion"><option>请选择区域</option></select>
-	     </p>
-	     <p><input type="text" id="detailAddr" class="commom-input" placeholder="请输入详细地址" /></p>
+	   <p id="shop" hidden><label class="radio-box"><input type="radio" name="trade-way1" value="2" id="radio1" checked />线下门店</label>　　　　　　　　　　　　　　<a href="/outlets.html" class="cor-gary"><i class="icon-map"></i>　周边网点</a></p>
+	   <div id="faceToFace" hidden class="pay-address line">
+	   	 <p><label class="radio-box"><input type="radio" name="trade-way1" value="3" id="radio2"/>当面交易</label>　　　　　　　　　　　　　　<span class="cor-gary"><i class="icon-engineer"></i>　周边工程师</span></p>
+	     <div id="dealAddr" class="line" hidden>
+	       <span class="cor-gary">我的地址：</span>
+  	     <p>
+  	     	<select name="" id="city"></select>
+  	       <select name="" id="cityRegion"><option>请选择区域</option></select>
+  	     </p>
+  	     <div style="position: relative">
+          <input type="text" id="detailAddr"  class="commom-input" placeholder="请输入详细地址" />
+          <div class="tip_div errtip" style="display: block;">用户名长度只能在4-20位字符之间 </div>
+         </div>
 	   </div>
 	    </div>
 	   <div id="send" hidden>
-		   <p><label><input type="radio" name="trade-way1" value="1"/>快递回收</label>　　　　<span class="cor-gary">自己快递要回收的物品给我们，快递费我们承担　<a href="javascript:;">查看运费补贴详情</a>&nbsp;&nbsp;<a href="javascript:;" class="cor-org">运费补贴:20元</a></span></p>
+		   <p><label class="radio-box"><input type="radio" name="trade-way1" value="1" id="radio3"/>快递回收</label>　　　 <span class="cor-gary">自己快递要回收的物品给我们，快递费我们承担　<a href="/faq_f14.html" target="_blank">查看运费补贴详情</a>&nbsp;&nbsp;<span class="cor-org" id="shipfeetip">运费补贴:</span></span></p>
 		   <p class="addr">快递到：福州市鼓楼区湖东路88号壹回收</p>
 	   </div>
 	  
@@ -96,7 +99,7 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
     <div class="order-table">
       <table width="100%">
       <thead>
-         <tr>
+        <tr>
           <th>物品名称</th>
           <th>回收商家</th>
           <th>最高报价</th>
@@ -108,9 +111,9 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
           <tr>
           <td>iPhone4s</td>
           <td>普莱斯数码科技</td>
-          <td>550元</td>
+          <td>0</td>
           <td>1</td>
-          <td>银联卡550元</td>
+          <td>银联卡</td>
         </tr>
         <tr>
           <td colspan="5">
@@ -121,24 +124,22 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
        
       </table>
       <br />
-      <p class="fb c-black">订单结算</p>
-      <hr>
+     <!--  <p class="fb c-black">订单结算</p>
       <p class="order-count clearfix">
         <span class="fl">商家报价</span>
         <span class="fr">共1件商品，合计￥550</span>
-      </p>
-      <hr>
+      </p> -->
       <div class="tx-right">
         <span class="all-count">
-        <span>
-          物品回收金额：550元
+         物品回收金额：<span  class="c-red">
+        
         </span>
-        <span>
-          运费补贴:20元
+        <span id="shipfee">
+         运费补贴: 
         </span>
-        您总共可以获得：<span class="c-red" id="sum">￥550</span>
+        您总共可以获得：<span class="c-red" id="sum"></span>
         </span>
-        <br /><br />
+      
         <label><input type="checkbox" id="clause" checked="checked" /> 我同意</label><a href="javascript:;" onclick="pay.showClause()">壹回收网服务条款</a>
         <a href="javascript:;" class="btnok" onclick="pay.submitOrder()">确认订单</a>
       </div>

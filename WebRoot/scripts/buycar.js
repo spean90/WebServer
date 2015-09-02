@@ -13,7 +13,7 @@ window.onload = function () {
             return ret;
         }
     }
-
+   
     var table = document.getElementById('cartTable'); // 购物车表格
     var selectInputs = document.getElementsByClassName('check'); // 所有勾选框
     var checkAllInputs = document.getElementsByClassName('check-all') // 全选框
@@ -21,7 +21,7 @@ window.onload = function () {
     var selectedTotal = document.getElementById('selectedTotal'); //已选商品数目容器
     var priceTotal = document.getElementById('priceTotal'); //总计
     var deleteAll = document.getElementById('deleteAll'); // 删除全部按钮
-    var selectedViewList = document.getElementById('selectedViewList'); //浮层已选商品列表容器priceTotal
+    //var selectedViewList = document.getElementById('selectedViewList'); //浮层已选商品列表容器priceTotal
     var selected = document.getElementById('selected'); //已选商品
     var foot = document.getElementById('foot');
 
@@ -34,7 +34,7 @@ window.onload = function () {
 			if (tr[i].getElementsByTagName('input')[0].checked) {
 				tr[i].className = 'on';
 				seleted += parseInt(tr[i].getElementsByTagName('input')[1].value);
-                price += parseFloat($(tr[i]).children('.price').text());
+                price += parseFloat($(tr[i]).children('.price').text().replace(/[$￥]/g,""));
                 HTMLstr += '<div><img src="' + tr[i].getElementsByTagName('img')[0].src + '"><span class="del" index="' + i + '">取消选择</span></div>'
             }
             else {
@@ -42,9 +42,11 @@ window.onload = function () {
             }
         }
 
-    //selectedTotal.innerHTML = seleted; 不存在了，报错，屏蔽
+		if(selectedTotal != null){
+      selectedTotal.innerHTML = seleted; ///不存在了，报错，屏蔽
+    }
 		priceTotal.innerHTML = price.toFixed(2);
-		selectedViewList.innerHTML = HTMLstr;
+		//selectedViewList.innerHTML = HTMLstr;
 
 		if (seleted == 0) {
 			foot.className = 'foot';
@@ -59,7 +61,7 @@ window.onload = function () {
         var countInput = tr.getElementsByTagName('input')[1]; //数目input
         var span = tr.getElementsByTagName('span')[1]; //-号
         //写入HTML
-        subtotal.innerHTML = (parseInt(countInput.value) * parseFloat(price.innerHTML)).toFixed(2);
+        subtotal.innerHTML = (parseInt(countInput.value) * parseFloat(price.innerHTML.replace(/[$￥]/g,""))).toFixed(2);
         //如果数目只有一个，把-号去掉
         if (countInput.value == 1) {
             span.innerHTML = '';
@@ -84,9 +86,9 @@ window.onload = function () {
             getTotal();//选完更新总计
         }
     }
-
+/*
     // 显示已选商品弹层
-    selected.onclick = function () {
+    selected.onclick = function () {    	
         if (selectedTotal.innerHTML != 0) {
             foot.className = (foot.className == 'foot' ? 'foot show' : 'foot');
         }
@@ -102,7 +104,7 @@ window.onload = function () {
             input.onclick();
         }
     }
-
+*/
     //为每行元素添加事件
     for (var i = 0; i < tr.length; i++) {
         //将点击事件绑定到tr元素

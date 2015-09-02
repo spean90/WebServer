@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="/common/js/sys.js"></script>
+<script>
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/public.css" media="screen" />');
+document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+'css/style.css" media="screen" />');
+</script>
+</head>
+<body>
+<!--Str 公用顶部-->
+  <!--End TopBar-->
+<div class="wrapper">
+  <div class="hd mt-30 clearfix">
+    <div class="t_logo fl">
+       <img src="images/logo_01.png">
+        <span class="logo_text">
+            <h1>最专业手机回收平台</h1>
+         <small>ehuishou.com</small>
+        </span>
+        <em>找回密码</em>
+    </div>
+    <span class="fr"> 已有壹回收账号了？<a href="/login.html" class="text-main">去登录</a></span>
+  </div>
+  
+    <div class="pwd_content mt-20">
+            <div id="processor" >
+              <ul class="fotpwd processorBox oh clearfix">
+                <li class="current">
+                  <div class="step_inner fl">
+                    <span class="icon_step">1</span>
+                    <h5>填写账户信息</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="step_inner">
+                    <span class="icon_step">2</span>
+                    <h5>选择找回方式</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="step_inner fr">
+                    <span class="icon_step">3</span>
+                    <h5>验证身份</h5>
+                  </div>
+                </li>
+                <li>
+                  <div class="step_inner fr">
+                    <span class="icon_step">4</span>
+                    <h5>设置新密码</h5>
+                  </div>
+                </li>
+                 <li>
+                  <div class="step_inner fr">
+                    <span class="icon_step">5</span>
+                    <h5>完成</h5>
+                  </div>
+                </li>
+              </ul>
+              <div class="step_line"></div>
+      </div>
+         
+      <div class="panel forgot">
+        <div id="step1" class="step hide">
+               <div class="xtip">
+                <span>小提示：<span>忘记用户名？试试你的常用邮箱或者手机号如果不行请<a href="" class="text-main">联系客服</a></span>    </span>
+              </div>
+          <form action="" method="post">
+            <div class="line_div">
+              <label class="frm_label">手机号：</label>
+              <div class="item-info">
+                <input type="text" name="username" class="commom-input email" maxlength="32" placeholder="手机号码"/>
+                <div class="tip_div errtip hide">用户名长度只能在4-20位字符之间</div>
+                <i  class="blank succeed">√</i>
+                <div class="tip_div">请输入有效的手机号码</div>
+              </div>
+            </div>
+           <!--  <div class="line_div">
+              <label class="frm_label">验证码：</label>
+              <div class="item-info verifycode">
+                <input type="text" name="" class="commom-input verifyCode" maxlength="4" style="width:120px" />
+                <img src="images/verify.png" alt="" />
+                <a class="changeVerifyCode text-main" href="javascript:;">换一张</a>
+              </div>
+            </div> -->
+            <div class="line_div">
+            <label></label>
+            <div class="item-info">
+              <a id="nextBtn1" class="button" href="javascript:;">提交</a>
+            </div>
+              
+            </div>
+          </form>
+        </div><!-- // step1 end -->
+        <div id="step2" class="step hide">
+           <div class="xtip">
+            <h4>请选择找回方式</h4>
+          </div>
+          <div class="chooseway">
+            <ul class="clearfix">
+              <li id="byPhone">
+                <div class="pd-inner">
+                    <div class="pd-icon">
+                      <i class="pd-icon-m"></i>
+                    </div>
+                    <div class="pd-info">
+                      <h4><span>
+                        通过绑定手机
+                      </span>
+                      <span>
+                        找回密码
+                      </span>
+                      </h4>
+                    </div>
+                </div>
+                
+                
+              </li>
+              <li id="byAdmin">
+                <div class="pd-inner">
+                    <div class="pd-icon">
+                     <i class="pd-icon-u"></i>
+                    </div>
+                    <div class="pd-info">
+                      <h4><span>
+                        通过客服
+                      </span>
+                      <span>
+                        找回密码
+                      </span>
+                      </h4>
+                    </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div><!-- // step3 end -->
+        <div id="step3" class="step hide">
+             <div class="xtip">
+              <span>我们已将验证码短发送到你的手机<span class="text-main" id="forgetPhone">79291918695</span>请尽快完填下下方输入框完成验证</span>    </span>
+            </div>
+           <div class="line_div">
+             <label class="frm_label">验证码：</label>
+             <div class="item-info verifycode">
+               <input type="text" name="" class="commom-input verifyCode" maxlength="10" placeholder="输入验证码"/>
+               <i  class="blank succeed">√</i>
+               <div class="tip_div">请输入有效的手机号码</div>
+             </div>
+           </div>
+           <div class="line_div">
+           <label></label>
+           <div class="item-info">
+             <a id="nextBtn2" class="button" href="javascript:;">提交</a>
+           </div>
+             
+           </div>
+          <hr>
+        
+            <div class="line_div_tip">
+            <span>没收到密码找回短信？</span>
+          
+          <ul>
+            <li>没有收到验证码短信，请耐心等待，有可能是网络繁忙，造成的消息阻塞。</li>
+            <li>如果长期收不到验证码短信。请点<a href="" class="red">此重新发送</a>（每小时最多发送三次）</li>
+          </ul>
+          </div>
+       
+        </div><!-- // step3 end -->
+
+        <div id="step4" class="step hide">
+          <hr class="space mt-50"></hr>
+          <div class="line_div">
+            <label class="frm_label">重置密码：</label>
+            <div class="item-info">
+              <input type="password" name="password" class="commom-input email" maxlength="20" placeholder="输入新密码"/>
+               <i  class="blank succeed">√</i>
+               <div class="tip_div">密码长度只能在4-20位字符之间</div>
+              <label class="pwdstrength">
+                
+               <b class="b1"></b>
+               <b class="b2"></b>
+               <b class="b3"></b>
+              </label>
+            </div>
+          </div>
+          <div class="line_div">
+            <label class="frm_label">确认密码：</label>
+            <div class="item-info verifycode">
+              <input type="password" name="rpassword" class="commom-input verifyCode" maxlength="20" placeholder="再次输入新密码"/>
+               <div class="tip_div"><em><img src="images/f-success.png"></em>密码弱中强分别为pwdstrengthA B C</div>
+            	 <i  class="blank succeed">√</i>
+               <div class="tip_div">密码不一致</div>
+            </div>
+          </div>
+     
+          <div class="line_div">
+          <label></label>
+          <div class="item-info">
+            <a id="nextBtn3" class="button" href="javascript:;">提交</a>
+          </div>
+            
+          </div>
+        </div>
+          <div id="step5" class="step hide">
+            <hr class="space mt-50"></hr>
+          <div class="finish">
+            <h3 class="mb-10"><em><img src="images/f-success.png"></em>恭喜！你已成功设置壹回收通行证密码！ <br /></h3>
+          
+             <ul>
+               <li>
+   
+                请妥善管理好密码！
+  
+               </li>
+                <li>
+                为了你的账户安全,请勿轻易透露密码!
+                  
+                </li>
+             </ul>
+         
+          <div class="line_div">
+            <p class="item-info"><a class="button" href="/login.html">进入壹回收</a></p>
+          </div>
+            
+          </div>
+        </div>
+      </div>
+    </div><!-- // container end -->
+</div>
+     <!--Str 公用底部-->
+<div class="footer mt-30 clearfix">
+  <div class="footer-b clearfix">
+    <div class="footer-link-pic tx-cen"> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> <img src="pic/1.jpg" alt="xx" width="118" height="48" /> </div>
+    <p class="tx-cen">Copyright 2014-2015 壹回收网  闽ICP备88888888号-2</p>
+  </div>
+</div>
+<script type="text/javascript">
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'common/js/modal.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/fly.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/script.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/Chart.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.selectui.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.icheck.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-migrate-1.1.1.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.jBox-2.3.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/windows.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.paginate.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/forgetPwd.js"><\/script>'); 
+</script>
+</body>
+</html>

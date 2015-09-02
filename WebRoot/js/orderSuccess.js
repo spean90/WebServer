@@ -18,7 +18,7 @@ var orderSuccess = {
 							//当面交易显示
 							var str = '<div class="status status1">'
 						          	+'<div class="tips">'
-						          	+'<p><i class="icon icon-success"></i>订单提交成功！壹回收将在XX小时内安排工程师进行单面交易!</p>'
+						          	+'<p><i class="icon icon-success"></i>订单提交成功！壹回收将在'+content.dealHours+'小时内安排工程师进行单面交易!</p>'
 						          	+'</div>'
 						          	+'<div class="info">'
 						          	+' <ul>'
@@ -52,7 +52,7 @@ var orderSuccess = {
 						}else if(content.transactionType==1){ //快递 
 							var str = '<div class="status status2">'
 									+'<div class="tips">'
-									+'<p><i class="icon icon-success"></i>订请在XX小时内将订单物品寄大壹回收！</p>'
+									+'<p><i class="icon icon-success"></i>订单提交成功！请在'+content.dealHours+'小时内将订单物品寄达壹回收！</p>'
 									+'</div>'
 									+'<div class="info">'
 									+'<ul>'
@@ -81,7 +81,11 @@ var orderSuccess = {
 									+'<li>'
 									+'<label for="">交易金额：</label>'
 									+'<span class="money">'+content.currency+content.ordersTotal.toFixed(2)+'</span>'
-						          	+'</li>'
+						      +'</li>'
+									+'<li>'
+									+'<label for="">运费补贴：</label>'
+									+'<span class="money">'+content.currency+content.shippingFee.toFixed(2)+'</span>'
+						      +'</li>'						      
 									+'<li>'
 									+'<label for="">接下里你可以：</label>'
 									+'<span class="then"><a href="/index.html">继续回收</a> |<a class="notice">注意事项</a></span>'
@@ -94,7 +98,7 @@ var orderSuccess = {
 						}else if(content.transactionType==2){  //门店
 							var str = '<div class="status status3">'
 										+'<div class="tips">'
-										+'<p><i class="icon icon-success"></i>订单提交成功！请在XX小时内去就近门店进行交易!</p>'
+										+'<p><i class="icon icon-success"></i>订单提交成功！请在'+content.dealHours+'小时内去就近门店进行交易!</p>'
 										+'</div>'
 										+'<div class="info">'
 										+' <ul>'
@@ -141,6 +145,7 @@ var orderSuccess = {
 						orderSuccess.shipAddress = content.shipAddress;
 						orderSuccess.shipZipcode = content.shipZipcode;
 						orderSuccess.shipReceiverPhone = content.shipReceiverPhone;
+						orderSuccess.initPage();
 					}
 			};
 			Modal.jsonp(config);
@@ -149,5 +154,5 @@ var orderSuccess = {
 
 $(function(){
 	orderSuccess.detailCityShip();
-	orderSuccess.initPage();
+	
 })

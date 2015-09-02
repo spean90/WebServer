@@ -453,7 +453,6 @@ $(document).ready(function() {
  };
 
   function test(obj){
- // $('html,body').animate({scrollTop:$('#wizard').offset().top},500);
   var flag =true;
   $('.page dl dd').each(function(){
     if($(this).prev().hasClass('selected') == false){
@@ -464,7 +463,6 @@ $(document).ready(function() {
     }
   })
    if(flag){
-     //$('#wizard').smartWizard('showMessage','必填项全都填写成功可以提交了');
      var selecteds = $('.filter.clearfix dd a');
      var param = {};
      for(var i=0;i<selecteds.length;i++){
@@ -480,7 +478,7 @@ $(document).ready(function() {
      paramStr = encodeURI(paramStr);
      var config = {
 				url : Sys.serviceDomain+"/detailEvaluationResult?evaluations="+paramStr+"&modelsId="+ $('#modelsId').text()
-						+"&cityId="+localStorage.cityId,
+						+"&cityId="+localStorage.cityId+( (sessionStorage.token == null)?"":"&key="+sessionStorage.token),
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {

@@ -1,46 +1,4 @@
 $(function() {
-//	//签到动画
-//	  /* 元素 */
-//	var element = document.getElementById("element"), 
-//	target = document.getElementById("target"),
-//	qiandao = document.getElementById("qiandao");
-//
-//	var parabola = funParabola(element, target);
-//	// 抛物线元素的的位置标记
-//
-//
-//	// 抛物线运动的触发
-//	qiandao.onclick = function() {
-//	    element.style.marginLeft = "0px";
-//	  element.style.marginTop = "0px";
-//	  parabola.init();
-//	};
-	
-	$(".bookmark").on("click",function(){
-	    //通过判断按钮btn有没有active这个class名判断是否已经点击过
-	    if($(this).parent().hasClass("active")){
-	    //如果有了active，假设已经点击过了
-	   
-	    alert("对不起，您已经收藏过本站。");
-	    $(this).parent().removeClass("active");
-	    }else{
-	      var d="http://www.ehuishou.com/";
-	      var c="壹回收";
-	      if(document.all){
-	        window.external.AddFavorite(d,c);
-	       
-	      }else{
-	        if(window.sidebar){
-	          window.sidebar.addPanel(c,d,"");
-
-	        }else{
-	          alert("对不起，您的浏览器不支持此操作!\n请您使用菜单栏或Ctrl+D收藏本站。");
-	        }
-	      }
-	     $(this).parent().addClass("active");
-	    }
-	});
-	
 	//搜索框
 	//头部鼠标经过
 	var $dd = $("#TopBar").find(".drop-down");
@@ -84,7 +42,6 @@ $(function() {
   })
 })
 
-	
 	 function phoneList(){
 		
 		var $list= $(".phone-list"),$li=$list.find("li");
@@ -141,19 +98,10 @@ $(document).ready(function() {
 	cTab({tabHandleList:"#tabHandle1 > li",tabBodyList:"#tabMain1 > .service-con",bind:"mouseover",tabOnCssList:"#tabHandle1 > li",tabOnCssName:"on"});
 	cTab({tabHandleList:"#tabHandle2 > li",tabBodyList:"#tabMain2 > .index-con",bind:"mouseover",tabOnCssList:"#tabHandle2 > li",tabOnCssName:"on"});
 	
-	
-
     function scrollTop(){
       var tophtml="<div id=\"izl_rmenu\" class=\"izl-rmenu\"><a href=\"tencent://Message/?Uin=2965968813&websiteName=ehuishou.com=&Menu=yes\" class=\"btn btn-qq\"><div class=\"kefu\">在线客服<i class=\"arrow-right\"></i></div></a><div class=\"btn btn-edit\"><div class=\"edit\">意见反馈<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-help\"><div class=\"edit\">帮助中心<i class=\"arrow-right\"></i></div></div><div class=\"btn btn-top\"><div class=\"gotop\">返回顶部<i class=\"arrow-right\"></i></div></div></div>";
         $("#top").html(tophtml);
         $("#izl_rmenu").each(function(){
-          // $(this).find(".btn-edit").mouseenter(function(){
-          //   $(this).find(".pic").fadeIn("fast");
-          // });
-          // $(this).find(".btn-edit").mouseleave(function(){
-          //   $(this).find(".pic").fadeOut("fast");
-          // });
-
           $(this).find(".btn").mouseenter(function(){
             $(this).children('div').fadeIn("fast");
             // $(this).find(".edit")
@@ -203,21 +151,8 @@ $(document).ready(function() {
          
         })
       }
-    //   function getBrandMobile(search_word) {
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: "/json",
-    //         dataType: "json",
-    //         success: respgetCategoryCode,
-    //         timeout: 3000, 
-    //         data: {
-    //             code: 
-    //         }
-    //     });
-    // }
 	phoneList();
   scrollTop();
   paginaton();
   filter();
-  noticeList();
 })

@@ -14,10 +14,27 @@ var register = {
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							Modal.alert('短信发送失败，请稍后再试！');
+							$("#volidCoder_register").parent().children('div').html(data.msg.desc);
+							$("#volidCoder_register").parent().children('div').removeClass('defaulttip');
+							$("#volidCoder_register").parent().children('div').addClass('errtip');
+							$("#volidCoder_register").parent().children('div').show();
 							return;
 						}
-						Modal.alert('短信发送成功！');
+						$("#volidCoder_register").parent().children('div').hide();
+						var code = $('.msgs');
+						code.parent().attr("disabled", "true");
+						code.parent().addClass("msgs1");
+						var time = 30;
+						var t = setInterval(function() {
+							time--;
+							code.html(time + "秒");
+							if (time == 0) {
+								clearInterval(t);
+								code.html("重新获取");
+								code.parent().removeAttr("disabled");
+								code.parent().removeClass("msgs1");
+							}
+						}, 1000);
 					}
 			}
 			Modal.jsonp(config);
@@ -75,8 +92,12 @@ var register = {
 							Modal.alert('注册失败，请稍后再试！');
 							return;
 						}
+						localStorage.aa=new Date().getTime()+"-"+data.key;  //判断是否有登录过
+						localStorage.hp=tel; //历史登录记录
+						sessionStorage.token = data.key;
+						sessionStorage.userId = tel;
 						//Modal.alert('注册成功！'); 
-						location.href = "login.html";
+						location.href = "index.html";
 					}
 			}
 			Modal.jsonp(config);
@@ -145,6 +166,8 @@ var register = {
 			}
 			var tel = $(obj).val();
 			if(Modal.checkMobile(tel)==1){
+				
+				$(obj).siblings("div").html('请输入有效的手机号码');
 				$(obj).siblings("div").attr('class','tip_div errtip');
 				$(obj).siblings("div").show();
 				$(obj).siblings("i").attr('class','blank i-mobile');
@@ -196,7 +219,7 @@ var register = {
 							$("input[name='username']").parent().children('i').hide();
 							return;
 						}else{
-							if(data.content.verfiyResult=='0'){
+							if(data.content.verifyResult=='0'){
 								$("input[name='username']").parent().children('i').show();
 							}else{
 								$("input[name='username']").parent().children('div').html(data.content.verfiyDesc);
@@ -223,14 +246,48 @@ var register = {
 							return;
 						}else{
 							var content = data.content;
-							if(content.verfiyResult=='0'){
+							if(content.verifyResult=='0'){
 								$("input[name='tel']").parent().children('i').show();
-								$("input[name='tel']").parent().children('div').hiden();
+								$("input[name='tel']").parent().children('div').hide();
 							}else{
 								$("input[name='tel']").parent().children('div').html(content.verfiyDesc);
 								$("input[name='tel']").parent().children('div').removeClass('defaulttip');
 								$("input[name='tel']").parent().children('div').addClass('errtip');
 								$("input[name='tel']").parent().children('div').show();
+							}
+							
+						}
+						
+					}
+			}
+			Modal.jsonp(config);
+		},
+		agree : function(){
+			 jBox.open("iframe:http://m.ehuishou.com/regagreementdetail.html", "用户注册协议", 925, 500, { buttons: { '同意并继续': true }, persistent: false,showIcon:false,top:'10%' });
+		},
+		checkVolidCodePs : function(){
+			if($("#volidCoder_register_ps").val()==''){
+				$("#volidCoder_register_ps").focus();
+				return;
+			}
+			var config = {
+					url : Sys.serviceDomain+"/verifyPicCheckCode?picCheckCode="+$("#volidCoder_register_ps").val(),
+					callbackParameter: "callback",
+					success : function(data){ 
+						if (data.msg.code!="0000") {
+							$("#volidCoder_register_ps").parent().children('div').html(data.content.verfiyDesc);
+							$("#volidCoder_register_ps").parent().children('i').hide();
+							return;
+						}else{
+							var content = data.content;
+							if(content.verifyResult=='0'){
+								$("#volidCoder_register_ps").parent().children('i').show();
+								$("#volidCoder_register_ps").parent().children('div').hide();
+							}else{
+								$("#volidCoder_register_ps").parent().children('div').html(content.verfiyDesc);
+								$("#volidCoder_register_ps").parent().children('div').removeClass('defaulttip');
+								$("#volidCoder_register_ps").parent().children('div').addClass('errtip');
+								$("#volidCoder_register_ps").parent().children('div').show();
 							}
 							
 						}
@@ -292,7 +349,9 @@ $(function(){
 		register.checkTel(this);
 		register.checkUniqueTel();
 	});
-	
+	$("#volidCoder_register_ps").blur(function(){
+		register.checkVolidCodePs();
+	})
 
 	// 获取短信验证码
 	var validCode = true;
@@ -305,44 +364,32 @@ $(function(){
 			$("#volidCoder_register_ps").focus();
 			return;
 		}
-		var time = 30;
-		var code = $(this);
-		if (validCode) {
-			validCode = false;
-			code.parent().attr("disabled", "true");
-			code.parent().addClass("msgs1");
-			var t = setInterval(function() {
-				time--;
-				code.html(time + "秒");
-				if (time == 0) {
-					clearInterval(t);
-					code.html("重新获取");
-					validCode = true;
-					code.parent().removeAttr("disabled");
-					code.parent().removeClass("msgs1");
-				}
-			}, 1000);
-			register.generateCheckCode();
+		if($("#volidCoder_register_ps").parent().children('i').is(':hidden')){
+			$("#volidCoder_register_ps").focus();
+			return;
 		}
+		register.generateCheckCode();
+//		var time = 30;
+//		var code = $(this);
+//		if (validCode) {
+//			validCode = false;
+//			code.parent().attr("disabled", "true");
+//			code.parent().addClass("msgs1");
+//			var t = setInterval(function() {
+//				time--;
+//				code.html(time + "秒");
+//				if (time == 0) {
+//					clearInterval(t);
+//					code.html("重新获取");
+//					validCode = true;
+//					code.parent().removeAttr("disabled");
+//					code.parent().removeClass("msgs1");
+//				}
+//			}, 1000);
+//			register.generateCheckCode();
+//		}
 	});
 
 	$("#codeImg_regist").click(register.getCheckCode);
 	$(".btn-submit:eq(0)").click(register.submitRegister_person);
-	$("input[name='username']").blur(function(){
-		var userName = $("input[name='username']").val();
-		var config = {
-				url : Sys.serviceDomain+"/verifyUserName?userName="+userName,
-				callbackParameter: "callback",
-				success : function(data){ 
-					if (data.msg.code!="0000") {
-						$("input[name='username']").parent().children('div.tip_div').html(data.content.verfiyDesc);
-						$("input[name='username']").parent().children('div.tip_div').removeClass('defaulttip');
-						$("input[name='username']").parent().children('div.tip_div').addClass('successtip');
-						$("input[name='username']").parent().children('div.tip_div').show();
-						return;
-					}
-				}
-		}
-		Modal.jsonp(config);
-	});
 });

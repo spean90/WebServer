@@ -56,6 +56,7 @@ $(document).ready(function () {
             $key = e.keyCode;
             if ($key == 38 || $key == 40) {
                 nextItem($key);
+
                 return;
             }
             setTimeout(function () {
@@ -111,6 +112,7 @@ $(document).ready(function () {
             $('.output').slideUp();
             $('#search-bar').val($text);
             $('input').blur();
+
         });
 
     });
@@ -118,6 +120,7 @@ $(document).ready(function () {
     $('#search-bar').blur(function () {
         if ($('.prediction-item').length > 0) {
             $('.output').slideUp();
+            $('.search-input').css('paddingLeft',10);
         }
         if($('#search-bar').val()==''){
         	 $('.icon-so').show();

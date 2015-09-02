@@ -22,12 +22,22 @@ var referralAgent = {
 						$(".agent-list>ul").empty();
 						var str = '';
 						for(var i=0;i<list.length;i++) {
-							str = '<li>'
+							if(i%4==0 && i!=0 ){
+								str = '<li class="last">'
 								  + '<img src="'+list[i].image+'" height="160" width="160" />'
 								  + '<p>名称：'+list[i].name+'</p>'
 								  + '<p>手机号码：'+list[i].customersId+'</p>'
 								  + '<p class="cor-gary">回收类型：'+list[i].userTypeChinese+'</p>'
 								  + '</li>';
+							}else{
+								str = '<li>'
+								  + '<img src="'+list[i].image+'" height="160" width="160" />'
+								  + '<p>名称：'+list[i].name+'</p>'
+								  + '<p>手机号码：'+list[i].customersId+'</p>'
+								  + '<p class="cor-gary">回收类型：'+list[i].userTypeChinese+'</p>'
+								  + '</li>';
+							}
+
 							$('.agent-list>ul').append($(str));
 						}
 						var recordPerPage = content.recordPerPage;

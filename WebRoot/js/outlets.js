@@ -10,7 +10,7 @@ var outlets = {
 			var point = new BMap.Point(li.attr('data-x'), li.attr('data-y')); 
 			var marker = new BMap.Marker(point);        // 创建标注    
 			map.addOverlay(marker);  
-			map.centerAndZoom(point, 11);
+			map.centerAndZoom(point, 15);
 			marker.addEventListener('click',function(event){  
 				var content = '<b class="iw_poi_title" title="'+li.attr('data-name')+'">'+li.attr('data-name')+'</b><br />'
 					+'<dl class="iw_poi_content"><dt>地址：</dt><dd>'+li.attr('data-addr')+'</dd><dt>电话：</dt><dd>'+li.attr('data-phone')+'</dd></dl>';
@@ -35,18 +35,9 @@ var outlets = {
 						var str = '';
 						for(var i=0; i<list.length; i++){
 							var item = list[i];
-							if(item.latitude==""){
-								var x = 116+i*2;
-								item.latitude=x;
-							}
-							if(item.longitude==""){
-								var y = 39+i*2;
-								item.longitude=y;
-							}
-							//alert(item.latitude+","+tem.longitude);
 							str = '<li id="'+item.customersId+'" onclick="outlets.createMarker(this)" data-id="'+item.customersId+'" data-name="'+item.name+'" '
 								+ 'data-addr="'+item.address+'" data-phone="'+item.telephone+'" data-desc="" '
-								+ 'data-x="'+item.latitude+'" data-y="'+item.longitude+'" '
+								+ 'data-x="'+item.longitude+'" data-y="'+item.latitude+'" '
 								+ 'data-image="'+item.image+'" >'
 								+ '<a href="javascript:;">'+item.name+'</a> '
 								+ '</li>';
@@ -73,8 +64,11 @@ var outlets = {
 		},
 		initPc : function() {
 			 // 门店切换  美工写的  s
+			
 		    $('.store-list > ul > li').click(function(){
 		      $(this).addClass('active').siblings().removeClass('active');
+		      var imghref = $(this).attr('data-image');
+		      $('.store-photo').find('img').attr('src',imghref);
 		      $(this).parents('.store-list').siblings('.map-area').animate({'width': '700px'}, 300);
 		      $(this).parents('.store-list').siblings('.store-photo').show(300);
 		    });

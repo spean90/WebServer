@@ -109,16 +109,22 @@ var category = {
 					var list = content.list;
 					var recordPerPage = content.recordPerPage;
 					var totalPage = content.totalPage;
-					//初始化分页条
-				    $("#pagination").pagination({
-				        items: recordPerPage*totalPage,
-				        itemsOnPage: 10,
-				        cssStyle: 'light-theme',
-				        onPageClick: function(pageNum,event){
-				        	category.onPageClick(pageNum,event);
-				        }
-				    });
-				    category.drawPhoneList(list);
+					var totalRecordCount = content.totalRecordCount;
+					if(totalPage > 1){
+						//初始化分页条
+					  $("#pagination").pagination({
+					        items: recordPerPage*totalPage,
+					        itemsOnPage: 10,
+					        cssStyle: 'light-theme',
+					        onPageClick: function(pageNum,event){
+					        	category.onPageClick(pageNum,event);
+					        }
+					    });
+				  }
+				  else{
+				  	$("#pagination").hide();
+				  }
+				  category.drawPhoneList(list,totalRecordCount);
 					category.setButtonClass(1);
 				}
 			});
@@ -150,24 +156,34 @@ var category = {
 						return;
 					}
 					var content = data.content;
+					var recordPerPage = content.recordPerPage;
+					var totalPage = content.totalPage;
+					var totalRecordCount = content.totalRecordCount;					
 					var list = content.list;
-				    category.drawPhoneList(list);
+				    category.drawPhoneList(list,totalRecordCount);
 				}
 			});
 		},
-		drawPhoneList : function(list){//渲染手机列表
+		drawPhoneList : function(list,totalRecordCount){//渲染手机列表
 			$('.phone-list').empty();
 			if (list==null||list.length==0) {
-				var s = '<div class="tips">'
-						+'<p>很抱歉，手机里没有找到与" <span class="red">'+$("#keyword").html()+'</span> "相关的信息</p>'
+				var s = '<div class="searchResult">'
+						+'<p>很抱歉，手机里没有找到与" <span class="cor-org">'+$("#keyword").html()+'</span> "相关的信息</p>'
 						+'<p>壹回收建议您：</p>'
 						+'<p>1.尽量减少关键词数量，扩大搜索范围，如“iPhone 2015”改为“iPhone”</p>'
 						+'<p>2.如重新搜索还是没有，并且型号较新，请联系在线客服添加型号&emsp;</p>'
 						+'<p>3.如机器型号较老，说明他的价值很低，请进行环保回收！&emsp;</p>'
 						+'</div>';
 				$('.phone-list').append($(s));
+				$("#pagination").hide();
+				$(".tip").hide();
 				return;
 			}
+			///先显示总数量的相关提示
+			
+			var totalSum = '<div class="warning">如果你的机型有点老，在回收列表找不到，说明他的价值很低请进行环保回收！ <a href="/valuation_1.html">点击回收</a></div><div class="warning" style="float:right;"><strong id="sKeywords2">' + $("#keyword").html() + '</strong>&nbsp;&nbsp;搜索到<span class="text-main pl5 pr5" id="resultnumber">' + totalRecordCount + '</span>件</div>';
+      $(".hasBeenSelected").html(totalSum); 
+			
 			for (var i = 0; i < list.length; i++) {
 				var monthStr = '';
 				var monthPrice = '';

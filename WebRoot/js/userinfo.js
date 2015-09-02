@@ -28,7 +28,7 @@ var UserInfo = {
 								+ '<form action="">'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>昵称：</span>'
-								+ '<input type="text" class="input" id="name" value='+content.name+'/>'
+								+ '<input type="text" class="nameinput" id="name" value='+content.name+'/>'
 								+ '</div>'
 //								+ '<div class="line raido">'
 //								+ '<span class="label"><em>*</em>性别：</span>'
@@ -41,19 +41,19 @@ var UserInfo = {
 								+ '<span class="label"><em>*</em>手机号码：</span>'
 								+ '<span>'+content.customersId+'</span><span class="isvalid">已经验证</span>'
 								+ '</div>'
-								+ '<div class="line">'
-								+ '<span class="label"><em>*</em>邮箱：</span>'
-								+ '<span>'+content.email+'</span><span class="isvalid">已经验证</span>'
-								+ '</div>'
+//								+ '<div class="line">'
+//								+ '<span class="label"><em>*</em>邮箱：</span>'
+//								+ '<span>'+content.email+'</span><span class="isvalid">已经验证</span>'
+//								+ '</div>'
 //								+ '<div class="line">'
 //								+ '<span class="label"><em>*</em>真实姓名：</span>'
 //								+ '<input type="text" class="input" value="'+list[0].modelsId+'"/>'
 //								+ '</div>'
 								+ '<div class="line">'
 								+ '<span class="label"><em>*</em>所在城市：</span>'
-								+ '<select name="" id="province" onchange="UserInfo.listAllCity();"></select>'
-								+ '<select name="" id="city" onchange="UserInfo.listAllRegion();"></select>'
-								+ '<select name="" id="region"></select>'
+								+ '<span class="select_ui" style="width: 100px;"><b class="select_arrow"></b><select name="" id="province" onchange="UserInfo.listAllCity();" class="selectui"></select></span>'
+								+ '<span class="select_ui" style="width: 100px;"><b class="select_arrow"></b><select name="" id="city" onchange="UserInfo.listAllRegion();" class="selectui"></select></span>'
+								+ '<span class="select_ui" style="width: 100px;"><b class="select_arrow"></b><select name="" id="region" class="selectui"></select></span>'
 								+ '</div>'
 //								+ '<div class="line">'
 //								+ '<span class="label"><em>*</em>详细地址：</span>'
@@ -70,15 +70,22 @@ var UserInfo = {
 								}
 								str = str+ '</span>'
 								+ '</div>'
+								+ '<div class="mt-10">'
 								+ '<div class="line">'
 								+ '<a class="btnsave" onclick="UserInfo.update()">保存</a>'
-								+ '</div></form></div></div>';
+								+ '</div></form></div></div></div>';
 						$(".infomation").append(str);
 						$('#update_img').attr('src',content.image);
 						user_province = content.provinceId;
 						user_city = content.cityId;
 						user_region = content.regionId;
 						UserInfo.listAllProvience();
+						$("select").selectui({
+							// 是否自动计算宽度
+							autoWidth: true,
+							// 是否启用定时器刷新文本和宽度
+							interval: true
+						});
 						 
 				}
 			};
@@ -215,4 +222,5 @@ $(function(){
 				$('.attchment-label').html($('input[type="file"]')[0].files[0].name);
 			});
 		});
+
 });

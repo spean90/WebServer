@@ -128,7 +128,7 @@ var index = {
 		},
 		initPhoneList : function(){
 			var config = {
-					url : Sys.serviceDomain+"/listHotModels?recordPerPage=10", 
+					url : Sys.serviceDomain+"/listHotModels?recordPerPage=10&currentPage=1", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
@@ -179,19 +179,7 @@ var index = {
 						            +'</div>'
 						            +'<a class="index-spr trend-icon"></a> '
 						            +'</li>';
-							}
-							
-//							var str = '<li data-label="'+monthStr+'" data-data="'+monthPrice+'" onclick=index.doDetail('+i+')>'
-//							           +'<a ><img src="'+list[i].modelsImage+'" alt="'+list[i].modelsNickname+'" width="160" height="160" /></a>'
-//							           +'<div class="product-info">'
-//							           +' <div class="fl">'
-//							           +'   <span class="phone-name">'+list[i].modelsNickname+'</span>'
-//							           +'   <span class="recovery">回收价：<em class="red">￥'+list[i].recyclePrice+'</em></span>'
-//							           +'   <span class="badge">'+list[i].recycleCount+'人回收</span>'
-//							           +' </div>'
-//							           +' </div>'
-//							           +' <a class="index-spr trend-icon"></a> '
-//							           +'</li>';
+							}						
 							var phone = $(str);
 							$('.phone-list.clearfix').append(phone);
 						}
@@ -293,20 +281,20 @@ var index = {
 		},
 		initNotice : function() {
 			var config = {
-					url : Sys.serviceDomain+"/listAllAnnounce", 
+					url : Sys.serviceDomain+"/listNewestAnnounce", 
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
 							return;
 						}
-						$('#noticeList').empty();
+						$('#notice-list').empty();
 						var list = data.content.list;
 						for(var i=0;i<list.length;i++){
 							var s = '<li>'
 					               	+'<h1>'+list[i].announceTitle+'</h1>'
 					               	+'<p>'+list[i].announceContent+'</p>'
 					               	+'</li>';
-							$('#noticeList').append($(s));
+							$('#notice-list').append($(s));
 						}
 					}
 			}
@@ -361,6 +349,7 @@ index.initRetrieveList();  //初始化最新回收单
 //index.initUserInfo();
 index.initNotice();  //公告
 index.initBanners();//banners
+noticeList();
 $(function(){
 });
 

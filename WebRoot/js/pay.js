@@ -3,7 +3,8 @@
  */
 var pay = {
 	paySum : 0,	
-		
+	shipfee : 0,
+	currency : '￥',
 	//初始化回收清单
 	initRetrieveList : function(){
 		$('table').empty();
@@ -14,18 +15,19 @@ var pay = {
 					if (data.msg.code!="0000") {
 						return;
 					}
+					pay.paySum = 0;
+					pay.shipfee = 0;
 					if (data.content.list==null||data.content.list.length==0) {
-						console.log('回收车中还没有商品呦，赶紧去看看吧！');
+						console.log('回收车中还没有物品呦，赶紧去看看吧！');
 						window.location.href='/index.html';
 					}else {
 						$('table').empty();
 						var list = data.content.list;
 						var str = '<tr>'
 							+ '<th>物品名称</th>'
-							+ '<th>回收商家</th>'
 							+ '<th>最高报价</th>'
 							+ '<th>数量</th>'
-							+ '<th>收款方式</th>'
+							+ '<th>最终金额</th>'
 							+ '</tr>';
 						$('table').append($(str));
 						var sum = 0;
@@ -35,7 +37,6 @@ var pay = {
 							sum += item.lastEvaluationPrice;
 							str = '<tr id="'+item.customersBasketId+'">'
 								+ '<td>'+item.modelsName+'</td>'
-								+ '<td></td>'
 								+ '<td>'+item.lastEvaluationPrice.toFixed(2)+'</td>'
 								+ '<td>1</td>'
 								+ '<td>'+item.lastEvaluationPrice.toFixed(2)+'</td>'
@@ -45,11 +46,20 @@ var pay = {
 						}
 						$('.order-count.clearfix').empty();
 						var s = ' <span class="fl">商家报价</span>'
-							+'<span class="fr">共'+list.length+'件商品，合计'+currency+sum.toFixed(2)+'</span>';
+							+'<span class="fr">共'+list.length+'件物品，合计'+currency+sum.toFixed(2)+'</span>';
 						$('.order-count.clearfix').append($(s));
-						$('#sum').text(currency+sum.toFixed(2));
+						
 						$('.c-red').text(currency+sum.toFixed(2));
-						pay.paySum = currency+sum.toFixed(2);
+						pay.paySum = sum;
+						pay.currency = data.content.currency;
+						pay.shipfee = data.content.shippingFee;
+						if($('#shipfee').is(':visible')){
+							pay.paySum = pay.paySum + pay.shipfee;
+						}
+						$('#sum').text(currency+pay.paySum.toFixed(2));
+						$('#shipfeetip').html('运费补贴:'+data.content.currency+pay.shipfee);
+						$('#shipfee').html('运费补贴:<span  class="c-red">'+data.content.currency+pay.shipfee+'</span>');
+						
 					}
 				}
 		}
@@ -57,20 +67,38 @@ var pay = {
 	},
 	//获取短信验证码
 	generateCheckCode : function() {
-		var tel = $("#phone").val();
-		if(tel==''){
-			Modal.alert('请输入联系电话！');
+		var username = $("#username").val();
+		if(username==''){
+			$("#username").parent().children('div').html('请输入回收客户姓名！');
+			$("#username").parent().children('div').show();
+			$("#username").focus();
+			return false;
+		}		
+		var phone = $("#phone").val();
+		if(phone==''){
+			$("#phone").parent().children('div').html('请输入手机号码！');
+			$("#phone").parent().children('div').show();
+			$("#phone").focus();
 			return false;
 		}
 		var config = {
-				url : Sys.serviceDomain+"/generateCheckCode?codeType=1&phone="+tel,
+				url : Sys.serviceDomain+"/generateCheckCode?codeType=4&phone="+phone,
 				callbackParameter: "callback",
 				success : function(data){ 
 					if (data.msg.code!="0000") {
-						Modal.alert('短信发送失败，请稍后再试！');
 						return;
 					}
-					Modal.alert('短信发送成功！');
+					 $(this).addClass('disabled');
+					    var _second = 60;
+					    var _timer = setInterval(function(){
+					      _second -= 1;
+					      if (_second > 0) {
+					        $('.captcha-btn').text(_second + 's后可重发');
+					      }else{
+					        $('.captcha-btn').text('发送验证码').removeClass('disabled');
+					        clearInterval(_timer);
+					      }
+					    }, 1000);
 				}
 		}
 		Modal.jsonp(config);
@@ -136,13 +164,13 @@ var pay = {
 						for(var i=0;i<list.length;i++){
 							if(list[i].methodType==1){
 								if (list[i].recycleMethodId==1) {
-									var str = '<label><input type="radio" name="trade-way" id="online_bank" value="1" /> 网银转账：<span class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+									var str = '<label class="radio-box"><input type="radio" name="trade-way" id="online_bank" value="1" /> 网银转账：<span class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 									$('#payType').append($(str));
 //									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
 //									$('#payType').append($(strs));
 //									$('.bank-area').hide();
 								}else if (list[i].recycleMethodId==2){
-									var str = '<label><input type="radio" name="trade-way" id="pay_cash" value="3" /> 现金交易：<span class="c-red"></span></label>';
+									var str = '<label class="radio-box"><input type="radio" name="trade-way" id="pay_cash" value="3" /> 现金交易：<span class="c-red"></span></label>';
 									$('#payType').append($(str));
 									$('.bank-area').hide();
 								}
@@ -182,28 +210,32 @@ var pay = {
 	submitOrder : function() {
 		if($('#clause').is(':checked')){
 			var customersBasketIds = $('#customersBasketIds').text();
-			var username = $('username').val();
+			var username = $('#username').val();
 			var phone = $('#phone').val();
 			var code = $('#code').val();
 			var tradeWay = $("input[name='trade-way']:checked").val();
 			var dealType = $("input[name='trade-way1']:checked").val();
+			
 			var bank = '';
 			var bank_user = '';
 			var bank_account = '';
 			if(username==''){
-				Modal.alert('请输入姓名');
+				$("#username").parent().children('div').html('请输入回收客户姓名！');
+				$("#username").parent().children('div').show();
+				$('#username').focus();
 				return ;
 			}
+			
 			if(phone==''){
-				Modal.alert('请输入电话');
+				$("#phone").parent().children('div').html('请输入手机号码！');
+				$("#phone").parent().children('div').show();
+				$('#phone').focus();
 				return ;
 			}
-			if(code==''&&sessionStorage.userType!=1){
-				Modal.alert('请输入短信验证码');
-				return ;
-			}
-			if(tradeWay=='' || tradeWay==undefined){
-				Modal.alert('请选择收款方式');
+			if( (code=='')&&(sessionStorage.userType != 1) ){
+				$("#phone").parent().children('div').html('请输入短信验证码！');
+				$("#phone").parent().children('div').show();
+				$('#code').focus();
 				return ;
 			}
 			var data = {
@@ -221,7 +253,9 @@ var pay = {
 				bank_user = $('#bank_user').val();
 				bank_account = $('#bank_account').val();
 				if(bank=='0'||bank_user==''||bank_account==''){
-					Modal.alert('请输入银行卡信息');
+					$('.bank-area').children('div').html("请填写完整您的银行卡信息");
+					$('.bank-area').children('div').show();
+					$('#bank_account').focus();
 					return ;
 				}
 				data.accountBank = bank;
@@ -233,7 +267,9 @@ var pay = {
 				var regionId = $('#cityRegion').val();
 				var addr = $('#detailAddr').val();
 				if(regionId==''||addr==''){
-					Modal.alert('请输入您的地址信息');
+					$('#detailAddr').parent().children('div').html('请详细填写您的当面交易地址');
+					$('#detailAddr').parent().children('div').show();
+					$('#detailAddr').focus();
 					return ;
 				}
 				data.regionId = regionId;
@@ -261,7 +297,8 @@ var pay = {
 		}
 	},
 	showClause : function() {
-		$(this).modal('clausePop.html', 'clausePop');
+		jBox.open("iframe:http://m.ehuishou.com/serviceagreementdetail.html", "壹回收网服务条款", 925, 500, { buttons: { '同意并继续': true }, persistent: false,showIcon:false,top:'10%' });
+		
 	},
 	changeCity : function() {
 		$('.drop-down.drop-down-s.more-city').addClass('hover');
@@ -290,6 +327,7 @@ var pay = {
 	},
 	//初始化页面后。添加响应
 	initPage : function(){
+	
 		pay.showAddrDetail();
 		var val = $('[name=trade-way]:checked').val();
 		if(val==1){
@@ -302,26 +340,38 @@ var pay = {
 			var val = $('[name=trade-way]:checked').val();
 			if(val==1){
 				$('.bank-area').show();
+				//判断快递方式是否存在，存在则显示
+				var sendmethod = $('#send');
+				if(sendmethod)
+				  sendmethod.show();
 			}else{
 				$('.bank-area').hide();
 			}
 			}); 
 		  $('#pay_cash').click(function(){
 		    $('.bank-area').hide();
+		    //判断快递方式是否存在，存在则隐藏
+				var sendmethod = $('#send');
+				if(sendmethod)
+				  sendmethod.hide();		    
 		  });
 		  $('.captcha-btn').click(function(){
-		    $(this).addClass('disabled');
-		    var _second = 60;
-		    var _timer = setInterval(function(){
-		      _second -= 1;
-		      if (_second > 0) {
-		        $('.captcha-btn').text(_second + 's后可重发');
-		      }else{
-		        $('.captcha-btn').text('发送验证码').removeClass('disabled');
-		        clearInterval(_timer);
-		      }
-		    }, 1000);
+		   
 		  });
+
+		  	$('input').iCheck({
+			checkboxClass: 'icheckbox',
+			radioClass: 'iradio',
+			increaseArea: '20%'
+			});
+			
+			$("select").selectui({
+			// 是否自动计算宽度
+			autoWidth: true,
+			// 是否启用定时器刷新文本和宽度
+			interval: true
+		});
+
 	},
 	showAddrDetail : function(){
 		var val = $('[name=trade-way1]:checked').val();
@@ -330,6 +380,20 @@ var pay = {
 		}else{
 			$('#dealAddr').hide();
 		}
+		if(val==1){  //邮寄
+			$('.addr').show();
+			pay.paySum = parseInt(pay.paySum)  + parseInt(pay.shipfee);
+			$('#shipfee').show();
+			$('#sum').html(pay.currency+pay.paySum.toFixed(2));
+		}else{
+			if($('#shipfee').is(':visible')){
+				pay.paySum -= pay.shipfee;
+				$('#sum').html(pay.currency+pay.paySum.toFixed(2));
+				$('#shipfee').hide();
+			}
+			$('.addr').hide();
+		}
+		
 		
 	},
 	detailCityShip : function(){
@@ -342,7 +406,7 @@ var pay = {
 					}
 					var content = data.content;
 					var addr = $('#send p').eq(1);
-					var s = '快递到：'+content.shipAddress;
+					var s = '&nbsp;&nbsp;&nbsp;快递到：'+content.shipAddress+" "+content.shipZipcode+" "+content.shipReceiver+"收 "+content.shipReceiverPhone;
 					addr.html(s);
 //					orderSuccess.shipReceiver = content.shipReceiver;
 //					orderSuccess.shipAddress = content.shipAddress;
@@ -356,6 +420,7 @@ var pay = {
 };
 
 $(function(){
+	$(".tip_div").hide();
 	if(sessionStorage.userType==1){
 		$('.captcha-btn').hide();
 		$('#code').hide();

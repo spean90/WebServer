@@ -19,7 +19,9 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 </head>
 
 <body>
-<div class="pop-feedback pop-advice">
+<#include "/common/html/body_include.html">
+
+<div class="container pop-feedback pop-advice">
 	<div class="advice-title">
 		<div class="fl">
 			<i class="icon-chat"></i>
@@ -30,7 +32,7 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 	</div>
 	<p>壹回收真诚欢迎您的反馈，以更好的为您服务！</p>
 	<form id="form"  enctype="multipart/form-data" method="post" >
-		<div class="cor-gary">
+	<div class="cor-gary">
 		
 			<table width="100%">
 				<tr>
@@ -58,9 +60,9 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 			</table>
 			
 		</div>
-		<div class="form-submit">
-			<a href="javascript:;" class="oran-btn">确认提交</a>
-		</div>
+	<div class="form-submit">
+		<a href="javascript:;" class="oran-btn">确认提交</a>
+	</div>
 	</form>
 </div>
 
@@ -68,18 +70,27 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'scripts/jquery.placeholder.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'scripts/main.js"><\/script>'); 
-document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>');
+document.write('<script src="'+Sys.staticDomain+'scripts/requestAnimationFrame.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/fly.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/script.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/Chart.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.selectui.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.icheck.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-migrate-1.1.1.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.jBox-2.3.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/windows.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'common/js/modal.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.paginate.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/search.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/header.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/toolbar.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'js/city.js"><\/script>');  
 document.write('<script src="'+Sys.staticDomain+'common/js/jquery.easyui.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'js/feedback.js"><\/script>'); 
 </script>
-
 <script type="text/javascript">
 $(function(){
-	if(sessionStorage.token==null || sessionStorage.token=='undefined'){
-		window.parent.location.href = '/login.html';
-		return;
-	}
 	$('input, textarea').placeholder({customClass:'my-placeholder'});
 	$('.attachment-btn').click(function(){
 		$(this).siblings('input[type="file"]').trigger('click');

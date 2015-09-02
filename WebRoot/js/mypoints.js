@@ -8,7 +8,7 @@ var mypoints = {
 							return;
 						}
 						var content = data.content;
-						$('.wallet-title .c-red').html(content.amount);
+						$('.wallet-title .c-red').html(content.amount-content.usedAmount);
 					}
 			};
 			Modal.jsonp(config);
@@ -43,6 +43,7 @@ var mypoints = {
 						var recordPerPage = content.recordPerPage;
 						var totalPage = content.totalPage;
 						//初始化分页条
+						if(totalPage > 1){
 					    $("#pagination"+type).pagination({
 					        items: recordPerPage*totalPage,
 					        itemsOnPage: 4,
@@ -52,6 +53,11 @@ var mypoints = {
 					        	mypoints.getMyPointsByPage(pageNum,type);
 					        }
 					    });
+					    $("#pagination"+type).show();
+					  }
+					  else{
+					  	$("#pagination"+type).hide();
+					  }
 					}
 			}
 			Modal.jsonp(config);

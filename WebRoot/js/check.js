@@ -32,7 +32,7 @@ var check = {
 								+' </tr>'
 								+' <tr>'
 								+' <td>waln功能：'+terminalProperty.isWlan+'</td>'
-								+' <td>自有业务：'+terminalProperty.privateBus+'</td>'
+								+' <td>GPRS能：'+terminalProperty.isGprs+'</td>'
 								+' <td>后摄像头像素：'+terminalProperty.flankCameraPixel+'</td>'
 								+' </tr>'
 								+'<tr>'
@@ -41,7 +41,7 @@ var check = {
 								+' <td>终端品牌编码：'+terminalProperty.modelNameId+'</td>'
 								+'</tr>'
 								+'<tr>'
-								+' <td>主流第三方业务：'+terminalProperty.thirdPartyBus+'</td>'
+								+' <td>是否智能机：'+terminalProperty.isIntelligent+'</td>'
 								+' <td>终端款式：'+terminalProperty.modelStyle+'</td>'
 								+' <td>终端类型：'+terminalProperty.modelType+'</td>'
 								+'</tr>'
@@ -53,7 +53,7 @@ var check = {
 								+'<tr>'
 								+' <td>别名：'+terminalProperty.otherName+'</td>'
 								+' <td>屏幕像素：'+terminalProperty.screenPixel+'</td>'
-								+' <td>终端设备标识：'+terminalProperty.modelId+'</td>'
+								+' <td>终端设备标识：'+terminalProperty.terminalId+'</td>'
 								+'</tr>'
 								+'<tr>'
 								+' <td>触摸屏类型：'+terminalProperty.touchType+'</td>'
@@ -73,11 +73,6 @@ var check = {
 								+'<tr>'
 								+' <td>操作系统版本：'+terminalProperty.systemVersion+'</td>'
 								+' <td>wap支持：'+terminalProperty.isWap+'</td>'
-								+' <td>是否智能机：'+terminalProperty.isIntelligent+'</td>'
-								+'</tr>'
-								+'<tr>'
-								+' <td>gprs功能：'+terminalProperty.isGprs+'</td>'
-								+' <td></td>'
 								+' <td></td>'
 								+'</tr>'
 								+'</table>'
@@ -106,5 +101,5 @@ $(function(){
 	$('.nav.wrapper.clearfix li.on').removeClass('on');
 	var li = $('[href="check.html"]').parent();
 	li.addClass('on');
-	$('.big-btn.mt-30').click(check.check);
+	$('.big-btn').click(check.check);
 });

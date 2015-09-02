@@ -21,7 +21,7 @@ var toolBar = {
 		initRetrieveCar : function() {
 			//sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKjd2b7gp6QimDNo0gAUjsKEH0ld9fLeCsaynC9T091K4';
 			if(sessionStorage.token==null||sessionStorage.token=='undefined'){
-				console.log('未登录，不能获取回收车内容');
+				//console.log('未登录，不能获取回收车内容');
 				$('.hs-box-js').remove();
 				var boxNone = $('<div class="hs-box-none"> 回收车中还没有商品呦，赶紧去看看吧！ </div>');
 				$('.hs-box').append(boxNone);
@@ -51,12 +51,14 @@ var toolBar = {
 								var item = list[i];
 								totalMoney += item.lastEvaluationPrice;
 								var str = '<div class="item clearfix">'
-			                          +'<img src="'+item.modelsImage+'" alt=""/>'
-			                          +'<span>'
+			                          +'<img src="'+item.modelsImage+'" title="';
+								if( (sessionStorage.userType != null)&& (sessionStorage.userType != 'undefined') &&( (sessionStorage.userType == 2) || (sessionStorage.userType == 3)) ){
+									str = str + '您可获得的回收抽成费：' + item.currency + item.agentCommission;
+								}
+								str = str + '"/><span>'
 			                          +' <ul>'
 			                          +' <li>'+item.modelsName+'</li>'
 			                          +' <li>回收价：<span>'+item.currency+item.lastEvaluationPrice.toFixed(2)+'</span><a onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</a></li>'
-			                         // +'   <li>12306人回收</li>'
 			                          +' </ul>'
 			                          +' </span>'
 			                          +' </div>';
@@ -282,11 +284,14 @@ $(function(){
 	}
 	//右侧帮助按钮弹窗
 	$(".btn.btn-help").click(function(){
-		window.open("/help.html");
+		window.open("/faq_f1.html");
 	});
 	//右侧意见反馈按钮弹窗
 	$(".btn.btn-edit").click(function(){
-		$(this).modal('/feedback.html', 'feedbackPopId')
+		toolBar.goTo("/feedback.html");
+		//window.open("/feedback.html");
+		//$(this).modal('/feedback.html', 'feedbackPopId')
+       //jBox.open("iframe:feedback.html", "用户注册协议", 1000, 550, { buttons: {}, persistent: false,showIcon:false,top:'10%' });
 	});
 	//搜索按钮
 	$(".search-button").click(function(){

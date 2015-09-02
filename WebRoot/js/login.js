@@ -1,12 +1,11 @@
-﻿var login = {
-		
+﻿var login = {		
 		login : function() {
 			var userId = $('#username').val();
 			var passwd = $('#password').val();
 			var checkCode = $('#volidCoder_register_ps').val();
 			if (userId==''||passwd=='') {
-				//初始化弹窗功能
-				Modal.alert("请输入用户名和密码！");
+				$(".msg-wrap").show();
+				$(".msg-error").html('请输入用户名和密码！');
 				return;
 			}
 			
@@ -14,14 +13,15 @@
 					url : Sys.serviceDomain+"/userlogin?userId="+userId+'&passwd='+passwd+"&checkCode="+checkCode, 
 					callbackParameter: "callback",
 					success : function(data){
-						console.log(data);
+						//console.log(data);
 						if (data.msg.code!="0000") {
-							Modal.alert(data.msg.desc);
+							$(".msg-wrap").show();
+							$(".msg-error").html(data.msg.desc);							
 							return;
 						}
 						localStorage.aa=new Date().getTime()+"-"+data.key;  //判断是否有登录过
+						localStorage.hp=userId; //历史登录记录
 						sessionStorage.token = data.key;
-						//sessionStorage.token = 'Y6dE9ahZ1ee9OllaU5JvKvZhww8MtD/UtoRzlrCBwSkfZ0PHWe2Shq0Q3KCrTgmi';
 						sessionStorage.userId = userId;
 						var query = window.location.search;
 						if(query!=''){
@@ -40,7 +40,12 @@
 		
 }
 $(function(){
-	$('.btn-get-verify img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
-	$(".btn-get-verify img").click(login.changeVerifyCode);
-	$('.btn-get-verify').click(login.changeVerifyCode);
+	if(localStorage.hp!=null && localStorage.hp!=undefined){
+		$('#username').val(localStorage.hp);
+	}
+	//$('.btn-get-verify img').attr('src',Sys.serviceDomain+'/generatePicCheckCode?r='+ Math.random());
+	//$(".btn-get-verify img").click(login.changeVerifyCode);
+	//$('.btn-get-verify').click(login.changeVerifyCode);
+	
+	
 })

@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -91,21 +91,28 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
                </div>
               
            </div>
-           <div class="line_div">
-              
-              <label for="volidCoder_register"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
-              <input type="text" class="commom-input" style="width:160px" id="volidCoder_register">
-               <a class="btn-get-verify"><span class="msgs">获取短信验证码</span></a>
-           </div>
             <div class="line_div">
               
               <label for="volidCoder_register_ps"><span style="display: inline;width:2px;color:red;">*</span>验证码：</label>
               <input type="text" class="commom-input" style="width:100px" id="volidCoder_register_ps">
               <a class="verifycode"><img src="images/verifycode.png">换一换</a>
+              <i  class="blank succeed"></i>
+              <div class="tip_div">请输入有效的手机号码</div>
            </div>
            <div class="line_div">
+              
+              <label for="volidCoder_register"><span style="display: inline;width:2px;color:red;">*</span>短信验证码：</label>
+              <div class="item-info">
+                <input type="text" class="commom-input" style="width:160px" id="volidCoder_register">
+                 <a class="btn-get-verify"><span class="msgs">获取短信验证码</span></a>
+                  <div class="tip_div">请输入有效的手机号码</div>          
+              </div>
+          </div>
+             
            
-            <div style="margin-bottom:10px;" class="protocol"><label></label><input checked="checked" type="checkbox" id="isCheck">同意<a href="/iptp/public/interpreter.jsp" class="text-main">《壹回收平台网络服务协议》</a></div>
+           <div class="line_div">
+           
+            <div style="margin-bottom:10px;" class="protocol"><label></label><input checked="checked" type="checkbox" id="isCheck">同意<a href="#" onclick="register.agree()" class="text-main">《壹回收平台网络服务协议》</a></div>
            </div>
            <div class="line_div">
              <label></label>
@@ -114,11 +121,11 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
          </form>
          <div class="duan">
            <span>
-             <img src="images/code-1.jpg" alt="" />
+             <img src="images/qrcode.jpg" alt="" />
              <p>手机客户端</p>
            </span>
            <span>
-             <img src="images/code-1.jpg" alt="" />
+             <img src="images/qrcode.jpg" alt="" />
              <p>微信公众号</p>
            </span>
          </div>
@@ -139,6 +146,9 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
 document.write('<script src="'+Sys.staticDomain+'scripts/jquery-1.9.1.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'common/jquery/jquery.jsonp-2.4.0.min.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'common/js/modal.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery-migrate-1.1.1.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/jquery.jBox-2.3.min.js"><\/script>'); 
+document.write('<script src="'+Sys.staticDomain+'scripts/windows.js"><\/script>'); 
 document.write('<script src="'+Sys.staticDomain+'js/register.js"><\/script>'); 
 </script>
 </body>

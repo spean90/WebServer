@@ -44,7 +44,7 @@ myOrder = {
 			                + '<th>订单状态</th>'
 			                + '</tr>'
 			                + '<tr class="dark">'
-			                + '<th class="tx-left" colspan="6"><label> <span class="fb">'+item.ordersDate+'</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail_'+item.ordersId+'.html" class="underline">订单详情</a></th>';
+			                + '<th class="tx-left" colspan="6"><label> <span class="fb">'+item.ordersDate+'</span></label><span class="order-id">订单号：'+item.ordersId+'</span>　　<a href="/orderDetail_'+item.ordersId+'.html" class="text-main underline">订单详情</a></th>';
 							if(item.ordersStatusId==1){
 								str = str + '<th class="c-red">待处理</th>';
 							}else if(item.ordersStatusId==2){
@@ -81,7 +81,7 @@ myOrder = {
 				                + '<td class="status">价格有效</td>'
 				                + '<td class="num m_l32"><span class="reduce none"></span><input class="count-input disable" disabled type="text" value="'+ordersItemList[j].quantity+'"/><span class="add none"></span></td>'
 				                + '<td class="subtotal">'+item.currency+ordersItemList[j].customersPrice+'</td>'
-				                + '<td><a href="javascript:;" onclick="myOrder.showAssessDetail('+ordersItemList[j].customersBasketId+')" class="underline">评估详情</a></td>'
+				                + '<td><a href="javascript:;" onclick="myOrder.showAssessDetail('+ordersItemList[j].customersBasketId+')" class="underline text-main">评估详情</a></td>'
 				                + '<td></td>'
 				                + '</tr>'
 				                sum = sum+ordersItemList[j].customersPrice;
@@ -150,7 +150,10 @@ myOrder = {
 			$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', 'orderOperPopId')
 		},
 		showAssessDetail : function(customersBasketId) {
-			$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
+			//$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
+			
+            jBox.open('iframe:/assessDetails_'+customersBasketId+'.html', "评估详情", 925, 500, { buttons: {}, persistent: false,showIcon:false,top:'10%' });
+			
 		},
 		reflash : function(){
 			var reflashText = $('#reflash').text();
@@ -235,6 +238,6 @@ $(function(){
 
 	  }
 	  
-	  
+	  $('.tabs-label').children('li').eq(0).addClass('active');
 	  myOrder.getOrders(1,1,1);//'待处理'
 });

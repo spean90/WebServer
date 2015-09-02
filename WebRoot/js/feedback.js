@@ -22,10 +22,14 @@ var feedback = {
 			$('#form').form('submit',{
 				url : action=Sys.serviceDomain+"/addMyAsk?key=" + sessionStorage.token,
 				success : function(data){
-					Modal.alert("提交成功!");
-					setTimeout(function(){
-						$('#feedbackPopId',window.top.document).remove();
-					}, 2000)
+					 var submit = function (v, h, f) {
+			                if (v == true)
+			                	window.location.href = '/index.html';
+
+			                return true;
+			            };
+
+			        jBox.confirm("提交成功！返回首页", null, submit, { id:'hahaha', showClose:true,showScrolling: false, buttons: { '确定': true} });
 					
 					//window.parent.location.href = '/index.html';
 				}

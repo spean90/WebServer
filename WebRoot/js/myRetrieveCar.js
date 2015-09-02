@@ -12,7 +12,7 @@ var myRetrieveCar = {
 							return;
 						}
 						if (data.content.list==null||data.content.list.length==0) {
-							console.log('回收车中还没有商品呦，赶紧去看看吧！');
+							console.log('回收车中还没有物品呦，赶紧去看看吧！');
 						}else {
 							$('tbody').empty();
 							var list = data.content.list;
@@ -24,11 +24,16 @@ var myRetrieveCar = {
 								currency = item.currency;
 								str = '<tr id="'+item.customersBasketId+'">'
 									  + '<td class="checkbox"><input class="check-one check" checked type="checkbox" value="'+item.customersBasketId+'"/></td>'
-									  + '<td class="goods"><img src="'+item.modelsImage+'" alt=""/><span>'+item.modelsName+'</span></td>'
-									  + '<td class="price">'+item.lastEvaluationPrice.toFixed(2)+'</td>'
+									  + '<td class="goods"><img src="'+item.modelsImage+'" title="';
+								if( (sessionStorage.userType != null)&& (sessionStorage.userType != 'undefined') &&( (sessionStorage.userType == 2) || (sessionStorage.userType == 3)) ){
+									str = str + '您可获得的回收抽成费：' + item.currency + item.agentCommission;
+								}
+	  
+							str = str + '"/><span>'+item.modelsName+'</span></td>'
+									  + '<td class="price">'+item.currency + item.lastEvaluationPrice.toFixed(2)+'</td>'
 									  + '<td class="status">价格有效</td>'
 									  + '<td class="num m_l32"><input class="count-input disable" disabled type="text" value="1"/></td>'
-									  + '<td class="subtotal">'+item.lastEvaluationPrice.toFixed(2)+'</td>'
+									  + '<td class="subtotal">' + item.currency + item.lastEvaluationPrice.toFixed(2)+'</td>'
 									  + '<td class="operation">'
 									  + '<span class="delete" onclick=toolBar.removeFromCar('+item.customersBasketId+')>删除</span>'
 									  + '<span class="reprice" onclick=window.location.href="valuation_'+item.modelsId+'.html">重新询价</span>'
