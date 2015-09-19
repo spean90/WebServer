@@ -13,7 +13,7 @@ var City = {
 				}
 				$(".city-list-1.clearfix").empty();
 				var list = data.content.list;
-				var str = '<dt>  热门城市</dt>';
+				var str = '<dt>热门城市</dt>';
 				$(".city-list-1.clearfix").append(str);	
 				for(var i=0; i<list.length; i++){
 					str = '<dd><a id="'+list[i].cityId+'" onclick="City.checkCity(' + list[i].cityId + ',\'' + list[i].name + '\');">' + list[i].name + '</a></dd>';
@@ -59,10 +59,10 @@ var City = {
 		localStorage.cityId = id;
 		localStorage.cityName = name;
 		$('.drop-down.drop-down-s.more-city').removeClass('hover');
-		//如果是支付页面、改变城市要重新计价、、、暂时不用
-		if(window.location.href.indexOf('pay_')!=-1){
-			pay.reValuation();
-		}
+		//如果是支付页面、改变城市要重新计价、、、暂时不用 直接整个页面刷新重新读取数据即可
+		//if(window.location.href.indexOf('pay_')!=-1){
+		//	pay.reValuation();
+		//}
 		//修改城市。reload页面
 		window.location.reload();
 	}

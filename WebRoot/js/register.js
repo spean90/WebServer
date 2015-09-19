@@ -215,14 +215,14 @@ var register = {
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							$("input[name='username']").parent().children('div').html(data.content.verfiyDesc);
+							$("input[name='username']").parent().children('div').html(data.content.verifyDesc);
 							$("input[name='username']").parent().children('i').hide();
 							return;
 						}else{
 							if(data.content.verifyResult=='0'){
 								$("input[name='username']").parent().children('i').show();
 							}else{
-								$("input[name='username']").parent().children('div').html(data.content.verfiyDesc);
+								$("input[name='username']").parent().children('div').html(data.content.verifyDesc);
 								$("input[name='username']").parent().children('div').removeClass('defaulttip');
 								$("input[name='username']").parent().children('div').addClass('errtip');
 								$("input[name='username']").parent().children('div').show();
@@ -241,7 +241,7 @@ var register = {
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							$("input[name='tel']").parent().children('div').html(data.content.verfiyDesc);
+							$("input[name='tel']").parent().children('div').html(data.content.verifyDesc);
 							$("input[name='tel']").parent().children('i').hide();
 							return;
 						}else{
@@ -250,7 +250,7 @@ var register = {
 								$("input[name='tel']").parent().children('i').show();
 								$("input[name='tel']").parent().children('div').hide();
 							}else{
-								$("input[name='tel']").parent().children('div').html(content.verfiyDesc);
+								$("input[name='tel']").parent().children('div').html(content.verifyDesc);
 								$("input[name='tel']").parent().children('div').removeClass('defaulttip');
 								$("input[name='tel']").parent().children('div').addClass('errtip');
 								$("input[name='tel']").parent().children('div').show();
@@ -275,7 +275,7 @@ var register = {
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							$("#volidCoder_register_ps").parent().children('div').html(data.content.verfiyDesc);
+							$("#volidCoder_register_ps").parent().children('div').html(data.content.verifyDesc);
 							$("#volidCoder_register_ps").parent().children('i').hide();
 							return;
 						}else{
@@ -284,7 +284,8 @@ var register = {
 								$("#volidCoder_register_ps").parent().children('i').show();
 								$("#volidCoder_register_ps").parent().children('div').hide();
 							}else{
-								$("#volidCoder_register_ps").parent().children('div').html(content.verfiyDesc);
+								$("#volidCoder_register_ps").parent().children('i').hide();
+								$("#volidCoder_register_ps").parent().children('div').html(content.verifyDesc);
 								$("#volidCoder_register_ps").parent().children('div').removeClass('defaulttip');
 								$("#volidCoder_register_ps").parent().children('div').addClass('errtip');
 								$("#volidCoder_register_ps").parent().children('div').show();

@@ -46,8 +46,8 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
     <div class="line">
       <span class="c-black fb">收款方式</span>
       	<span id="payType">
-	      	<label class="radio-box" ><input type="radio" name="trade-way" id="online_bank" checked /> 网银转账：<span class="c-red"></span></label>　
-	      　		<label class="radio-box" ><input type="radio" name="trade-way" id="pay_cash" /> 现金交易：<span class="c-red"></span></label>
+	      	<label class="radio-box" ><input type="radio" name="trade-way" id="online_bank" checked /> 网银转账：<span id="online_subtotal" class="c-red"></span></label>　
+	      　		<label class="radio-box" ><input type="radio" name="trade-way" id="pay_cash" /> 现金交易：<span id="cash_subtotal" class="c-red"></span></label>
       	</span>　
     </div>
     <div class="bank-area">
@@ -131,8 +131,7 @@ document.write('<link rel="stylesheet" type="text/css" href="'+Sys.staticDomain+
       </p> -->
       <div class="tx-right">
         <span class="all-count">
-         物品回收金额：<span  class="c-red">
-        
+         物品回收金额：<span id="all_subtotal" class="c-red">        
         </span>
         <span id="shipfee">
          运费补贴: 

@@ -18,20 +18,19 @@ var pay = {
 					pay.paySum = 0;
 					pay.shipfee = 0;
 					if (data.content.list==null||data.content.list.length==0) {
-						console.log('回收车中还没有物品呦，赶紧去看看吧！');
-						window.location.href='/index.html';
-					}else {
+						//console.log('回收车中还没有物品呦，赶紧去看看吧！');
+						window.location.href='/brands_0.html';
+					}else{
 						$('table').empty();
 						var list = data.content.list;
 						var str = '<tr>'
-							+ '<th>物品名称</th>'
-							+ '<th>最高报价</th>'
-							+ '<th>数量</th>'
-							+ '<th>最终金额</th>'
+							+ '<th>物品型号</th>'
+							+ '<th>回收估价</th>'
+							+ '<th>数    量</th>'
+							+ '<th>金额小计</th>'
 							+ '</tr>';
 						$('table').append($(str));
 						var sum = 0;
-						var currency = '￥';
 						for (var i = 0; i < list.length; i++) {
 							var item = list[i];
 							sum += item.lastEvaluationPrice;
@@ -42,21 +41,22 @@ var pay = {
 								+ '<td>'+item.lastEvaluationPrice.toFixed(2)+'</td>'
 								+ '</tr>';
 							$('table').append($(str));
-							currency = item.currency;
 						}
-						$('.order-count.clearfix').empty();
-						var s = ' <span class="fl">商家报价</span>'
-							+'<span class="fr">共'+list.length+'件物品，合计'+currency+sum.toFixed(2)+'</span>';
-						$('.order-count.clearfix').append($(s));
-						
-						$('.c-red').text(currency+sum.toFixed(2));
+						//$('.order-count.clearfix').empty();
+						//var s = ' <span class="fl">商家报价</span>'
+						//	+'<span class="fr">共'+list.length+'件物品，合计'+currency+sum.toFixed(2)+'</span>';
+						//$('.order-count.clearfix').append($(s));
+						$("#online_subtotal").text(data.content.currency+sum.toFixed(2));
+						$("#cash_subtotal").text(data.content.currency+sum.toFixed(2));	
+						$("#all_subtotal").text(data.content.currency+sum.toFixed(2));					
+						//$('.c-red').text(currency+sum.toFixed(2));
 						pay.paySum = sum;
 						pay.currency = data.content.currency;
 						pay.shipfee = data.content.shippingFee;
 						if($('#shipfee').is(':visible')){
 							pay.paySum = pay.paySum + pay.shipfee;
 						}
-						$('#sum').text(currency+pay.paySum.toFixed(2));
+						$('#sum').text(data.content.currency+pay.paySum.toFixed(2));
 						$('#shipfeetip').html('运费补贴:'+data.content.currency+pay.shipfee);
 						$('#shipfee').html('运费补贴:<span  class="c-red">'+data.content.currency+pay.shipfee+'</span>');
 						
@@ -164,13 +164,13 @@ var pay = {
 						for(var i=0;i<list.length;i++){
 							if(list[i].methodType==1){
 								if (list[i].recycleMethodId==1) {
-									var str = '<label class="radio-box"><input type="radio" name="trade-way" id="online_bank" value="1" /> 网银转账：<span class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
+									var str = '<label class="radio-box"><input type="radio" name="trade-way" id="online_bank" value="1" /> 网银转账：<span id="online_subtotal" class="c-red"></span></label><span style="width:50px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>';
 									$('#payType').append($(str));
 //									var strs = '<label><input type="radio" name="trade-way" id="pay_cash" checked value="3" /> 现金交易：<span class="c-red"></span></label>';
 //									$('#payType').append($(strs));
 //									$('.bank-area').hide();
 								}else if (list[i].recycleMethodId==2){
-									var str = '<label class="radio-box"><input type="radio" name="trade-way" id="pay_cash" value="3" /> 现金交易：<span class="c-red"></span></label>';
+									var str = '<label class="radio-box"><input type="radio" name="trade-way" id="pay_cash" value="3" /> 现金交易：<span id="cash_subtotal" class="c-red"></span></label>';
 									$('#payType').append($(str));
 									$('.bank-area').hide();
 								}
@@ -240,7 +240,7 @@ var pay = {
 			}
 			var data = {
 					customersBasketIds : $('#customersBasketIds').text(),
-					userId : sessionStorage.userId,
+					customersId : sessionStorage.userId,
 					ordersSource : sessionStorage.userType,
 					customerName : username,
 					paymentType : tradeWay,
@@ -303,31 +303,8 @@ var pay = {
 	changeCity : function() {
 		$('.drop-down.drop-down-s.more-city').addClass('hover');
 	},
-	reValuation : function() {
-		//alert(111);
-//		var config = {
-//		url : Sys.serviceDomain+"/listAllCity?provienceId="+val,
-//		callbackParameter: "callback",
-//		success : function(data){ 
-//			if (data.msg.code!="0000") {
-//				//Modal.alert('短信发送失败，请稍后再试！');
-//				return;
-//			}
-//			var content = data.content;
-//			if (content.list!=null&&content.list.length!=0) {
-//				var list = content.list;
-//				for(var i=0;i<list.length;i++){
-//					var str = '<option value="'+list[i].cityId+'">'+list[i].name+'</option>'
-//					$('#city').append($(str));
-//				}
-//			}
-//		}
-//}
-//Modal.jsonp(config);
-	},
 	//初始化页面后。添加响应
-	initPage : function(){
-	
+	initPage : function(){	
 		pay.showAddrDetail();
 		var val = $('[name=trade-way]:checked').val();
 		if(val==1){

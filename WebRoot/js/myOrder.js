@@ -87,13 +87,14 @@ myOrder = {
 				                sum = sum+ordersItemList[j].customersPrice;
 				                count+=1;
 			                }
+			                sum = sum+item.shippingFee;
 			                str = str + '</tbody>'
 			                + '</table>'
 			                + '<div class="foot" id="foot">'
 			                //+ '<label class="fl select-all none"><input type="checkbox" class="check-all check"/>&nbsp;全选</label>'
 			                + '<a class="fl delete none" id="deleteAll" href="javascript:;">删除</a>'
-			                + '<div class="fr total">合计：'+item.currency+'<span id="priceTotal">'+sum+'</span></div>'
-			                + '<div class="fr selected" id="selected">共<span id="selectedTotal">'+count+'</span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>'
+			                + '<div class="fr total"><span class="sf shippingFee_span'+item.transactionType+'">运费补贴：<span class="price">'+item.shippingFee+'</span>&nbsp;&nbsp;&nbsp;</span>合计：'+item.currency+'<span id="priceTotal">'+sum+'</span></div>'
+			               // + '<div class="fr selected" id="selected">共<span id="selectedTotal">'+count+'</span>件<span class="arrow up none">︽</span><span class="arrow down none">︾</span></div>'
 			                + '<div class="selected-view none">'
 			                + '<div id="selectedViewList" class="clearfix">'
 			                + '<div><img src="images/1.jpg"><span>取消选择</span></div>'
@@ -104,9 +105,11 @@ myOrder = {
 			                + '<tr class="item">'
 			                + '<td colspan="6" class="tx-right">';
 			                if(item.ordersStatusId=="1"){
-			                	//未处理
-			                	str = str + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+',2);" class="btn-radius">客户发货</a> &nbsp;'
-				                + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper('+item.ordersId+',7);">　取消　</a> &nbsp;';
+			                	//未处理 
+			                	if(item.transactionType == '1'){
+			                		str = str + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+',2);" class="btn-radius">客户发货</a> &nbsp;';
+			                	}
+			                	str = str + '<a href="#" class="btn-radius" onclick="myOrder.showOrderOper('+item.ordersId+',7);">　取消　</a> &nbsp;';
 			                }else if(item.ordersStratusId=="5"){
 			                	//已回寄
 			                	str = str  + '<a href="#" onclick="myOrder.showOrderOper('+item.ordersId+');" class="btn-radius">完成回退</a> &nbsp;';
@@ -127,6 +130,8 @@ myOrder = {
 			                + '<div id="pagination" class="page mt-30 fr"></div>'
 			                + '</div>';
 						$(".tabs-content>div:eq("+divIndex+")").append($(str));
+						$('.sf').hide();
+						$('.shippingFee_span1').show();
 						var recordPerPage = content.recordPerPage;
 						var totalPage = content.totalPage;
 						//初始化分页条
@@ -144,13 +149,95 @@ myOrder = {
 			Modal.jsonp(config);
 		},
 		showAssessment : function(ordersId){
-			$(this).modal('/assessmentPop_'+ordersId+'.html', 'assessmentPopId')
+			var placeholder = '请输入评价相关信息，以便我们进一笔改进服务 ';
+			var submit = function (v, h, f) {
+				if (f.satisty == undefined) {
+			        $.jBox.tip('请选择满意度', 'error', { focusId: "satisty" }); // 关闭设置 yourname 为焦点
+			        return false;
+			    }
+			    if (f.message == '') {
+			        $.jBox.tip(placeholder, 'error', { focusId: "message" }); // 关闭设置 yourname 为焦点
+			        return false;
+			    }
+			    var data = {
+						ordersId : ordersId,
+						ordersStatusId : 10,
+						customersReviews : f.message,
+						reviewsLevel : f.satisty,
+						key : sessionStorage.token
+				}
+				var config = {
+						url : Sys.serviceDomain+"/addOneCustomersReviews",
+						callbackParameter: "callback",
+						data : data,
+						success : function(data){ 
+							if (data.msg.code!="0000") {
+								$.jBox.tip("提交操作失败!");
+								return;
+							}
+							$.jBox.tip("操作成功");
+							$('#reflash', window.top.document).click();
+						}
+				}
+				Modal.jsonp(config);
+			    return true;
+			};
+			//$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', 'orderOperPopId')
+			//jBox.open('iframe:/orderOperPop_'+ordersId+'_'+status+'.html', "订单操作", 925, 500, { buttons: {}, persistent: false,showIcon:false,top:'10%' });
+			var html1 = '<div class="msg-div" style="padding:10px">' +
+            '<p>订单评价：</p><div class="green-radio"> <label><input type="radio" name="satisty" value="3" /> <span>非常满意</span></label> &nbsp;<label><input type="radio" name="satisty" value="2" /> <span>满意</span></label> &nbsp;<label><input type="radio" name="satisty" value="1" /> <span>一般</span></label> &nbsp; <label><input type="radio" name="satisty" value="0" /> <span>不满意</span></label>  </div><p class="mt-20">评价说明：</p><div class="field"><textarea id="message" name="message" style="width:  380px;height: 60px"></textarea></div>' +'</div>';
+           $.jBox(html1, { title: "评价订单", submit: submit });
+   		$('textarea').attr('placeholder',placeholder);
 		},
 		showOrderOper : function(ordersId,status){
-			$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', 'orderOperPopId')
+			var placeholder = '';
+			
+			   if(status==2){
+				 placeholder = '请输入发货的物流公司及物流单号相关信息';
+	    		}else if(status==7){
+	    			placeholder = '请输入取消订单的原因';
+	    		}
+	    		else if(status==6){
+	    			placeholder = '请输入需要补充反馈的信息';
+	    		}
+	    		else if(status==10){
+	    			placeholder = '请输入评价相关信息，以便我们进一笔改进服务 ';
+	    		}
+			
+			var submit = function (v, h, f) {
+			    if (f.message == '') {
+			        $.jBox.tip(placeholder, 'error', { focusId: "message" }); // 关闭设置 yourname 为焦点
+			        return false;
+			    }
+			    var data = {
+						ordersId : ordersId,
+						ordersStatusId : status,
+						comments : f.message
+				}
+				var config = {
+						url : Sys.serviceDomain+'/updateOwnOrdersStatus?key='+sessionStorage.token,
+						callbackParameter: "callback",
+						data : data,
+						success : function(data){ 
+							if (data.msg.code!="0000") {
+								$.jBox.tip("提交操作失败!");
+								return;
+							}
+							$.jBox.tip("操作成功");
+							$('#reflash', window.top.document).click();
+						}
+				}
+				Modal.jsonp(config);
+			    return true;
+			};
+			//$(this).modal('/orderOperPop_'+ordersId+'_'+status+'.html', 'orderOperPopId')
+			//jBox.open('iframe:/orderOperPop_'+ordersId+'_'+status+'.html', "订单操作", 925, 500, { buttons: {}, persistent: false,showIcon:false,top:'10%' });
+			 var html1 = '<div class="msg-div" style="padding:10px">' +
+             '<p>订单操作提示：</p><p>亲你是否要修改订单状态?</p><p>操作说明：</p><div class="field"><textarea id="message" name="message" style="width: 380px;height: 60px"></textarea></div>' +'</div>';
+            $.jBox(html1, { title: "订单操作", submit: submit });
+    		$('textarea').attr('placeholder',placeholder);
 		},
 		showAssessDetail : function(customersBasketId) {
-			//$(this).modal('/assessDetails_'+customersBasketId+'.html', '评估详情')
 			
             jBox.open('iframe:/assessDetails_'+customersBasketId+'.html', "评估详情", 925, 500, { buttons: {}, persistent: false,showIcon:false,top:'10%' });
 			

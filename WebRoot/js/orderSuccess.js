@@ -18,7 +18,7 @@ var orderSuccess = {
 							//当面交易显示
 							var str = '<div class="status status1">'
 						          	+'<div class="tips">'
-						          	+'<p><i class="icon icon-success"></i>订单提交成功！壹回收将在'+content.dealHours+'小时内安排工程师进行单面交易!</p>'
+						          	+'<p><i class="icon icon-success"></i>回收单提交成功！壹回收将在'+content.dealHours+'小时内安排工程师进行单面交易!</p>'
 						          	+'</div>'
 						          	+'<div class="info">'
 						          	+' <ul>'
@@ -52,7 +52,7 @@ var orderSuccess = {
 						}else if(content.transactionType==1){ //快递 
 							var str = '<div class="status status2">'
 									+'<div class="tips">'
-									+'<p><i class="icon icon-success"></i>订单提交成功！请在'+content.dealHours+'小时内将订单物品寄达壹回收！</p>'
+									+'<p><i class="icon icon-success"></i>回收单提交成功！请在'+content.dealHours+'小时内将订单物品寄达壹回收！</p>'
 									+'</div>'
 									+'<div class="info">'
 									+'<ul>'
@@ -98,7 +98,7 @@ var orderSuccess = {
 						}else if(content.transactionType==2){  //门店
 							var str = '<div class="status status3">'
 										+'<div class="tips">'
-										+'<p><i class="icon icon-success"></i>订单提交成功！请在'+content.dealHours+'小时内去就近门店进行交易!</p>'
+										+'<p><i class="icon icon-success"></i>回收单提交成功！请在'+content.dealHours+'小时内去就近门店进行交易!</p>'
 										+'</div>'
 										+'<div class="info">'
 										+' <ul>'

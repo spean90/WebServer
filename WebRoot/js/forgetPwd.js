@@ -12,7 +12,7 @@ var forgetPwd = {
 					callbackParameter: "callback",
 					success : function(data){ 
 						if (data.msg.code!="0000") {
-							$("input[name='username']").parent().children('div').html(data.content.verfiyDesc);
+							$("input[name='username']").parent().children('div').html(data.content.verifyDesc);
 							$("input[name='username']").parent().children('i').hide();
 							return;
 						}else{
@@ -23,7 +23,7 @@ var forgetPwd = {
 								forgetPwd.forgetPhone = content.phone;
 								$('#forgetPhone').html(content.phone);
 							}else{
-								$("input[name='username']").parent().children('div').html(content.verfiyDesc);
+								$("input[name='username']").parent().children('div').html(content.verifyDesc);
 								$("input[name='username']").parent().children('div').removeClass('defaulttip');
 								$("input[name='username']").parent().children('div').addClass('errtip');
 								$("input[name='username']").parent().children('div').show();
